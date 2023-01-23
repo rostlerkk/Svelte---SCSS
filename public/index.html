@@ -7,10 +7,68 @@
 	<title>Svelte app</title>
 
 	<link rel='icon' type='image/png' href='/favicon.png'>
-	<link rel='stylesheet' href='/global.css'>
-	<link rel='stylesheet' href='/build/bundle.css'>
+	<link rel='stylesheet' href='assets/css/style.css'>
+	<link rel='stylesheet' href='global.css'>
+	<link rel='stylesheet' href='build/bundle.css'>
 
-	<script defer src='/build/bundle.js'></script>
+	<script defer src='build/bundle.js'></script>
+
+	<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+
+	<!-- FancyApps -->
+	<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
+
+	<!-- FontAwesome v.6 -->
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+	<!-- Pano2VR -->
+
+	<script type="text/javascript" src="pano2vr/output/pano2vr_player.js">
+	</script>
+	<script src="pano2vr/output/webxr/three.min.js"></script>
+	<script src="pano2vr/output/webxr/webxr-polyfill.min.js"></script>
+	<div id="container" style="width:100%;height:100%;overflow:hidden;">
+	<br>Loading...<br><br>
+	</div>
+	<script type="text/javascript">
+
+		// create the panorama player with the container
+		pano=new pano2vrPlayer("container");
+		// load the configuration
+	
+		window.addEventListener("load", function() {
+			pano.readConfigUrlAsync("pano2vr/output/pano.xml");
+		});
+		if (window.navigator.userAgent.match(/Safari/i)) {
+			// fix for white borders, rotation on iPhone
+			function iosHfix(e) {
+				window.scrollTo(0, 1);
+				var container=document.getElementById("container");
+				var oh=container.offsetHeight;
+				document.documentElement.style.setProperty('height', '100vh');
+				if (oh!=container.offsetHeight) {
+					container.style.setProperty('height',"100%");
+				} else {
+					container.style.setProperty('height',window.innerHeight+"px");
+				}
+				window.scrollTo(0, 0);
+				pano.setViewerSize(container.offsetWidth, container.offsetHeight);
+			};
+			setTimeout(iosHfix,0);	
+			setTimeout(iosHfix,100);	
+			window.addEventListener("resize", function() {
+				setTimeout(iosHfix,0);
+				// hide toolbar on iPad happens with a delay
+				setTimeout(iosHfix,500);
+				setTimeout(iosHfix,1000);
+				setTimeout(iosHfix,2000);
+			});
+		}
+	</script>
+	<noscript>
+		<p><b>Please enable Javascript!</b></p>
+	</noscript>
 </head>
 
 <body>
