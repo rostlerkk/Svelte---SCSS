@@ -2,9 +2,8 @@
 
     let map_link = "https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d10500.902039411158!2d2.2913514905137315!3d48.85391001859112!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1slv!2slv!4v1622011463926!5m2!1slv!2slv";
     
-
-    
     pano.on("configloaded", function() {
+        // pano.addVariable('gallery_iframe', 0, "lama");
         console.log(pano.getVariableValue("gallery_iframe"));
     });
     // Image gallery
