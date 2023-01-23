@@ -10,9 +10,20 @@
 	<link rel='stylesheet' href='assets/css/style.css'>
 	<link rel='stylesheet' href='global.css'>
 	<link rel='stylesheet' href='build/bundle.css'>
-
 	<script defer src='build/bundle.js'></script>
 
+	<!-- Menu -->
+	<link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.0/animate.min.css'>
+    <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css'>
+    <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/css/tether.min.css'>
+	<link rel="stylesheet" href="assets/css/demo.css">
+	<link rel="stylesheet" href="assets/css/style_menu.css">
+	
+  
+
+
+	<!-- jquery -->
 	<script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
 
 	<!-- FancyApps -->
@@ -23,7 +34,6 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 	<!-- Pano2VR -->
-
 	<script type="text/javascript" src="pano2vr/output/pano2vr_player.js">
 	</script>
 	<script type="text/javascript" src="pano2vr/output/skin.js">
@@ -34,9 +44,11 @@
 	<br>Loading...<br><br>
 	</div>
 	<script type="text/javascript">
-
+	
 		// create the panorama player with the container
 		pano=new pano2vrPlayer("container");
+		// add the skin object
+		skin=new pano2vrSkin(pano);
 		// load the configuration
 	
 		window.addEventListener("load", function() {
@@ -68,6 +80,13 @@
 			});
 		}
 	</script>
+
+	<!-- Menu -->
+	<script src='https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js'></script>
+    <script src='https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js'></script>
+    <script src='https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.4/js/tether.min.js'></script>
+    <script  src="assets/js/script.js"></script>
+
 	<noscript>
 		<p><b>Please enable Javascript!</b></p>
 	</noscript>

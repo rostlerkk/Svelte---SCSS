@@ -9,6 +9,8 @@ var _App = _interopRequireDefault(require("./App.svelte"));
 
 var _Fancygallery = _interopRequireDefault(require("./components/Fancygallery.svelte"));
 
+var _Menu = _interopRequireDefault(require("./components/Menu.svelte"));
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { "default": obj }; }
 
 var app = new _App["default"]({
@@ -18,6 +20,12 @@ var app = new _App["default"]({
   }
 });
 var fancygallery = new _Fancygallery["default"]({
+  target: document.body,
+  props: {
+    name: 'world'
+  }
+});
+var menu = new _Menu["default"]({
   target: document.body,
   props: {
     name: 'world'

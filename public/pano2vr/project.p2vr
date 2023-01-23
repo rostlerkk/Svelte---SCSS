@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!-- Pano2VR project file  -->
-<pano2vrconfig rev="18116" version="6.1.15">
+<pano2vrconfig version="6.1.15" rev="18116">
   <tour>
     <panorama>
       <id>node1</id>
@@ -22,6 +22,9 @@
       <userdata>
         <capturedatetime>2021-10-13T16:28:20</capturedatetime>
         <tags>equirects</tags>
+        <title>Node 1</title>
+        <altitude>-10000</altitude>
+        <usealtitude>0</usealtitude>
       </userdata>
       <floorplans/>
       <hotspots/>
@@ -29,7 +32,9 @@
       <streetview/>
       <streetviewproject/>
       <sounds/>
-      <animation/>
+      <animation>
+        <sequence/>
+      </animation>
     </panorama>
     <panorama>
       <input>
@@ -50,6 +55,9 @@
       <userdata>
         <capturedatetime>2021-10-13T16:28:08</capturedatetime>
         <tags>equirects</tags>
+        <title>Node 2</title>
+        <altitude>-10000</altitude>
+        <usealtitude>0</usealtitude>
       </userdata>
       <floorplans/>
       <hotspots/>
@@ -101,6 +109,9 @@
       <userdata>
         <capturedatetime>2021-10-13T16:28:22</capturedatetime>
         <tags>equirects</tags>
+        <title>Node 3</title>
+        <altitude>-10000</altitude>
+        <usealtitude>0</usealtitude>
       </userdata>
       <floorplans/>
       <hotspots/>
@@ -132,7 +143,7 @@
           <enabled>1</enabled>
           <filename>output/index.html</filename>
           <values>
-            <value id="css"></value>
+            <value id="css"/>
             <value id="fitcover">false</value>
             <value id="gginfo">false</value>
             <value id="htmltitle">$(upt)</value>
@@ -154,6 +165,13 @@
         <tilesize>2955</tilesize>
         <filename>output/pano.xml</filename>
         <skinfile>$d/demo_skin.ggsk</skinfile>
+        <skinconfiguration>
+          <value id="close_menu_on_node_change">false</value>
+          <value id="menu_logo">https://ggnome.com/wp-content/uploads/2020/03/logo_2000px.png</value>
+          <value id="menu_logo_link">https://google.com</value>
+        </skinconfiguration>
+        <skintablesconfiguration/>
+        <skincolorsconfiguration/>
       </htmlcss>
     </output>
     <streetview/>
@@ -161,7 +179,6 @@
     <sounds/>
     <animation>
       <title>Animation01</title>
-      <sequence/>
     </animation>
   </panorama>
 </pano2vrconfig>
