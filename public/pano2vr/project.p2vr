@@ -166,7 +166,6 @@
         <filename>output/pano.xml</filename>
         <skinfile>$d/demo_skin.ggsk</skinfile>
         <skinconfiguration>
-          <value id="close_menu_on_node_change">false</value>
           <value id="menu_logo">https://ggnome.com/wp-content/uploads/2020/03/logo_2000px.png</value>
           <value id="menu_logo_link">https://google.com</value>
         </skinconfiguration>
