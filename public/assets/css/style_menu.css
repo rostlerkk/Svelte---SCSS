@@ -396,4 +396,10 @@ a[href*="#followme"]::before {
     z-index: 9999;
     background-color: white;
   }
+
+  .sidebar-header {
+    position: fixed;        
+    z-index: 10;
+  }
+
 } 

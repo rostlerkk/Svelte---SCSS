@@ -53,15 +53,40 @@
 
         
      }
-</script>
+
+     let show_thumb_id = null;
+     let top = 0;
+     let show_thumb = false;
+
+     function show_thumbnail($name) {
+        show_thumb_id = $name;
+        const anchor = document.getElementById($name);
+        top = anchor.offsetTop - 90 + 20.5;
+        show_thumb = true;
+        console.log(top);
+     }
+
+     function remove_thumbnail($name) {
+        show_thumb = false;
+    }
+</script> 
+
+{#if show_thumb}
+        <img id="thumbnail" src="pano2vr/output/images/thumbnail_nodeimage_{show_thumb_id}.jpg" style="top: {top}px;"/>
+        <span class="thumbnail-arrow" style="top: {top}px;"/>
+    {/if}
 <div id="wrapper">
-    <div class="overlay"></div>
+    <!-- <div class="overlay"></div> -->
     <!-- Sidebar -->
+    
+    
+    
     <nav class="navbar navbar-inverse fixed-top" id="sidebar-wrapper" role="navigation">
+        <p id="pano-name">{current_scene}</p>    
         <ul class="nav sidebar-nav">
             <div class="sidebar-header">
                 <div class="sidebar-brand">
-                    <p>{current_scene}</p>
+                    
                     <a href="{logo_link}" target="_blank"><img src="{logo}" alt="logo"/></a>
                 </div>
             </div>
@@ -69,34 +94,35 @@
                 {#each fetchDataResult as item}
 
                     {#if item.type == "next-node"}
-                        <li on:click={() => pano.openNext('{' + item.target + '}') } on:click={() => handle_menu()}><a href="#">{item.name}</a></li>
+                        <li id="{item.target}" on:click={() => pano.openNext('{' + item.target + '}') } 
+                            on:click={() => handle_menu()}
+                            on:mouseenter={() => show_thumbnail(item.target)}
+                            on:mouseleave={() => remove_thumbnail()}
+                            ><a href="#">{item.name}</a></li>
+                    {:else if  item.type == "link"}                        
+                        <li on:click={() => handle_menu()}><a href="{item.target}" target="_blank">{item.name}</a></li>
+                    {:else if  item.type == "dropdown"}  
+                        <li class="dropdown">
+                            <a href="#works" class="dropdown-toggle"  data-toggle="dropdown">{item.name}<span class="caret"></span></a>
+                            <ul class="dropdown-menu animated fadeInLeft" role="menu">
+                                <div id="submenu" class="dropdown-header">{item.heading}</div>
+                                {#each item.data as element}
+                                    {#if element.type == "next-node"}
+                                        <li on:click={() => pano.openNext('{' + element.target + '}') } on:click={() => handle_menu()}><a href="#">{element.name}</a></li>
+                                    {:else if  element.type == "link"}                        
+                                        <li on:click={() => handle_menu()}><a href="{element.target}" target="_blank">{element.name}</a></li>
+                                    {:else}
+                                        <li on:click={() => pano.setVariableValue("gallery_"+element.type, element.target) } on:click={() => handle_menu()}><a>{element.name}</a></li>
+                                    {/if}
+                                {/each}
+                            </ul>
+                        </li>                      
                     {:else}
                         <li on:click={() => pano.setVariableValue("gallery_"+item.type, item.target) } on:click={() => handle_menu()}><a>{item.name}</a></li>
                     {/if}
-
-                    
                     
                 {/each}
             {/if}
-            
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#events">Events</a></li>
-            <li><a href="#team">Team</a></li>
-            <li class="dropdown">
-                <a href="#works" class="dropdown-toggle"  data-toggle="dropdown">Works <span class="caret"></span></a>
-                <ul class="dropdown-menu animated fadeInLeft" role="menu">
-                    <div class="dropdown-header">Dropdown heading</div>
-                    <li><a href="#pictures">Pictures</a></li>
-                    <li><a href="#videos">Videeos</a></li>
-                    <li><a href="#books">Books</a></li>
-                    <li><a href="#art">Art</a></li>
-                    <li><a href="#awards">Awards</a></li>
-                </ul>
-            </li>
-            <li><a href="#services">Services</a></li>
-            <li><a href="#contact">Contact</a></li>
-            <li><a href="#followme">Follow me</a></li>
         </ul>
     </nav>
     <!-- /#sidebar-wrapper -->
@@ -114,6 +140,48 @@
 
 
 <style lang="scss">
+
+    span.thumbnail-arrow {
+        position: absolute;
+        left: 286px;
+        width: 4px;
+        height: 4px;
+        z-index: 9999;
+        content:"\A";
+        border-style: solid;
+        border-width: 10px 15px 10px 0;
+        border-color: transparent #fff transparent transparent;
+        position: absolute;
+        margin-top: 80px;
+        transition: all 0.2s ease-in-out;
+    }
+
+    #thumbnail {
+        position: absolute;
+        left: 300px;
+        width: 280px;
+        height: 180px;
+        border: 2px solid white;
+        z-index: 5;
+        transition: all 0.2s ease-in-out;
+        
+    }
+
+    #pano-name {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        background: white;
+        z-index: 5;
+    }
+
+    #submenu {
+        height: 40px;
+    }
+
+    button {
+        cursor: pointer;
+    }
     .sidebar-brand {
         img {
             position: relative;
@@ -124,12 +192,17 @@
     }
 
     #wrapper {
-            &.toggled {  
-                #side-wrapper {
-                    width: 300px;
-                }
-            } 
-        }
+        &.toggled {  
+            #side-wrapper {
+                width: 300px;
+            }
+        } 
+    }
+
+    li {
+        cursor: pointer;
+    }
+
 
     
     
