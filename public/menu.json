@@ -1,6 +1,146 @@
 {
     "pizza" : [
 
+        {
+            "id" : "1",
+            "name" : "SYROVÉ ŠTANGLE S CESNAKOM",
+            "description" : "+ surovina naviac podľa vlastného výberu",
+            "alergeny" : "(1,7)",
+            "price" : 6.9
+        },
+        {
+            "id" : "2",
+            "name" : "REGINA",
+            "description" : "tomat, eidam, mozarella, šunka, šampiňóny, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 7.9
+        },
+        {
+            "id" : "3",
+            "name" : "MARGERITA",
+            "description" : "tomat, eidam, mozarella, cherry paradajky, bazalka",
+            "alergeny" : "(1,7)",
+            "price" : 7.9
+        },
+        {
+            "id" : "4",
+            "name" : "ŠUNKOVÁ",
+            "description" : "tomat, eidam, mozarella, šunka, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 7.9
+        },
+        {
+            "id" : "5",
+            "name" : "SALÁMOVÁ",
+            "description" : "tomat, eidam, mozarella, saláma, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 7.9
+        },
+        {
+            "id" : "6",
+            "name" : "KUKURICOVÁ",
+            "description" : "tomat, eidam, mozarella, kukurica, šunka, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 7.9
+        },        {
+            "id" : "7",
+            "name" : "ŠAMPIŇÓNOVÁ",
+            "description" : "tomat, eidam, mozarella, šampiňóny, saláma, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 7.9
+        },
+        {
+            "id" : "8",
+            "name" : "HAWAI",
+            "description" : "tomat, eidam, mozarella, ananás, šunka, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.2
+        },
+        {
+            "id" : "9",
+            "name" : "CIGÁNSKA",
+            "description" : "tomat, eidam, mozarella, šunka, saláma, cibuľa, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.2
+        },
+        {
+            "id" : "10",
+            "name" : "TUNIAKOVÁ",
+            "description" : "tomat, eidam, mozarella, tuniak, cibuľa, oregáno",
+            "alergeny" : "(1,4,7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "11",
+            "name" : "RUKOLA",
+            "description" : "tomat, eidam, mozarella, paradajky, rukola, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.2
+        },
+        {
+            "id" : "12",
+            "name" : "SYROVÁ",
+            "description" : "tomat, eidam, mozarella, údený syr, niva, encián, parmezán, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "13",
+            "name" : "ALIMICI",
+            "description" : "tomat, eidam, mozarella, šunka, šampiňóny, kukurica, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "14",
+            "name" : "MISCHEL",
+            "description" : "tomat, eidam, mozarella, kur. mäso, broskyňa, smotana, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "15",
+            "name" : "4 ROČNÉ OBDOBIA",
+            "description" : "tomat, eidam, mozarella, šunka, saláma, kukurica, brokolica, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "16",
+            "name" : "SUZANA",
+            "description" : "tomat, eidam, mozarella, šunka, tuniak, olivy, cibuľa, oregáno",
+            "alergeny" : "(1,4,7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "17",
+            "name" : "GAZDOVSKÁ",
+            "description" : "tomat, eidam, mozarella, saláma, slanina, cibuľa, barannie rohy, šampiňóny, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "18",
+            "name" : "DIABOLSKÁ",
+            "description" : "tomat, eidam, mozarella, pik. saláma, klobása, jalapeňos, kukurica, čili, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "19",
+            "name" : "MEXICKÁ",
+            "description" : "tomat, eidam, mozarella, šunka, klobása, fazuľa, kukurica, feferóny, čili, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "20",
+            "name" : "BAČOVSKÁ",
+            "description" : "tomat, eidam, mozarella, šunka, klobása, slanina, bryndza, bar. rohy, šampiňóny, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.4
+        }
+
     ],
     "jedla" : [
 
