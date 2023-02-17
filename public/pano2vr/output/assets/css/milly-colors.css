@@ -1,0 +1,35 @@
+.color-white {
+  background-color: #fff;
+}
+
+.color-black {
+  background-color: #000;
+}
+
+.grey {
+  background-color: #AFAFAF;
+}
+
+.gladstone {
+  background-image: url("../../assets/icons/hotspots-color/gladstone.jpg");
+}
+
+.heraklit {
+  background-image: url("../../assets/icons/hotspots-color/heraklit.jpg");
+}
+
+.modrin {
+  background-image: url("../../assets/icons/hotspots-color/modrin.jpg");
+}
+
+.mirror {
+  background-image: url("../../assets/icons/hotspots-color/mirror.jpg");
+}
+
+.plywood {
+  background-image: url("../../assets/icons/hotspots-color/plywood.jpg");
+}
+
+.rasters {
+  background-image: url("../../assets/icons/hotspots-color/rasters.jpg");
+}
