@@ -1,4 +1,17 @@
 <script>
+    import { vivaData } from '../store.js';
+    let user_lang, productUrl, housesUrl, subtitlesUrl = null;
+    let lang_data_loading, welcome = true;
+    let product_data_loaded, houses_data_loaded, subtitles_data_loaded = false;
+
+    let intro = true;
+    let _vivaData = {};
+
+    vivaData.subscribe(value => {
+        _vivaData = value;
+    });
+
+
 
     // API kľúče
     const apiToken = {
@@ -106,217 +119,438 @@
         int : 'https://int.baumit.com'
     }
 
-    let cookies = document.cookie.split('=');
-    let cookies2 = document.cookie;
+    // získanie dát z API - golbálna funkcia
+    async function fetchData($url, $lang, $type, $variable) {
     
-    if (cookies.user_lang == undefined) {
-        console.log("jazyk nie je špecifikovaný");
+        $variable = false;
+        if (_vivaData[$lang] == undefined) {
+            const res = await fetch($url);
+            const json = await res.json();
+
+            if (res.ok) {
+
+                if (_vivaData[$lang] == undefined) {
+                    _vivaData[$lang] = {
+                        houses : null,
+                        subtitles : null,
+                        products : null
+                    };
+                }
+                _vivaData[$lang][$type] = json; 
+                vivaData.update(n => _vivaData);       
+
+                if ($type == "houses") {
+                    console.log(_vivaData);
+                }
+
+            } else {
+                throw new Error(json);
+            }            
+        }    
+        $variable = true;
+        
+	}
+ 
+    // Zistenie jazyka užívateľa
+    function check_user_lang () {
+
+        // zistenie honoty z cookies
+        function getCookie(cname) {
+            let name = cname + "=";
+            let decodedCookie = decodeURIComponent(document.cookie);
+            let ca = decodedCookie.split(';');
+            for(let i = 0; i <ca.length; i++) {
+                let c = ca[i];
+                while (c.charAt(0) == ' ') {
+                c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                return c.substring(name.length, c.length);
+
+                }
+            }
+            return "";
+        }
+        let cookie_lang = getCookie("user_lang");
+
+        if (cookie_lang != "") {
+            // cookies nie su prázdne 
+            user_lang = cookie_lang;
+            pano.setVariableValue('lang', user_lang);
+            //update_lang_content();
+        }
+    
+        else {
+            // Jazyk nie je definovaný v Cookies
+            
+            user_lang = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
+            console.log(window.navigator.userLanguage);
+            document.cookie = "user_lang=" + user_lang;
+            console.log(user_lang);
+            switch (user_lang) {
+                case 'cz' : 
+                case 'cs' : 
+                case 'cz-cz' : 
+                case 'cz-CZ' : 
+                    pano.setVariableValue('lang', 'cz');
+                break;
+        
+                case 'sk' :
+                case 'sk-sk' : 
+                case 'sk-SK' : 
+                    pano.setVariableValue('lang', 'sk');
+                break;
+        
+                case 'at' :
+                case 'at-at' : 
+                case 'de-at' :
+                    pano.setVariableValue('lang', 'at');
+                break;
+        
+                case 'de' :
+                case 'de-de' :                     
+                    pano.setVariableValue('lang', 'de');
+                break;
+        
+                case 'hr' : 
+                case 'hr-hr' : 
+                    pano.setVariableValue('lang', 'hr');
+                break;
+        
+                case 'rs' :  // Srbsko
+                case 'rs-rs' :  // Srbsko
+                case 'sr' :
+                case 'sr-sr' :
+                    pano.setVariableValue('lang', 'rs');
+                break;
+        
+                case 'si' : // Slovinsko
+                case 'si-si' : // Slovinsko
+                case 'sl' :
+                case 'sl-sl' :
+                    pano.setVariableValue('lang', 'si');
+                break;
+        
+                case 'ba' : // Bosna a Hercegovina
+                case 'ba-ba' :
+                    pano.setVariableValue('lang', 'ba');
+                break;
+        
+                case 'ua' : 
+                case 'ua-ua' : 
+                case 'uk' :
+                case 'uk-uk' : 
+                    pano.setVariableValue('lang', 'ua');
+                break;
+        
+                case 'fr' : 
+                case 'fr-fr' : 
+                    pano.setVariableValue('lang', 'fr');
+                break;
+                
+                case 'es' : 
+                case 'es-es' :
+                    pano.setVariableValue('lang', 'es');
+                break;
+        
+                case 'cn' : 
+                case 'cn-cn' : 
+                case 'zh-cn' : 
+                    pano.setVariableValue('lang', 'cn');
+                break;
+        
+                case 'gr' : 
+                case 'gr-gr' :
+                case 'el' :
+                case 'el-el' : 
+                    pano.setVariableValue('lang', 'gr');
+                break;
+        
+                case 'hu' : 
+                case 'hu-ht' :
+                    pano.setVariableValue('lang', 'hu');
+                break;
+        
+                case 'tr' : 
+                case 'tr-tr' :
+                    pano.setVariableValue('lang', 'tr');
+                break;
+        
+                case 'ro' :
+                case 'ro-ro' :                     
+                    pano.setVariableValue('lang', 'ro');
+                break;
+        
+                case 'en-gb' : 
+                case 'en' : 
+                    pano.setVariableValue('lang', 'uk');
+                break;
+        
+                case 'it' :
+                case 'it-it' :                     
+                    pano.setVariableValue('lang', 'it');
+                break;
+        
+                case 'pl' : 
+                case 'pl-pl' : 
+                    pano.setVariableValue('lang', 'pl');
+                break;
+        
+                case 'lv' :
+                case 'lv-lv' :                     
+                    pano.setVariableValue('lang', 'lv');
+                break;
+        
+                case 'ru' : 
+                case 'ru-ru' : 
+                    pano.setVariableValue('lang', 'ru');
+                break;
+        
+                case 'by' :
+                case 'by-by' :                     
+                case 'be' :
+                case 'be-be' :                     
+                    pano.setVariableValue('lang', 'by');
+                break;
+                
+                case 'bg' :
+                case 'bg-bg' :                     
+                    pano.setVariableValue('lang', 'bg');
+                break;
+        
+                case 'lt' :
+                case 'lt-lt' :                     
+                    pano.setVariableValue('lang', 'lt');
+                break;
+        
+                case 'ee' :
+                case 'ee-ee' :                     
+                case 'et' :
+                case 'et-et' :                     
+                    pano.setVariableValue('lang', 'ee');
+                break;
+        
+                case 'mk' :
+                case 'mk-mk' :                     
+                    pano.setVariableValue('lang', 'mk');
+                break;
+        
+                case 'nl-be' : 
+                    pano.setVariableValue('lang', 'be');
+                break;
+        
+                case 'de-ch': 
+                    pano.setVariableValue('lang', 'ch');
+                break;
+        
+                case 'ro-mo' : 
+                    pano.setVariableValue('lang', 'md');
+                break;
+    
+                default : 
+                   pano.setVariableValue('lang', 'int');
+                break;
+            }
+            //update_lang_content();
+        }   
+        
+        
+        getVivaTranslations(user_lang);
+    }
+    
+    check_user_lang();
+
+    // Získanie prekladov z API BAUMITU
+    function getVivaTranslations($user_lang) {
+        getProductLink($user_lang);
+        getHousesLink($user_lang);
+        getSubtitlesLink($user_lang);
     }
 
- 
+    // ziskanie URL adries
+    function getProductLink($lang) {
+        productUrl = urlPrefix[$lang]+'/api/products/products?api_token='+apiToken[$lang];
+        console.log("Products URL : " + productUrl);
+        switch ($lang) {
+            case "int":
+                if (_vivaData.int == null) {
+                    fetchData(productUrl, "int", "products", product_data_loaded);        
+                }
+                break;
+        
+            default:
+                if (_vivaData.$lang == undefined) {
+                    fetchData(productUrl, $lang, "products", product_data_loaded);    
+                }
 
-    // function check_user_lang (lang) {
-    //     if (
-    //         $.cookie('user_language') != undefined &&
-    //         $.cookie('user_language') != 'undefined' &&
-    //         $.cookie('user_language') != null  
-    //         ) {
-    //             // cookies nie su prázdne 
-    //             lang = $.cookie('user_language').substr($.cookie('user_language').indexOf("=") + 1);
-                
-    //             pano.setVariableValue('lang', $.cookie('user_language').substr($.cookie('user_language').indexOf("=") + 1));
-    //            // alert(lang);
-    //             update_lang_content();
-    //     }
-    
-    //     else {
-    //         // Jazyk nie je definovaný v Cookies
-            
-    //         let user_language = window.navigator.userLanguage || window.navigator.language;
-    //         user_language = user_language.toLowerCase();
-    //         switch (user_language) {
-    //             case 'cz' : 
-    //             case 'cs' : 
-    //             case 'cz-cz' : 
-    //             case 'cz-CZ' : 
-    //                 pano.setVariableValue('lang', 'cz');
-    //             break;
-        
-    //             case 'sk' :
-    //             case 'sk-sk' : 
-    //             case 'sk-SK' : 
-    //                 pano.setVariableValue('lang', 'sk');
-    //             break;
-        
-    //             case 'at' :
-    //             case 'at-at' : 
-    //             case 'de-at' :
-    //                 pano.setVariableValue('lang', 'at');
-    //             break;
-        
-    //             case 'de' :
-    //             case 'de-de' :                     
-    //                 pano.setVariableValue('lang', 'de');
-    //             break;
-        
-    //             case 'hr' : 
-    //             case 'hr-hr' : 
-    //                 pano.setVariableValue('lang', 'hr');
-    //             break;
-        
-    //             case 'rs' :  // Srbsko
-    //             case 'rs-rs' :  // Srbsko
-    //             case 'sr' :
-    //             case 'sr-sr' :
-    //                 pano.setVariableValue('lang', 'rs');
-    //             break;
-        
-    //             case 'si' : // Slovinsko
-    //             case 'si-si' : // Slovinsko
-    //             case 'sl' :
-    //             case 'sl-sl' :
-    //                 pano.setVariableValue('lang', 'si');
-    //             break;
-        
-    //             case 'ba' : // Bosna a Hercegovina
-    //             case 'ba-ba' :
-    //                 pano.setVariableValue('lang', 'ba');
-    //             break;
-        
-    //             case 'ua' : 
-    //             case 'ua-ua' : 
-    //             case 'uk' :
-    //             case 'uk-uk' : 
-    //                 pano.setVariableValue('lang', 'ua');
-    //             break;
-        
-    //             case 'fr' : 
-    //             case 'fr-fr' : 
-    //                 pano.setVariableValue('lang', 'fr');
-    //             break;
-                
-    //             case 'es' : 
-    //             case 'es-es' :
-    //                 pano.setVariableValue('lang', 'es');
-    //             break;
-        
-    //             case 'cn' : 
-    //             case 'cn-cn' : 
-    //             case 'zh-cn' : 
-    //                 pano.setVariableValue('lang', 'cn');
-    //             break;
-        
-    //             case 'gr' : 
-    //             case 'gr-gr' :
-    //             case 'el' :
-    //             case 'el-el' : 
-    //                 pano.setVariableValue('lang', 'gr');
-    //             break;
-        
-    //             case 'hu' : 
-    //             case 'hu-ht' :
-    //                 pano.setVariableValue('lang', 'hu');
-    //             break;
-        
-    //             case 'tr' : 
-    //             case 'tr-tr' :
-    //                 pano.setVariableValue('lang', 'tr');
-    //             break;
-        
-    //             case 'ro' :
-    //             case 'ro-ro' :                     
-    //                 pano.setVariableValue('lang', 'ro');
-    //             break;
-        
-    //             case 'en-gb' : 
-    //             case 'en' : 
-    //                 pano.setVariableValue('lang', 'uk');
-    //             break;
-        
-    //             case 'it' :
-    //             case 'it-it' :                     
-    //                 pano.setVariableValue('lang', 'it');
-    //             break;
-        
-    //             case 'pl' : 
-    //             case 'pl-pl' : 
-    //                 pano.setVariableValue('lang', 'pl');
-    //             break;
-        
-    //             case 'lv' :
-    //             case 'lv-lv' :                     
-    //                 pano.setVariableValue('lang', 'lv');
-    //             break;
-        
-    //             case 'ru' : 
-    //             case 'ru-ru' : 
-    //                 pano.setVariableValue('lang', 'ru');
-    //             break;
-        
-    //             case 'by' :
-    //             case 'by-by' :                     
-    //             case 'be' :
-    //             case 'be-be' :                     
-    //                 pano.setVariableValue('lang', 'by');
-    //             break;
-                
-    //             case 'bg' :
-    //             case 'bg-bg' :                     
-    //                 pano.setVariableValue('lang', 'bg');
-    //             break;
-        
-    //             case 'lt' :
-    //             case 'lt-lt' :                     
-    //                 pano.setVariableValue('lang', 'lt');
-    //             break;
-        
-    //             case 'ee' :
-    //             case 'ee-ee' :                     
-    //             case 'et' :
-    //             case 'et-et' :                     
-    //                 pano.setVariableValue('lang', 'ee');
-    //             break;
-        
-    //             case 'mk' :
-    //             case 'mk-mk' :                     
-    //                 pano.setVariableValue('lang', 'mk');
-    //             break;
-        
-    //             case 'nl-be' : 
-    //                 pano.setVariableValue('lang', 'be');
-    //             break;
-        
-    //             case 'de-ch': 
-    //                 pano.setVariableValue('lang', 'ch');
-    //             break;
-        
-    //             case 'ro-mo' : 
-    //                 pano.setVariableValue('lang', 'md');
-    //             break;
-    
-    //             default : 
-    //                pano.setVariableValue('lang', 'int');
-    //             break;
-    //         }
-    //         update_lang_content();
-    //     }
-        
+                if (_vivaData.int == null) {
+                    fetchData(productUrl, "int", "products", product_data_loaded);        
+                }
+                break;
+        }
+    }
 
+    function getHousesLink($lang) {
+        housesUrl = urlPrefix[$lang]+'/api/buildings?api_token='+apiToken[$lang];
+        console.log("Houses URL : " + housesUrl);
+
+        switch ($lang) {
+            case "int":
+                if (_vivaData.int == null) {
+                    fetchData(housesUrl, "int", "houses", houses_data_loaded);      
+                }
+            break;
         
-    // }
+            default:
+                if (_vivaData.$lang == undefined) {
+                    fetchData(housesUrl, $lang, "houses", houses_data_loaded);  
+                }
 
-    async function getTranslations() {
-		const res = await fetch(`/tutorial/random-number`);
-		const text = await res.text();
+                if (_vivaData.int == null) {
+                    fetchData(housesUrl, "int", "houses", houses_data_loaded);
+                }
+            break;
+        }
+    }
 
-		if (res.ok) {
-			return text;
-		} else {
-			throw new Error(text);
-		}
-	}
+    function getSubtitlesLink($lang) {
+        subtitlesUrl = urlPrefix[$lang]+'/api/building-tour-translations?api_token='+apiToken[$lang];
+        console.log("Subtitles URL : " + subtitlesUrl);
+
+        switch ($lang) {
+            case "int":
+                if (_vivaData.int == null) {
+                    fetchData(subtitlesUrl, "int", "subtitles", subtitles_data_loaded);
+                }
+            break;
+        
+            default:
+                if (_vivaData.$lang == undefined) {
+                    fetchData(subtitlesUrl, $lang, "subtitles", subtitles_data_loaded);
+                }
+
+                if (_vivaData.int == null) {
+                    fetchData(subtitlesUrl, "int", "subtitles", subtitles_data_loaded);
+                }
+            break;
+        }
+    }
 
     pano.on("configloaded", function (){
-		
+        pano.setVariableValue('blurred', false);
+        //pano.setVariableValue('intro', false);
+
+        pano.on("varchanged_lang", function() {
+            user_lang = pano.getVariableValue("lang");
+            getVivaTranslations(user_lang);
+        });
 	});
 </script>
+
+{#if lang_data_loading}
+    <div id="viva-intro">
+        <p>loading configuration ... </p>
+    </div>
+{/if}
+
+<!-- ak je povolené intro -->
+{#if intro}
+    {#if _vivaData != null}
+        {#if _vivaData[user_lang] != undefined}        
+            {#if _vivaData[user_lang]["houses"] != undefined}
+            <div id="welcome">
+                <div id="wrapper">
+                    <div id="header">
+                        {#each _vivaData[user_lang]["houses"]["additional_content"] as item}   
+                        
+                            {#if item.name == "VIVA: Intro: Title"}
+                                <h1>{item.title}</h1>
+                                <h2>{item.content}</h2>
+                            {/if}
+                        
+                            <!-- NEVIEM ČO TO JE    
+                                <p>null</p> 
+                            -->
+                            <div class="buttons">
+                                {#if item.name == "VIVA: Startscreen: Play"}
+                                    <button id="play_tour">{item.title}</button>
+                                {/if}
+
+                                {#if item.name == "VIVA: Startscreen: More info"}
+                                    <button id="more_info">{item.title}</button>
+                                {/if}           
+                            </div>
+                        
+                        {/each}
+                    </div>
+                    <div id="footer">
+                        
+                            <div id="research" class="item">
+                                <div class="thumbnail">
+                                    <img src="images/btn-1.jpg">
+                                </div>
+                                <div class="text">
+                                    {#each _vivaData[user_lang]["houses"]["additional_content"] as item}   
+                                        {#if item.name == "VIVA: Startscreen: Quick Tour"}
+                                            <h4>{item.title}</h4>
+                                        {/if}
+                                    {/each}
+                                </div>
+                            </div>
+                            <div id="rules" class="item">
+                                <div class="thumbnail">
+                                    <img src="images/btn-2.jpg">
+                                </div>
+                                <div class="text">
+                                    {#each _vivaData[user_lang]["houses"]["additional_content"] as item}   
+                                        {#if item.name == "VIVA: Startscreen: About"}
+                                            <h4>{item.title}</h4>
+                                        {/if}
+                                    {/each}
+                                </div>
+                            </div>
+                            <div id="visit-tour" class="item">
+                                <div class="thumbnail">
+                                    <img src="images/00_Free_tour_icon_f.jpg">
+                                </div><div class="text">
+                                    {#each _vivaData[user_lang]["houses"]["additional_content"] as item}   
+                                        {#if item.name == "VIVA: Startscreen: Výsledky"}
+                                            <h4>{item.title}</h4>
+                                        {/if}
+                                    {/each}
+                                </div>
+                            </div>
+                        
+                    </div>
+                </div>
+            </div>
+            {/if}
+        {/if}
+    {/if}
+{/if}
+
+            
+            
+
+
+
+
+<style lang="scss">
+    #welcome {
+        top: 140px;
+    }
+    #viva-intro {
+        position: absolute;
+        left: 0;
+        top: 40px;
+        width: 100%;
+        height: 100%;
+        background: red;
+        z-index: 0;
+
+        display: flex;
+        justify-content : center;
+        align-items : center;
+        opacity: 0.5;
+    }
+</style>

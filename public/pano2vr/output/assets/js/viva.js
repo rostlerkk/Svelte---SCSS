@@ -3118,6 +3118,8 @@ pano.on('configloaded', function(Tooltips) {
 
         
     }
+
+    
     function update_lang_content() {
         lang = pano.getVariableValue('lang');
         getProductLink(lang);
