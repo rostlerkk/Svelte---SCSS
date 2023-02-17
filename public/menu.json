@@ -1,0 +1,28 @@
+{
+    "pizza" : [
+
+    ],
+    "jedla" : [
+
+    ],
+    "salaty" : [
+        
+    ],
+    "cestoviny" : [
+        {
+            "id" : 40,
+            "name" : "Bolonské",
+            "description" : "omáčka bolonese s mletým mäsom, kečup, eidam, cibuľa",
+            "alergeny" : ["1","3","7"],
+            "price" : 7.4 
+        },
+        {
+            "id" : 41,
+            "name" : "Tuniakové",
+            "description" : "tuniak, paradajková omáčka, olivy, cibuľa, eidam, bazalka",
+            "alergeny" : ["1","3","4","7"],
+            "price" : 7.9 
+        }
+    ]
+
+}

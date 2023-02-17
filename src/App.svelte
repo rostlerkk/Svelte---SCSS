@@ -48,7 +48,7 @@
 
 </script>
 
-<main>
+<!-- <main>
 	<h1>Hello {_title}!</h1>
 	
 	{#each foods as food}
@@ -69,7 +69,7 @@
 	<input type="checkbox" bind:checked={komplet} on:change={() => update()	}/>
 	
 	
-</main>
+</main> -->
 
 <style lang="scss">
 	main {
