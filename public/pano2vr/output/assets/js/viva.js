@@ -8,17 +8,17 @@ $('#intro').append('<span></span>');
 $.html5Loader({
     filesToLoad:    'assets/json/data.json', // this could be a JSON or simply a javascript object
     onBeforeLoad:       function () {
-        //////console.log('preloaer spustený');
+        ////////console.log('preloaer spustený');
     },
     onComplete:         function () {
-        //////console.log('načítané dáta');
+        ////////console.log('načítané dáta');
     },
     onElementLoaded:    function ( obj, elm) { 
-        //////console.log(obj);
-        //////console.log(elm);
+        ////////console.log(obj);
+        ////////console.log(elm);
     },
     onUpdate:           function ( percentage ) {
-        //////console.log(percentage);
+        ////////console.log(percentage);
         $('#intro > p').text(text +' '+ percentage + '%');
     }
 });
@@ -176,19 +176,19 @@ const urlPrefix = {
 
 function getProductLink(lang) {
     productUrl = urlPrefix[lang]+'/api/products/products?api_token='+apiToken[lang];
-    //////////console.log(productUrl);
+    ////////////console.log(productUrl);
     return productUrl;
 }
 
 function getHousesLink(lang) {
     housesUrl = urlPrefix[lang]+'/api/buildings?api_token='+apiToken[lang];
-    //////console.log(housesUrl);
+    ////////console.log(housesUrl);
     return housesUrl;
 }
 
 function getSubtitlesLink(lang) {
     subtitlesUrl = urlPrefix[lang]+'/api/building-tour-translations?api_token='+apiToken[lang];
-    ////////console.log(subtitlesUrl);
+    //////////console.log(subtitlesUrl);
 }
 
 function addLoader(text) {
@@ -218,11 +218,11 @@ function loadProductData_backup(productUrl,lang) {
         var tmpProductsData = $.getJSON( productUrl, function( products ) {
             $.each( products, function( key, val ) {
                 var tmpID = products[key][searchID];
-                //////////console.log(val);
+                ////////////console.log(val);
                 productData[lang][tmpID] = val;
             });
         }).done(function() {
-            //////////console.log('Products loaded successfull');
+            ////////////console.log('Products loaded successfull');
             getHousesLink(lang);
             getSubtitlesLink(lang);
             loadHousesData(housesUrl,lang);
@@ -232,17 +232,17 @@ function loadProductData_backup(productUrl,lang) {
             
           })
           .fail(function() {
-            //////////console.log( "Products loading error" );
+            ////////////console.log( "Products loading error" );
         })
         ;
     }
 
     else {
-        //////////console.log('dátový model už je načítaný');
+        ////////////console.log('dátový model už je načítaný');
         checkHotspots();
         loadIntroData();
     }
-    ////////console.log(productData);
+    //////////console.log(productData);
 }
 
 function loadProductData(housesUrl,lang) {
@@ -298,7 +298,7 @@ function loadProductData(housesUrl,lang) {
                 
             });
         }).done(function() {
-            ////////console.log('Produkty načítané v poriadku');
+            //////////console.log('Produkty načítané v poriadku');
             getHousesLink(lang);
             getSubtitlesLink(lang);
             loadHousesData(housesUrl,lang);
@@ -313,18 +313,18 @@ function loadProductData(housesUrl,lang) {
             
           })
           .fail(function() {
-            ////////console.log( "Chyba pri načítavaní produktov" );
+            //////////console.log( "Chyba pri načítavaní produktov" );
         });
     }
 
     else {
-        ////////console.log('dátový model už je načítaný');
+        //////////console.log('dátový model už je načítaný');
         checkHotspots();
         loadIntroData();
         //houses_tour();;
         //add_screens();
     }
-    ////////console.log(productData);
+    //////////console.log(productData);
 
    
 
@@ -334,7 +334,7 @@ function change_floorplan_node_title ($housesData, $lang) {
 
     if ( $housesData[$lang]) {
         $.each ($('.ggskin_cloner > div'), function () {
-            ////////console.log($(this).find('div > div > p').html());
+            //////////console.log($(this).find('div > div > p').html());
             switch ($(this).index()) {
                 case 0 : 
                 break;
@@ -367,13 +367,13 @@ function loadHousesData(housesUrl, lang) {
                 housesData['int']['buildings'] = val;
             }
             else if (key == 'additional_content') {
-                ////console.log(val);
+                //////console.log(val);
                 housesData['int']['additional_content'] = val;
             }
         });
     })
     .done(function() {
-        //////////console.log('Houses loaded successfull');
+        ////////////console.log('Houses loaded successfull');
         // changePanoTitle(lang, housesData);
         // checkHotspots();
         // loadIntroData();
@@ -385,7 +385,7 @@ function loadHousesData(housesUrl, lang) {
             housesData[lang]['buildings'] != undefined
         ) {
             $.each ($('.swiper-slide'), function (index, data) {
-                ////////console.log(housesData[pano.getVariableValue('lang')]);
+                //////////console.log(housesData[pano.getVariableValue('lang')]);
                 switch ($('.swiper-slide').eq(index).attr('data-url')) {
                     case 'node1' : 
                     $('.swiper-slide').eq(index).find('.node-title').html('Viva Park');
@@ -423,14 +423,14 @@ function loadHousesData(housesUrl, lang) {
                 map_iframe[lang] != 'undefined' &&
                 map_iframe[lang] != undefined
                 ) {
-                // //////console.log(map_iframe[lang]);
+                // ////////console.log(map_iframe[lang]);
                 pano.setVariableValue('map_iframe', map_iframe[lang]);
                 $('.map > iframe').attr('src', map_iframe[lang]);
                 
             }
     
             else {
-                // //////console.log(map_iframe[int]);
+                // ////////console.log(map_iframe[int]);
                 pano.setVariableValue('map_iframe', map_iframe['int']);
                 $('.map > iframe').attr('src', map_iframe['int']);
                 
@@ -451,12 +451,12 @@ function loadHousesData(housesUrl, lang) {
                         housesData[lang]['additional_content'][15]['media'] != null    
                     ) {
                         $('.vp-logo > img').attr('src', housesData[lang]['additional_content'][15]['media']);
-                        //////console.log('logo : ' + housesData[lang]['additional_content'][15]['media']);
+                        ////////console.log('logo : ' + housesData[lang]['additional_content'][15]['media']);
                     }
             
                     else {
                         $('.vp-logo > img').attr('src', 'images/vivapark-logo.svg');
-                        //////console.log('Logo nie je ');
+                        ////////console.log('Logo nie je ');
                     }
                 }
             }
@@ -472,7 +472,7 @@ function loadHousesData(housesUrl, lang) {
     }
 
     else {
-        //////////console.log('dáta domov už mám');
+        ////////////console.log('dáta domov už mám');
         checkHotspots();
         $('#progress').remove(); 
     }
@@ -497,13 +497,13 @@ function loadHousesData(housesUrl, lang) {
                     housesData[lang]['buildings'] = val;
                 }
                 else if (key == 'additional_content') {
-                    ////console.log(val);
+                    //////console.log(val);
                     housesData[lang]['additional_content'] = val;
                 }
             });
         })
         .done(function() {
-            //////////console.log('Houses loaded successfull');
+            ////////////console.log('Houses loaded successfull');
             changePanoTitle(lang, housesData);
             checkHotspots();
             loadIntroData();
@@ -512,10 +512,10 @@ function loadHousesData(housesUrl, lang) {
             //add_screens();
 
             $.each ($('.swiper-slide'), function (index, data) {
-                ////////console.log($(this).html());
+                //////////console.log($(this).html());
                 
                 
-                ////////console.log(housesData[pano.getVariableValue('lang')]);
+                //////////console.log(housesData[pano.getVariableValue('lang')]);
                 switch ($('.swiper-slide').eq(index).attr('data-url')) {
                     case 'node1' : 
                     $('.swiper-slide').eq(index).find('.node-title').html('Viva Park');
@@ -553,14 +553,14 @@ function loadHousesData(housesUrl, lang) {
                 map_iframe[lang] != 'undefined' &&
                 map_iframe[lang] != undefined
                 ) {
-                // //////console.log(map_iframe[lang]);
+                // ////////console.log(map_iframe[lang]);
                 pano.setVariableValue('map_iframe', map_iframe[lang]);
                 $('.map > iframe').attr('src', map_iframe[lang]);
                 
             }
 
             else {
-                // //////console.log(map_iframe[int]);
+                // ////////console.log(map_iframe[int]);
                 pano.setVariableValue('map_iframe', map_iframe['int']);
                 $('.map > iframe').attr('src', map_iframe['int']);
                 
@@ -570,8 +570,8 @@ function loadHousesData(housesUrl, lang) {
             // zmena loga 
              // zmena loga 
             
-             //////console.log('načítavam logo');
-             //////console.log(housesData);
+             ////////console.log('načítavam logo');
+             ////////console.log(housesData);
              if (
                  $('.vp-logo')
                  
@@ -585,12 +585,12 @@ function loadHousesData(housesUrl, lang) {
                          housesData[lang]['additional_content'][15]['media'] != null    
                      ) {
                          $('.vp-logo > img').attr('src', housesData[lang]['additional_content'][15]['media']);
-                         //////console.log('logo : ' + housesData[lang]['additional_content'][15]['media']);
+                         ////////console.log('logo : ' + housesData[lang]['additional_content'][15]['media']);
                      }
              
                      else {
                          $('.vp-logo > img').attr('src', 'images/vivapark-logo.svg');
-                         //////console.log('Logo nie je ');
+                         ////////console.log('Logo nie je ');
                      }
                  }
              }
@@ -605,107 +605,116 @@ function loadHousesData(housesUrl, lang) {
             
           })
           .fail(function() {
-            //////////console.log( "houses loading error" );
+            ////////////console.log( "houses loading error" );
         });
 
-        //////console.log(housesData);
+        ////////console.log(housesData);
     }
 
     else {
-        //////////console.log('dáta domov už mám');
+        ////////////console.log('dáta domov už mám');
         checkHotspots();
         $('#progress').remove(); 
     }
-   // ////////console.log(housesData);
+   // //////////console.log(housesData);
 }
 
 function playPauseMedia($val) {
-    //console.log('idem spúštať animáciu');
+    ////console.log('idem spúštať animáciu');
     let patchName = pano.getNodeUserdata(pano.getCurrentNode()).title;
 
     if (
-        pano.getMediaObject(patchName) == null
+        pano.getMediaObject(patchName) != null
     ) {
-        //console.log('nullka');
-        return;     
-    }
-    
-    if ( 
-        videoDuration == 0 ||
-        videoDurationHalf == 0 
-    ) {
-        //console.log('teraz nemôžem prehrať');
-        // vid = document.getElementById("vid1"); 
-        vid = document.getElementById(patchName); 
-        //console.log(vid);
-        //console.log(pano.getMediaObject(patchName).duration);
-
-        pano.getMediaObject(patchName).on('durationchange', function() {
-            //console.log('zmenil sa čas' + pano.getMediaObject(patchName).currentTime);
-        });
-
         if (
-            vid == null
+            pano.getMediaObject(patchName) == null
         ) {
-            //return;
-        }    
-        // videoDuration = vid.duration;
-        videoDuration = pano.getMediaObject(patchName).duration;
-        videoDurationHalf = (videoDuration/2) -0.20;
-        //////console.log('Môžem prehrať 2 videá naraz');
-        //////console.log(videoDuration+' | '+pano.getMediaObject(patchName).lastElementChild.attributes.src.nodeValue);
-    }
-    
-    else {
-        //console.log('teraz idem preháať');
-        //////console.log(videoDuration+' | '+pano.getMediaObject(patchName).lastElementChild.attributes.src.nodeValue);
-    
-        if ( pano.isPlaying(patchName) == true) {
-            //console.log('Nemôžem prehrať 2 videá naraz');
+            ////console.log('nullka');
+            return;     
         }
-
-        else {
-            //console.log('sdflsddf');
-            vid.ontimeupdate = function() {
-                if (play == true || pano.isPlaying(patchName) == false) {
-                    if(this.currentTime >= videoDurationHalf ) {       
-                        pano.pauseSound(patchName);
-                        play = false;
-                        video_nacitane = true;
-                        $('.viva-tooltip').removeClass('hidden');
-                        
-                        return false;
-                    }
-                }
-                else {
-                    hideTooltips();
-                    pano.getMediaObject(patchName).addEventListener('ended', function() {
-                        play = true;
-                        hideTooltips();
-                    });
-                }
-            };
-
+        //console.log(pano.getMediaObject(patchName).currentTime);
+        
+        if ( 
+            videoDuration == 0 ||
+            videoDurationHalf == 0 
+    
+            // pano.getMediaObject(patchName).currentTime == 0
+        ) {
+            ////console.log('teraz nemôžem prehrať');
+            // vid = document.getElementById("vid1"); 
+            vid = document.getElementById(patchName); 
+            ////console.log(vid);
+            ////console.log(pano.getMediaObject(patchName).duration);
+    
+            // pano.getMediaObject(patchName).on('durationchange', function() {
+            //     ////console.log('zmenil sa čas' + pano.getMediaObject(patchName).currentTime);
+            // });
+    
             if (
-                video_nacitane == true &&
-                $val == false
+                vid == null
             ) {
-
-
+                //return;
+            }    
+            // videoDuration = vid.duration;
+            videoDuration = pano.getMediaObject(patchName).duration;
+            videoDurationHalf = (videoDuration/2) -0.20;
+            ////////console.log('Môžem prehrať 2 videá naraz');
+            ////////console.log(videoDuration+' | '+pano.getMediaObject(patchName).lastElementChild.attributes.src.nodeValue);
+        }
+        
+        else {
+            ////console.log('teraz idem preháať');
+            ////////console.log(videoDuration+' | '+pano.getMediaObject(patchName).lastElementChild.attributes.src.nodeValue);
+        
+            if ( pano.isPlaying(patchName) == true) {
+                ////console.log('Nemôžem prehrať 2 videá naraz');
             }
-
+    
             else {
-                //pano.setVolume(patchName, 0.0);
-                pano.playSound(patchName, "1");
+                ////console.log('sdflsddf');
+                vid.ontimeupdate = function() {
+                    if (play == true || pano.isPlaying(patchName) == false) {
+                        if(this.currentTime >= videoDurationHalf ) {       
+                            pano.pauseSound(patchName);
+                            play = false;
+                            video_nacitane = true;
+                            $('.viva-tooltip').removeClass('hidden');
+                            
+                            return false;
+                        }
+                    }
+                    else {
+                        hideTooltips();
+                        pano.getMediaObject(patchName).addEventListener('ended', function() {
+                            play = true;
+                            hideTooltips();
+                        });
+                    }
+                };
+    
+                if (
+                    video_nacitane == true &&
+                    $val == false
+                ) {
+    
+    
+                }
+    
+                else {
+                    //pano.setVolume(patchName, 0.0);
+                    pano.playSound(patchName, "1");
+                    
+                }
                 
             }
-            
         }
     }
+
+
 }
 
 function playMedia() {
-    // //////console.log('Play media');
+    // ////////console.log('Play media');
     // play = true;
     // vid.ontimeupdate = function() {
     //     if (play == true || pano.isPlaying(patchName) == false) {
@@ -751,7 +760,7 @@ function checkHotspots() {
     let pointshotspots = pano.getCurrentPointHotspots();
     let pointHotspotsNew = [];
     let removeItem = 'viva-tooltip';
-    ////////console.log('hľadám hotspoty');
+    //////////console.log('hľadám hotspoty');
 
     for (let index = 0; index < pointshotspots.length; index++) {
         
@@ -762,11 +771,11 @@ function checkHotspots() {
         }        
     }
 
-    ////////console.log(pointHotspotsNew);
+    //////////console.log(pointHotspotsNew);
 
     let houseID = pano.getNodeUserdata(currentNode).source; // ID domu
     let houseTitle = pano.getNodeUserdata(currentNode).title; // ID document
-    ////////console.log(houseTitle);
+    //////////console.log(houseTitle);
     let position;
 
     if (
@@ -781,7 +790,7 @@ function checkHotspots() {
     }
 
     for (let index = 0; index < pointHotspotsNew.length; index++) {
-        ////////console.log(housesValues[lang][houseID][position][index+1]['name']);
+        //////////console.log(housesValues[lang][houseID][position][index+1]['name']);
         //pointHotspotsNew[index]['textContent'] = housesValues[lang][houseID][position][index+1]['name'];
 
 
@@ -816,7 +825,7 @@ function checkHotspots() {
     $('#progress').remove();
     
 
-    ////////console.log(position);
+    //////////console.log(position);
     
 }
 
@@ -826,7 +835,7 @@ function checkHotspots_backup() {
         
         // var hotspotsArray = pano.getCurrentPointHotspots();
         // var hotspotsArrayLength =  hotspotsArray.length;
-        // //////////console.log('čekujem');
+        // ////////////console.log('čekujem');
     
         // var tmpProductId;
         // var sep = ' ';
@@ -870,7 +879,7 @@ function checkHotspots_backup() {
         //             }
     
         //             else {
-        //                 //////////console.log(tmpSearchingID);
+        //                 ////////////console.log(tmpSearchingID);
         //                 //$('.viva-tooltip[data-id="'+tmpProductId+'"] > div > div').text(dataModel[tmpLang][tmpSearchingID].name);
         //                 var newTmpContent = '<div class="hts-title">'+productData[lang][tmpSearchingID].name+'</div><span>|'+tmpProductId+'</span>';
         //                 $('.viva-tooltip[data-id="'+tmpProductId+'"] > div > div').html(newTmpContent);
@@ -889,8 +898,8 @@ function checkHotspots2() {
         addLoader('loading hotspots data');
         var hotspotsArray = pano.getCurrentPointHotspots();
         var hotspotsArrayLength =  hotspotsArray.length;
-        //////////console.log('čekujem 2');
-        ////////console.log(hotspotsArray);
+        ////////////console.log('čekujem 2');
+        //////////console.log(hotspotsArray);
     
         var tmpProductId;
         var sep = ' ';
@@ -934,7 +943,7 @@ function checkHotspots2() {
                     }
     
                     else {
-                        //////////console.log(tmpSearchingID);
+                        ////////////console.log(tmpSearchingID);
                         //$('.viva-tooltip[data-id="'+tmpProductId+'"] > div > div').text(dataModel[tmpLang][tmpSearchingID].name);
                         var newTmpContent = '<div class="hts-title">'+productData[lang][tmpSearchingID].name+'</div><span>|'+tmpProductId+'</span>';
                         $('.viva-tooltip[data-id="'+tmpProductId+'"] > div > div').html(newTmpContent);
@@ -959,7 +968,7 @@ function checkHotspots2() {
         }
 
         else {
-            ////////console.log(housesData[lang]['additional_content']);
+            //////////console.log(housesData[lang]['additional_content']);
             $('p.status').text(housesData[lang]['additional_content'][18]['text']);
         }
 
@@ -971,7 +980,7 @@ function checkHotspots2() {
 }
 
 function nacitajData(productName, product_id, position, open) {
-    ////////console.log(position);
+    //////////console.log(position);
     if (
         productNameSave == product_id &&
         productLang == pano.getVariableValue('lang') &&
@@ -999,7 +1008,7 @@ function nacitajData(productName, product_id, position, open) {
             $('.info-v1 > .head > .content').append(a);
 
             
-            ////////console.log(housesData[lang]);
+            //////////console.log(housesData[lang]);
             // if (
             //     moreInfoButton[pano.getVariableValue('lang')] == undefined ||
             //     moreInfoButton[pano.getVariableValue('lang')] == null ||
@@ -1025,7 +1034,7 @@ function nacitajData(productName, product_id, position, open) {
 
             else {
                 
-                ////////console.log(housesData[lang]['additional_content'][19]['title']);
+                //////////console.log(housesData[lang]['additional_content'][19]['title']);
                 $('.info-v1 > .head > .content > a').attr('href', urlTarget).attr('target','_blank').text(housesData[lang]['additional_content'][24]['title']);
             }
             
@@ -1162,7 +1171,7 @@ function houseInfo(data) {
             var tmpHouseID = data-1;
 
             var tmpLength = housesData[lang]['buildings'].length;
-            //////////console.log(tmpLength);
+            ////////////console.log(tmpLength);
             if (
                 tmpLength == 0
             )
@@ -1254,7 +1263,7 @@ function houseInfo(data) {
                     {
                         let houseID = pano.getNodeUserdata(currentNode).source; // ID domu
                         let houseTitle = pano.getNodeUserdata(currentNode).title; // ID document
-                        ////////console.log(houseTitle);
+                        //////////console.log(houseTitle);
                         let position;
                         var urlTarget = urlPrefix[lang]+housesValues[lang][houseID]['link'];
 
@@ -1268,14 +1277,14 @@ function houseInfo(data) {
                         else {
                             position = 'exterior';
                         }
-                        ////////console.log(housesValues[lang][houseID]['link']);
+                        //////////console.log(housesValues[lang][houseID]['link']);
                         
                         $('.info-v1 > .head > .content > a').attr('href', urlTarget).attr('target','_blank').text(moreInfoButton.uk);
                         $('#house-url').attr('href',tmpLink).text(moreInfoButton.uk);
                     }
         
                     else {
-                        ////////console.log(housesData[lang]['additional_content'][19]['title']);
+                        //////////console.log(housesData[lang]['additional_content'][19]['title']);
                         $('.info-v1 > .head > .content > a').attr('href', urlTarget).attr('target','_blank').text(housesData[lang]['additional_content'][19]['title']);
                         $('#house-url').attr('href',tmpLink).text(housesData[lang]['additional_content'][19]['title']);
                     }
@@ -1300,10 +1309,10 @@ function houseInfo(data) {
                     $('#yt-video').removeClass('hidden');
                 }
 
-                //////console.log(housesData[lang]['buildings'][tmpHouseID]);
+                ////////console.log(housesData[lang]['buildings'][tmpHouseID]);
                 $('.viva-house-info > div > .parameters').remove();
 
-                //////console.log(housesData[lang]['buildings'][tmpHouseID]);
+                ////////console.log(housesData[lang]['buildings'][tmpHouseID]);
 
 
                 if (
@@ -1383,7 +1392,7 @@ function houseInfo(data) {
         $('#progress').remove();
     }
     else { 
-        ////////console.log('Dom je už načítaný');
+        //////////console.log('Dom je už načítaný');
     }
 
     pano.setVariableValue('houseInfo', true);
@@ -1396,12 +1405,12 @@ function houseInfo(data) {
     ) {
         $.each(housesData[lang]['buildings'][tmpHouseID]['parameters']['groups'], function (index, value) { 
             $.each(housesData[lang]['buildings'][tmpHouseID]['parameters']['groups'][index]['parameters'], function (i, data) { 
-                //////console.log(housesData[lang]['buildings'][tmpHouseID]['parameters']['groups'][index]['parameters'][i]['value']);
+                ////////console.log(housesData[lang]['buildings'][tmpHouseID]['parameters']['groups'][index]['parameters'][i]['value']);
     
                 function animate_paramater() {
                     $('.parameter-bar').eq(tmp_count_param).children('div').addClass('p'+housesData[lang]['buildings'][tmpHouseID]['parameters']['groups'][index]['parameters'][i]['value']);
                     tmp_count_param = tmp_count_param + 1;
-                    //////console.log('teraz');
+                    ////////console.log('teraz');
                 }
                 const myTimeout = setTimeout(animate_paramater, 50);
                 
@@ -1454,7 +1463,7 @@ function comfortLevelSwitch(houseID) {
     }
     else {
         var tmphouseid = houseID-1;
-        //////////console.log('tmphouseid je : '+tmphouseid);
+        ////////////console.log('tmphouseid je : '+tmphouseid);
         if (
             housesData[lang]['buildings'].length == 0
         )
@@ -1476,7 +1485,7 @@ function comfortLevelSwitch(houseID) {
 
             else {
                 var tmpComfortLevel = housesData[lang]['buildings'][tmphouseid]['house_comfort'];
-            //////////console.log(tmpComfortLevel);
+            ////////////console.log(tmpComfortLevel);
             switch (tmpComfortLevel) {
                 case 'High':
                     $('#viva-second').removeClass('hidden');
@@ -1516,7 +1525,7 @@ function comfortLevelSwitch(houseID) {
 function updateComfortLevel() {
     $.each($('.check-layer > div > span'), function() {
         var tmpComfortLevel = parseInt($(this).attr('id'));
-        ////////console.log(tmpComfortLevel);
+        //////////console.log(tmpComfortLevel);
         var lang = pano.getVariableValue('lang');
         if (
             tmpComfortLevel > 0
@@ -1527,7 +1536,7 @@ function updateComfortLevel() {
         }
 
         var number = housesData[lang]['buildings'][tmpComfortLevel]['house_comfort'];   
-        //////////console.log(number);
+        ////////////console.log(number);
         var finalNumber = 0;
         switch (number) {
             case 'High':
@@ -1574,7 +1583,7 @@ function updateComfortLevel() {
 }
 
 function load_logo() {
-    //////console.log('načítavam logo');
+    ////////console.log('načítavam logo');
     let tmpLength = housesData[lang]['additional_content'].length;
     if (
         $('.vp-logo')
@@ -1604,19 +1613,19 @@ function load_logo() {
 
 function loadIntroData() {
     //alert('agdg');
-    ////////console.log(lang);
+    //////////console.log(lang);
     if (
         housesData[lang]['additional_content'] != undefined
     ) {
         var tmpLength = housesData[lang]['additional_content'].length;
-        //////////console.log(tmpLength);
+        ////////////console.log(tmpLength);
     
         // načítanie "zeleného" loga z API
         if (
             $('.vp-logo')
             
         ) {
-            ////////console.log(housesData[lang]['additional_content'][15]['media']);
+            //////////console.log(housesData[lang]['additional_content'][15]['media']);
             if (
                 housesData[lang]['additional_content'][15]['media'] != ''  && 
                 housesData[lang]['additional_content'][15]['media'] != null    
@@ -1638,7 +1647,7 @@ function loadIntroData() {
         )
     
         {
-            //////////console.log('empthy object !!!!!!!!!!!!!!!!!!!!');
+            ////////////console.log('empthy object !!!!!!!!!!!!!!!!!!!!');
             $('.viva-start .title > div > h1').text(noData);
             $('.viva-start .title > div > span.subtitle').text(noData);
             $('#quickTour').text(noData);
@@ -2079,7 +2088,7 @@ function getHousesValues(lang, houseID, housesUrl, housesData) {
                                     read_data(layers, 'interior', layers_data);
                                     
                                 }
-                                ////////console.log(layers);
+                                //////////console.log(layers);
                             });
                         }
                         
@@ -2089,7 +2098,7 @@ function getHousesValues(lang, houseID, housesUrl, housesData) {
                 }
             });
         }).done(function() {
-            ////////console.log('Produkty načítané v poriadku');
+            //////////console.log('Produkty načítané v poriadku');
             getHousesLink(lang);
             getSubtitlesLink(lang);
             loadHousesData(housesUrl,lang);    
@@ -2098,13 +2107,13 @@ function getHousesValues(lang, houseID, housesUrl, housesData) {
             house_8_texts(lang, housesData);        
           })
           .fail(function() {
-            ////////console.log( "Chyba pri načítavaní produktov" );
+            //////////console.log( "Chyba pri načítavaní produktov" );
         });
         
     }
 
     else {
-        ////////console.log('dátový model už je načítaný');
+        //////////console.log('dátový model už je načítaný');
         checkHotspots();
         loadIntroData();
         //houses_tour();;
@@ -2115,11 +2124,11 @@ function getHousesValues(lang, houseID, housesUrl, housesData) {
 }
 
 function house_8_texts($lang, $housesData) {
-    ////////console.log('mením house 8 texts');
+    //////////console.log('mením house 8 texts');
     if ( housesData && pano.getCurrentNode() == 'node24' && housesData[lang] 
         
     ) {
-        ////////console.log('áno teraz');   
+        //////////console.log('áno teraz');   
         if (
             housesData[lang]['additional_content'][5]['title']
         ) {
@@ -2155,19 +2164,19 @@ function house_8_texts($lang, $housesData) {
 }
 
 function changePanoTitle(lang, housesData) {
-    ////////console.log('mením názov');
-    ////console.log(parseInt(pano.getNodeUserdata(pano.getCurrentNode()).source) + 1);
+    //////////console.log('mením názov');
+    //////console.log(parseInt(pano.getNodeUserdata(pano.getCurrentNode()).source) + 1);
     $('.learn-more').unbind();
     $('#next-house').unbind();
 
     $('#next-house').on('click tap', function () {
-        //console.log(' !!!! ' + pano.getIsLoading());
+        ////console.log(' !!!! ' + pano.getIsLoading());
         if (
             pano.getIsLoading() == false
         ) {
             clearInterval(New_interval);
             let index = is_tour_nodes.indexOf(pano.getCurrentNode());
-            //////console.log('index : ' + index);
+            ////////console.log('index : ' + index);
             if (
                 index != null &&
                 index < is_tour_nodes.length - 1
@@ -2181,7 +2190,7 @@ function changePanoTitle(lang, housesData) {
         }
 
         else {
-            //console.log('ešte nemôžem prepnúť');
+            ////console.log('ešte nemôžem prepnúť');
         }
         
     });
@@ -2216,7 +2225,8 @@ function changePanoTitle(lang, housesData) {
                 housesData[lang]
             ) {
                 title.text(housesData[lang]['buildings'][parseInt(node_id)-1].house_nr);
-                $('.learn-more > span').html(housesData[lang]['buildings'][parseInt(node_id)-1].house_nr);
+                // $('.learn-more > span').html(housesData[lang]['buildings'][parseInt(node_id)-1].house_nr);
+                $('.learn-more > span').html(pano.getNodeUserdata(pano.getCurrentNode()).source);
             }
                 
             break;
@@ -2238,8 +2248,8 @@ function changePanoTitle(lang, housesData) {
                 
             }
             
-           // //////console.log(foundString);
-            ////////console.log(housesData[lang]);
+           // ////////console.log(foundString);
+            //////////console.log(housesData[lang]);
             if (!housesData[lang]) {
 
             }
@@ -2365,7 +2375,7 @@ function changePanoTitle(lang, housesData) {
 }
 
 function change_tooltip_names($lang, $housesData) {
-    ////////console.log('mením tooltipy');
+    //////////console.log('mením tooltipy');
     let go_inside = 'Go inside';
     let go_outside = 'Go outside';    
     let wall_components = 'Wall components';
@@ -2397,7 +2407,7 @@ function change_tooltip_names($lang, $housesData) {
             }
 
             if (housesData[lang]['additional_content'][24]) { // More info
-                ////////console.log('áno');
+                //////////console.log('áno');
                 if (housesData[lang]['additional_content'][24]['title']) {
                     more_info = housesData[lang]['additional_content'][24]['title'];
                 }
@@ -2474,7 +2484,7 @@ let take_tour_data = {
                 id : 'video_1',
                 visited : 0,
                 pan : -20,
-                tilt : -0.94,
+                tilt : -10,
                 fov: 84
             }
         }
@@ -2500,7 +2510,7 @@ let take_tour_data = {
                 id : 'video_1',
                 visited : 0,
                 pan : -20.67,
-                tilt : -0.94,
+                tilt : -10,
                 fov: 84
             },
         }
@@ -2527,7 +2537,7 @@ let take_tour_data = {
                 id : 'video_1',
                 visited : 0,
                 pan : -20.67,
-                tilt : 0.94,
+                tilt : -10,
                 fov: 84
             }
         }
@@ -2577,7 +2587,7 @@ let take_tour_data = {
                 id : 'video_1',
                 visited : 0,
                 pan : -20.67,
-                tilt : 0.94,
+                tilt : -10,
                 fov: 84
             }
         }
@@ -2603,7 +2613,7 @@ let is_tour_nodes = ['node1', 'node24','node12', 'node26','node6', 'node22', 'no
 function take_tour_navigation_arrows() {
    
  
-    ////////console.log(is_tour_nodes);
+    //////////console.log(is_tour_nodes);
 
     $('.tt-next').unbind();
     $('.tt-prev').unbind();
@@ -2611,7 +2621,7 @@ function take_tour_navigation_arrows() {
     $('.tt-next').on('click tap', function () {
         pano.setVariableValue('take_tour', false);
         let index = is_tour_nodes.indexOf(pano.getCurrentNode());
-        //////console.log('index : ' + index);
+        ////////console.log('index : ' + index);
         if (
             index != null &&
             index < is_tour_nodes.length - 1
@@ -2628,7 +2638,7 @@ function take_tour_navigation_arrows() {
     $('.tt-prev').on('click tap', function () {
         pano.setVariableValue('take_tour', false);
         let index = is_tour_nodes.indexOf(pano.getCurrentNode());
-        //////console.log('index : ' + index);
+        ////////console.log('index : ' + index);
         if (
             index != null &&
             index <= 0
@@ -2723,7 +2733,7 @@ pano.on('configloaded', function(Tooltips) {
             
             let active_scene = pano.getCurrentNode();
             let active_video = take_tour_data[active_scene].videos[0].id;    
-            ////////console.log('current scene : '+ active_scene + '| current video : ' + active_video );
+            //////////console.log('current scene : '+ active_scene + '| current video : ' + active_video );
 
             if (
                 pano.getMediaObject(active_video) == null ||
@@ -2750,7 +2760,7 @@ pano.on('configloaded', function(Tooltips) {
                 
 
                 pano.getMediaObject(active_video).addEventListener('ended', function() {
-                    ////console.log('teaz');
+                    //////console.log('teaz');
                     //pano.setMediaVisibility( active_video, false);
 
                     if (
@@ -2759,7 +2769,7 @@ pano.on('configloaded', function(Tooltips) {
                         take_tour_data[active_scene].videos[1] != 'undefined'
                     ) {
                         active_video = take_tour_data[active_scene].videos[1].id;  
-                        ////////console.log('current scene : '+ active_scene + '| current video : ' + active_video );
+                        //////////console.log('current scene : '+ active_scene + '| current video : ' + active_video );
 
                         if (
                             pano.getMediaObject(active_video) == null ||
@@ -2822,7 +2832,7 @@ pano.on('configloaded', function(Tooltips) {
                 play_videos();
                 
                 
-                ////////console.log('zapol som take tour');
+                //////////console.log('zapol som take tour');
                 break;
             case false : 
 
@@ -2830,7 +2840,7 @@ pano.on('configloaded', function(Tooltips) {
                 $('#houses-info-container').remove();
             
                 $('.take-tour-button').removeClass('playing');
-                ////////console.log('vypol som take tour');
+                //////////console.log('vypol som take tour');
                 pano.setVariableValue('hotspots', true);
 
                 if (
@@ -2860,7 +2870,7 @@ pano.on('configloaded', function(Tooltips) {
     function change_patches() {
         $.each($('img.ggmedia'), function (index, value) {
             let lang = pano.getVariableValue('lang');
-            //////console.log('mením patch');
+            ////////console.log('mením patch');
             let src = $(this).attr('src');
 
             if (
@@ -3121,7 +3131,7 @@ pano.on('configloaded', function(Tooltips) {
     };
 
     if ($.cookie('sound')) {
-        ////////console.log('cookies som načítal ako :'+$.cookie('sound'));
+        //////////console.log('cookies som načítal ako :'+$.cookie('sound'));
         
         switch ($.cookie('sound')) {
             case 'false':
@@ -3155,6 +3165,7 @@ pano.on('configloaded', function(Tooltips) {
         update_lang_content();
         
         change_floorplan_node_title (housesData, pano.getVariableValue('lang'));
+        pano.setVariableValue('baumit_tour', false);
 
     });
 
@@ -3188,7 +3199,7 @@ pano.on('configloaded', function(Tooltips) {
                 welcome_screen();
             }
         }
-        //console.log(tmpTiles);
+        ////console.log(tmpTiles);
         tmpTiles ++;
         //addLoader('loading products data');
         changePanoTitle(lang, housesData); 
@@ -3298,7 +3309,7 @@ function play_Animation() {
                 vid = document.getElementById("vid1");    
                 videoDuration = vid.duration;
                 videoDurationHalf = (videoDuration/2) -0.20;
-                ////////console.log(videoDuration+' | '+videoDurationHalf);
+                //////////console.log(videoDuration+' | '+videoDurationHalf);
     
                 
     
@@ -3312,7 +3323,7 @@ function play_Animation() {
                 if (
                     pano.getVariableValue('take_tour') == true && tilesready_count < 1
                 ) {
-                  //  //////console.log(videoDuration+' | '+videoDurationHalf);
+                  //  ////////console.log(videoDuration+' | '+videoDurationHalf);
                     playMedia();
     
                     tilesready_count++
@@ -3348,7 +3359,7 @@ function play_Animation() {
     }, 1500);
 
     pano.on('tilesready', function () {
-        //console.log('Tiles sú ready');
+        ////console.log('Tiles sú ready');
 
       
         
@@ -3406,6 +3417,8 @@ function welcome_screen() {
     let subtitle;
     let description; 
     let more_info;
+    let about_viva_park, visit_and_enjoy_tour, rules_of_healthy_living, play, virtual_tour;
+    
 
     if (
         housesData[lang]['additional_content'] != undefined
@@ -3444,6 +3457,66 @@ function welcome_screen() {
         else {
             more_info = housesData[lang]['additional_content'][19]['title'];
         }
+
+        if (
+            housesData[lang]['additional_content'][47] == null ||
+            housesData[lang]['additional_content'][47] == undefined ||
+            housesData[lang]['additional_content'][47] == ''
+        ) {
+            play = 'Play';
+        }
+        else {
+            
+            play = housesData[lang]['additional_content'][47].title;
+        }
+
+        if (
+            housesData[lang]['additional_content'][50] == null ||
+            housesData[lang]['additional_content'][50] == undefined ||
+            housesData[lang]['additional_content'][50] == ''
+        ) {
+            rules_of_healthy_living = '3  rules of healthy living';
+        }
+        else {
+            
+            rules_of_healthy_living = housesData[lang]['additional_content'][50].title;
+        }
+
+        if (
+            housesData[lang]['additional_content'][52] == null ||
+            housesData[lang]['additional_content'][52] == undefined ||
+            housesData[lang]['additional_content'][52] == ''
+        ) {
+            visit_and_enjoy_tour = 'Visit and enjoy tour';
+        }
+        else {
+            
+            visit_and_enjoy_tour = housesData[lang]['additional_content'][52].title;
+        }
+
+        if (
+            housesData[lang]['additional_content'][51] == null ||
+            housesData[lang]['additional_content'][51] == undefined ||
+            housesData[lang]['additional_content'][51] == ''
+        ) {
+            about_viva_park = 'About the VIVA Park';
+        }
+        else {
+            
+            about_viva_park = housesData[lang]['additional_content'][51].title;
+        }
+
+        if (
+            housesData[lang]['additional_content'][9] == null ||
+            housesData[lang]['additional_content'][9] == undefined ||
+            housesData[lang]['additional_content'][9] == ''
+        ) {
+            virtual_tour = 'Virtual tour';
+        }
+        else {
+            
+            virtual_tour = housesData[lang]['additional_content'][9].title;
+        }
         
     
         $('#welcome').remove();
@@ -3456,7 +3529,7 @@ function welcome_screen() {
                         '<h2>' + subtitle + '</h2>'+
                         '<p>' + description + '</p>'+
                         '<div class="buttons">'+
-                            '<button id="play_tour">Play</button>'+
+                            '<button id="play_tour">' + play + '</button>'+
                             '<button id="more_info">' + more_info + '</button>'+
                         '</div>'+
                     '</div>'+
@@ -3466,7 +3539,7 @@ function welcome_screen() {
                                 '<img src="images/btn-1.jpg" />'+
                             '</div>'+
                             '<div class="text">'+
-                                '<h4>Research house overview</h4>'+
+                                '<h4>' + virtual_tour +'</h4>'+
                             '</div>'+
                         '</div>'+
                         '<div id="rules" class="item">'+
@@ -3474,23 +3547,23 @@ function welcome_screen() {
                                 '<img src="images/btn-2.jpg" />'+
                             '</div>'+
                             '<div class="text">'+
-                                '<h4>3 Rules of healthy living</h4>'+
+                                '<h4>' + rules_of_healthy_living + '</h4>'+
                             '</div>'+
                         '</div>'+
-                        '<div id="about-viva" class="item">'+
-                            '<div class="thumbnail">'+
-                                '<img src="images/btn-3.jpg"/>'+
-                            '</div>'+
-                            '<div class="text">'+
-                                '<h4>' + housesData[lang]['additional_content'][23]['title'] + '</h4>'+
-                            '</div>'+
-                        '</div>'+
+                        // '<div id="about-viva" class="item">'+
+                        //     '<div class="thumbnail">'+
+                        //         '<img src="images/btn-3.jpg"/>'+
+                        //     '</div>'+
+                        //     '<div class="text">'+
+                        //         '<h4>' + about_viva_park + '</h4>'+
+                        //     '</div>'+
+                        // '</div>'+
                         '<div id="visit-tour" class="item">'+
                             '<div class="thumbnail">'+
                                 '<img src="images/00_Free_tour_icon_f.jpg"/>'+
                             '</div>'+
                             '<div class="text">'+
-                                '<h4>Visit and enjoy tour</h4>'+
+                                '<h4>' + visit_and_enjoy_tour + '</h4>'+
                             '</div>'+
                         '</div>'+
                     '</div>'+
@@ -3498,9 +3571,10 @@ function welcome_screen() {
             '</div>'
         );
     
+        $('#more_info').unbind();
         $('#more_info').on('click tap', function () {
-            $('#more_info').unbind();
-            $('#welcome').fadeOut();
+            
+            // $('#welcome').fadeOut();
             pano.setVariableValue('houseID', '0');
             houseInfo(pano.getVariableValue('houseID'));
         });
@@ -3519,7 +3593,7 @@ function welcome_screen() {
     
         $('#research').on('click tap', function () {
             $('#research').unbind();
-            $('#welcome').fadeOut();
+            // $('#welcome').fadeOut();
             pano.setVariableValue('floorplan_full', true);
         });
     
@@ -3569,7 +3643,7 @@ function loadSubtitlesData(subtitlesUrl, lang) {
         })
         .done(function() {
             generate_baumit_data();
-            //////console.log(subtitlesData);
+            ////////console.log(subtitlesData);
         });
     }
 };
@@ -3797,7 +3871,7 @@ function houses_screen() {
         for (let index = 0; index < is_tour_nodes.length; index++) {
             let i = index+1;
             let node = pano.getCurrentNode();
-            //////console.log(node);
+            ////////console.log(node);
             if (
                 node == is_tour_nodes[index]
             ) {
@@ -3821,14 +3895,14 @@ function houses_screen() {
 
     // audio.addEventListener('ended', function() {
     //     audio_count++;
-    //     //////console.log('skončila 1, púšťam 2');
+    //     ////////console.log('skončila 1, púšťam 2');
     //     if (
     //         subtitlesData[lang][current_house + '_audio'+audio_count] !== undefined
     //     ) {
     //         audio = new Audio(subtitlesData[lang][current_house + '_audio'+audio_count]);
     //         audio.play();
     //         audio.addEventListener('ended', function() {
-    //             //////console.log('2 skončila');
+    //             ////////console.log('2 skončila');
     //             open_next_node();
                
     //         });
@@ -3841,6 +3915,20 @@ function houses_screen() {
 
     //  });
 
+    let learn_more_about;
+
+    if (
+        housesData[lang]['additional_content'][54] == null ||
+        housesData[lang]['additional_content'][54] == undefined ||
+        housesData[lang]['additional_content'][54] == ''
+    ) {
+        learn_more_about = 'Learn more';
+    }
+    else {
+        
+        learn_more_about = housesData[lang]['additional_content'][54].title;
+    }
+
     $('body').append(
         '<div id="houses-info-container">'+
             '<div class="houses-header">'+
@@ -3849,7 +3937,7 @@ function houses_screen() {
                     '<img class="pause" src="assets/icons/pause-houses.svg"/>'+
                     '<img class="toggle" src="assets/icons/toggle-houses.svg"/>'+
                     '<button id="next-house">Next house</button>'+
-                    '<button id="learn-more" class="learn-more">Learn more about&nbsp;<span>'+ houseID +'</span></button>'+
+                    '<button id="learn-more" class="learn-more">' + learn_more_about + '&nbsp;<span>'+ pano.getNodeUserdata(pano.getCurrentNode()).source +'</span></button>'+
                 '</div>'+
                 '<div class="subtitles">'+
                     '<p>' + current_subtitle +'</p>'+
@@ -3862,23 +3950,28 @@ function houses_screen() {
                 '</div>'+
                 '<div id="house_2" class="item">'+
                     '<img class="icon" src="images/house-default.png"/>'+
-                    '<p>' + house_2_title + '<br>' + house_2_content + '</p>'+
+                    // '<p>' + house_2_title + '<br>' + house_2_content + '</p>'+
+                    '<p>' + house_2_title + '</p>'+
                 '</div>'+
                 '<div id="house_3" class="item">'+
                     '<img class="icon" src="images/house-massive.png"/>'+
-                    '<p>' + house_3_title + '<br>' + house_3_content + '</p>'+
+                    // '<p>' + house_3_title + '<br>' + house_3_content + '</p>'+
+                    '<p>' + house_3_title + '</p>'+
                 '</div>'+
                 '<div id="house_4"  class="item">'+
                     '<img class="icon" src="images/house-wooden.png"/>'+
-                    '<p>' + house_4_title + '<br>' + house_4_content + '</p>'+
+                    // '<p>' + house_4_title + '<br>' + house_4_content + '</p>'+
+                    '<p>' + house_4_title + '</p>'+
                 '</div>'+
                 '<div id="house_5" class="item">'+
                     '<img class="icon" src="images/house-aerated.png"/>'+
-                    '<p>' + house_5_title + '<br>' + house_5_content + '</p>'+
+                    // '<p>' + house_5_title + '<br>' + house_5_content + '</p>'+
+                    '<p>' + house_5_title + '</p>'+
                 '</div>'+
                 '<div id="house_6" class="item">'+
                     '<img class="icon" src="images/house-brick.png"/>'+
-                    '<p>' + house_6_title + '<br>' + house_6_content + '</p>'+
+                    // '<p>' + house_6_title + '<br>' + house_6_content + '</p>'+
+                    '<p>' + house_6_title + '</p>'+
                 '</div>'+
             '</div>'+
         '</div>'
@@ -4157,7 +4250,7 @@ function generate_baumit_data() {
         
     });
 
-    //////console.log(baumit_object);
+    ////////console.log(baumit_object);
 
     pano.on('changenode', function () { 
         let lang = pano.getVariableValue('lang');
@@ -4174,7 +4267,7 @@ let New_interval;
 let New_intervalTime = 5000;
 
 function run_baumit_tour() {  
-    //////console.log(baumit_object);
+    ////////console.log(baumit_object);
     pano.setVariableValue('hotspots', false);
 
     let lang = pano.getVariableValue('lang');
@@ -4327,7 +4420,7 @@ function run_baumit_tour() {
     function mark_active_house() {
         $('.houses-footer > .item').removeClass('active');
         select_active_house();
-        //////console.log('markujem ... ' + current_house);
+        ////////console.log('markujem ... ' + current_house);
     }
 
     function open_next_scene () {
@@ -4346,19 +4439,19 @@ function run_baumit_tour() {
                 }
     
                 else {
-                    //////console.log(take_tour_data[node].videos[0].pan);
+                    ////////console.log(take_tour_data[node].videos[0].pan);
                     let i = index + 1;
                     if (
                         is_tour_nodes[i] == null ||
                         is_tour_nodes[i] == 'undefined'
                     ) {
-                        //////console.log(is_tour_nodes[0]);
+                        ////////console.log(is_tour_nodes[0]);
                         pano.openNext('{' + is_tour_nodes[0] + '}');
                         
                     }
 
                     else {
-                        //////console.log(is_tour_nodes[i]);
+                        ////////console.log(is_tour_nodes[i]);
                         pano.openNext('{' + is_tour_nodes[i] + '}');
                         
                     }
@@ -4399,7 +4492,7 @@ function run_baumit_tour() {
             }
 
                 setTimeout( function(){ 
-                    ////console.log('pusti zvuk');
+                //console.log('pusti zvuk');
                 //pano.pauseSound('video_'+i);
                 if (
                     baumit_object[current_node].sequences[i] != null &&
@@ -4411,12 +4504,12 @@ function run_baumit_tour() {
 
 
                     audio1 = new Audio(subtitlesData[current_lang][baumit_object[current_node].sequences[i].audio_fields[0]]);
-                    //////console.log('index je : ' + i);
+                    ////////console.log('index je : ' + i);
                     setTimeout(() => {
                         if (
                          pano.isPlaying('video_'+i)
                         ) {
-                         ////console.log('traz začalo video');
+                         //////console.log('traz začalo video');
                          audio1.play();
                          
                          return;
@@ -4450,9 +4543,9 @@ function run_baumit_tour() {
 
                                 let interval;
                                 pano.getMediaObject(a_video).addEventListener('play', function() {
-                                    // console.log(parseFloat(subtitlesData[lang].house_8_data_method_1_time.replace(':', '.')*100));
-                                    // console.log(parseFloat(subtitlesData[lang].house_8_data_method_2_time.replace(':', '.')*100));
-                                    // console.log(parseFloat(subtitlesData[lang].house_8_data_method_3_time.replace(':', '.')*100));
+                                    // //console.log(parseFloat(subtitlesData[lang].house_8_data_method_1_time.replace(':', '.')*100));
+                                    // //console.log(parseFloat(subtitlesData[lang].house_8_data_method_2_time.replace(':', '.')*100));
+                                    // //console.log(parseFloat(subtitlesData[lang].house_8_data_method_3_time.replace(':', '.')*100));
                                     
                                     let counter = 0;
                                     
@@ -4483,8 +4576,8 @@ function run_baumit_tour() {
                                             pano.getCurrentNode() == 'node24'
                                         ) {
                                             if(pano.getMediaObject(a_video).currentTime >= parseFloat(timeObject[counter]['time'].replace(':', '.'))*100){
-                                                //  console.log(timeObject[counter]['subtitles']);
-                                                //  console.log('áno našiel som, counter je ' + counter );
+                                                //  //console.log(timeObject[counter]['subtitles']);
+                                                //  //console.log('áno našiel som, counter je ' + counter );
                                                 $('.subtitles').html(timeObject[counter]['subtitles']);
                                             }
                                                 
@@ -4495,7 +4588,7 @@ function run_baumit_tour() {
                                                     if (
                                                         pano.getMediaObject(a_video).currentTime >= parseFloat(timeObject[tmpcounter]['time'].replace(':', '.'))*100
                                                     ) {
-                                                        //console.log('zvyšujem counter');
+                                                        ////console.log('zvyšujem counter');
                                                         
                                                         
                                                         
@@ -4503,18 +4596,18 @@ function run_baumit_tour() {
                                                         if (
                                                             counter == Object.keys(timeObject).length + 1
                                                         ) {
-                                                //            console.log('cieľ');
+                                                //            //console.log('cieľ');
                                                             clearInterval(interval);    
                                                             //return
                                                         } else {
-                                                            //console.log('cieľ nie je ');
+                                                            ////console.log('cieľ nie je ');
                                                         }
         
                                                         counter++;
         
         
                                                     } else {
-                                                        //console.log('nerovná sa :: ' + pano.getMediaObject(a_video).currentTime*100 +' | ' + parseFloat(timeObject[counter]['time'].replace(':', '.'))*100 );
+                                                        ////console.log('nerovná sa :: ' + pano.getMediaObject(a_video).currentTime*100 +' | ' + parseFloat(timeObject[counter]['time'].replace(':', '.'))*100 );
                                                     }
                                                 }
     
@@ -4524,29 +4617,29 @@ function run_baumit_tour() {
                                             
     
                                             else {
-                                                console.log('čo ja viem');
+                                                //console.log('čo ja viem');
                                             }
                                         }
-                                        //console.log('checkujem');
+                                        ////console.log('checkujem');
 
                                         
                                         
     
                                         // if(pano.getMediaObject(a_video).currentTime >= parseFloat(subtitlesData[lang].house_8_data_method_1_time.replace(':', '.'))*100){
-                                        //     //console.log(parseFloat(pano.getMediaObject(a_video).currentTime) + ' : ' + parseFloat(subtitlesData[lang].house_8_data_method_1_time.replace(':', '.')));
-                                        //     console.log(subtitlesData[lang].house_8_data_method_1);
+                                        //     ////console.log(parseFloat(pano.getMediaObject(a_video).currentTime) + ' : ' + parseFloat(subtitlesData[lang].house_8_data_method_1_time.replace(':', '.')));
+                                        //     //console.log(subtitlesData[lang].house_8_data_method_1);
                                         //     //clearInterval(interval);
                                         // }
     
                                         // if(pano.getMediaObject(a_video).currentTime >= parseFloat(subtitlesData[lang].house_8_data_method_2_time.replace(':', '.'))*100){
-                                        //     //console.log(parseFloat(pano.getMediaObject(a_video).currentTime) + ' : ' + parseFloat(subtitlesData[lang].house_8_data_method_2_time.replace(':', '.')));
-                                        //     console.log(subtitlesData[lang].house_8_data_method_2);
+                                        //     ////console.log(parseFloat(pano.getMediaObject(a_video).currentTime) + ' : ' + parseFloat(subtitlesData[lang].house_8_data_method_2_time.replace(':', '.')));
+                                        //     //console.log(subtitlesData[lang].house_8_data_method_2);
                                         //     //clearInterval(interval);
                                         // }
     
                                         // if(pano.getMediaObject(a_video).currentTime >= parseFloat(subtitlesData[lang].house_8_data_method_3_time.replace(':', '.'))*100){
-                                        //     //console.log(parseFloat(pano.getMediaObject(a_video).currentTime) + ' : ' + parseFloat(subtitlesData[lang].house_8_data_method_3_time.replace(':', '.')));
-                                        //     console.log(subtitlesData[lang].house_8_data_method_3);
+                                        //     ////console.log(parseFloat(pano.getMediaObject(a_video).currentTime) + ' : ' + parseFloat(subtitlesData[lang].house_8_data_method_3_time.replace(':', '.')));
+                                        //     //console.log(subtitlesData[lang].house_8_data_method_3);
                                         //     //clearInterval(interval);
                                         // }
     
@@ -4574,7 +4667,7 @@ function run_baumit_tour() {
                         pano.playSound('video_slideshow');
                     }
                     
-                    //////console.log(subtitlesData[current_lang][baumit_object[current_node].sequences[i].audio_fields[0]]);
+                    ////////console.log(subtitlesData[current_lang][baumit_object[current_node].sequences[i].audio_fields[0]]);
 
                     
                     
@@ -4588,31 +4681,30 @@ function run_baumit_tour() {
                         ) {
                             pano.setMediaVisibility('video_'+i, false);
                             pano.setMediaVisibility('video_slideshow', false); 
-                            
                         }
                         
                         i++;
                         pusti_zvuk(); 
                     });
                     
-                    pano.on('videoended_video_1', function () {
-                        console.log('Video '+i+' skončilo');
-                        if (
-                            pano.getMediaObject('video_'+i) != null &&
-                            pano.getMediaObject('video_'+i) != 'undefined'
-                        ) {
-                            pano.setMediaVisibility('video_'+i, false);
-                            pano.setMediaVisibility('video_slideshow', false); 
+                    // pano.on('videoended_video_1', function () {
+                    //     // //console.log('Video '+i+' skončilo');
+                    //     if (
+                    //         pano.getMediaObject('video_'+i) != null &&
+                    //         pano.getMediaObject('video_'+i) != 'undefined'
+                    //     ) {
+                    //         pano.setMediaVisibility('video_'+i, false);
+                    //         pano.setMediaVisibility('video_slideshow', false); 
                             
-                        }
+                    //     }
                         
-                        i++;
-                        pusti_zvuk(); 
-                    });
+                    //     i++;
+                    //     pusti_zvuk(); 
+                    // });
 
 
                     audio1.onended = function() {
-                        // console.log('Video '+i+' skončilo');
+                        // //console.log('Video '+i+' skončilo');
                         // if (
                         //     pano.getMediaObject('video_'+i) != null &&
                         //     pano.getMediaObject('video_'+i) != 'undefined'
@@ -4642,7 +4734,7 @@ function run_baumit_tour() {
                     New_interval = setInterval(function(){
                         pano.setMediaVisibility('video_'+i, false);
                         pano.pauseSound('video_'+i);
-                        //open_next_scene();
+                        open_next_scene();
                         clearInterval(New_interval);
                         return;
                     }, New_intervalTime);
@@ -4660,16 +4752,16 @@ function run_baumit_tour() {
         }
 
 
-
+        console.log('spustil som change_data');
         pusti_zvuk();
 
         
-            //     //////console.log('index je : ' + i);
-            //     //////console.log(subtitlesData[current_lang][baumit_object[current_node].sequences[i].audio_fields[0]]);
+            //     ////////console.log('index je : ' + i);
+            //     ////////console.log(subtitlesData[current_lang][baumit_object[current_node].sequences[i].audio_fields[0]]);
             //     audio1 = new Audio(subtitlesData[current_lang][baumit_object[current_node].sequences[i].audio_fields[0]]);
             //     audio1.play();
             //     audio1.onended = function() {
-            //         //////console.log('Video '+i+' skončilo');
+            //         ////////console.log('Video '+i+' skončilo');
                     
             //     };
             //     i++;
@@ -4677,7 +4769,7 @@ function run_baumit_tour() {
             // }
 
             // else {
-            //     //////console.log('nenee');
+            //     ////////console.log('nenee');
             //     i++;
             // }
 
@@ -4708,6 +4800,20 @@ function run_baumit_tour() {
         
     });
 
+    let learn_more_about;
+
+    if (
+        housesData[lang]['additional_content'][54] == null ||
+        housesData[lang]['additional_content'][54] == undefined ||
+        housesData[lang]['additional_content'][54] == ''
+    ) {
+        learn_more_about = 'Learn more';
+    }
+    else {
+        
+        learn_more_about = housesData[lang]['additional_content'][54].title;
+    }
+
     
     
 
@@ -4721,7 +4827,7 @@ function run_baumit_tour() {
                     '<img class="pause" src="assets/icons/pause-houses.svg"/>'+
                     '<img class="toggle" src="assets/icons/toggle-houses.svg"/>'+
                     '<button id="next-house">Next house</button>'+
-                    '<button id="learn-more" class="learn-more">Learn more about&nbsp;<span>'+ houseID +'</span></button>'+
+                    '<button id="learn-more" class="learn-more">' + learn_more_about + '&nbsp;<span>'+ pano.getNodeUserdata(pano.getCurrentNode()).source +'</span></button>'+
                 '</div>'+
                 '<div class="subtitles">'+
                     '<p>' + baumit_object[pano.getCurrentNode()].sequences[1].languages[lang].subtitles +'</p>'+
@@ -4734,23 +4840,28 @@ function run_baumit_tour() {
                 '</div>'+
                 '<div id="house_2" class="item">'+
                     '<img class="icon" src="images/house-default.png"/>'+
-                    '<p>' + house_2_title + '<br>' + house_2_content + '</p>'+
+                    // '<p>' + house_2_title + '<br>' + house_2_content + '</p>'+
+                    '<p>' + house_2_title + '</p>'+
                 '</div>'+
                 '<div id="house_3" class="item">'+
                     '<img class="icon" src="images/house-massive.png"/>'+
-                    '<p>' + house_3_title + '<br>' + house_3_content + '</p>'+
+                    // '<p>' + house_3_title + '<br>' + house_3_content + '</p>'+
+                    '<p>' + house_3_title + '</p>'+
                 '</div>'+
                 '<div id="house_4"  class="item">'+
                     '<img class="icon" src="images/house-wooden.png"/>'+
-                    '<p>' + house_4_title + '<br>' + house_4_content + '</p>'+
+                    // '<p>' + house_4_title + '<br>' + house_4_content + '</p>'+
+                    '<p>' + house_4_title + '</p>'+
                 '</div>'+
                 '<div id="house_5" class="item">'+
                     '<img class="icon" src="images/house-aerated.png"/>'+
-                    '<p>' + house_5_title + '<br>' + house_5_content + '</p>'+
+                    // '<p>' + house_5_title + '<br>' + house_5_content + '</p>'+
+                    '<p>' + house_5_title + '</p>'+
                 '</div>'+
                 '<div id="house_6" class="item">'+
                     '<img class="icon" src="images/house-brick.png"/>'+
-                    '<p>' + house_6_title + '<br>' + house_6_content + '</p>'+
+                    // '<p>' + house_6_title + '<br>' + house_6_content + '</p>'+
+                    '<p>' + house_6_title + '</p>'+
                 '</div>'+
             '</div>'+
         '</div>'
@@ -4793,7 +4904,7 @@ pano.on('varchanged_paused_baumit_tour', function () {
 
             //     default : 
             //     let video = pano.getNodeUserdata(pano.getCurrentNode()).title;
-            //     //console.log(video);
+            //     ////console.log(video);
             //         pano.setMediaVisibility('video_1', 1);
             //     break;
             // }
@@ -4865,7 +4976,6 @@ pano.on('varchanged_paused_baumit_tour', function () {
     });
 
     $('#house_2').on('click tap', function () {
-        // pano.openNext('{node16}');
         pano.openNext('{node24}');
     });
 
@@ -4889,7 +4999,7 @@ pano.on('varchanged_paused_baumit_tour', function () {
         if (
             !pano.getVariableValue('baumit_tour') 
         ) {
-            //console.log(a_video);
+            ////console.log(a_video);
             audio1.pause();
             pano.stopSound(a_video);
             $('#houses-info-container').fadeOut();
@@ -4898,7 +5008,7 @@ pano.on('varchanged_paused_baumit_tour', function () {
         }
 
         else {
-            //console.log(a_video);
+            ////console.log(a_video);
             a_video = 'video_1';
             pano.setMediaVisibility(a_video, 1);
             //audio1.volume = 0.0;
@@ -4912,8 +5022,8 @@ pano.on('varchanged_paused_baumit_tour', function () {
                 $('.subtitles').removeClass('hidden');
             }
 
-            change_data();
-            //console.log(pano.getMediaObject(pano.getNodeUserdata(pano.getCurrentNode()).title).currentTime);
+            //change_data();
+            ////console.log(pano.getMediaObject(pano.getNodeUserdata(pano.getCurrentNode()).title).currentTime);
 
             play_Animation();
             if (
@@ -4945,17 +5055,17 @@ function download_data($value) {
         housesData[lang]['additional_content'][$value] == undefined ||
         housesData[lang]['additional_content'][$value] == 'undefined' 
     ) {
-        //////console.log(housesData['int']);
-        ////console.log('v jazyku sa nedá stiahnuť');
+        ////////console.log(housesData['int']);
+        //////console.log('v jazyku sa nedá stiahnuť');
 
         switch ($value) {
             case '34' : 
-                ////console.log(housesData['int']['additional_content'][$value]['media']);
+                //////console.log(housesData['int']['additional_content'][$value]['media']);
                 url = housesData['int']['additional_content'][$value]['media'];
             break;
 
             default : 
-                ////console.log(housesData['int']['additional_content'][$value]['link_url']);
+                //////console.log(housesData['int']['additional_content'][$value]['link_url']);
                 url = housesData['int']['additional_content'][$value]['link_url'];
             break;
         }
@@ -4963,9 +5073,9 @@ function download_data($value) {
 
     }
     else {
-        ////console.log('v jazyku sa dá stiahnuť' + $value);
-        ////console.log(housesData[lang]['additional_content'][$value]);
-        //////console.log(housesData[lang]['additional_content'][$value][target]);
+        //////console.log('v jazyku sa dá stiahnuť' + $value);
+        //////console.log(housesData[lang]['additional_content'][$value]);
+        ////////console.log(housesData[lang]['additional_content'][$value][target]);
         switch ($value) {
             case '34' : 
 
@@ -5000,7 +5110,7 @@ function download_data($value) {
         
     }
 
-    ////console.log(url);
+    //////console.log(url);
 
     
 
@@ -5018,7 +5128,7 @@ pano.on('varchanged_baumit_tour', function () {
         case true:
             
             $('#houses-info-container').fadeIn();
-            //////console.log('zapla sa baumit_tour');
+            ////////console.log('zapla sa baumit_tour');
             $('.take-tour-button').addClass('playing');
             let node = pano.getCurrentNode();
             
@@ -5028,7 +5138,7 @@ pano.on('varchanged_baumit_tour', function () {
             break;
     
         case false:
-            //////console.log('vypla sa baumit_tour');
+            ////////console.log('vypla sa baumit_tour');
             $('.take-tour-button').removeClass('playing');
             
             let i = 3;

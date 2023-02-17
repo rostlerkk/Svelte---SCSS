@@ -1,0 +1,115 @@
+{
+    "files": [
+        {
+            "type":"VIDEO",
+            "sources": {
+                "mp4":{
+                    "source":"media/DOM_ext_01.mp4",
+                    "size" : 3.82
+                }
+            }
+        },
+        {
+            "type":"VIDEO",
+            "sources": {
+                "mp4":{
+                    "source":"media/DOM_ext_02.mp4",
+                    "size" : 3.23
+                }
+            }
+        },
+        {
+            "type":"VIDEO",
+            "sources": {
+                "mp4":{
+                    "source":"media/DOM_ext_03.mp4",
+                    "size" : 1.62
+                }
+            }
+        },
+        {
+            "type":"VIDEO",
+            "sources": {
+                "mp4":{
+                    "source":"media/DOM_ext_04.mp4",
+                    "size" : 4.17
+                }
+            }
+        },
+        {
+            "type":"VIDEO",
+            "sources": {
+                "mp4":{
+                    "source":"media/DOM_ext_05.mp4",
+                    "size" : 5.93
+                }
+            }
+        },
+        {
+            "type":"VIDEO",
+            "sources": {
+                "mp4":{
+                    "source":"media/DOM_ext_06.mp4",
+                    "size" : 3.46
+                }
+            }
+        },
+        {
+            "type":"VIDEO",
+            "sources": {
+                "mp4":{
+                    "source":"media/DOM_ext_07.mp4",
+                    "size" : 5.74
+                }
+            }
+        },
+        {
+            "type":"VIDEO",
+            "sources": {
+                "mp4":{
+                    "source":"media/DOM_ext_09.mp4",
+                    "size" : 4.13
+                }
+            }
+        },
+        {
+            "type":"VIDEO",
+            "sources": {
+                "mp4":{
+                    "source":"media/DOM_ext_11.mp4",
+                    "size" : 1.88
+                }
+            }
+        },
+        {
+            "type":"VIDEO",
+            "sources": {
+                "mp4":{
+                    "source":"media/DOM_ext_12.mp4",
+                    "size" : 3.32
+                }
+            }
+        },
+        {
+            "type":"VIDEO",
+            "sources": {
+                "mp4":{
+                    "source":"media/DOM_ext_13.mp4",
+                    "size" : 3.01
+                }
+            }
+        }
+    ]
+}
+
+
+
+
+
+
+
+
+
+
+
+

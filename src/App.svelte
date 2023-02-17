@@ -1,5 +1,9 @@
 <script>
 	export let name;
+
+	pano.on("configloaded", function (){
+		alert("gadg");
+	});
 </script>
 
 <main>
