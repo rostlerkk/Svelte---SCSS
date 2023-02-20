@@ -139,29 +139,809 @@
             "description" : "tomat, eidam, mozarella, šunka, klobása, slanina, bryndza, bar. rohy, šampiňóny, oregáno",
             "alergeny" : "(1,7)",
             "price" : 8.4
+        },
+        {
+            "id" : "21",
+            "name" : "TATRANSKÁ",
+            "description" : "tomat, eidam, mozarella, saláma, slanina, bryndza, cibuľa, úd. syr, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "22",
+            "name" : "BOLONESE",
+            "description" : "tomat, eidam, mozarella, omáčka bolonese s mletým mäsom, cibuľa, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "23",
+            "name" : "FARMÁRSKA",
+            "description" : "tomat, eidam, mozarella, vajce, šunka, niva, klobása, feferóny, šampiňóny, oregáno",
+            "alergeny" : "(1,3,7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "24",
+            "name" : "FANTASIA",
+            "description" : "tomat, eidam, mozarella, saláma, šunka, šampiňóny, kukurica, niva, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "25",
+            "name" : "ADAM",
+            "description" : "tomat, eidam, mozarella, šunka, slanina, encián, smotana, vajce, cibuľa, baranie rohy, úd.syr, oregáno",
+            "alergeny" : "(1,3,7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "26",
+            "name" : "EVA",
+            "description" : "tomat, eidam, mozarella, cherry paradajky, papr., brokolica, kukurica, olivy, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "27",
+            "name" : "RAJSKÁ",
+            "description" : "tomat a 6 druhov zo SUROVÍN NAVIAC podľa vlastného výberu",
+            "alergeny" : "(1,7)",
+            "price" : 8.9
+        },
+        {
+            "id" : "28",
+            "name" : "JOEY",
+            "description" : "tomat, eidam, mozarella, kur. mäso, šunka, saláma, slanina, klobása, cibuľa, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.9
+        },
+        {
+            "id" : "29",
+            "name" : "GYROS",
+            "description" : "tzatziki základ, eidam, mozarella, šunka, kurací gyros, ľadový šalát, cibuľa, baranie rohy, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.9
+        },
+        {
+            "id" : "70",
+            "name" : "ŠPENÁTOVÁ",
+            "description" : "tomat, eidam, mozarella, šunka, špenát, kur. mäso, mozarrela guličky, encián, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.9
+        },
+        {
+            "id" : "71",
+            "name" : "PIZZA BURGER",
+            "description" : "500g gril. hovädzí burger, oravská slanina, cheddar, BBQ omáčka, paradajka, ľadový šalát",
+            "alergeny" : "(1,7)",
+            "price" : 14.4
+        },
+        {
+            "id" : "73",
+            "name" : "FLORENCIA",
+            "description" : "tomat, eidam, mozarella, prosciutto, suš. paradajky, olivy, parmezán, mozarella guličky",
+            "alergeny" : "(1,7)",
+            "price" : 9.4
+        },
+        {
+            "id" : "74",
+            "name" : "MASCARPONE",
+            "description" : "tomat, eidam, mozarella, pikantná saláma, mascarpone",
+            "alergeny" : "(1,7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "75",
+            "name" : "SLIVOVIZZA",
+            "description" : "slivkový základ, eidam, mozarella, oravská slanina, údený syr",
+            "alergeny" : "(1,7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "76",
+            "name" : "FOCACCIA",
+            "description" : "pizza chlieb, olivový olej s cesnakom, oregano, bazalka, sušené paradajky, olivy",
+            "alergeny" : "(1)",
+            "price" : 5.4
+        },
+        {
+            "id" : "77",
+            "name" : "PROSCIUTTO",
+            "description" : "tomat, eidam, mozarella, prosciutto, parmezán, rukola, oregáno",
+            "alergeny" : "(1,7)",
+            "price" : 8.4
         }
 
     ],
-    "jedla" : [
+    "dezerty" : [
+        {
+            "id" : "50",
+            "name" : "PALACINKY S DŽEMOM, OVOCÍM A NUTELLOU",
+            "description" : "",
+            "alergeny" : "(1,3,7)",
+            "price" : 4.9
+        },
+        {
+            "id" : "51",
+            "name" : "PALACINKY S TVAROHOM A NUTELLOU",
+            "description" : "",
+            "alergeny" : "(1,3,7)",
+            "price" : 5.5
+        },
+        {
+            "id" : "52",
+            "name" : "ŠÚLANCE SO STRÚHANKOU, ORECHAMI A MASLOM",
+            "description" : "",
+            "alergeny" : "(1,3,7,8)",
+            "price" : 5.5
+        },
+        {
+            "id" : "53",
+            "name" : "ŠÚLANCE S MAKOM, SLIVKOVÝM DŽEMOM A MASLOM",
+            "description" : "",
+            "alergeny" : "(1,3,7)",
+            "price" : 5.5
+        },
+        {
+            "id" : "54",
+            "name" : "PIRÔŽKY PLNENÉ JABLKAMI A ŠKORICOU",
+            "description" : "maslo, strúhanka, orechy",
+            "alergeny" : "(1,3,7,8)",
+            "price" : 5.9
+        },
+        {
+            "id" : "55",
+            "name" : "PALACINKY S KARAMELOM, BROSKYŇOU A ORECHAMI",
+            "description" : "",
+            "alergeny" : "(1,3,7,8)",
+            "price" : 5.9
+        }
 
     ],
     "salaty" : [
+        {
+            "id" : "30",
+            "name" : "RAJSKÝ",
+            "description" : "základ, vyprážané kur. prsia, kukurica, eidam",
+            "alergeny" : "(1,3,7)",
+            "price" : 7.9
+        },
+        {
+            "id" : "31",
+            "name" : "KURACÍ",
+            "description" : "základ, restované kur. prsia, kukurica, vajce, eidam",
+            "alergeny" : "(3,7)",
+            "price" : 7.9
+        },
+        {
+            "id" : "32",
+            "name" : "TUNIAKOVÝ",
+            "description" : "základ, tuniak, cibuľa, olivy, vajce, bazalka",
+            "alergeny" : "(3,4)",
+            "price" : 7.9
+        },
+        {
+            "id" : "34",
+            "name" : "HERMELÍN",
+            "description" : "základ, grilovaný hermelín, brusnice",
+            "alergeny" : "(7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "35",
+            "name" : "LOSOSOVÝ",
+            "description" : "základ, rukola, losos, citrónová šťava, parmezán",
+            "alergeny" : "(4,7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "36",
+            "name" : "JARNÝ",
+            "description" : "základ, moz. guličky, kukurica, ananás, rest. kur. prsia",
+            "alergeny" : "(7)",
+            "price" : 8.4
+        },
+        {
+            "id" : "38",
+            "name" : "SICILIANA",
+            "description" : "základ, rukola, suš. paradajky, parmezán, prosciutto, mozarella guličky, balsamico",
+            "alergeny" : "(7)",
+            "price" : 8.4
+        }
         
     ],
     "cestoviny" : [
         {
             "id" : 40,
-            "name" : "Bolonské",
+            "name" : "BOLONSKÉ",
             "description" : "omáčka bolonese s mletým mäsom, kečup, eidam, cibuľa",
-            "alergeny" : ["1","3","7"],
+            "alergeny" : "(1,3,7)",
             "price" : 7.4 
         },
         {
             "id" : 41,
-            "name" : "Tuniakové",
+            "name" : "TUNIAKOVÉ",
             "description" : "tuniak, paradajková omáčka, olivy, cibuľa, eidam, bazalka",
-            "alergeny" : ["1","3","4","7"],
+            "alergeny" : "(1,3,4,7)",
             "price" : 7.9 
+        },
+        {
+            "id" : 42,
+            "name" : "DUBÁKOVÉ",
+            "description" : "smotana, bambino, kuracie mäso, parmezán, dubáky",
+            "alergeny" : "(1,3,7)",
+            "price" : 8.4 
+        },
+        {
+            "id" : 43,
+            "name" : "GAZDOVSKÉ",
+            "description" : "bryndzová omáčka, slanina, cibuľa, klobása, eidam",
+            "alergeny" : "(1,3,7)",
+            "price" : 7.9 
+        },
+        {
+            "id" : 44,
+            "name" : "KURACIE",
+            "description" : "smotana, kuracie mäso, brokolica, kukurica, eidam, cesnak",
+            "alergeny" : "(1,3,7)",
+            "price" : 8.4 
+        },
+        {
+            "id" : 46,
+            "name" : "ŠPENÁTOVÉ",
+            "description" : "smotana, špenát, cesnak, kuracie mäso, kukurica, eidam",
+            "alergeny" : "(1,3,7)",
+            "price" : 8.4 
+        },
+        {
+            "id" : 47,
+            "name" : "LOSOSOVÉ",
+            "description" : "losos, cherry parad., citr. šťava, paradajková om., smotana, parmezán",
+            "alergeny" : "(1,3,4,7)",
+            "price" : 8.9
+        },
+        {
+            "id" : 48,
+            "name" : "ALA DIDI",
+            "description" : "smotana, slanina, kuracie mäso, parmezán",
+            "alergeny" : "(1,3,7)",
+            "price" : 8.4 
+        },
+        {
+            "id" : 49,
+            "name" : "LJUBENA",
+            "description" : "kur. prsia, prosciuto, pesto, suš. paradajky, parmezán, mascarpone",
+            "alergeny" : "(1,3,7,8)",
+            "price" : 8.4 
+        }
+    ],
+    "hamburgery" : [
+        {
+            "id" : 81,
+            "name" : "SYROVÝ",
+            "description" : "vyprážaný syr, zelenina, tatárska omáčka",
+            "alergeny" : "(1,3,7)",
+            "price" : 6.9
+        },
+        {
+            "id" : 82,
+            "name" : "KURACÍ",
+            "description" : "vyprážané kuracie prsia, zelenina, syr, BBQ omáčka",
+            "alergeny" : "(1,3,7)",
+            "price" : 6.9
+        },
+        {
+            "id" : 83,
+            "name" : "BRAVČOVÝ",
+            "description" : "vypr. bravčové karé, zelenina, syr, BBQ omáčka",
+            "alergeny" : "(1,3,7)",
+            "price" : 6.9
+        },
+        {
+            "id" : 84,
+            "name" : "KAČACÍ",
+            "description" : "trhané kačacie mäso, cheddar, BBQ omáčka, ľadový šalát, medový dip, karamelizovaná cibuľa",
+            "alergeny" : "(1,3,7)",
+            "price" : 7.9
+        },
+        {
+            "id" : 85,
+            "name" : "TURECKÝ",
+            "description" : "kurací gyros, zelenina, cibuľa, cesnaková omáčka",
+            "alergeny" : "(1,7)",
+            "price" : 7.9
+        },
+        {
+            "id" : 86,
+            "name" : "HOVÄDZÍ EXTRABURGER 500G",
+            "description" : "300g grilované hovädzie mäso, oravská slanina, cheddar, BBQ omáčka, karamelizovaná cibuľa, medový dip, ľadový šalát, paradajka, kyslá uhorka",
+            "alergeny" : "(1,3,7)",
+            "price" : 9.4
+        }
+    ],
+    "bezmasite" : [
+        {
+            "id" : 120,
+            "name" : "VYPRÁŽANÝ SYR 200G",
+            "description" : "",
+            "alergeny" : "(1,3,7)",
+            "price" : 6.9
+        },
+        {
+            "id" : 121,
+            "name" : "VYPRÁŽANÝ HERMELÍN S BRUSNICAMI 240G",
+            "description" : "",
+            "alergeny" : "(1,3,7)",
+            "price" : 7.5
+        },
+        {
+            "id" : 127,
+            "name" : "GRILOVANÝ HERMELÍN S BRUSNICAMI 240G",
+            "description" : "",
+            "alergeny" : "(7)",
+            "price" : 7.5
+        },
+        {
+            "id" : 122,
+            "name" : "PASTIERSKY ÚDENÝ SYR SO ŠUNKOU 200G",
+            "description" : "",
+            "alergeny" : "(1,3,7)",
+            "price" : 7.5
+        },
+        {
+            "id" : 123,
+            "name" : "VYPRÁŽANÝ KARFIOL 350G",
+            "description" : "",
+            "alergeny" : "(7)",
+            "price" : 5.9
+        },
+        {
+            "id" : 124,
+            "name" : "VYPRÁŽANÉ ŠAMPIŇÓNY 200G",
+            "description" : "",
+            "alergeny" : "(1,3,7)",
+            "price" : 5.9
+        },
+        {
+            "id" : 125,
+            "name" : "ZAPEKANÁ BROKOLICA 350G",
+            "description" : "parisienne zemiaky, syrová omáčka, cesnak, syr",
+            "alergeny" : "(7)",
+            "price" : 6.9
+        },
+        {
+            "id" : 126,
+            "name" : "ZELENINOVÉ RIZOTO SO SYROM 350G",
+            "description" : "",
+            "alergeny" : "(7)",
+            "price" : 6.9
+        },
+        {
+            "id" : 128,
+            "name" : "BRYNDZOVÉ PIROHY 350G",
+            "description" : "slaninka, kyslá smotana",
+            "alergeny" : "(1,7)",
+            "price" : 6.9
+        },
+        {
+            "id" : 129,
+            "name" : "BRYNDZOVÉ HALUŠKY 350G",
+            "description" : "bryndza, slaninka",
+            "alergeny" : "(1,7)",
+            "price" : 6.9
+        },
+        {
+            "id" : 130,
+            "name" : "ŠPENÁTOVÉ HALUŠKY 350G",
+            "description" : "šunka, syr. omáčka, syr, cesnak",
+            "alergeny" : "(1,3,7)",
+            "price" : 6.9
+        },
+        {
+            "id" : 131,
+            "name" : "FURMANSKÉ HALUŠKY 350G",
+            "description" : "bryndza, slaninka, klobása, syr",
+            "alergeny" : "(1,7)",
+            "price" : 7.5
+        }
+    ],
+    "masite" : [
+        {
+            "id" : 101,
+            "name" : "STEAK Z LOSOSA S CITRÓNOVO-HORČICOVOU OMÁČKOU",
+            "description" : "",
+            "alergeny" : "(4,7,10)",
+            "price" : 8.9
+        },
+        {
+            "id" : 102,
+            "name" : "VYPRÁŽANÝ BRAVČOVÝ REZEŇ",
+            "description" : "",
+            "alergeny" : "(1,3,7)",
+            "price" : 6.8
+        },
+        {
+            "id" : 103,
+            "name" : "PRÍRODNÝ KURACÍ REZEŇ NA ŠAMPIŇÓNOCH",
+            "description" : "",
+            "alergeny" : "",
+            "price" : 6.8
+        },
+        {
+            "id" : 104,
+            "name" : "ZAPEKANÉ KURACIE PRSIA S BROSKYŇOU A SYROM",
+            "description" : "",
+            "alergeny" : "(7)",
+            "price" : 7.3
+        },
+        {
+            "id" : 105,
+            "name" : "VYPRÁŽANÝ KURACÍ REZEŇ V CESTÍČKU SO SYROM",
+            "description" : "",
+            "alergeny" : "(1,3,7)",
+            "price" : 7.3
+        },
+        {
+            "id" : 106,
+            "name" : "KURACIE SOTÉ EXOTIC",
+            "description" : "kuracie prsia, ananás, kari korenie, smotana",
+            "alergeny" : "(7)",
+            "price" : 7.3
+        },
+        {
+            "id" : 107,
+            "name" : "KURACIE SOTÉ SO ZELENINOU NA MASLE",
+            "description" : "",
+            "alergeny" : "(7)",
+            "price" : 7.5
+        },
+        {
+            "id" : 108,
+            "name" : "VYPRÁŽANÉ PLNENÉ KURACIE PRSIA",
+            "description" : "šunka, šampiňóny, eidam, kápia",
+            "alergeny" : "(1,3,7)",
+            "price" : 7.5
+        },
+        {
+            "id" : 109,
+            "name" : "KURACIE RIZOTO",
+            "description" : "kuracie prsia, zelenina, kukurica, šampiňóny, eidam, kyslá uhorka",
+            "alergeny" : "(7)",
+            "price" : 7.5
+        },
+        {
+            "id" : 111,
+            "name" : "GYROS TANIER",
+            "description" : "kuracie gyros mäso, cesnaková omáčka",
+            "alergeny" : "(7)",
+            "price" : 7.5
+        },
+        {
+            "id" : 112,
+            "name" : "KURACIE SOTÉ S HRÍBOVOU OMÁČKOU",
+            "description" : "",
+            "alergeny" : "(7)",
+            "price" : 7.5
+        },
+        {
+            "id" : 113,
+            "name" : "KAČACIE PRSIA S BRUSNICOVOU OMÁČKOU",
+            "description" : "",
+            "alergeny" : "",
+            "price" : 8.9
+        },
+        {
+            "id" : 114,
+            "name" : "BRAVČOVÉ SOTÉ STROGANOV",
+            "description" : "bravčové karé, smotana, šampiňóny, kyslá uhorka, kečup, brusnice",
+            "alergeny" : "(7)",
+            "price" : 7.5
+        },
+        {
+            "id" : 115,
+            "name" : "GRILOVANÉ KURACIE KRÍDELKÁ (400 G)",
+            "description" : "",
+            "alergeny" : "baranie rohy, feferóny",
+            "price" : 7.5
+        },
+        {
+            "id" : 116,
+            "name" : "ZAPEKANÝ TALIANSKY REZEŇ",
+            "description" : "kuracie prsia, mozarella, cherry paradajky, bazalka",
+            "alergeny" : "(7)",
+            "price" : 7.5
+        },
+        {
+            "id" : 117,
+            "name" : "SMAŽENÉ KREVETKY SO SLADKÝM ČILI DIPOM",
+            "description" : "",
+            "alergeny" : "(1,2)",
+            "price" : 7.9
+        },
+        {
+            "id" : 118,
+            "name" : "KURACIE SOTÉ V NIVOVEJ OMÁČKE",
+            "description" : "kuracie prsia, smotana, niva",
+            "alergeny" : "(7)",
+            "price" : 7.5
+        },
+        {
+            "id" : 119,
+            "name" : "RIZOTO KARIBIK",
+            "description" : "kur. prsia, ananás, kari, kukurica, brokolica, cherry paradajky, paprika, parmezán",
+            "alergeny" : "(7)",
+            "price" : 7.9
+        }
+    ],
+    "prilohy" : [
+        {
+            "id" : 60,
+            "name" : "VARENÉ BABY ZEMIAČKY S MASLOM 200G",
+            "description" : "",
+            "alergeny" : "",
+            "price" : 1.8
+        },
+        {
+            "id" : 61,
+            "name" : "OPEKANÉ BABY ZEMIAČKY SO SLANINKOU A CIBUĽKOU 200G",
+            "description" : "",
+            "alergeny" : "",
+            "price" : 1.9
+        },
+        {
+            "id" : 62,
+            "name" : "HRANOLKY 200G",
+            "description" : "",
+            "alergeny" : "",
+            "price" : 1.9
+        },
+        {
+            "id" : 63,
+            "name" : "BATÁTOVÉ HRANOLKY 200G",
+            "description" : "",
+            "alergeny" : "",
+            "price" : 2.5
+        },
+        {
+            "id" : 65,
+            "name" : "RYŽA 220G",
+            "description" : "",
+            "alergeny" : "",
+            "price" : 1.8
+        },
+        {
+            "id" : 66,
+            "name" : "PIZZA BUCHTIČKY 200G",
+            "description" : "",
+            "alergeny" : "",
+            "price" : 1.8
+        },
+        {
+            "id" : 67,
+            "name" : "ZEMIAKOVÁ KAŠA 220G",
+            "description" : "",
+            "alergeny" : "",
+            "price" : 1.9
+        },
+        {
+            "id" : 68,
+            "name" : "ZELENINA NA MASLE 350G",
+            "description" : "",
+            "alergeny" : "",
+            "price" : 2.5
+        }
+    ],
+
+    "speciality" : [
+        {
+            "id" : 180,
+            "name" : "PEČENÉ BRAVČOVÉ KOLENO S KOSŤOU 750 G",
+            "description" : "pizza buchtičky, horčica, chren, jalapeňos, baranie rohy",
+            "alergeny" : "(1,10)",
+            "price" : 9.5
+        },
+        {
+            "id" : 181,
+            "name" : "KURACIE KRÍDELKÁ 500 G",
+            "description" : "v sladkej chilli marináde s medovo-údeným dipom",
+            "alergeny" : "(1)",
+            "price" : 8.5
+        },
+        {
+            "id" : 182,
+            "name" : "KURACÍ STEAK SO SLIVKOVOU OMÁČKOU A OPRAŽENOU ORAVSKOU SLANINKOU 200G",
+            "description" : "",
+            "alergeny" : "(7)",
+            "price" : 7.5
+        },
+        {
+            "id" : 183,
+            "name" : "KURACÍ STEAK MARCO 200 G",
+            "description" : "kuracie prsia, smotana, sušené paradajky, parmezán, prosciutto",
+            "alergeny" : "(7)",
+            "price" : 7.5
+        },
+        {
+            "id" : 184,
+            "name" : "BRAVČOVÝ REZEŇ GIUSEPPE 500G",
+            "description" : "brav. karé, kys. smotana, cibuľka, šampiňóny, kápia, slaninka, údený syr",
+            "alergeny" : "(1)",
+            "price" : 7.5
+        },
+        {
+            "id" : 186,
+            "name" : "MEXICKÉ SOTÉ (FAJITAS) 200G",
+            "description" : "bravčové karé, fazuľa, cibuľa, paprika, kukurica, jalapeňos, chilli, kečup",
+            "alergeny" : "",
+            "price" : 7.5
+        }
+    ],
+    
+    "doplnkovy" : [
+        {
+            "id" : 141,
+            "name" : "1,75L PEPSI-COLA, MIRINDA, 7UP",
+            "description" : "",
+            "alergeny" : "",
+            "price" : 1.9
+        },
+        {
+            "id" : 142,
+            "name" : "1,5L MINERÁLKA",
+            "description" : "",
+            "alergeny" : "",
+            "price" : 0.9
+        },
+        {
+            "id" : 143,
+            "name" : "1L OVOCNÝ DŽÚS",
+            "description" : "",
+            "alergeny" : "",
+            "price" : 2.5
+        },
+        {
+            "id" : 144,
+            "name" : "0,25 L RED BULL",
+            "description" : "",
+            "alergeny" : "",
+            "price" : 1.7
+        },
+        {
+            "id" : 145,
+            "name" : "0,5L PIVO V PLECHOVKE (ALKO, NEALKO, RADLER)",
+            "description" : "",
+            "alergeny" : "",
+            "price" : 1.3
+        },
+        {
+            "id" : 146,
+            "name" : "1 L VÍNO ČERVENÉ, BIELE",
+            "description" : "",
+            "alergeny" : "",
+            "price" : 2.9
+        },
+        {
+            "id" : 147,
+            "name" : "0,75L HAMŠÍK WINERY",
+            "description" : "biele Pinot Grigio, ružové Rosato, červené Cabernet Veneto",
+            "alergeny" : "",
+            "price" : 5.9
+        },
+        {
+            "id" : 148,
+            "name" : "0,75L HAMŠÍK PROSECCO TREVISO",
+            "description" : "",
+            "alergeny" : "",
+            "price" : 8.9
+        },
+        {
+            "id" : 149,
+            "name" : "DARČEKOVÁ KRABICA NA PROSECCO 0,75L",
+            "description" : "",
+            "alergeny" : "",
+            "price" : 2.5
+        }
+    ],
+
+    "alergeny" : [
+        {
+            "id" : "",
+            "name" : "1",
+            "description" : "OBILNINY OBSAHUJÚCE LEPOK A VÝROBKY Z NICH",
+            "alergeny" : "",
+            "price" : ""
+        },
+        {
+            "id" : "",
+            "name" : "2",
+            "description" : "KÔROVCE A VÝROBKY Z NICH",
+            "alergeny" : "",
+            "price" : ""
+        },
+        {
+            "id" : "",
+            "name" : "3",
+            "description" : "VAJCIA A VÝROBKY Z NICH",
+            "alergeny" : "",
+            "price" : ""
+        },
+        {
+            "id" : "",
+            "name" : "4",
+            "description" : "RYBY A VÝROBKY Z NICH",
+            "alergeny" : "",
+            "price" : ""
+        },
+        {
+            "id" : "",
+            "name" : "5",
+            "description" : "ARAŠÍDY A VÝROBKY Z NICH",
+            "alergeny" : "",
+            "price" : ""
+        },
+        {
+            "id" : "",
+            "name" : "6",
+            "description" : "SÓJOVÉ ZRNÁ A VÝROBKY Z NICH",
+            "alergeny" : "",
+            "price" : ""
+        },
+        {
+            "id" : "",
+            "name" : "7",
+            "description" : "MLIEKO A VÝROBKY Z NEHO",
+            "alergeny" : "",
+            "price" : ""
+        },
+        {
+            "id" : "",
+            "name" : "8",
+            "description" : "ORECHY A VÝROBKY Z NICH",
+            "alergeny" : "",
+            "price" : ""
+        },
+        {
+            "id" : "",
+            "name" : "9",
+            "description" : "ZELER A VÝROBKY Z NEHO",
+            "alergeny" : "",
+            "price" : ""
+        },
+        {
+            "id" : "",
+            "name" : "10",
+            "description" : "HORČICA A VÝROBKY Z NEJ",
+            "alergeny" : "",
+            "price" : ""
+        },
+        {
+            "id" : "",
+            "name" : "11",
+            "description" : "SEZAMOVÉ SEMENÁ A VÝROBKY Z NICH",
+            "alergeny" : "",
+            "price" : ""
+        },
+        {
+            "id" : "",
+            "name" : "12",
+            "description" : "OXID SIRIČITÝ A SIRIČITANY",
+            "alergeny" : "",
+            "price" : ""
+        },
+        {
+            "id" : "",
+            "name" : "13",
+            "description" : "VLČÍ BÔB A VÝROBKY Z NEHO",
+            "alergeny" : "",
+            "price" : ""
+        },
+        {
+            "id" : "",
+            "name" : "14",
+            "description" : "MÄKKÝŠE A VÝROBKY Z NICH",
+            "alergeny" : "",
+            "price" : ""
         }
     ]
 
