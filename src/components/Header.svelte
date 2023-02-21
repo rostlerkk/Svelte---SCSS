@@ -15,13 +15,46 @@
 
 </script>
 
-<div id="header">
+<!-- <div id="header">
     <ul>
         <li class:active="{_active_menu_item === 'home'}" on:click={() => select_active_menu("home")}>Home</li>
         <li class:active="{_active_menu_item === 'foods'}" on:click={() => select_active_menu("foods")}>Jedlá</li>
         <li class:active="{_active_menu_item === 'drinks'}" on:click={() => select_active_menu("drinks")}>Nápoje</li>
     </ul>
-</div>
+</div> -->
+
+        <!-- navigation -->
+        <nav class="navbar no-margin-bottom alt-font">
+            <div class="container navigation-menu">
+                <div class="row">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="col-lg-2 col-md-3 navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand inner-link" href="#home"><img src="images/logo-restaurant.png" alt=""/></a>
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-9 collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                        <ul class="nav navbar-nav">
+                            <li><a href="#about" class="inner-link">About</a></li>
+                            <li><a href="#menu" class="inner-link">Menu</a></li>
+                            <li><a href="#chef" class="inner-link">Chef</a></li>
+                            <li><a href="#gallery" class="inner-link">Gallery</a></li>
+                            <li><a href="#blog" class="inner-link">Blog</a></li>
+                            <li><a href="#contact" class="inner-link">Contact</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-4 col-md-2 pull-right header-right text-right sm-display-none">
+                        <span class="text-uppercase white-text text-small md-display-none">Book your Tables?&nbsp;&nbsp;</span>
+                        <a class="btn-small-white btn btn-very-small no-margin inner-link" href="#contact">Book Now</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <!-- end navigation -->
 
 <style lang="scss">
     #header {
