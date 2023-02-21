@@ -61,7 +61,7 @@
 </script>
 
 
-<div>
+<!-- <div>
     {#if _menu_items != null}
         {#if _menu_items["cestoviny"] != null}
             {#each _menu_items["cestoviny"] as item}
@@ -73,7 +73,7 @@
             {/each}
         {/if}
     {/if}   
-</div>
+</div> -->
 
 
 <style lang="scss">

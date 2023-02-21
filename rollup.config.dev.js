@@ -49,7 +49,9 @@ var _default = {
     sourcemap: true,
     format: 'iife',
     name: 'app',
-    file: 'public/build/bundle.js'
+    file: 'public/build/bundle.js',
+    inlineDynamicImports: true,
+    exports: 'named'
   },
   plugins: [(0, _rollupPluginSvelte["default"])({
     compilerOptions: {

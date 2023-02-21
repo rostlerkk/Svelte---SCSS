@@ -2,50 +2,6 @@
 	import {get, writable} from 'svelte/store';
 	import {title} from "./store.js";
 
-	let _title = null;
-
-	title.subscribe((value) => {
-		_title = value;
-	});
-
-	title.update( n => 4);
-
-	let foods = ["Fazuľová", "Rizek"];
-
-	let full_food = [
-		{	
-			
-			polievka : "Fazuľová s párkom",
-			hlavne_jedlo : "Rizek so šalatom"
-		},
-		{
-			polievka : "Hrachová s porom",
-			hlavne_jedlo : "dva rizky so šalatom"
-		}
-	];
-
-	let komplet = true;
-	let komplet2 = true;
-
-	// $: {
-	// 	komplet;
-	// 	if (komplet == true) {
-	// 		title.update( n => n + 1 );	
-	// 	} else {
-	// 		title.update( n => n - 1 );
-	// 	}
-
-		
-
-
-	// }
-
-	function update() {
-		title.update( n => n + 1 )
-	}
-
-	
-
 </script>
 
 <!-- <main>
