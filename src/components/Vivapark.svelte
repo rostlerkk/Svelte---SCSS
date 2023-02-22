@@ -487,7 +487,8 @@
 
 {#if fetching_data}
     <div id="viva-intro">
-        <p>loading configuration ... </p>
+        <img src="images/loader.svg" alt="">
+        <p>loading product data</p>
     </div>
 {/if}
 
@@ -576,14 +577,26 @@
     #viva-intro {
         position: absolute;
         left: 0;
-        top: 40px;
+        top: 0;
         width: 100%;
         height: 100%;
-        background: red;
+        background: transparent;
         z-index: 2;
         display: flex;
         justify-content : center;
         align-items : center;
         opacity: 0.5;
+        flex-direction: column;
+
+        p {
+            position: relative;
+            font-family: "Montserrat-Medium";
+            font-size: 11px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.4);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 0;
+        }
     }
 </style>
