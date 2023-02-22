@@ -502,13 +502,13 @@
     }
 
     function add_video_patch() {
-        let media = "media/audio/EXT_VSTUP02_-29_-6_30_0,7.mp4";
-        var element=document.createElement('img');
-        element.setAttribute('src','hsimage.png');
+        let media = "pano2vr/output/media/EXT_VSTUP02_-29_-6_30_0,7.mp4";
+        var element=document.createElement('video');
+        element.setAttribute('src', media);
         pano.addHotspot("myid",0,90,element);
     }
 
-    
+    add_video_patch();
 
 </script>
 
