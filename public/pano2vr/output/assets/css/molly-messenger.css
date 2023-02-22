@@ -1,6 +1,0 @@
-.fb_dialog_content {
-  display: none !important;
-}
-.fb_dialog_content.active {
-  display: block !important;
-}
