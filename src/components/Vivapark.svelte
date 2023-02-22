@@ -501,6 +501,15 @@
         about_viva = true;
     }
 
+    function add_video_patch() {
+        let media = "media/audio/EXT_VSTUP02_-29_-6_30_0,7.mp4";
+        var element=document.createElement('img');
+        element.setAttribute('src','hsimage.png');
+        pano.addHotspot("myid",0,90,element);
+    }
+
+    
+
 </script>
 
 {#if fetching_data}
