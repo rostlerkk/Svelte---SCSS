@@ -4,5 +4,5 @@ $('.hlp-layer').on('click touchstart', function(){
     removeClass(['.lang-menu'], 'active');
     removeClass(['.adv-wrapper'], 'hidden');
     HideElement(['.hlp-layer']);
-    showVivaIntro();
+    //showVivaIntro();
 });

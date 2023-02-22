@@ -484,6 +484,23 @@
         
     }
 
+    function go_to_house_8() {
+        intro = false;
+        pano.openNext("{node24}", "");
+    }
+
+    function quick_tour() {
+        intro = false;
+        pano.setVariableValue('floorplan_full', true);
+    }
+
+    let about_viva = false;
+
+    function about_viva_park() {
+        intro = false;
+        about_viva = true;
+    }
+
 </script>
 
 {#if fetching_data}
@@ -496,7 +513,6 @@
 <!-- ak je povolené intro -->
 {#if intro}
     {#if _vivaData != null}
-            
             {#if _vivaData["houses"] != undefined}
             <div id="welcome">
                 <div id="wrapper">
@@ -539,18 +555,20 @@
                                 {/if}
 
                                 {#if item.name == "VIVA: Startscreen: More info"}
-                                    {#if item.title_t[user_lang] != null}
-                                        <button id="more_info">{item.title_t[user_lang]}</button>
-                                    {:else}
-                                        <button id="more_info">{item.title_t["int"]}</button>
-                                    {/if}
+                                    <button id="more_info" on:click={() => about_viva_park()}>
+                                        {#if item.title_t[user_lang] != null}
+                                            {item.title_t[user_lang]}
+                                        {:else}
+                                            {item.title_t["int"]}
+                                        {/if}
+                                    </button>
                                     <!-- <button id="more_info">{item.title}</button> -->
                                 {/if}           
                             {/each}
                         </div>
                     </div>
                     <div id="footer">
-                            <div id="research" class="item">
+                            <div id="research" class="item" on:click={() => quick_tour()}>
                                 <div class="thumbnail">
                                     <img src="images/btn-1.jpg">
                                 </div>
@@ -566,7 +584,7 @@
                                     {/each}
                                 </div>
                             </div>
-                            <div id="rules" class="item">
+                            <div id="rules" class="item" on:click={() => go_to_house_8()}>
                                 <div class="thumbnail">
                                     <img src="images/btn-2.jpg">
                                 </div>
@@ -582,7 +600,7 @@
                                     {/each}
                                 </div>
                             </div>
-                            <div id="visit-tour" class="item">
+                            <div id="visit-tour" class="item" on:click={() => intro = false}>
                                 <div class="thumbnail">
                                     <img src="images/00_Free_tour_icon_f.jpg">
                                 </div><div class="text">
@@ -604,6 +622,34 @@
             {/if}
         
     {/if}
+{/if}
+
+
+<!-- v intre ak kliknem na "mode info" -->
+{#if about_viva && _vivaData != null}
+     <div id="modal" >
+        <div class="close" on:click={() => about_viva = false} />
+        <div class="content">
+            {#each _vivaData["buildings"]["additional_content"] as item}    
+                {#if item.name == "Navigation: Company Info"}
+                    <h1>
+                        {#if item.title_t[user_lang] != null}
+                            {item.title_t[user_lang]}
+                        {:else}
+                            {item.title_t["int"]}
+                        {/if}
+                    </h1>
+                    <p>
+                        {#if item.content_t[user_lang] != null}
+                            {item.content_t[user_lang]}
+                        {:else}
+                            {item.content_t["int"]}
+                        {/if}
+                    </p>
+                {/if}
+            {/each}
+        </div>
+     </div>
 {/if}
 
         

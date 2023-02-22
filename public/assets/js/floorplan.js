@@ -1,3 +1,4 @@
+
 // tlačidlo Floorplan vo Footri
 pano.addListener('varchanged_footer_floorplan', function() {
     switch (pano.getVariableValue('footer_floorplan')) {
@@ -14,7 +15,7 @@ pano.addListener('varchanged_footer_floorplan', function() {
         }
 
         else {
-            showVivaIntro();
+            //showVivaIntro();
             removeClass(['.floorplan-side'], 'anim'); 
             removeClass(['.floorplan','.hlp-layer'], 'active');
         }
@@ -27,29 +28,29 @@ pano.addListener('varchanged_floorplan_full', function() {
     switch (pano.getVariableValue('floorplan_full')) {
         case true: 
         $('.viva-start').addClass('hidden');
-        if (
-            housesData[lang]['additional_content'].length != 0 &&
-            housesData[lang]['additional_content'][8]['title'] != null
-        )
+        // if (
+        //     housesData[lang]['additional_content'].length != 0 &&
+        //     housesData[lang]['additional_content'][8]['title'] != null
+        // )
 
-        {
-            $('.floorplan-full .title > div').html(housesData[lang]['additional_content'][16]['name']+'<span>'+ housesData[lang]['additional_content'][16]['title'] +'</span>');
+        // {
+        //     $('.floorplan-full .title > div').html(housesData[lang]['additional_content'][16]['name']+'<span>'+ housesData[lang]['additional_content'][16]['title'] +'</span>');
             
-        }
+        // }
 
-        else {
-            $('.floorplan-full .title > div').html(noData);
-        }
+        // else {
+        //     $('.floorplan-full .title > div').html(noData);
+        // }
         
         
         
-        variableTrue(['blurred']);
+        //variableTrue(['blurred']);
         addClass(['.floorplan-full'], 'anim');
-        updateComfortLevel();
+        //updateComfortLevel();
 
     break;
     case false:
-        variableFalse(['blurred']);
+        //variableFalse(['blurred']);
         removeClass(['.floorplan-full'], 'anim');
     break; 
     }
@@ -64,6 +65,6 @@ pano.on("changenode", function nodeChange() {
         pano.getVariableValue('floorplan_full')
     )
     {
-        updateComfortLevel();
+       // updateComfortLevel();
     }
 });

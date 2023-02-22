@@ -90,8 +90,8 @@ pano.addListener('varchanged_blurred', function () {
       variableFalse(['infopanel', 'videopanel', 'footer_global_info', 'map_full', 'floorplan_full', 'pruduct_3D_full', 'cart_full', 'thanks_page', 'houseInfo']);
       removeClass(['.adv-wrapper', '.screenCapture'], 'hidden');
       LftArrow.css('display', 'block');
-      RgtArrow.css('display', 'block');
-      //showVivaIntro();
+      RgtArrow.css('display', 'block'); //showVivaIntro();
+
       break;
   }
 });
