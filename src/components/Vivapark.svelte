@@ -659,6 +659,7 @@
         top: 40px;
         left: 0px;
         z-index: 4;
+        height: calc(100% - 40px);
     }
     #viva-intro {
         position: absolute;
