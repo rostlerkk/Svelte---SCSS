@@ -63,3 +63,15 @@ button:not(:disabled):active {
 button:focus {
 	border-color: #666;
 }
+
+#container {
+	z-index: unset !important;
+}
+
+#container > div {
+	z-index: unset !important;
+}
+
+#container > div > div {
+	z-index: unset !important;
+}

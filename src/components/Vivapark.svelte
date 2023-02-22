@@ -736,16 +736,18 @@
         align-items : center;
         opacity: 0.5;
         flex-direction: column;
+        z-index: 6;
 
         p {
             position: relative;
             font-family: "Montserrat-Medium";
             font-size: 11px;
             color: #fff;
-            background-color: rgba(0, 0, 0, 0.4);
+            background-color: rgba(0, 0, 0, 0.7);
             border-radius: 6px;
             padding: 8px;
             margin: 0;
+            width: auto;
         }
     }
 
