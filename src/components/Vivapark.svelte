@@ -4,6 +4,8 @@
     let lang_data_loading, welcome = true;
     let product_data_loaded, houses_data_loaded, subtitles_data_loaded = false;
 
+    const jq = window.$;
+
     // má sa zobraziť preloader ? 
     let fetching_data = true;
 
@@ -455,6 +457,34 @@
             for (let index = 0; index < 3; index++) {
                 pano.setMediaVisibility('video_'+index, false);
             }
+
+            // označenie názvu scény
+            let node_id = pano.getNodeUserdata(pano.getCurrentNode()).source;
+            let title = jq('.header > .title > div');
+
+            switch (node_id) {
+                case '1' : 
+                case '2' : 
+                case '3' : 
+                case '4' : 
+                case '5' : 
+                case '6' : 
+                case '7' : 
+                case '8' : 
+                case '9' : 
+                case '10' : 
+                case '11' : 
+                case '12' : 
+                case '13' : 
+                    let house_title = null;
+                    title.text(_vivaData['buildings']['buildings'][parseInt(node_id)-1].house_nr);
+                break;
+
+                default : 
+                    title.text('Viva park');
+                break;
+            }
+        
         });
 	});
 
