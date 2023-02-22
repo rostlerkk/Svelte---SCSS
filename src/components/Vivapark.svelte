@@ -473,6 +473,7 @@
         if (res.ok) {
             console.log(json);
         // console.log(json["additional_content"][0]);
+            _vivaData = json;
             fetching_data = false;
 
         } else {
@@ -488,50 +489,79 @@
 {#if fetching_data}
     <div id="viva-intro">
         <img src="images/loader.svg" alt="">
-        <p>loading product data</p>
+        <p>loading product data <br /> and translations</p>
     </div>
 {/if}
 
 <!-- ak je povolené intro -->
 {#if intro}
     {#if _vivaData != null}
-        {#if _vivaData[user_lang] != undefined}        
-            {#if _vivaData[user_lang]["houses"] != undefined}
+            
+            {#if _vivaData["houses"] != undefined}
             <div id="welcome">
                 <div id="wrapper">
                     <div id="header">
-                        {#each _vivaData[user_lang]["houses"]["additional_content"] as item}   
-                        
+                        {#each _vivaData["buildings"]["additional_content"] as item}   
                             {#if item.name == "VIVA: Intro: Title"}
-                                <h1>{item.title}</h1>
-                                <h2>{item.content}</h2>
+                                {#if item.title_t[user_lang] != null}
+                                    <h1>{item.title_t[user_lang]}</h1>
+                                {:else}
+                                    <h1>{item.title_t["int"]}</h1>
+                                {/if}
+
+                                {#if item.content_t[user_lang] != null}
+                                    <h2>{item.content_t[user_lang]}</h2>
+                                {:else}
+                                    <h2>{item.content_t["int"]}</h2>
+                                {/if}
                             {/if}
+
+                            {#if item.name == "Navigation: Company Info"}
+                                {#if item.content_t[user_lang] != null}
+                                    <p>{item.content_t[user_lang]}</p>
+                                {:else}
+                                    <p>{item.content_t["int"]}</p>
+                                {/if}
+                            {/if}
+                        {/each}
                         
-                            <!-- NEVIEM ČO TO JE    
-                                <p>null</p> 
-                            -->
-                            <div class="buttons">
+                        
+                           
+                        <div class="buttons">
+                            {#each _vivaData["buildings"]["additional_content"] as item}   
                                 {#if item.name == "VIVA: Startscreen: Play"}
-                                    <button id="play_tour">{item.title}</button>
+                                    {#if item.title_t[user_lang] != null}
+                                        <button id="play_tour">{item.title_t[user_lang]}</button>
+                                    {:else}
+                                        <button id="play_tour">{item.title_t["int"]}</button>
+                                    {/if}
+                                    <!-- <button id="play_tour">{item.title}</button> -->
                                 {/if}
 
                                 {#if item.name == "VIVA: Startscreen: More info"}
-                                    <button id="more_info">{item.title}</button>
+                                    {#if item.title_t[user_lang] != null}
+                                        <button id="more_info">{item.title_t[user_lang]}</button>
+                                    {:else}
+                                        <button id="more_info">{item.title_t["int"]}</button>
+                                    {/if}
+                                    <!-- <button id="more_info">{item.title}</button> -->
                                 {/if}           
-                            </div>
-                        
-                        {/each}
+                            {/each}
+                        </div>
                     </div>
                     <div id="footer">
-                        
                             <div id="research" class="item">
                                 <div class="thumbnail">
                                     <img src="images/btn-1.jpg">
                                 </div>
                                 <div class="text">
-                                    {#each _vivaData[user_lang]["houses"]["additional_content"] as item}   
-                                        {#if item.name == "VIVA: Startscreen: Quick Tour"}
-                                            <h4>{item.title}</h4>
+                                    {#each _vivaData["buildings"]["additional_content"] as item}    
+                                        {#if item.name == "VIVA: Startscreen: Button 1"}
+                                            {#if item.title_t[user_lang] != null}
+                                                <h4>{item.title_t[user_lang]}</h4>
+                                            {:else}
+                                                <h4>{item.title_t["int"]}</h4>
+                                            {/if}
                                         {/if}
                                     {/each}
                                 </div>
@@ -541,9 +571,13 @@
                                     <img src="images/btn-2.jpg">
                                 </div>
                                 <div class="text">
-                                    {#each _vivaData[user_lang]["houses"]["additional_content"] as item}   
-                                        {#if item.name == "VIVA: Startscreen: About"}
-                                            <h4>{item.title}</h4>
+                                    {#each _vivaData["buildings"]["additional_content"] as item}    
+                                        {#if item.name == "VIVA: Startscreen: Button 3"}
+                                            {#if item.title_t[user_lang] != null}
+                                                <h4>{item.title_t[user_lang]}</h4>
+                                            {:else}
+                                                <h4>{item.title_t["int"]}</h4>
+                                            {/if}
                                         {/if}
                                     {/each}
                                 </div>
@@ -552,9 +586,13 @@
                                 <div class="thumbnail">
                                     <img src="images/00_Free_tour_icon_f.jpg">
                                 </div><div class="text">
-                                    {#each _vivaData[user_lang]["houses"]["additional_content"] as item}   
-                                        {#if item.name == "VIVA: Startscreen: Research house overview"}
-                                            <h4>{item.title}</h4>
+                                    {#each _vivaData["buildings"]["additional_content"] as item}    
+                                        {#if item.name == "VIVA: Startscreen: Button 2"}
+                                            {#if item.title_t[user_lang] != null}
+                                                <h4>{item.title_t[user_lang]}</h4>
+                                            {:else}
+                                                <h4>{item.title_t["int"]}</h4>
+                                            {/if}
                                         {/if}
                                     {/each}
                                 </div>
@@ -564,7 +602,7 @@
                 </div>
             </div>
             {/if}
-        {/if}
+        
     {/if}
 {/if}
 
@@ -572,7 +610,8 @@
 
 <style lang="scss">
     #welcome {
-        top: 140px;
+        top: 0px;
+        left: 0px;
     }
     #viva-intro {
         position: absolute;
