@@ -572,7 +572,7 @@
                                 </div>
                                 <div class="text">
                                     {#each _vivaData["buildings"]["additional_content"] as item}    
-                                        {#if item.name == "VIVA: Startscreen: Button 3"}
+                                        {#if item.name == "VIVA: Startscreen: 3 rules of healthy living"}
                                             {#if item.title_t[user_lang] != null}
                                                 <h4>{item.title_t[user_lang]}</h4>
                                             {:else}
@@ -587,7 +587,7 @@
                                     <img src="images/00_Free_tour_icon_f.jpg">
                                 </div><div class="text">
                                     {#each _vivaData["buildings"]["additional_content"] as item}    
-                                        {#if item.name == "VIVA: Startscreen: Button 2"}
+                                        {#if item.name == "VIVA: Startscreen: visit and enjoy tour"}
                                             {#if item.title_t[user_lang] != null}
                                                 <h4>{item.title_t[user_lang]}</h4>
                                             {:else}
@@ -610,8 +610,9 @@
 
 <style lang="scss">
     #welcome {
-        top: 0px;
+        top: 40px;
         left: 0px;
+        z-index: 4;
     }
     #viva-intro {
         position: absolute;
