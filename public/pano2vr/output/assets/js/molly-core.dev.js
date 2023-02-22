@@ -14,22 +14,22 @@ var housesData,
 //$.getScript('assets/js/basket.js');
 //$.getScript('assets/js/data.js');
 
-$.getScript('assets/js/floorplan.js'); // $.getScript('assets/js/global-info.js');
-// $.getScript('assets/js/hlp-layer.min.js');
-// //$.getScript('assets/js/chatbot.min.js');
-// $.getScript('assets/js/infopanel.min.js');
-// $.getScript('assets/js/languages.min.js');
-// //$.getScript('assets/js/localvideo.js');
-// $.getScript('assets/js/map.min.js');
-// //$.getScript('assets/js/messenger.js');
-// //$.getScript('assets/js/pinned-videos.js');
-// $.getScript('assets/js/settings.min.js');
-// //$.getScript('assets/js/shortcuts.min.js');
-// $.getScript('assets/js/social.js');
-// $.getScript('assets/js/sounds.min.js');
-//$.getScript('assets/js/videopanel.js');
-//$.getScript('assets/js/tooltip.js');
-// Načitanie obrázkov (aktívna položka vo Footri) pred ich zobrazením.
+$.getScript('assets/js/floorplan.js');
+$.getScript('assets/js/global-info.js');
+$.getScript('assets/js/hlp-layer.min.js'); // //$.getScript('assets/js/chatbot.min.js');
+
+$.getScript('assets/js/infopanel.min.js');
+$.getScript('assets/js/languages.min.js');
+$.getScript('assets/js/localvideo.js');
+$.getScript('assets/js/map.min.js'); // //$.getScript('assets/js/messenger.js');
+
+$.getScript('assets/js/pinned-videos.js');
+$.getScript('assets/js/settings.min.js'); // $.getScript('assets/js/shortcuts.min.js');
+
+$.getScript('assets/js/social.js');
+$.getScript('assets/js/sounds.min.js');
+$.getScript('assets/js/videopanel.js');
+$.getScript('assets/js/tooltip.js'); // Načitanie obrázkov (aktívna položka vo Footri) pred ich zobrazením.
 
 $.fn.preload = function () {
   this.each(function () {
