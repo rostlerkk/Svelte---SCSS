@@ -4,14 +4,15 @@
     let lang_data_loading, welcome = true;
     let product_data_loaded, houses_data_loaded, subtitles_data_loaded = false;
 
+    // má sa zobraziť preloader ? 
+    let fetching_data = true;
+
     let intro = true;
     let _vivaData = {};
 
     vivaData.subscribe(value => {
         _vivaData = value;
     });
-
-
 
     // API kľúče
     const apiToken = {
@@ -147,8 +148,6 @@
                 throw new Error(json);
             }            
         }    
-        $variable = true;
-        
 	}
  
     // Zistenie jazyka užívateľa
@@ -182,7 +181,6 @@
     
         else {
             // Jazyk nie je definovaný v Cookies
-            
             user_lang = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
             console.log(window.navigator.userLanguage);
             document.cookie = "user_lang=" + user_lang;
@@ -355,7 +353,9 @@
         }   
         
         
-        getVivaTranslations(user_lang);
+        //getVivaTranslations(user_lang);
+
+        fetchPhpData(user_lang);
     }
     
     check_user_lang();
@@ -437,17 +437,55 @@
     }
 
     pano.on("configloaded", function (){
+        let showVivaIntro = null;
         pano.setVariableValue('blurred', false);
         //pano.setVariableValue('intro', false);
 
         pano.on("varchanged_lang", function() {
             user_lang = pano.getVariableValue("lang");
-            getVivaTranslations(user_lang);
+            document.cookie = "user_lang=" + user_lang; 
+            //getVivaTranslations(user_lang);
+            check_user_lang();
         });
 	});
+
+
+    // Sťahovanie prekladov z API
+    async function fetchPhpData($lang) {
+        fetching_data = true;
+        let api_data = {
+            "lang" : $lang, 
+            "int_buildings_link" : urlPrefix["int"]+'/api/buildings?api_token='+apiToken["int"],
+            "lang_buildings_link" : urlPrefix[$lang]+'/api/buildings?api_token='+apiToken[$lang],
+            "int_houses_link" : urlPrefix["int"]+'/api/buildings?api_token='+apiToken["int"],
+            "lang_houses_link" : urlPrefix[$lang]+'/api/buildings?api_token='+apiToken[$lang]
+        }
+
+        console.log(api_data);
+
+        const res = await fetch("https://goacaffe.sk/molly/assets/krpano/getValues.php", {
+			method: 'POST',
+			body: JSON.stringify(api_data)
+		})
+        const json = await res.json();
+
+
+        if (res.ok) {
+            console.log(json);
+        // console.log(json["additional_content"][0]);
+            fetching_data = false;
+
+        } else {
+            throw new Error(json);
+            fetching_data = false;
+        }
+
+        
+    }
+
 </script>
 
-{#if lang_data_loading}
+{#if fetching_data}
     <div id="viva-intro">
         <p>loading configuration ... </p>
     </div>
@@ -514,7 +552,7 @@
                                     <img src="images/00_Free_tour_icon_f.jpg">
                                 </div><div class="text">
                                     {#each _vivaData[user_lang]["houses"]["additional_content"] as item}   
-                                        {#if item.name == "VIVA: Startscreen: Výsledky"}
+                                        {#if item.name == "VIVA: Startscreen: Research house overview"}
                                             <h4>{item.title}</h4>
                                         {/if}
                                     {/each}
@@ -529,11 +567,7 @@
     {/if}
 {/if}
 
-            
-            
-
-
-
+        
 
 <style lang="scss">
     #welcome {
@@ -546,8 +580,7 @@
         width: 100%;
         height: 100%;
         background: red;
-        z-index: 0;
-
+        z-index: 2;
         display: flex;
         justify-content : center;
         align-items : center;

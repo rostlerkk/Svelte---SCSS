@@ -133,7 +133,7 @@ pano.addListener('varchanged_blurred', function() {
         removeClass(['.adv-wrapper','.screenCapture'], 'hidden');
         LftArrow.css('display','block');
         RgtArrow.css('display','block');
-        showVivaIntro();
+        //showVivaIntro();
     break; 
     }
 });
