@@ -447,6 +447,15 @@
             //getVivaTranslations(user_lang);
             check_user_lang();
         });
+
+
+        pano.on("changenode", function () {
+
+            // vypnutie video patchov
+            for (let index = 0; index < 3; index++) {
+                pano.setMediaVisibility('video_'+index, false);
+            }
+        });
 	});
 
 
@@ -509,6 +518,20 @@
     }
 
     add_video_patch();
+
+    $: {
+        intro;
+
+        switch (intro) {
+            case true:
+                
+                break;
+        
+            default:
+                pano.setVariableValue("hotspots", true); 
+                break;
+        }
+    }
 
 </script>
 
