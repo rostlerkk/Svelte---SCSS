@@ -1,5 +1,5 @@
 /node_modules/
 /public/build/
 
-*.mp4
 .DS_Store
+public/pano2vr/output/assets/js/viva.dev.js

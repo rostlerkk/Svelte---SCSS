@@ -702,7 +702,7 @@
   right: 0;
   width: calc(100% - 64px);
   max-width: 940px;
-  height: max-content;
+  height: calc(100% - 64px);
   max-height: 700px;
   margin: auto;
   transform: scale(0.8);

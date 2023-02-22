@@ -1317,10 +1317,6 @@
   display: block;
 }
 
-.floorplan-full.active {
-  background-color: white;
-}
-
 .map-full {
   padding: 64px 16px 16px 16px;
 }
