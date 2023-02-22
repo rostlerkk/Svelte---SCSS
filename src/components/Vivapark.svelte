@@ -694,4 +694,19 @@
             margin: 0;
         }
     }
+
+    #modal {
+        z-index: 5;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background: white;
+        padding: 30px;
+        height: auto;
+        width: calc(100% - 128px);
+        max-width: 800px;
+        max-height: calc(100% - 128px);
+        overflow: auto;
+    }
 </style>
