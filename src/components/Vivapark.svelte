@@ -459,6 +459,17 @@
             check_user_lang();
         });
 
+        pano.on("varchanged_floorplan_full", function () {
+            switch (pano.getVariableValue("floorplan_full")) {
+                case true:
+                    change_floorplan_title();
+                    break;
+            
+                default:
+                    break;
+            }
+        });
+
 
         pano.on("changenode", function () {
 
@@ -616,41 +627,66 @@
     function change_logo_img() {
         let logo_src = null;
     
-        if (
-                jq('.vp-logo') 
-            ) {
-                
-
-                if (
-                    _vivaData['houses'] != undefined
-                ) {
-                    if (
-                        _vivaData['houses']['additional_content'] != undefined
-                    ) {
-                        _vivaData['houses']['additional_content'].forEach(element => {
-                            if (element.name.toLowerCase().replace(" ", "") == "viva:logo") {
-                                if (element.media_t[user_lang] !== undefined ) {
-                                    logo_src = element.media_t[user_lang];       
-                                } else {
-                                    if (element.media_t["int"] !== undefined ) {
-                                        logo_src = element.media_t["int"];        
-                                    }
+        if (jq('.vp-logo')) {
+            if (_vivaData['houses'] != undefined) {
+                if (_vivaData['houses']['additional_content'] != undefined) {
+                    _vivaData['houses']['additional_content'].forEach(element => {
+                        if (element.name.toLowerCase().replace(" ", "") == "viva:logo") {
+                            if (element.media_t[user_lang] !== undefined ) {
+                                logo_src = element.media_t[user_lang];       
+                            } else {
+                                if (element.media_t["int"] !== undefined ) {
+                                    logo_src = element.media_t["int"];        
                                 }
                             }
-                        });
-                    }
+                        }
+                    });
                 }
             }
+        }
 
-            if (logo_src == null || logo_src == undefined || logo_src == "") {
-                jq('.vp-logo > img').attr('src', 'images/vivapark-logo.svg');
-            } else {
-                jq('.vp-logo > img').attr('src', logo_src);
-            }
+        if (logo_src == null || logo_src == undefined || logo_src == "") {
+            jq('.vp-logo > img').attr('src', 'images/vivapark-logo.svg');
+        } else {
+            jq('.vp-logo > img').attr('src', logo_src);
+        }
+        
+        jq('.vp-logo').on('click tap', function () {
+            window.location = 'https://tour.baumit.com/';
+        });
+    }
+
+    // zmena názvu a podnadpisu vo Floorplane
+    function change_floorplan_title() {
+        let floorplan_title, floorplan_subtitle = null;
+        if (jq('.floorplan-full > .title')) {
             
-            jq('.vp-logo').on('click tap', function () {
-                window.location = 'https://tour.baumit.com/';
-            });
+            if (_vivaData['houses'] != undefined) {
+                if (_vivaData['houses']['additional_content'] != undefined) {
+                    _vivaData['houses']['additional_content'].forEach(element => {
+                        console.log("sagasg");
+                        if (element.name == "VIVA: Quick Tour") {
+                            console.log("sagasg");
+                            if (element.title_t[user_lang] !== undefined ) {
+                                floorplan_title = element.name_t[user_lang] + "<span>" + element.title_t[user_lang] + "</span>";       
+                            } else {
+                                if (element.title_t["int"] !== undefined ) {
+                                    floorplan_title = element.name_t["int"] + "<span>" + element.title_t["int"] + "</span>";       
+                                }
+                            }
+                        }
+                    });
+                }
+            }
+        }
+
+        jq('.floorplan-full > .title').html(floorplan_title);
+
+        // if (floorplan_title == null || floorplan_title == undefined || floorplan_title == "") {
+        //     jq('.floorplan-full > .title').html('images/vivapark-logo.svg');
+        // } else {
+        //     jq('.floorplan-full > .title').html(floorplan_title);
+        // }
     }
 
     // Sťahovanie prekladov z API
