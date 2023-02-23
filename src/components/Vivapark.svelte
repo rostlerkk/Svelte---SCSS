@@ -612,6 +612,40 @@
         }
     }
 
+    // zmena zeleného loga 
+    function change_logo_img() {
+        if (
+                jq('.vp-logo')
+                
+            ) {
+
+                jq('.vp-logo > img').attr('src', 'images/vivapark-logo.svg');
+
+                if (
+                    _vivaData['houses'] != undefined
+                ) {
+                    if (
+                        _vivaData['houses']['additional_content'] != undefined
+                    ) {
+                        _vivaData['houses']['additional_content'].forEach(element => {
+                            if (element.name.toLowerCase().replace(" ", "") == "viva:logo") {
+                                if (element.media_t[user_lang] !== undefined ) {
+                                    jq('.vp-logo > img').attr('src', element.media_t[user_lang]);        
+                                } else {
+                                    jq('.vp-logo > img').attr('src', element.media_t["int"]);        
+                                }
+                                
+                            }
+                        });
+                    }
+                }
+            }
+            
+            jq('.vp-logo').on('click tap', function () {
+                window.location = 'https://tour.baumit.com/';
+            });
+    }
+
     // Sťahovanie prekladov z API
     async function fetchPhpData($lang) {
         fetching_data = true;
@@ -639,6 +673,7 @@
             fetching_data = false;
             intro = true;
             change_hotspots_title();
+            change_logo_img();
 
         } else {
             throw new Error(json);
