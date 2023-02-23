@@ -1056,6 +1056,23 @@ $: {
     overflow: auto;
 }
 
+#viva-house-info {
+    background-color: white;
+    z-index: 6;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%);
+    width: calc(100% - 64px);
+    max-width: 940px;
+    height: calc(100% - 168px);
+    max-height: 680px;
+    overflow: auto;
+    padding: 40px;
+    box-sizing: border-box;
+    transition: all 0.25s ease-in-out;
+}
+
 #viva-house-info.yt-only {
   width: calc(100% - 64px);
   height: -webkit-max-content;
@@ -1111,7 +1128,7 @@ $: {
 }
 
 #viva-house-info .parameters {
-  width: 40%;
+//   width: 40%;
   padding: 0 20px 20px 20px;
   overflow: visible;
 
@@ -2005,5 +2022,79 @@ z-index: 100;
 }
 #viva-house-info .content #house-url.hidden {
   display: none;
+}
+
+
+@media (max-width: 680px) {
+  #viva-house-info {
+    padding: 52px 16px 0 16px;
+  }
+  #viva-house-info .content #house-url {
+    min-width: auto;
+  }
+}
+@media (max-width: 800px) {
+  .infopanel.baumit .info-v1 .head {
+    flex-direction: column;
+  }
+
+  #viva-house-info > div {
+    flex-direction: column;
+  }
+
+  #viva-house-info .content {
+    width: 100%;
+  }
+
+  #viva-house-info .parameters {
+    width: 100%;
+  }
+
+  #viva-house-info .parameters h3 {
+    font-weight: 500;
+    text-transform: uppercase;
+    font-size: 14px;
+  }
+
+  #viva-house-info .parameters .parameter-title {
+    font-size: 13px;
+  }
+
+  #viva-house-info {
+    max-width: calc(100% - 32px);
+    max-height: calc(100% - 32px);
+  }
+
+  #viva-house-info .content h1 {
+    font-size: 30px;
+    margin: 0 auto;
+  }
+
+  #viva-house-info .content p {
+    font-size: 16px;
+  }
+
+  #viva-house-info .content {
+    padding: 0px 16px 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  #viva-house-info .content .row::after {
+    display: none;
+  }
+  #viva-house-info .content #yt-video {
+    margin-top: 20px;
+  }
+}
+@media (max-width: 500px) {
+  #viva-house-info .content .row {
+    flex-direction: column-reverse;
+    align-items: center;
+    margin-top: 10px;
+  }
+
+  #viva-house-info .content p {
+    margin: 10px 0px 0px;
+  }
 }
 </style>
