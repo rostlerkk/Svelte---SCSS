@@ -17,7 +17,7 @@ pano.addListener('varchanged_footer_map', function() {
         }
 
         else {
-            showVivaIntro();
+            //showVivaIntro();
             HideElement(['.map-side']); 
             removeClass(['.map','.hlp-layer'], 'active'); 
         }

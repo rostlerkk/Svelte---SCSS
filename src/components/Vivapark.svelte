@@ -1,20 +1,24 @@
 <script>
     import { vivaData } from '../store.js';
+
+    // VARIABLES
     let user_lang, productUrl, housesUrl, subtitlesUrl = null;
-    let lang_data_loading, welcome = true;
-    let product_data_loaded, houses_data_loaded, subtitles_data_loaded = false;
-
-    const jq = window.$;
-
-    // má sa zobraziť preloader ? 
-    let fetching_data = true;
-
-    let intro = true;
+    let intro, fetching_data, lang_data_loading, welcome = true;
+    let about_viva, product_data_loaded, houses_data_loaded, subtitles_data_loaded = false;
     let _vivaData = {};
 
-    vivaData.subscribe(value => {
-        _vivaData = value;
-    });
+    // aktivácia jQuery
+    const jq = window.$;
+
+    // Linky pre google mapu
+    const map_iframe = {
+        int : 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2676.1689258579618!2d16.086289315334593!3d47.87505657738802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDUyJzMwLjIiTiAxNsKwMDUnMTguNSJF!5e0!3m2!1scz!2ssk!4v1630570707855!5m2!1sen!2sen',
+        en : 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2676.1689258579618!2d16.086289315334593!3d47.87505657738802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDUyJzMwLjIiTiAxNsKwMDUnMTguNSJF!5e0!3m2!1scz!2ssk!4v1630570707855!5m2!1sen!2sen',
+        de : 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2676.1689258579618!2d16.086289315334593!3d47.87505657738802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDUyJzMwLjIiTiAxNsKwMDUnMTguNSJF!5e0!3m2!1scz!2ssk!4v1630570707855!5m2!1sde!2sde',
+        at : 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2676.1689258579618!2d16.086289315334593!3d47.87505657738802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDUyJzMwLjIiTiAxNsKwMDUnMTguNSJF!5e0!3m2!1scz!2ssk!4v1630570707855!5m2!1sde!2sde',
+        ch : 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2676.1689258579618!2d16.086289315334593!3d47.87505657738802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDUyJzMwLjIiTiAxNsKwMDUnMTguNSJF!5e0!3m2!1scz!2ssk!4v1630570707855!5m2!1sde!2sde',
+        sk : 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2676.1689258579618!2d16.086289315334593!3d47.87505657738802!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDfCsDUyJzMwLjIiTiAxNsKwMDUnMTguNSJF!5e0!3m2!1scz!2ssk!4v1630570707855!5m2!1ssk!2ssk',
+    }
 
     // API kľúče
     const apiToken = {
@@ -121,6 +125,10 @@
         beFr : 'https://fr.baumit.be',
         int : 'https://int.baumit.com'
     }
+
+    vivaData.subscribe(value => {
+        _vivaData = value;
+    });
 
     // získanie dát z API - golbálna funkcia
     async function fetchData($url, $lang, $type, $variable) {
@@ -358,6 +366,7 @@
         //getVivaTranslations(user_lang);
 
         fetchPhpData(user_lang);
+        change_map_url();
     }
     
     check_user_lang();
@@ -492,7 +501,6 @@
         });
 	});
 
-
     function change_hotspots_title() {
         jq.each ( jq('.hts-np'), function() {
             let hotspot_title = jq(this).children('.np-title').children('div').html();
@@ -587,6 +595,22 @@
         });
     }
 
+    // zmena jazyka pre Google mapu
+    function change_map_url() {
+        if (
+            map_iframe[user_lang] != null &&
+            map_iframe[user_lang] != 'undefined' &&
+            map_iframe[user_lang] != undefined
+        ) {
+            pano.setVariableValue('map_iframe', map_iframe[user_lang]);
+            jq('.map > iframe').attr('src', map_iframe[user_lang]);
+        }
+
+        else {
+            pano.setVariableValue('map_iframe', map_iframe['int']);
+            jq('.map > iframe').attr('src', map_iframe['int']);
+        }
+    }
 
     // Sťahovanie prekladov z API
     async function fetchPhpData($lang) {
@@ -633,8 +657,6 @@
         intro = false;
         pano.setVariableValue('floorplan_full', true);
     }
-
-    let about_viva = false;
 
     function about_viva_park() {
         intro = false;
