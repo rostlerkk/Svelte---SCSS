@@ -687,18 +687,12 @@
         //     jq('.floorplan-full > .title').html(floorplan_title);
         // }
     }
-
     
     // zmena comfort levelu vo floorplane
     function change_comfort_level_floorplan() {
-        
         jq.each(jq('.check-layer > div > span'), function() {
             let house_id = parseInt(jq(this).attr('id'));
-            if (
-                house_id > 0
-            )
-            
-            {
+            if (house_id > 0) {
                 house_id--;
             }
 
@@ -720,10 +714,6 @@
                 break;
             }
 
-            console.log(house_id + " : " + finalNumber);
-
-            
-
             switch (finalNumber) {
                 case 0:
                     jq(this).siblings('.tooltip-level').remove();
@@ -735,9 +725,6 @@
                     jq(this).siblings('.tooltip-level').text(_vivaData["houses"]['buildings'][house_id]['house_comfort_t'][user_lang]);
                     break;
             }
-            
-            
-
         });
     }
 
