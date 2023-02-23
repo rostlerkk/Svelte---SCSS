@@ -614,12 +614,12 @@
 
     // zmena zeleného loga 
     function change_logo_img() {
+        let logo_src = null;
+    
         if (
-                jq('.vp-logo')
-                
+                jq('.vp-logo') 
             ) {
-
-                jq('.vp-logo > img').attr('src', 'images/vivapark-logo.svg');
+                
 
                 if (
                     _vivaData['houses'] != undefined
@@ -630,15 +630,22 @@
                         _vivaData['houses']['additional_content'].forEach(element => {
                             if (element.name.toLowerCase().replace(" ", "") == "viva:logo") {
                                 if (element.media_t[user_lang] !== undefined ) {
-                                    jq('.vp-logo > img').attr('src', element.media_t[user_lang]);        
+                                    logo_src = element.media_t[user_lang];       
                                 } else {
-                                    jq('.vp-logo > img').attr('src', element.media_t["int"]);        
+                                    if (element.media_t["int"] !== undefined ) {
+                                        logo_src = element.media_t["int"];        
+                                    }
                                 }
-                                
                             }
                         });
                     }
                 }
+            }
+
+            if (logo_src == null || logo_src == undefined || logo_src == "") {
+                jq('.vp-logo > img').attr('src', 'images/vivapark-logo.svg');
+            } else {
+                jq('.vp-logo > img').attr('src', logo_src);
             }
             
             jq('.vp-logo').on('click tap', function () {
