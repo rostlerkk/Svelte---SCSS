@@ -4,9 +4,10 @@ import {
 } from '../store.js';
 
 // VARIABLES
+let active_house = 0;
 let user_lang, productUrl, housesUrl, subtitlesUrl = null;
-let intro, fetching_data, lang_data_loading, welcome, house_info = true;
-let about_viva, product_data_loaded, houses_data_loaded, subtitles_data_loaded = false;
+let intro, fetching_data, lang_data_loading, welcome = true;
+let about_viva, product_data_loaded, houses_data_loaded, subtitles_data_loaded, house_info = false;
 let _vivaData = {};
 
 // aktivácia jQuery
@@ -471,9 +472,8 @@ pano.on("configloaded", function() {
     });
 
     pano.on("varchanged_houseID", function() {
-        switch (pano.getVariableValue("houseID")) {
-
-        }
+        house_info = true;
+        active_house = pano.getVariableValue("houseID");
     });
 
     pano.on("changenode", function() {
@@ -800,10 +800,10 @@ $: {
 </script>
 
 {#if fetching_data}
-<div id="viva-intro">
-    <img src="images/loader.svg" alt="">
-    <p>loading product data <br /> and translations</p>
-</div>
+    <div id="viva-intro">
+        <img src="images/loader.svg" alt="">
+        <p>loading product data <br /> and translations</p>
+    </div>
 {/if}
 
 <!-- ak je povolené intro -->
@@ -918,8 +918,8 @@ $: {
     {/if}
 {/if}
 
-<!-- v intre ak kliknem na "mode info" -->
-{#if about_viva && _vivaData != null}
+<!-- v intre ak kliknem na "more info" -->
+{#if (about_viva && _vivaData != null)}
     <div id="modal" >
         <div class="close" on:click={() => about_viva = false} />
         <div class="content">
@@ -946,62 +946,101 @@ $: {
 {/if}
 
 {#if house_info == true}
-    <div id="viva-house-info">
-        <div>
-            <div class="close" on:click={() => house_info = false}/>
-            <div class="content">
-            <h1>House No. 1</h1>
-            <div class="headline">Zateplené betónové steny s vnútornou disperznou stierkou a farbou</div>
-            <div class="row">
-                <p class="text"></p>
-                <div id="viva-second">
-                    <div class="comfort">Comfort</div>
-                    <div class="house-tooltip">
-                        <div class="house-tooltip-arrow"></div>
-                        <div class="house-tooltip-inner">High</div>
-                    </div>
-                    <div class="ko-progress-circle" data-progress="100">
-                        <div class="ko-circle">
-                            <div class="full ko-progress-circle__slice">
-                                <div class="ko-progress-circle__fill"></div>
+    {#if active_house != 0}
+        <div id="viva-house-info">
+            <div>
+                <div class="close" on:click={() => house_info = false}/>
+                <div class="content">
+                    {#if _vivaData != null}
+                        {#if _vivaData["houses"] != null}
+                            {#if _vivaData["houses"]["buildings"] != null}
+                                {#if _vivaData["houses"]["buildings"][active_house]["house_nr_t"][user_lang] != undefined}
+                                    <h1>{_vivaData["houses"]["buildings"][active_house]["house_nr_t"][user_lang]}</h1>
+                                {:else}
+                                    <h1>{_vivaData["houses"]["buildings"][active_house]["house_nr_t"]["int"]}</h1>
+                                {/if}
+                                
+                            {/if}
+                        {/if}
+                    {/if}
+                    
+                    
+                    <div class="headline">Zateplené betónové steny s vnútornou disperznou stierkou a farbou</div>
+                    <div class="row">
+                        <p class="text"></p>
+                        <div id="viva-second">
+                            <div class="comfort">Comfort</div>
+                            <div class="house-tooltip">
+                                <div class="house-tooltip-arrow"></div>
+                                <div class="house-tooltip-inner">High</div>
                             </div>
-                            <div class="ko-progress-circle__slice">
-                                <div class="ko-progress-circle__fill"></div>
-                                <div class="ko-progress-circle__fill ko-progress-circle__bar"></div>
+                            <div class="ko-progress-circle" data-progress="100">
+                                <div class="ko-circle">
+                                    <div class="full ko-progress-circle__slice">
+                                        <div class="ko-progress-circle__fill"></div>
+                                    </div>
+                                    <div class="ko-progress-circle__slice">
+                                        <div class="ko-progress-circle__fill"></div>
+                                        <div class="ko-progress-circle__fill ko-progress-circle__bar"></div>
+                                    </div>
+                                </div>
+                                <div class="ko-progress-circle__overlay"></div>
                             </div>
                         </div>
-                        <div class="ko-progress-circle__overlay"></div>
                     </div>
                 </div>
-            </div>
-            </div>
-
-            <div class="parameters">
                 <div class="parameters">
-                    <h3>Stavebné fyzikálne parametre</h3>
-                    <div class="parameter-title">Ochrana pred letným prehrievaním
-                        <span> i
-                            <div class="house-tooltip">
-                                <div class="house-tooltip-arrow"></div>
-                                <div class="house-tooltip-inner">Vyššia hodnota znamená lepšiu ochranu pred letným prehrievaním interiéru v lete.</div>
-                            </div>
-                        </span>
-                    </div>
-                    <div class="parameter-bar">
-                        <div class="p3"></div>
-                    </div>
-                    <div class="parameter-title">Tepelná akumulácia
-                        <span> i
-                            <div class="house-tooltip">
-                                <div class="house-tooltip-arrow"></div>
-                                <div class="house-tooltip-inner">Vyššia hodnota znamená stabilnejšiu teplotu v interiéri.</div>
-                            </div>
-                        </span>
-                    </div>
-                    <div class="parameter-bar"><div class="p3"></div></div><div class="parameter-title">Regulácia vlhkosti<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Čím vyššia hodnota, tým lepšia regulácia vlhkosti v interiéri.</div></div></span></div><div class="parameter-bar"><div class="p1"></div></div><div class="parameter-title">Výkyvy teplôt na vnútornom povrchu stien<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Čím nižšia hodnota, tým stabilnejšia teplota vnútorných povrchov.</div></div></span></div><div class="parameter-bar"><div class="p1"></div></div><h3>Fyzikálne parametre</h3><div class="parameter-title">Zvuková izolácia<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Vyššia hodnota znamená lepšiu ochranu pred vonkajším hlukom</div></div></span></div><div class="parameter-bar"><div class="p3"></div></div><div class="parameter-title">Akustika<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Vyššia hodnota znamená lepšiu akustiku a to lepšou ochranou voči echo efektu.</div></div></span></div><div class="parameter-bar"><div class="p2"></div></div><div class="parameter-title">Absorpcia vysoko frekvenčného elektomagnetického žiarenia<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Vyššia hodnota znamená lepšiu ochranu pred najbežnejšími mobilnými frekvenciami.</div></div></span></div><div class="parameter-bar"><div class="p3"></div></div><div class="parameter-title">Intenzita zápachu<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Čím nižšia hodnota, tým menej výrazný zápach.</div></div></span></div><div class="parameter-bar"><div class="p1"></div></div><h3>Subjektívne pocity pohody návštevníkov domu</h3><div class="parameter-title">Komfort<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Jednotlivé výskumné domy ohodnotilo 200 návštevníkov a to vzhľadom na ich subjektívne pocity a osobný pocit pohodlia. Nižšie číslo - vyšší komfort, ako známky v škole.</div></div></span></div><div class="parameter-bar"><div class="p2"></div></div></div>
+                    <div class="parameters">
+                        <h3>Stavebné fyzikálne parametre</h3>
+                        <div class="parameter-title">Ochrana pred letným prehrievaním
+                            <span> i
+                                <div class="house-tooltip">
+                                    <div class="house-tooltip-arrow"></div>
+                                    <div class="house-tooltip-inner">Vyššia hodnota znamená lepšiu ochranu pred letným prehrievaním interiéru v lete.</div>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="parameter-bar">
+                            <div class="p3"></div>
+                        </div>
+                        <div class="parameter-title">Tepelná akumulácia
+                            <span> i
+                                <div class="house-tooltip">
+                                    <div class="house-tooltip-arrow"></div>
+                                    <div class="house-tooltip-inner">Vyššia hodnota znamená stabilnejšiu teplotu v interiéri.</div>
+                                </div>
+                            </span>
+                        </div>
+                        <div class="parameter-bar"><div class="p3"></div></div><div class="parameter-title">Regulácia vlhkosti<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Čím vyššia hodnota, tým lepšia regulácia vlhkosti v interiéri.</div></div></span></div><div class="parameter-bar"><div class="p1"></div></div><div class="parameter-title">Výkyvy teplôt na vnútornom povrchu stien<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Čím nižšia hodnota, tým stabilnejšia teplota vnútorných povrchov.</div></div></span></div><div class="parameter-bar"><div class="p1"></div></div><h3>Fyzikálne parametre</h3><div class="parameter-title">Zvuková izolácia<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Vyššia hodnota znamená lepšiu ochranu pred vonkajším hlukom</div></div></span></div><div class="parameter-bar"><div class="p3"></div></div><div class="parameter-title">Akustika<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Vyššia hodnota znamená lepšiu akustiku a to lepšou ochranou voči echo efektu.</div></div></span></div><div class="parameter-bar"><div class="p2"></div></div><div class="parameter-title">Absorpcia vysoko frekvenčného elektomagnetického žiarenia<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Vyššia hodnota znamená lepšiu ochranu pred najbežnejšími mobilnými frekvenciami.</div></div></span></div><div class="parameter-bar"><div class="p3"></div></div><div class="parameter-title">Intenzita zápachu<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Čím nižšia hodnota, tým menej výrazný zápach.</div></div></span></div><div class="parameter-bar"><div class="p1"></div></div><h3>Subjektívne pocity pohody návštevníkov domu</h3><div class="parameter-title">Komfort<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Jednotlivé výskumné domy ohodnotilo 200 návštevníkov a to vzhľadom na ich subjektívne pocity a osobný pocit pohodlia. Nižšie číslo - vyšší komfort, ako známky v škole.</div></div></span></div><div class="parameter-bar"><div class="p2"></div></div></div>
+                </div>
             </div>
         </div>
-    </div>
+    {:else}
+        <div id="modal" >
+            <div class="close"  on:click={() => about_viva = false}
+                                on:click={() => house_info = false} />
+            <div class="content">
+                {#each _vivaData["houses"]["additional_content"] as item}
+                    {#if item.name == "Navigation: Company Info"}
+                        <h1>
+                            {#if item.title_t[user_lang] != null}
+                            {item.title_t[user_lang]}
+                            {:else}
+                            {item.title_t["int"]}
+                            {/if}
+                        </h1>
+                        <p>
+                            {#if item.content_t[user_lang] != null}
+                            {item.content_t[user_lang]}
+                            {:else}
+                            {item.content_t["int"]}
+                            {/if}
+                        </p>
+                    {/if}
+                {/each}
+            </div>
+        </div>
+    {/if}
 {/if}
 
 
