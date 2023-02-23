@@ -463,6 +463,7 @@
             switch (pano.getVariableValue("floorplan_full")) {
                 case true:
                     change_floorplan_title();
+                    change_comfort_level_floorplan();
                     break;
             
                 default:
@@ -664,9 +665,7 @@
             if (_vivaData['houses'] != undefined) {
                 if (_vivaData['houses']['additional_content'] != undefined) {
                     _vivaData['houses']['additional_content'].forEach(element => {
-                        console.log("sagasg");
                         if (element.name == "VIVA: Quick Tour") {
-                            console.log("sagasg");
                             if (element.title_t[user_lang] !== undefined ) {
                                 floorplan_title = element.name_t[user_lang] + "<span>" + element.title_t[user_lang] + "</span>";       
                             } else {
@@ -687,6 +686,59 @@
         // } else {
         //     jq('.floorplan-full > .title').html(floorplan_title);
         // }
+    }
+
+    
+    // zmena comfort levelu vo floorplane
+    function change_comfort_level_floorplan() {
+        
+        jq.each(jq('.check-layer > div > span'), function() {
+            let house_id = parseInt(jq(this).attr('id'));
+            if (
+                house_id > 0
+            )
+            
+            {
+                house_id--;
+            }
+
+            let comfort_level = _vivaData["houses"]['buildings'][house_id]['house_comfort']; 
+            let finalNumber = 0;
+
+            switch (comfort_level) {
+                case 'High':
+                    finalNumber = 100;        
+                break;
+                case 'Low':
+                    finalNumber = 30;        
+                break;
+                case 'Medium':
+                    finalNumber = 60;       
+                break;
+                case null:
+                    finalNumber = 0;       
+                break;
+            }
+
+            console.log(house_id + " : " + finalNumber);
+
+            
+
+            switch (finalNumber) {
+                case 0:
+                    jq(this).siblings('.tooltip-level').remove();
+                    jq(this).siblings('.ko-progress-circle').remove();
+                    break;
+            
+                default:
+                    jq(this).siblings('.ko-progress-circle').attr('data-progress', finalNumber);
+                    jq(this).siblings('.tooltip-level').text(_vivaData["houses"]['buildings'][house_id]['house_comfort_t'][user_lang]);
+                    break;
+            }
+            
+            
+
+        });
     }
 
     // Sťahovanie prekladov z API
