@@ -477,16 +477,115 @@
                 case '12' : 
                 case '13' : 
                     let house_title = null;
-                    title.text(_vivaData['buildings']['buildings'][parseInt(node_id)-1].house_nr);
+                    title.text(_vivaData['houses']['buildings'][parseInt(node_id)-1].house_nr);
                 break;
 
                 default : 
                     title.text('Viva park');
                 break;
             }
+
+            change_hotspots_title();
+
+            
         
         });
 	});
+
+
+    function change_hotspots_title() {
+        jq.each ( jq('.hts-np'), function() {
+            let hotspot_title = jq(this).children('.np-title').children('div').html();
+            let foundString;
+            if (hotspot_title.indexOf('_') > 0) {
+                foundString = hotspot_title.substr(hotspot_title.indexOf('_')+1,);
+            }
+
+            else if (hotspot_title.indexOf('.') > 0) {
+                foundString = hotspot_title.substr(hotspot_title.indexOf('.')+1,).replace(' ','');
+                
+            }
+        
+            if (_vivaData['houses'] != undefined) {
+                if (_vivaData['houses']['buildings'] != null) {
+                    switch (foundString) {
+                        case '01' : 
+                        case '1' : 
+                            jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][0].house_nr);
+                        
+                        break;
+                        case '02' : 
+                        case '2' : 
+                            jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][1].house_nr);
+                            
+                        break;
+                        case '03' : 
+                        case '3' : 
+                            jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][2].house_nr);
+                            
+                        break;
+                        case '04' : 
+                        case '4' : 
+                            jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][3].house_nr);
+                            
+                        break;
+                        case '05' : 
+                        case '5' : 
+                            jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][4].house_nr_t[user_lang]);
+                            
+                        break;
+                        case '06' : 
+                        case '6' : 
+                            jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][5].house_nr_t[user_lang]);
+                            
+                        break;
+                        case '07' : 
+                        case '7' : 
+                            jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][6].house_nr_t[user_lang]);
+                            
+                        break;
+                        case '08' : 
+                        case '8' : 
+                            jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][7].house_nr_t[user_lang]);
+                                
+                        break;
+                        case '09' : 
+                        case '9' : 
+                            jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][8].house_nr_t[user_lang]);
+                            
+                        break;
+                        case '10' : 
+                        case '10' : 
+                            jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][9].house_nr_t[user_lang]);
+                            
+                        break;
+                        case '11' : 
+                        case '11' : 
+                            jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][10].house_nr_t[user_lang]);
+                            
+                        break;
+                        case '12' : 
+                        case '12' : 
+                            jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][11].house_nr_t[user_lang]);
+                            
+                        break;
+                        case '13' : 
+                        case '13' : 
+                            jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][12].house_nr_t[user_lang]);
+                            
+                        break;
+                
+                        case '00' : 
+                        jq(this).children('.np-title').children('div').html('Viva park');
+                            
+                        break;
+                    }
+                }
+            }
+            
+
+        });
+    }
 
 
     // Sťahovanie prekladov z API
@@ -515,6 +614,7 @@
             _vivaData = json;
             fetching_data = false;
             intro = true;
+            change_hotspots_title();
 
         } else {
             throw new Error(json);
