@@ -1,7 +1,7 @@
 // Garden Gnome Software - Skin
 // Pano2VR 6.1.15/18116
 // Filename: baumit-viva-park.ggsk
-// Generated 2023-02-23T12:42:30
+// Generated 2023-02-23T13:51:59
 
 function pano2vrSkin(player,base) {
 	player.addVariable('lang', 0, "");
@@ -70,7 +70,7 @@ function pano2vrSkin(player,base) {
 	player.addVariable('kupelnaSkrinka', 1, 1);
 	player.addVariable('sendByMail', 2, true);
 	player.addVariable('productName', 0, "antisulfat");
-	player.addVariable('houseID', 0, "");
+	player.addVariable('houseID', 1, 0);
 	player.addVariable('houseInfo', 2, false);
 	player.addVariable('product_ID', 0, "");
 	player.addVariable('map_iframe', 0, "");
@@ -5726,7 +5726,7 @@ function pano2vrSkin(player,base) {
 			return player.getCurrentNode();
 		}
 		me._global_info0.onclick=function (e) {
-			player.setVariableValue('houseID', "0");
+			player.setVariableValue('houseID', Number("0"));
 			houseInfo(pano.getVariableValue('houseID'));
 		}
 		me._global_info0.ggUpdatePosition=function (useTransition) {
@@ -6826,7 +6826,7 @@ function pano2vrSkin(player,base) {
 			return player.getCurrentNode();
 		}
 		me._global_info.onclick=function (e) {
-			player.setVariableValue('houseID', "0");
+			player.setVariableValue('houseInfo', true);
 		}
 		me._global_info.ggUpdatePosition=function (useTransition) {
 		}
@@ -7067,7 +7067,7 @@ function pano2vrSkin(player,base) {
 			return player.getCurrentNode();
 		}
 		me._houseinfo0.onclick=function (e) {
-			player.setVariableValue('houseID', me.ggUserdata.comment);
+			player.setVariableValue('houseID', Number(me.ggUserdata.comment));
 			houseInfo(pano.getVariableValue('houseID'));
 		}
 		me._houseinfo0.ggUpdatePosition=function (useTransition) {
@@ -9219,7 +9219,7 @@ $('.viva-start').remove();
 			return player.getCurrentNode();
 		}
 		me._about.onclick=function (e) {
-			player.setVariableValue('houseID', "0");
+			player.setVariableValue('houseID', Number("0"));
 			houseInfo(pano.getVariableValue('houseID'));
 		}
 		me._about.ggUpdatePosition=function (useTransition) {
@@ -14119,7 +14119,7 @@ $('.viva-start').remove();
 			}
 		}
 		me._interier_info.onclick=function (e) {
-			player.setVariableValue('houseID', me.ggUserdata.source);
+			player.setVariableValue('houseID', Number(me.ggUserdata.source));
 			"";
 houseInfo(pano.getVariableValue('houseID'));
 			skin.hotspotProxyClick(me.hotspot.id, me.hotspot.url);
@@ -14360,7 +14360,7 @@ houseInfo(pano.getVariableValue('houseID'));
 			}
 		}
 		me._exterier_info.onclick=function (e) {
-			player.setVariableValue('houseID', me.ggUserdata.source);
+			player.setVariableValue('houseID', Number(me.ggUserdata.source));
 			"";
 houseInfo(pano.getVariableValue('houseID'));
 			skin.hotspotProxyClick(me.hotspot.id, me.hotspot.url);
@@ -15691,7 +15691,7 @@ tagInfo(pano.getVariableValue('tagValue'));
 			}
 		}
 		me._house_number.onclick=function (e) {
-			player.setVariableValue('houseID', me.ggUserdata.source);
+			player.setVariableValue('houseID', Number(me.ggUserdata.source));
 			"";
 houseInfo(pano.getVariableValue('houseID'));
 			skin.hotspotProxyClick(me.hotspot.id, me.hotspot.url);

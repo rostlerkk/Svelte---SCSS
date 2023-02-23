@@ -471,9 +471,13 @@ pano.on("configloaded", function() {
         }
     });
 
-    pano.on("varchanged_houseID", function() {
-        house_info = true;
-        active_house = pano.getVariableValue("houseID");
+    pano.on("varchanged_houseInfo", function() {
+        let currentNode = pano.getCurrentNode();
+        console.log("sfasff");
+        house_info = pano.getVariableValue("houseInfo");
+        active_house = parseInt(pano.getNodeUserdata(currentNode).source) - 1;
+        console.log(house_info);
+        console.log(active_house);
     });
 
     pano.on("changenode", function() {
@@ -782,6 +786,12 @@ function add_video_patch() {
     pano.addHotspot("myid", 0, 90, element);
 }
 
+function close_house_info() {
+    house_info = false;
+    pano.setVariableValue("houseInfo", false);
+
+}
+
 add_video_patch();
 
 $: {
@@ -945,11 +955,12 @@ $: {
     </div>
 {/if}
 
+<!-- ak kliknem vo footri na ikonu global info -->
 {#if house_info == true}
-    {#if active_house != 0}
+    {#if active_house != -1}
         <div id="viva-house-info">
             <div>
-                <div class="close" on:click={() => house_info = false}/>
+                <div class="close" on:click={() => close_house_info()}/>
                 <div class="content">
                     {#if _vivaData != null}
                         {#if _vivaData["houses"] != null}
@@ -959,66 +970,130 @@ $: {
                                 {:else}
                                     <h1>{_vivaData["houses"]["buildings"][active_house]["house_nr_t"]["int"]}</h1>
                                 {/if}
+
+                                {#if _vivaData["houses"]["buildings"][active_house]["headline_t"][user_lang] != undefined}
+                                    <div class="headline">{_vivaData["houses"]["buildings"][active_house]["headline_t"][user_lang]}</div>
+                                {:else}
+                                    <div class="headline">{_vivaData["houses"]["buildings"][active_house]["headline_t"]["int"]}</div>
+                                {/if}
+
+
+                                <div class="row">
+                                    <p class="text">
+                                        {#if _vivaData["houses"]["buildings"][active_house]["text_t"][user_lang] != undefined}
+                                            {_vivaData["houses"]["buildings"][active_house]["text_t"][user_lang]}
+                                        {:else}
+                                            {_vivaData["houses"]["buildings"][active_house]["text_t"]["int"]}
+                                        {/if}
+                                    </p>
+
+                                    {#if _vivaData["houses"]["buildings"][active_house]["parameters_t"] != undefined && _vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]}
+                                        <div id="viva-second">
+                                            {#if _vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]["groups"][3] != undefined}
+                                                <div class="comfort">
+                                                    {#if _vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]["groups"][3]["parameters"][0]["parameter_name"] != undefined}
+                                                        {_vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]["groups"][3]["parameters"][0]["parameter_name"]}
+                                                    {:else}
+                                                        {_vivaData["houses"]["buildings"][active_house]["parameters_t"]["int"]["groups"][3]["parameters"][0]["parameter_name"]}
+                                                    {/if}
+                                                </div>
+
+                                                <div class="house-tooltip">
+                                                    <div class="house-tooltip-arrow"></div>
+                                                    <div class="house-tooltip-inner">{_vivaData["houses"]['buildings'][active_house]['house_comfort_t'][user_lang]}</div>
+                                                </div>
+
+                                                {#if _vivaData["houses"]['buildings'][active_house]['house_comfort_t'][user_lang] == "High"}
+                                                    <div class="ko-progress-circle" data-progress="100">        
+                                                        <div class="ko-circle">
+                                                            <div class="full ko-progress-circle__slice">
+                                                                <div class="ko-progress-circle__fill"></div>
+                                                            </div>
+                                                            <div class="ko-progress-circle__slice">
+                                                                <div class="ko-progress-circle__fill"></div>
+                                                                <div class="ko-progress-circle__fill ko-progress-circle__bar"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="ko-progress-circle__overlay"></div>
+                                                    </div>
+                                                {/if}
+
+                                                {#if _vivaData["houses"]['buildings'][active_house]['house_comfort_t'][user_lang] == "Medium"}
+                                                    <div class="ko-progress-circle" data-progress="60">
+                                                        <div class="ko-circle">
+                                                            <div class="full ko-progress-circle__slice">
+                                                                <div class="ko-progress-circle__fill"></div>
+                                                            </div>
+                                                            <div class="ko-progress-circle__slice">
+                                                                <div class="ko-progress-circle__fill"></div>
+                                                                <div class="ko-progress-circle__fill ko-progress-circle__bar"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="ko-progress-circle__overlay"></div>
+                                                    </div>
+                                                {/if}
+
+                                                {#if _vivaData["houses"]['buildings'][active_house]['house_comfort_t'][user_lang] == "Low"}
+                                                    <div class="ko-progress-circle" data-progress="30">
+                                                        <div class="ko-circle">
+                                                            <div class="full ko-progress-circle__slice">
+                                                                <div class="ko-progress-circle__fill"></div>
+                                                            </div>
+                                                            <div class="ko-progress-circle__slice">
+                                                                <div class="ko-progress-circle__fill"></div>
+                                                                <div class="ko-progress-circle__fill ko-progress-circle__bar"></div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="ko-progress-circle__overlay"></div>
+                                                    </div>
+                                                {/if}
+                                            {/if} 
+                                        </div>
+                                    {/if}
+                                    
+                                </div>
+
+                                {#if _vivaData["houses"]["buildings"][active_house]["link_t"][user_lang] != undefined || _vivaData["houses"]["buildings"][active_house]["link_t"][user_lang] != ""}
+                                    <a id="house-url" href="{_vivaData["houses"]["buildings"][active_house]["link_t"][user_lang]}" target="_blank" class="">Viac</a>
+                                {:else}
+                                    <a id="house-url" href="{_vivaData["houses"]["buildings"][active_house]["link_t"]["int"]}" target="_blank" class="">Viac</a>
+                                {/if}
+                                
                                 
                             {/if}
                         {/if}
                     {/if}
-                    
-                    
-                    <div class="headline">Zateplené betónové steny s vnútornou disperznou stierkou a farbou</div>
-                    <div class="row">
-                        <p class="text"></p>
-                        <div id="viva-second">
-                            <div class="comfort">Comfort</div>
-                            <div class="house-tooltip">
-                                <div class="house-tooltip-arrow"></div>
-                                <div class="house-tooltip-inner">High</div>
-                            </div>
-                            <div class="ko-progress-circle" data-progress="100">
-                                <div class="ko-circle">
-                                    <div class="full ko-progress-circle__slice">
-                                        <div class="ko-progress-circle__fill"></div>
-                                    </div>
-                                    <div class="ko-progress-circle__slice">
-                                        <div class="ko-progress-circle__fill"></div>
-                                        <div class="ko-progress-circle__fill ko-progress-circle__bar"></div>
-                                    </div>
-                                </div>
-                                <div class="ko-progress-circle__overlay"></div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
+                
                 <div class="parameters">
-                    <div class="parameters">
-                        <h3>Stavebné fyzikálne parametre</h3>
-                        <div class="parameter-title">Ochrana pred letným prehrievaním
-                            <span> i
-                                <div class="house-tooltip">
-                                    <div class="house-tooltip-arrow"></div>
-                                    <div class="house-tooltip-inner">Vyššia hodnota znamená lepšiu ochranu pred letným prehrievaním interiéru v lete.</div>
-                                </div>
-                            </span>
-                        </div>
-                        <div class="parameter-bar">
-                            <div class="p3"></div>
-                        </div>
-                        <div class="parameter-title">Tepelná akumulácia
-                            <span> i
-                                <div class="house-tooltip">
-                                    <div class="house-tooltip-arrow"></div>
-                                    <div class="house-tooltip-inner">Vyššia hodnota znamená stabilnejšiu teplotu v interiéri.</div>
-                                </div>
-                            </span>
-                        </div>
-                        <div class="parameter-bar"><div class="p3"></div></div><div class="parameter-title">Regulácia vlhkosti<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Čím vyššia hodnota, tým lepšia regulácia vlhkosti v interiéri.</div></div></span></div><div class="parameter-bar"><div class="p1"></div></div><div class="parameter-title">Výkyvy teplôt na vnútornom povrchu stien<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Čím nižšia hodnota, tým stabilnejšia teplota vnútorných povrchov.</div></div></span></div><div class="parameter-bar"><div class="p1"></div></div><h3>Fyzikálne parametre</h3><div class="parameter-title">Zvuková izolácia<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Vyššia hodnota znamená lepšiu ochranu pred vonkajším hlukom</div></div></span></div><div class="parameter-bar"><div class="p3"></div></div><div class="parameter-title">Akustika<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Vyššia hodnota znamená lepšiu akustiku a to lepšou ochranou voči echo efektu.</div></div></span></div><div class="parameter-bar"><div class="p2"></div></div><div class="parameter-title">Absorpcia vysoko frekvenčného elektomagnetického žiarenia<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Vyššia hodnota znamená lepšiu ochranu pred najbežnejšími mobilnými frekvenciami.</div></div></span></div><div class="parameter-bar"><div class="p3"></div></div><div class="parameter-title">Intenzita zápachu<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Čím nižšia hodnota, tým menej výrazný zápach.</div></div></span></div><div class="parameter-bar"><div class="p1"></div></div><h3>Subjektívne pocity pohody návštevníkov domu</h3><div class="parameter-title">Komfort<span> i  <div class="house-tooltip"><div class="house-tooltip-arrow"></div><div class="house-tooltip-inner">Jednotlivé výskumné domy ohodnotilo 200 návštevníkov a to vzhľadom na ich subjektívne pocity a osobný pocit pohodlia. Nižšie číslo - vyšší komfort, ako známky v škole.</div></div></span></div><div class="parameter-bar"><div class="p2"></div></div></div>
+                    {#if _vivaData["houses"]["buildings"][active_house]["parameters_t"] != undefined && 
+                         _vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang] != undefined &&
+                         _vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]["groups"] != undefined 
+                    }
+                        {#each Object.entries(_vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]["groups"]) as [key, value], index(key)}        
+                            <h3>{value.name}</h3>
+                                {#each Object.entries(value.parameters) as [kluc, hodnota], index(kluc)}
+                                    <div class="parameter-title">{hodnota["parameter_name"]}
+                                        <span> i
+                                            <div class="house-tooltip">
+                                                <div class="house-tooltip-arrow"></div>
+                                                <div class="house-tooltip-inner">{hodnota["parameter_tooltip"]}</div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="parameter-bar">
+                                        <div class="p{hodnota["value"]}"></div>
+                                    </div>
+                                {/each}
+                        {/each}
+                    {/if}
                 </div>
             </div>
         </div>
     {:else}
         <div id="modal" >
             <div class="close"  on:click={() => about_viva = false}
-                                on:click={() => house_info = false} />
+                                on:click={() => close_house_info()} />
             <div class="content">
                 {#each _vivaData["houses"]["additional_content"] as item}
                     {#if item.name == "Navigation: Company Info"}
