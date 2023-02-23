@@ -512,9 +512,9 @@
 
         if (res.ok) {
             console.log(json);
-        // console.log(json["additional_content"][0]);
             _vivaData = json;
             fetching_data = false;
+            intro = true;
 
         } else {
             throw new Error(json);
@@ -580,7 +580,7 @@
             <div id="welcome">
                 <div id="wrapper">
                     <div id="header">
-                        {#each _vivaData["buildings"]["additional_content"] as item}   
+                        {#each _vivaData["houses"]["additional_content"] as item}   
                             {#if item.name == "VIVA: Intro: Title"}
                                 {#if item.title_t[user_lang] != null}
                                     <h1>{item.title_t[user_lang]}</h1>
@@ -607,7 +607,7 @@
                         
                            
                         <div class="buttons">
-                            {#each _vivaData["buildings"]["additional_content"] as item}   
+                            {#each _vivaData["houses"]["additional_content"] as item}   
                                 {#if item.name == "VIVA: Startscreen: Play"}
                                     {#if item.title_t[user_lang] != null}
                                         <button id="play_tour">{item.title_t[user_lang]}</button>
@@ -636,7 +636,7 @@
                                     <img src="images/btn-1.jpg">
                                 </div>
                                 <div class="text">
-                                    {#each _vivaData["buildings"]["additional_content"] as item}    
+                                    {#each _vivaData["houses"]["additional_content"] as item}    
                                         {#if item.name == "VIVA: Startscreen: Button 1"}
                                             {#if item.title_t[user_lang] != null}
                                                 <h4>{item.title_t[user_lang]}</h4>
@@ -652,7 +652,7 @@
                                     <img src="images/btn-2.jpg">
                                 </div>
                                 <div class="text">
-                                    {#each _vivaData["buildings"]["additional_content"] as item}    
+                                    {#each _vivaData["houses"]["additional_content"] as item}    
                                         {#if item.name == "VIVA: Startscreen: 3 rules of healthy living"}
                                             {#if item.title_t[user_lang] != null}
                                                 <h4>{item.title_t[user_lang]}</h4>
@@ -667,7 +667,7 @@
                                 <div class="thumbnail">
                                     <img src="images/00_Free_tour_icon_f.jpg">
                                 </div><div class="text">
-                                    {#each _vivaData["buildings"]["additional_content"] as item}    
+                                    {#each _vivaData["houses"]["additional_content"] as item}    
                                         {#if item.name == "VIVA: Startscreen: visit and enjoy tour"}
                                             {#if item.title_t[user_lang] != null}
                                                 <h4>{item.title_t[user_lang]}</h4>
@@ -693,7 +693,7 @@
      <div id="modal" >
         <div class="close" on:click={() => about_viva = false} />
         <div class="content">
-            {#each _vivaData["buildings"]["additional_content"] as item}    
+            {#each _vivaData["houses"]["additional_content"] as item}    
                 {#if item.name == "Navigation: Company Info"}
                     <h1>
                         {#if item.title_t[user_lang] != null}
