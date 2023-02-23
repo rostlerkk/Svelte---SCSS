@@ -497,7 +497,8 @@
             "int_buildings_link" : urlPrefix["int"]+'/api/buildings?api_token='+apiToken["int"],
             "lang_buildings_link" : urlPrefix[$lang]+'/api/buildings?api_token='+apiToken[$lang],
             "int_subtitles_link" : urlPrefix["int"]+'/api/building-tour-translations?api_token='+apiToken["int"],
-            "lang_subtitles_link" : urlPrefix[$lang]+'/api/building-tour-translations?api_token='+apiToken[$lang]
+            "lang_subtitles_link" : urlPrefix[$lang]+'/api/building-tour-translations?api_token='+apiToken[$lang],
+            "products" : urlPrefix[$lang]+'/api/products/products?api_token='+apiToken[$lang]
         }
 
         console.log(api_data);
