@@ -1,7 +1,7 @@
 // Garden Gnome Software - Skin
 // Pano2VR 6.1.15/18116
 // Filename: baumit-viva-park.ggsk
-// Generated 2023-02-23T13:51:59
+// Generated 2023-02-24T08:15:53
 
 function pano2vrSkin(player,base) {
 	player.addVariable('lang', 0, "");
@@ -82,6 +82,7 @@ function pano2vrSkin(player,base) {
 	player.addVariable('download_data', 0, "");
 	player.addVariable('paused_baumit_tour', 2, false);
 	player.addVariable('showVivaIntro', 1, 0);
+	player.addVariable('viva_global_info', 2, false);
 	var me=this;
 	var skin=this;
 	var flag=false;
@@ -5726,8 +5727,7 @@ function pano2vrSkin(player,base) {
 			return player.getCurrentNode();
 		}
 		me._global_info0.onclick=function (e) {
-			player.setVariableValue('houseID', Number("0"));
-			houseInfo(pano.getVariableValue('houseID'));
+			player.setVariableValue('viva_global_info', true);
 		}
 		me._global_info0.ggUpdatePosition=function (useTransition) {
 			if (useTransition==='undefined') {
@@ -6826,7 +6826,7 @@ function pano2vrSkin(player,base) {
 			return player.getCurrentNode();
 		}
 		me._global_info.onclick=function (e) {
-			player.setVariableValue('houseInfo', true);
+			player.setVariableValue('viva_global_info', true);
 		}
 		me._global_info.ggUpdatePosition=function (useTransition) {
 		}
@@ -15692,8 +15692,7 @@ tagInfo(pano.getVariableValue('tagValue'));
 		}
 		me._house_number.onclick=function (e) {
 			player.setVariableValue('houseID', Number(me.ggUserdata.source));
-			"";
-houseInfo(pano.getVariableValue('houseID'));
+			player.setVariableValue('houseInfo', true);
 			skin.hotspotProxyClick(me.hotspot.id, me.hotspot.url);
 		}
 		me._house_number.ondblclick=function (e) {
