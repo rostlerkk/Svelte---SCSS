@@ -622,13 +622,34 @@ function getSubtitlesLink($lang) {
 
         pano.on("varchanged_download_data", function() {
             let donwloadValue = pano.getVariableValue("download_data");
+            let link;
             switch (pano.getVariableValue("download_data")) {
                 case "0":
                     
                     break;
+                case "VIVA: House 8, book" :
+                    
+                        if (_vivaData['houses'] != undefined) {
+                            if (_vivaData['houses']['additional_content'] != undefined) {
+                                _vivaData['houses']['additional_content'].forEach(element => {
+                                    if (element.name == donwloadValue) {
+
+                                        if (element.media_t[user_lang] !== undefined && element.media_t[user_lang] !== null) {
+                                            link = element.media_t[user_lang];
+                                        } else {
+                                            if (element.media_t["int"] !== undefined) {
+                                                link = element.media_t["int"];
+                                            }
+                                        }
+                                        window.open(link, '_blank');
+                                    }
+                                });
+                            }
+                        }
+                    break;
             
                 default:
-                    let link;
+                    
                     if (_vivaData['houses'] != undefined) {
                         if (_vivaData['houses']['additional_content'] != undefined) {
                             _vivaData['houses']['additional_content'].forEach(element => {
@@ -646,7 +667,6 @@ function getSubtitlesLink($lang) {
                             });
                         }
                     }
-                    
                 break;
             }
         });
