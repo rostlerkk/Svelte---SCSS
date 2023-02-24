@@ -254,7 +254,7 @@
             cursor: default !important;
         }
 
-        &.hover {
+
             &:hover {
                 & > div {
                     color: white !important;
@@ -266,7 +266,7 @@
                     background: black !important;
                 }
             }
-        }
+
 
         &:before {
             box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;

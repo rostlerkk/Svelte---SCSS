@@ -199,12 +199,12 @@
   transform: translateX(0px) translateY(-50%);
   cursor: default !important;
 }
-.viva-tooltip .triangle-left.hover:hover > div {
+.viva-tooltip .triangle-left:hover > div {
   color: white !important;
   background: black !important;
   cursor: pointer !important;
 }
-.viva-tooltip .triangle-left.hover:hover::before {
+.viva-tooltip .triangle-left:hover::before {
   background: black !important;
 }
 .viva-tooltip .triangle-left:before {
