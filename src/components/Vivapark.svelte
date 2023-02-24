@@ -2461,6 +2461,7 @@ $: {
 
 #viva-house-info .content #yt-video {
     width: 100%;
+    aspect-ratio: 16/9;
 }
 
 #viva-house-info .content #yt-video.hidden {
