@@ -492,19 +492,30 @@ function getSubtitlesLink($lang) {
         });
 
         pano.on("varchanged_playPauseMedia", function() {
-            jq(".pulse-layer").css({
-                "display" : "none"
-            });
+            
             let patchName = pano.getNodeUserdata(pano.getCurrentNode()).title;
             console.log(patchName);
             if (patchName != null && patchName != undefined) {
 
-                const videoDuration = 4.166666;
+                let videoDuration;
+                switch (patchName) {
+                    case "Interier_03":
+                        videoDuration = 3.208333;
+                        break;
+                
+                    default:
+                        videoDuration = 4.166666;
+                        break;
+                }
+
                 let half = (videoDuration / 2) * 1000;
                 console.log(videoDuration + " / " + half);
 
                 switch (pano.getVariableValue("playPauseMedia")) {
                     case true:
+                        jq(".pulse-layer").css({
+                            "display" : "none"
+                        });
                         pano.playSound(patchName);
 
                         setTimeout(() => {
@@ -517,6 +528,9 @@ function getSubtitlesLink($lang) {
 
                     default:
                         if (pano.soundGetTime(patchName) > 0) {
+                            jq(".pulse-layer").css({
+                                "display" : "none"
+                            });
                             pano.playSound(patchName);
                             setTimeout(() => {
                                 pano.stopSound(patchName);
