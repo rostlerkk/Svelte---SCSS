@@ -1084,186 +1084,186 @@ $: {
 
 <!-- ak kliknem vo footri na ikonu global info -->
 {#if house_info == true}
-{#if active_house != -1}
+    {#if active_house != -1}
+        <div id="viva-house-info">
+            <div>
+                <div class="close" on:click={() => close_house_info()}/>
+                    <div class="content">
+                        {#if _vivaData != null}
+                            {#if _vivaData["houses"] != null}
+                                {#if _vivaData["houses"]["buildings"] != null}
+                                    {#if _vivaData["houses"]["buildings"][active_house]["house_nr_t"][user_lang] != undefined}
+                                        <h1>{_vivaData["houses"]["buildings"][active_house]["house_nr_t"][user_lang]}</h1>
+                                    {:else}
+                                        <h1>{_vivaData["houses"]["buildings"][active_house]["house_nr_t"]["int"]}</h1>
+                                    {/if}
+
+                                    {#if _vivaData["houses"]["buildings"][active_house]["headline_t"][user_lang] != undefined}
+                                        <div class="headline">{_vivaData["houses"]["buildings"][active_house]["headline_t"][user_lang]}</div>
+                                    {:else}
+                                        <div class="headline">{_vivaData["houses"]["buildings"][active_house]["headline_t"]["int"]}</div>
+                                    {/if}
+
+                                    <div class="row">
+                                        <p class="text">
+                                            {#if _vivaData["houses"]["buildings"][active_house]["text_t"][user_lang] != undefined && _vivaData["houses"]["buildings"][active_house]["text_t"][user_lang] != null}
+                                            {_vivaData["houses"]["buildings"][active_house]["text_t"][user_lang]}
+                                            {:else}
+                                                {#if _vivaData["houses"]["buildings"][active_house]["text_t"]["int"] != undefined && _vivaData["houses"]["buildings"][active_house]["text_t"]["int"] != null}
+                                                    {_vivaData["houses"]["buildings"][active_house]["text_t"]["int"]}
+                                                {/if}
+                                            
+                                            {/if}
+                                        </p>
+                                        {#if _vivaData["houses"]["buildings"][active_house]["parameters_t"] != undefined && _vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]}
+                                            <div id="viva-second">
+                                                {#if _vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]["groups"][3] != undefined}
+                                                <div class="comfort">
+                                                    {#if _vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]["groups"][3]["parameters"][0]["parameter_name"] != undefined}
+                                                    {_vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]["groups"][3]["parameters"][0]["parameter_name"]}
+                                                    {:else}
+                                                    {_vivaData["houses"]["buildings"][active_house]["parameters_t"]["int"]["groups"][3]["parameters"][0]["parameter_name"]}
+                                                    {/if}
+                                                </div>
+
+                                                <div class="house-tooltip">
+                                                    <div class="house-tooltip-arrow"></div>
+                                                    <div class="house-tooltip-inner">{_vivaData["houses"]['buildings'][active_house]['house_comfort_t'][user_lang]}</div>
+                                                </div>
+
+                                                {#if _vivaData["houses"]['buildings'][active_house]['house_comfort_t'][user_lang] == "High"}
+                                                <div class="ko-progress-circle" data-progress="100">
+                                                    <div class="ko-circle">
+                                                        <div class="full ko-progress-circle__slice">
+                                                            <div class="ko-progress-circle__fill"></div>
+                                                        </div>
+                                                        <div class="ko-progress-circle__slice">
+                                                            <div class="ko-progress-circle__fill"></div>
+                                                            <div class="ko-progress-circle__fill ko-progress-circle__bar"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ko-progress-circle__overlay"></div>
+                                                </div>
+                                                {/if}
+
+                                                {#if _vivaData["houses"]['buildings'][active_house]['house_comfort_t'][user_lang] == "Medium"}
+                                                <div class="ko-progress-circle" data-progress="60">
+                                                    <div class="ko-circle">
+                                                        <div class="full ko-progress-circle__slice">
+                                                            <div class="ko-progress-circle__fill"></div>
+                                                        </div>
+                                                        <div class="ko-progress-circle__slice">
+                                                            <div class="ko-progress-circle__fill"></div>
+                                                            <div class="ko-progress-circle__fill ko-progress-circle__bar"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ko-progress-circle__overlay"></div>
+                                                </div>
+                                                {/if}
+
+                                                {#if _vivaData["houses"]['buildings'][active_house]['house_comfort_t'][user_lang] == "Low"}
+                                                <div class="ko-progress-circle" data-progress="30">
+                                                    <div class="ko-circle">
+                                                        <div class="full ko-progress-circle__slice">
+                                                            <div class="ko-progress-circle__fill"></div>
+                                                        </div>
+                                                        <div class="ko-progress-circle__slice">
+                                                            <div class="ko-progress-circle__fill"></div>
+                                                            <div class="ko-progress-circle__fill ko-progress-circle__bar"></div>
+                                                        </div>
+                                                    </div>
+                                                    <div class="ko-progress-circle__overlay"></div>
+                                                </div>
+                                                {/if}
+                                                {/if}
+                                            </div>
+                                        {/if}
+                                    </div>
+
+                                    <!-- Youtube video -->
+                                    {#if _vivaData["houses"]["buildings"][active_house]["media_t"] != undefined}
+                                        {#if _vivaData["houses"]["buildings"][active_house]["media_t"][user_lang] != undefined}
+                                            <div id="yt-video">
+                                                <iframe id="yt" src="https://www.youtube.com/embed/{_vivaData["houses"]["buildings"][active_house]["media_t"][user_lang].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
+                                            </div>
+                                        {:else}
+                                            {#if _vivaData["houses"]["buildings"][active_house]["media_t"]["int"] != undefined}
+                                                <div id="yt-video">
+                                                    <iframe id="yt" src="https://www.youtube.com/embed/{_vivaData["houses"]["buildings"][active_house]["media_t"]["int"].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
+                                                </div>
+                                            {/if}
+                                        {/if}
+                                    {/if}
+
+                                    <!-- Button viac info -->
+                                    {#if _vivaData["houses"]["buildings"][active_house]["link_t"][user_lang] != undefined || _vivaData["houses"]["buildings"][active_house]["link_t"][user_lang] != ""}
+                                        <a id="house-url" href="{_vivaData["houses"]["buildings"][active_house]["link_t"][user_lang]}" target="_blank" class="">Viac</a>
+                                    {:else}
+                                        <a id="house-url" href="{_vivaData["houses"]["buildings"][active_house]["link_t"]["int"]}" target="_blank" class="">Viac</a>
+                                    {/if}
+
+                                {/if}
+                            {/if}
+                        {/if}
+                    </div>
+
+                    <div class="parameters">
+                        {#if _vivaData["houses"]["buildings"][active_house]["parameters_t"] != undefined &&
+                        _vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang] != undefined &&
+                        _vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]["groups"] != undefined
+                        }
+                            {#each Object.entries(_vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]["groups"]) as [key, value], index(key)}
+                                <h3>{value.name}</h3>
+                                {#each Object.entries(value.parameters) as [kluc, hodnota], index(kluc)}
+                                    <div class="parameter-title">{hodnota["parameter_name"]}
+                                        <span> i
+                                            <div class="house-tooltip">
+                                                <div class="house-tooltip-arrow"></div>
+                                                <div class="house-tooltip-inner">{hodnota["parameter_tooltip"]}</div>
+                                            </div>
+                                        </span>
+                                    </div>
+                                    <div class="parameter-bar">
+                                        <div class="p{hodnota["value"]}"></div>
+                                    </div>
+                                {/each}
+                            {/each}
+                        {/if}
+                </div>
+            </div>
+        </div>
+    {:else}
+        <div id="modal" >
+            <div class="close"  on:click={() => about_viva = false}
+                on:click={() => close_house_info()} />
+            <div class="content">
+                {#each _vivaData["houses"]["additional_content"] as item}
+                {#if item.name == "Navigation: Company Info"}
+                <h1>
+                    {#if item.title_t[user_lang] != null}
+                    {item.title_t[user_lang]}
+                    {:else}
+                    {item.title_t["int"]}
+                    {/if}
+                </h1>
+                <p>
+                    {#if item.content_t[user_lang] != null}
+                    {item.content_t[user_lang]}
+                    {:else}
+                    {item.content_t["int"]}
+                    {/if}
+                </p>
+                {/if}
+                {/each}
+            </div>
+        </div>
+    {/if}
+{/if}
 
 <!-- ak kliknem na vrstvu (produkt) na stene/múre -->
 {#if about_product}
     <p>sdsgd</p> 
 {/if}
-<div id="viva-house-info">
-    <div>
-        <div class="close" on:click={() => close_house_info()}/>
-            <div class="content">
-                {#if _vivaData != null}
-                    {#if _vivaData["houses"] != null}
-                        {#if _vivaData["houses"]["buildings"] != null}
-                            {#if _vivaData["houses"]["buildings"][active_house]["house_nr_t"][user_lang] != undefined}
-                                <h1>{_vivaData["houses"]["buildings"][active_house]["house_nr_t"][user_lang]}</h1>
-                            {:else}
-                                <h1>{_vivaData["houses"]["buildings"][active_house]["house_nr_t"]["int"]}</h1>
-                            {/if}
-
-                            {#if _vivaData["houses"]["buildings"][active_house]["headline_t"][user_lang] != undefined}
-                                <div class="headline">{_vivaData["houses"]["buildings"][active_house]["headline_t"][user_lang]}</div>
-                            {:else}
-                                <div class="headline">{_vivaData["houses"]["buildings"][active_house]["headline_t"]["int"]}</div>
-                            {/if}
-
-                            <div class="row">
-                                <p class="text">
-                                    {#if _vivaData["houses"]["buildings"][active_house]["text_t"][user_lang] != undefined && _vivaData["houses"]["buildings"][active_house]["text_t"][user_lang] != null}
-                                    {_vivaData["houses"]["buildings"][active_house]["text_t"][user_lang]}
-                                    {:else}
-                                        {#if _vivaData["houses"]["buildings"][active_house]["text_t"]["int"] != undefined && _vivaData["houses"]["buildings"][active_house]["text_t"]["int"] != null}
-                                            {_vivaData["houses"]["buildings"][active_house]["text_t"]["int"]}
-                                        {/if}
-                                    
-                                    {/if}
-                                </p>
-                                {#if _vivaData["houses"]["buildings"][active_house]["parameters_t"] != undefined && _vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]}
-                                    <div id="viva-second">
-                                        {#if _vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]["groups"][3] != undefined}
-                                        <div class="comfort">
-                                            {#if _vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]["groups"][3]["parameters"][0]["parameter_name"] != undefined}
-                                            {_vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]["groups"][3]["parameters"][0]["parameter_name"]}
-                                            {:else}
-                                            {_vivaData["houses"]["buildings"][active_house]["parameters_t"]["int"]["groups"][3]["parameters"][0]["parameter_name"]}
-                                            {/if}
-                                        </div>
-
-                                        <div class="house-tooltip">
-                                            <div class="house-tooltip-arrow"></div>
-                                            <div class="house-tooltip-inner">{_vivaData["houses"]['buildings'][active_house]['house_comfort_t'][user_lang]}</div>
-                                        </div>
-
-                                        {#if _vivaData["houses"]['buildings'][active_house]['house_comfort_t'][user_lang] == "High"}
-                                        <div class="ko-progress-circle" data-progress="100">
-                                            <div class="ko-circle">
-                                                <div class="full ko-progress-circle__slice">
-                                                    <div class="ko-progress-circle__fill"></div>
-                                                </div>
-                                                <div class="ko-progress-circle__slice">
-                                                    <div class="ko-progress-circle__fill"></div>
-                                                    <div class="ko-progress-circle__fill ko-progress-circle__bar"></div>
-                                                </div>
-                                            </div>
-                                            <div class="ko-progress-circle__overlay"></div>
-                                        </div>
-                                        {/if}
-
-                                        {#if _vivaData["houses"]['buildings'][active_house]['house_comfort_t'][user_lang] == "Medium"}
-                                        <div class="ko-progress-circle" data-progress="60">
-                                            <div class="ko-circle">
-                                                <div class="full ko-progress-circle__slice">
-                                                    <div class="ko-progress-circle__fill"></div>
-                                                </div>
-                                                <div class="ko-progress-circle__slice">
-                                                    <div class="ko-progress-circle__fill"></div>
-                                                    <div class="ko-progress-circle__fill ko-progress-circle__bar"></div>
-                                                </div>
-                                            </div>
-                                            <div class="ko-progress-circle__overlay"></div>
-                                        </div>
-                                        {/if}
-
-                                        {#if _vivaData["houses"]['buildings'][active_house]['house_comfort_t'][user_lang] == "Low"}
-                                        <div class="ko-progress-circle" data-progress="30">
-                                            <div class="ko-circle">
-                                                <div class="full ko-progress-circle__slice">
-                                                    <div class="ko-progress-circle__fill"></div>
-                                                </div>
-                                                <div class="ko-progress-circle__slice">
-                                                    <div class="ko-progress-circle__fill"></div>
-                                                    <div class="ko-progress-circle__fill ko-progress-circle__bar"></div>
-                                                </div>
-                                            </div>
-                                            <div class="ko-progress-circle__overlay"></div>
-                                        </div>
-                                        {/if}
-                                        {/if}
-                                    </div>
-                                {/if}
-                            </div>
-
-                            <!-- Youtube video -->
-                            {#if _vivaData["houses"]["buildings"][active_house]["media_t"] != undefined}
-                                {#if _vivaData["houses"]["buildings"][active_house]["media_t"][user_lang] != undefined}
-                                    <div id="yt-video">
-                                        <iframe id="yt" src="https://www.youtube.com/embed/{_vivaData["houses"]["buildings"][active_house]["media_t"][user_lang].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
-                                    </div>
-                                {:else}
-                                    {#if _vivaData["houses"]["buildings"][active_house]["media_t"]["int"] != undefined}
-                                        <div id="yt-video">
-                                            <iframe id="yt" src="https://www.youtube.com/embed/{_vivaData["houses"]["buildings"][active_house]["media_t"]["int"].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
-                                        </div>
-                                    {/if}
-                                {/if}
-                            {/if}
-
-                            <!-- Button viac info -->
-                            {#if _vivaData["houses"]["buildings"][active_house]["link_t"][user_lang] != undefined || _vivaData["houses"]["buildings"][active_house]["link_t"][user_lang] != ""}
-                                <a id="house-url" href="{_vivaData["houses"]["buildings"][active_house]["link_t"][user_lang]}" target="_blank" class="">Viac</a>
-                            {:else}
-                                <a id="house-url" href="{_vivaData["houses"]["buildings"][active_house]["link_t"]["int"]}" target="_blank" class="">Viac</a>
-                            {/if}
-
-                        {/if}
-                    {/if}
-                {/if}
-            </div>
-
-            <div class="parameters">
-                {#if _vivaData["houses"]["buildings"][active_house]["parameters_t"] != undefined &&
-                _vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang] != undefined &&
-                _vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]["groups"] != undefined
-                }
-                {#each Object.entries(_vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]["groups"]) as [key, value], index(key)}
-                <h3>{value.name}</h3>
-                {#each Object.entries(value.parameters) as [kluc, hodnota], index(kluc)}
-                <div class="parameter-title">{hodnota["parameter_name"]}
-                    <span> i
-                        <div class="house-tooltip">
-                            <div class="house-tooltip-arrow"></div>
-                            <div class="house-tooltip-inner">{hodnota["parameter_tooltip"]}</div>
-                        </div>
-                    </span>
-                </div>
-                <div class="parameter-bar">
-                    <div class="p{hodnota["value"]}"></div>
-                </div>
-                {/each}
-                {/each}
-                {/if}
-            </div>
-        </div>
-    </div>
-    {:else}
-    <div id="modal" >
-        <div class="close"  on:click={() => about_viva = false}
-            on:click={() => close_house_info()} />
-        <div class="content">
-            {#each _vivaData["houses"]["additional_content"] as item}
-            {#if item.name == "Navigation: Company Info"}
-            <h1>
-                {#if item.title_t[user_lang] != null}
-                {item.title_t[user_lang]}
-                {:else}
-                {item.title_t["int"]}
-                {/if}
-            </h1>
-            <p>
-                {#if item.content_t[user_lang] != null}
-                {item.content_t[user_lang]}
-                {:else}
-                {item.content_t["int"]}
-                {/if}
-            </p>
-            {/if}
-            {/each}
-        </div>
-    </div>
-    {/if}
-    {/if}
 
 <style lang="scss">
 #welcome {
