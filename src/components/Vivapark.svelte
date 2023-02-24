@@ -5,7 +5,7 @@ import {
 
 // VARIABLES
 let active_house = 0;
-let user_lang, productUrl, housesUrl, subtitlesUrl = null;
+let user_lang, productUrl, housesUrl, subtitlesUrl, product_id = null;
 let intro, fetching_data, lang_data_loading, welcome = true;
 let about_viva, about_product, product_data_loaded, houses_data_loaded, subtitles_data_loaded, house_info = false;
 let _vivaData = {};
@@ -493,16 +493,17 @@ function getSubtitlesLink($lang) {
             }
         });
 
-        pano.on("varchanged_viva_show_product", function() {
-            switch (pano.getVariableValue("viva_show_product")) {
-                case true:
-                    about_product = true;
-                    console.log(pano.getVariableValue("product_ID"));
+        pano.on("varchanged_product_ID", function() {
+            console.log("sdfsdg");
+            product_id = pano.getVariableValue("product_ID");
+            switch (pano.getVariableValue("product_ID")) {
+                case "0":
+                    about_product = false;
                     break;
             
                 default:
-                    about_product = false;
-                    break;
+                    about_product = true;
+                break;
             }
         });
 
@@ -567,8 +568,6 @@ function getSubtitlesLink($lang) {
             }
             
         });
-
-        
 
         pano.on("changenode", function() {
             clearTimeout(myTimeout);
@@ -920,6 +919,11 @@ function close_house_info() {
 
 }
 
+function close_about_product(){
+    pano.setVariableValue("product_ID", "0");
+    about_product = false;
+}
+
 add_video_patch();
 
 $: {
@@ -938,10 +942,10 @@ $: {
 </script>
 
 {#if fetching_data}
-<div id="viva-intro">
-    <img src="images/loader.svg" alt="">
-    <p>loading product data <br /> and translations</p>
-</div>
+    <div id="viva-intro">
+        <img src="images/loader.svg" alt="">
+        <p>loading product data <br /> and translations</p>
+    </div>
 {/if}
 
 <!-- ak je povolené intro -->
@@ -1262,10 +1266,54 @@ $: {
 
 <!-- ak kliknem na vrstvu (produkt) na stene/múre -->
 {#if about_product}
-    <p>sdsgd</p> 
+    <div id="infopanel" class="infopanel baumit">  
+        <div class="close" on:click={() => close_about_product()}/>
+        <div class="content">
+            <div class="info-v1">
+                {#each _vivaData["products"] as product}
+                    {#if product.pro_epim_productnr == product_id + productSuffix[user_lang]}
+                        <section class="head">
+                            <div class="baumit-img">
+                                <img class="baumit-img" src="{urlPrefix[user_lang]}{product.image}" />
+                            </div>
+                            <div class="content">
+                                <h2>{product.name}</h2>
+
+                                <ul class="baumit">
+                                    {#if product.product_benefit_1 != undefined}
+                                        <li><span>{product.product_benefit_1}</span></li>
+                                    {/if}
+
+                                    {#if product.product_benefit_2 != undefined}
+                                        <li><span>{product.product_benefit_2}</span></li>
+                                    {/if}
+
+                                    {#if product.product_benefit_3 != undefined}
+                                        <li><span>{product.product_benefit_3}</span></li>
+                                    {/if}
+                                </ul>
+
+                                <a href="{urlPrefix[user_lang]}{product.details_url}" target="_blank">Viac</a>
+                            </div>
+                        </section>
+                        <section class="body">
+                            <p>{product.description}</p>    
+                        </section>
+                    {/if}
+
+                {/each}
+            </div>
+        </div>
+    </div> 
 {/if}
 
 <style lang="scss">
+    #infopanel {
+        display: flex;
+        opacity: 1;
+        transform: scale(1);
+    }
+
 #welcome {
     top: 40px;
     left: 0px;
