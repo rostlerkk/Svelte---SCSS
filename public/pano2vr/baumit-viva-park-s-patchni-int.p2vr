@@ -5061,32 +5061,6 @@
         </hotspot>
         <hotspot>
           <position>
-            <pan>-183.59</pan>
-            <tilt>3.77</tilt>
-            <fov>10</fov>
-          </position>
-          <next>
-            <pan>0</pan>
-            <tilt>0</tilt>
-            <fov>0</fov>
-          </next>
-          <polygon/>
-          <type>point</type>
-          <id>Point02</id>
-          <title>House_6</title>
-          <description>House_6</description>
-          <linktype>url</linktype>
-          <linksubtype>unknown</linksubtype>
-          <skinid>Hosue 6 info</skinid>
-          <distance>0</distance>
-          <distanceauto>1</distanceauto>
-          <autoplace>0</autoplace>
-          <use3d>0</use3d>
-          <width>0</width>
-          <height>0</height>
-        </hotspot>
-        <hotspot>
-          <position>
             <pan>-335.21</pan>
             <tilt>-1.21</tilt>
             <fov>10</fov>

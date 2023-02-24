@@ -538,7 +538,6 @@
       <hotspot skinid="Tag" title="Air Exhaust" target="_blank" tilt="-31.55" pan="-273.73" description="" url="" id="tag"/>
       <hotspot skinid="Layers-icon" title="" target="_blank" tilt="-0.95" pan="-355.17" description="" url="" id="Point05"/>
       <hotspot skinid="Enter " title="Exterier_06" target="" tilt="-17.29" pan="-317.1" description="" url="{node6}" id="Point01"/>
-      <hotspot skinid="Hosue 6 info" title="House_6" target="_blank" tilt="3.77" pan="-183.59" description="House_6" url="" id="Point02"/>
       <hotspot skinid="Interier info" title="" target="_blank" tilt="-1.21" pan="-335.21" description="" url="" id="House info"/>
     </hotspots>
     <media>
