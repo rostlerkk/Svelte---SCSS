@@ -475,8 +475,6 @@ function getSubtitlesLink($lang) {
             let currentNode = pano.getCurrentNode();
             house_info = pano.getVariableValue("houseInfo");
             active_house = parseInt(pano.getNodeUserdata(currentNode).source) - 1;
-            console.log(house_info);
-            console.log(active_house);
         });
 
         pano.on("varchanged_viva_global_info", function() {
@@ -501,6 +499,9 @@ function getSubtitlesLink($lang) {
                 switch (patchName) {
                     case "Interier_03":
                         videoDuration = 3.208333;
+                        break;
+                    case "Exterier_06" : 
+                        videoDuration = 3.916666;
                         break;
                 
                     default:
@@ -1049,10 +1050,13 @@ $: {
 
                             <div class="row">
                                 <p class="text">
-                                    {#if _vivaData["houses"]["buildings"][active_house]["text_t"][user_lang] != undefined}
+                                    {#if _vivaData["houses"]["buildings"][active_house]["text_t"][user_lang] != undefined && _vivaData["houses"]["buildings"][active_house]["text_t"][user_lang] != null}
                                     {_vivaData["houses"]["buildings"][active_house]["text_t"][user_lang]}
                                     {:else}
-                                    {_vivaData["houses"]["buildings"][active_house]["text_t"]["int"]}
+                                        {#if _vivaData["houses"]["buildings"][active_house]["text_t"]["int"] != undefined && _vivaData["houses"]["buildings"][active_house]["text_t"]["int"] != null}
+                                            {_vivaData["houses"]["buildings"][active_house]["text_t"]["int"]}
+                                        {/if}
+                                    
                                     {/if}
                                 </p>
                                 {#if _vivaData["houses"]["buildings"][active_house]["parameters_t"] != undefined && _vivaData["houses"]["buildings"][active_house]["parameters_t"][user_lang]}

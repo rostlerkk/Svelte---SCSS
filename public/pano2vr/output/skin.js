@@ -1,7 +1,7 @@
 // Garden Gnome Software - Skin
 // Pano2VR 6.1.15/18116
 // Filename: baumit-viva-park.ggsk
-// Generated 2023-02-24T08:29:00
+// Generated 2023-02-24T09:27:27
 
 function pano2vrSkin(player,base) {
 	player.addVariable('lang', 0, "");
@@ -12864,7 +12864,7 @@ $('.viva-start').remove();
 		el.ggDx=0;
 		el.ggDy=0;
 		el.ggParameter={ rx:0,ry:0,a:0,sx:1,sy:1 };
-		el.ggVisible=false;
+		el.ggVisible=true;
 		el.className="ggskin ggskin_hotspot hts viva-tooltip hidden";
 		el.ggType='hotspot';
 		hs ='';
@@ -12873,7 +12873,7 @@ $('.viva-start').remove();
 		hs+='left : -10000px;';
 		hs+='position : absolute;';
 		hs+='top : -10000px;';
-		hs+='visibility : hidden;';
+		hs+='visibility : inherit;';
 		hs+='width : 0px;';
 		hs+='pointer-events:auto;';
 		el.setAttribute('style',hs);
@@ -12921,8 +12921,8 @@ $('.viva-start').remove();
 					me._tooltip5.ggVisible=true;
 				}
 				else {
-					me._tooltip5.style.visibility="hidden";
-					me._tooltip5.ggVisible=false;
+					me._tooltip5.style.visibility=(Number(me._tooltip5.style.opacity)>0||!me._tooltip5.style.opacity)?'inherit':'hidden';
+					me._tooltip5.ggVisible=true;
 				}
 			}
 		}
