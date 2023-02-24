@@ -5,9 +5,9 @@ import {
 
 // VARIABLES
 let active_house = 0;
-let user_lang, productUrl, housesUrl, subtitlesUrl, product_id = null;
+let user_lang, productUrl, housesUrl, subtitlesUrl, product_id, tagValue = null;
 let intro, fetching_data, lang_data_loading, welcome = true;
-let about_viva, about_product, product_data_loaded, houses_data_loaded, subtitles_data_loaded, house_info = false;
+let about_viva, about_tag, about_product, product_data_loaded, houses_data_loaded, subtitles_data_loaded, house_info = false;
 let _vivaData = {};
 
 let myTimeout;
@@ -506,6 +506,19 @@ function getSubtitlesLink($lang) {
             }
         });
 
+        pano.on("varchanged_tagValue", function() {
+            tagValue = pano.getVariableValue("tagValue");
+            switch (pano.getVariableValue("tagValue")) {
+                case "0":
+                    about_tag = false;
+                    break;
+            
+                default:
+                    about_tag = true;
+                break;
+            }
+        });
+
         pano.on("varchanged_playPauseMedia", function() {
             let patchName = pano.getNodeUserdata(pano.getCurrentNode()).title;
             console.log(patchName);
@@ -921,6 +934,11 @@ function close_about_product(){
     about_product = false;
 }
 
+function close_about_tag(){
+    pano.setVariableValue("tagValue", "0");
+    about_tag = false;
+}
+
 add_video_patch();
 
 $: {
@@ -1313,1612 +1331,1694 @@ $: {
     </div> 
 {/if}
 
+{#if about_tag}
+    <div id="viva-house-info" class="viva-house-info">  
+        <div class="close" on:click={() => close_about_tag()}/>
+            <div class="content">
+                {#each _vivaData["houses"]["additional_content"] as item}
+                    
+                    {#if tagValue == "Global Temperature Sensor"}
+                        {#if "VIVA: " + tagValue == item.name}
+                            {#if item.title_t[user_lang] != undefined && item.title_t[user_lang] != null}
+                                <h1>{item.title_t[user_lang]}</h1>
+                            {:else}
+                                <h1>{item.title_t["int"]}</h1>
+                            {/if}
+
+                            <div class="row">
+                                {#if item.content_t[user_lang] != undefined && item.content_t[user_lang] != null}
+                                    <p class="text">{item.content_t[user_lang]}</p>
+                                {:else}
+                                    <p class="text">{item.content_t["int"]}</p>
+                                {/if}
+                            </div>
+                            
+                        {/if}
+
+                    {/if}
+                     
+                {/each}
+                
+            </div>
+            
+
+            
+
+            
+        <!-- <div class="content">
+            <div class="info-v1">
+                {#each _vivaData["products"] as product}
+                    {#if product.pro_epim_productnr == product_id + productSuffix[user_lang]}
+                        <section class="head">
+                            <div class="baumit-img">
+                                <img class="baumit-img" src="{urlPrefix[user_lang]}{product.image}" />
+                            </div>
+                            <div class="content">
+                                <h2>{product.name}</h2>
+
+                                <ul class="baumit">
+                                    {#if product.product_benefit_1 != undefined}
+                                        <li><span>{product.product_benefit_1}</span></li>
+                                    {/if}
+
+                                    {#if product.product_benefit_2 != undefined}
+                                        <li><span>{product.product_benefit_2}</span></li>
+                                    {/if}
+
+                                    {#if product.product_benefit_3 != undefined}
+                                        <li><span>{product.product_benefit_3}</span></li>
+                                    {/if}
+                                </ul>
+
+                                {#each _vivaData["houses"]["additional_content"] as item}
+                                    {#if item.name == "Navigation: More Info"}
+                                        {#if item.title_t[user_lang] != undefined}
+                                            <a href="{urlPrefix[user_lang]}{product.details_url}" target="_blank">{item.title_t[user_lang]}</a>
+                                        {:else}
+                                            <a href="{urlPrefix[user_lang]}{product.details_url}" target="_blank">{item.title_t["int"]}</a>
+                                        {/if}
+                                    {/if}
+                                {/each}
+                                
+                            </div>
+                        </section>
+                        <section class="body">
+                            <p>{product.description}</p>    
+                        </section>
+                    {/if}
+
+                {/each}
+            </div>
+        </div> -->
+    </div> 
+{/if}
+
+
 <style lang="scss">
-    #infopanel {
+    #infopanel, #viva-house-info {
         display: flex;
         opacity: 1;
         transform: scale(1);
     }
 
-#welcome {
-    top: 40px;
-    left: 0px;
-    z-index: 4;
-    height: calc(100% - 40px);
-}
-
-#viva-intro {
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    background: transparent;
-    z-index: 2;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    opacity: 0.5;
-    flex-direction: column;
-    z-index: 6;
-
-    p {
-        position: relative;
-        font-family: "Montserrat-Medium";
-        font-size: 11px;
-        color: #fff;
-        background-color: rgba(0, 0, 0, 0.7);
-        border-radius: 6px;
-        padding: 8px;
-        margin: 0;
-        width: auto;
-    }
-}
-
-#modal {
-    z-index: 5;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: white;
-    padding: 30px;
-    height: auto;
-    width: calc(100% - 128px);
-    max-width: 800px;
-    max-height: calc(100% - 128px);
-    overflow: auto;
-}
-
-#viva-house-info {
-	background-color: white;
-	z-index: 6;
-	position: absolute;
-	left: 50%;
-	top: 50%;
-	transform: translate(-50%, -50%);
-	width: calc(100% - 64px);
-	max-width: 940px;
-	height: calc(100% - 168px);
-	max-height: 680px;
-	overflow: auto;
-	padding: 40px;
-	box-sizing: border-box;
-	transition: all 0.25s ease-in-out;
-	div {
-		&:not(.close) {
-			height: -webkit-max-content;
-			height: -moz-max-content;
-			height: max-content;
-			box-sizing: border-box;
-		}
-	}
-	>div {
-		&:not(.close) {
-			display: flex;
-			width: 100%;
-		}
-	}
-	.content {
-		overflow: auto;
-		box-sizing: border-box;
-		font-size: 15px;
-		color: #333333;
-		line-height: 1.42857143;
-		max-width: 700px;
-		padding: 0 0 58px 0;
-		width: 100%;
-		max-width: -webkit-max-content;
-		max-width: -moz-max-content;
-		max-width: max-content;
-		.row {
-			display: flex;
-			flex-direction: row;
-			align-items: flex-start;
-			#viva-second {
-				margin: 20px 50px;
-				.comfort {
-					font-size: 16px;
-					font-weight: 500;
-					text-transform: uppercase;
-					margin: 0px 0px 10px 0px;
-				}
-			}
-			#viva-second.hidden {
-				display: none;
-			}
-			.house-tooltip {
-				display: flex;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-				position: relative;
-				margin-bottom: 10px;
-			}
-			.house-tooltip-arrow {
-				bottom: 0;
-				left: 50%;
-				margin-left: -5px;
-				border-width: 5px 5px 0;
-				border-top-color: #000000;
-			}
-			.house-tooltip-inner {
-				max-width: 200px;
-				padding: 3px 8px;
-				line-height: 1.42857143;
-				font-size: 11px;
-				color: #ffffff;
-				text-align: center;
-				background-color: #000000;
-				border-radius: 4px;
-				&::after {
-					content: "";
-					position: absolute;
-					top: 100%;
-					left: 50%;
-					transform: translateX(-50%);
-					width: 0;
-					height: 0;
-					border-top: solid 5px #000;
-					border-left: solid 5px transparent;
-					border-right: solid 5px transparent;
-				}
-			}
-			.ko-progress-circle {
-				position: relative;
-				width: 70px;
-				height: 70px;
-				max-width: 70px;
-				max-height: 70px;
-				margin: 0 auto;
-				flex: 1;
-				background-color: #e2e2e2;
-				border-radius: 50%;
-				.ko-progress-circle__slice {
-					width: 70px;
-					height: 70px;
-					position: absolute;
-					-webkit-backface-visibility: hidden;
-					transition: transform 1s;
-					border-radius: 50%;
-					clip: rect(0px, 70px, 70px, 35px);
-					.ko-progress-circle__fill {
-						clip: rect(0px, 35px, 70px, 0px);
-						background-color: #75b727;
-					}
-				}
-				.ko-progress-circle__fill {
-					width: 70px;
-					height: 70px;
-					position: absolute;
-					-webkit-backface-visibility: hidden;
-					transition: transform 1s;
-					border-radius: 50%;
-				}
-				.ko-progress-circle__overlay {
-					width: 35px;
-					height: 35px;
-					position: absolute;
-					top: 50%;
-					left: 50%;
-					transform: translate(-50%, -50%);
-					background-color: #fbfbfb;
-					border-radius: 50%;
-				}
-			}
-			.ko-progress-circle.hidden {
-				display: none;
-			}
-			.ko-progress-circle[data-progress="0"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(0deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(0deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(0deg);
-				}
-			}
-			.ko-progress-circle[data-progress="1"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(1.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(1.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(3.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="2"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(3.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(3.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(7.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="3"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(5.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(5.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(10.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="4"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(7.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(7.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(14.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="5"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(9deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(9deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(18deg);
-				}
-			}
-			.ko-progress-circle[data-progress="6"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(10.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(10.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(21.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="7"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(12.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(12.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(25.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="8"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(14.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(14.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(28.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="9"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(16.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(16.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(32.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="10"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(18deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(18deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(36deg);
-				}
-			}
-			.ko-progress-circle[data-progress="11"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(19.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(19.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(39.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="12"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(21.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(21.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(43.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="13"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(23.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(23.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(46.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="14"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(25.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(25.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(50.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="15"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(27deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(27deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(54deg);
-				}
-			}
-			.ko-progress-circle[data-progress="16"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(28.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(28.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(57.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="17"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(30.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(30.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(61.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="18"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(32.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(32.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(64.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="19"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(34.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(34.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(68.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="20"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(36deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(36deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(72deg);
-				}
-			}
-			.ko-progress-circle[data-progress="21"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(37.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(37.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(75.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="22"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(39.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(39.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(79.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="23"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(41.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(41.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(82.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="24"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(43.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(43.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(86.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="25"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(45deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(45deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(90deg);
-				}
-			}
-			.ko-progress-circle[data-progress="26"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(46.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(46.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(93.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="27"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(48.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(48.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(97.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="28"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(50.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(50.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(100.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="29"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(52.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(52.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(104.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="30"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(54deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(54deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(108deg);
-				}
-			}
-			.ko-progress-circle[data-progress="31"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(55.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(55.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(111.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="32"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(57.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(57.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(115.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="33"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(59.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(59.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(118.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="34"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(61.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(61.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(122.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="35"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(63deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(63deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(126deg);
-				}
-			}
-			.ko-progress-circle[data-progress="36"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(64.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(64.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(129.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="37"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(66.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(66.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(133.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="38"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(68.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(68.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(136.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="39"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(70.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(70.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(140.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="40"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(72deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(72deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(144deg);
-				}
-			}
-			.ko-progress-circle[data-progress="41"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(73.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(73.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(147.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="42"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(75.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(75.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(151.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="43"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(77.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(77.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(154.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="44"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(79.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(79.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(158.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="45"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(81deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(81deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(162deg);
-				}
-			}
-			.ko-progress-circle[data-progress="46"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(82.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(82.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(165.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="47"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(84.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(84.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(169.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="48"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(86.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(86.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(172.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="49"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(88.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(88.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(176.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="50"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(90deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(90deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(180deg);
-				}
-			}
-			.ko-progress-circle[data-progress="51"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(91.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(91.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(183.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="52"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(93.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(93.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(187.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="53"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(95.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(95.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(190.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="54"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(97.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(97.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(194.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="55"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(99deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(99deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(198deg);
-				}
-			}
-			.ko-progress-circle[data-progress="56"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(100.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(100.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(201.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="57"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(102.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(102.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(205.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="58"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(104.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(104.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(208.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="59"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(106.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(106.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(212.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="60"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(108deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(108deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(216deg);
-				}
-			}
-			.ko-progress-circle[data-progress="61"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(109.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(109.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(219.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="62"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(111.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(111.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(223.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="63"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(113.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(113.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(226.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="64"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(115.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(115.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(230.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="65"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(117deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(117deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(234deg);
-				}
-			}
-			.ko-progress-circle[data-progress="66"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(118.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(118.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(237.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="67"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(120.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(120.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(241.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="68"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(122.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(122.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(244.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="69"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(124.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(124.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(248.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="70"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(126deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(126deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(252deg);
-				}
-			}
-			.ko-progress-circle[data-progress="71"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(127.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(127.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(255.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="72"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(129.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(129.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(259.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="73"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(131.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(131.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(262.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="74"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(133.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(133.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(266.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="75"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(135deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(135deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(270deg);
-				}
-			}
-			.ko-progress-circle[data-progress="76"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(136.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(136.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(273.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="77"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(138.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(138.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(277.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="78"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(140.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(140.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(280.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="79"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(142.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(142.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(284.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="80"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(144deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(144deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(288deg);
-				}
-			}
-			.ko-progress-circle[data-progress="81"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(145.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(145.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(291.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="82"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(147.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(147.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(295.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="83"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(149.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(149.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(298.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="84"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(151.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(151.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(302.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="85"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(153deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(153deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(306deg);
-				}
-			}
-			.ko-progress-circle[data-progress="86"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(154.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(154.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(309.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="87"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(156.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(156.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(313.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="88"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(158.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(158.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(316.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="89"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(160.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(160.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(320.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="90"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(162deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(162deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(324deg);
-				}
-			}
-			.ko-progress-circle[data-progress="91"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(163.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(163.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(327.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="92"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(165.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(165.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(331.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="93"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(167.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(167.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(334.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="94"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(169.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(169.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(338.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="95"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(171deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(171deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(342deg);
-				}
-			}
-			.ko-progress-circle[data-progress="96"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(172.8deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(172.8deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(345.6deg);
-				}
-			}
-			.ko-progress-circle[data-progress="97"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(174.6deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(174.6deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(349.2deg);
-				}
-			}
-			.ko-progress-circle[data-progress="98"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(176.4deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(176.4deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(352.8deg);
-				}
-			}
-			.ko-progress-circle[data-progress="99"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(178.2deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(178.2deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(356.4deg);
-				}
-			}
-			.ko-progress-circle[data-progress="100"] {
-				.ko-progress-circle__slice.full {
-					transform: rotate(180deg);
-				}
-				.ko-progress-circle__fill {
-					transform: rotate(180deg);
-				}
-				.ko-progress-circle__fill.ko-progress-circle__bar {
-					transform: rotate(360deg);
-				}
-			}
-		}
-		.row.hidden {
-			display: none;
-		}
-		h1 {
-			font-weight: 500;
-			font-size: 36px;
-			line-height: 1.1;
-			margin: 0;
-		}
-		h1.hidden {
-			display: none;
-		}
-		.headline {
-			font-weight: 400;
-			font-size: 20px;
-			line-height: 1;
-			margin: 10px 0 0 0;
-		}
-		.headline.hidden {
-			display: none;
-		}
-		p {
-			font-family: "Poppins", sans-serif;
-			flex: 1;
-			margin-top: 20px;
-		}
-		#yt-video {
-			width: 100%;
-			aspect-ratio: 16/9;
-		}
-		#yt-video.hidden {
-			display: none;
-		}
-		#house-url {
-			font-size: 12px;
-			font-weight: 600;
-			text-transform: uppercase;
-			text-align: center;
-			min-width: 200px;
-			display: inline-block;
-			padding: 15px 30px;
-			border: 2px solid #000000;
-			margin: 15px 0;
-			text-decoration: none;
-			color: inherit;
-		}
-		#house-url.hidden {
-			display: none;
-		}
-	}
-	.content.full {
-		width: 100%;
-		max-width: -webkit-max-content;
-		max-width: -moz-max-content;
-		max-width: max-content;
-	}
-	.parameters {
-		// width: 40%;
-		padding: 0 20px 20px 20px;
-		overflow: visible;
-		h3 {
-			text-transform: uppercase;
-		}
-		.parameter-bar {
-			width: 100%;
-			height: 7px;
-			background-color: #f5f5f5;
-			position: relative;
-			margin: 5px 0;
-			>div {
-				width: 0%;
-				transition: width .8s ease !important;
-			}
-			.p1 {
-				width: 0%;
-				width: 33.3333%;
-				height: 7px;
-				background-color: #74b743;
-				position: relative;
-			}
-			.p2 {
-				width: 66.6666%;
-				height: 7px;
-				background-color: #74b743;
-				position: relative;
-			}
-			.p3 {
-				width: 100%;
-				height: 7px;
-				background-color: #74b743;
-				position: relative;
-			}
-			div.p1 {
-				transition: width .8s ease !important;
-			}
-			div.p2 {
-				transition: width .8s ease !important;
-			}
-			div.p3 {
-				transition: width .8s ease !important;
-			}
-			&::before {
-				content: '';
-				width: 4px;
-				height: 7px;
-				left: 33%;
-				top: 0;
-				background: #fff;
-				position: absolute;
-				z-index: 100;
-			}
-			&::after {
-				content: '';
-				width: 4px;
-				height: 7px;
-				left: 66%;
-				top: 0;
-				background: #fff;
-				position: absolute;
-				z-index: 100;
-			}
-		}
-		.parameter-title {
-			position: relative;
-			span {
-				position: relative;
-				color: #ffffff;
-				font-size: 11px;
-				line-height: 15px;
-				background: #000000;
-				border-radius: 50%;
-				width: 15px;
-				height: 15px;
-				display: inline-block;
-				margin-top: -4px;
-				text-align: center;
-				vertical-align: text-top;
-				cursor: pointer;
-				margin-left: 3px;
-			}
-			.house-tooltip {
-				display: none;
-				flex-direction: column;
-				justify-content: center;
-				align-items: center;
-				position: relative;
-				margin-bottom: 10px;
-				width: -webkit-max-content;
-				width: -moz-max-content;
-				width: max-content;
-				z-index: 99999;
-				transition: all 0.25s ease-in-out;
-			}
-			.house-tooltip.active {
-				display: flex;
-				position: absolute;
-				bottom: 16px;
-				left: 50%;
-				transform: translateX(-50%);
-			}
-			.house-tooltip-arrow {
-				bottom: 0;
-				left: 50%;
-				margin-left: -5px;
-				border-width: 5px 5px 0;
-				border-top-color: #000000;
-			}
-			.house-tooltip-inner {
-				max-width: 200px;
-				padding: 3px 8px;
-				line-height: 1.42857143;
-				font-size: 11px;
-				color: #ffffff;
-				text-align: center;
-				background-color: #000000;
-				border-radius: 4px;
-				&::after {
-					content: "";
-					position: absolute;
-					top: 100%;
-					left: 50%;
-					transform: translateX(-50%);
-					width: 0;
-					height: 0;
-					border-top: solid 5px #000;
-					border-left: solid 5px transparent;
-					border-right: solid 5px transparent;
-				}
-			}
-		}
-	}
-}
-#viva-house-info.yt-only {
-	width: calc(100% - 64px);
-	height: -webkit-max-content;
-	height: -moz-max-content;
-	height: max-content;
-	max-height: 700px;
-	div {
-		&:not(.close) {
-			width: 100%;
-			.content {
-				max-width: 100%;
-			}
-		}
-	}
-}
-#viva-house-info.active {
-	display: flex;
-}
-#viva-house-info.anim {
-	opacity: 1;
-	transform: scale(1);
-}
-
-
-.viva-tooltip {
-  &:hover {
-    background-color: black;
-    color: white;
-  }
-}
-
-@media (max-width: 680px) {
-    #viva-house-info {
-        padding: 52px 16px 0 16px;
+    #welcome {
+        top: 40px;
+        left: 0px;
+        z-index: 4;
+        height: calc(100% - 40px);
     }
 
-    #viva-house-info .content #house-url {
-        min-width: auto;
-    }
-}
-
-@media (max-width: 800px) {
-    .infopanel.baumit .info-v1 .head {
-        flex-direction: column;
-    }
-
-    #viva-house-info>div {
-        flex-direction: column;
-    }
-
-    #viva-house-info .content {
+    #viva-intro {
+        position: absolute;
+        left: 0;
+        top: 0;
         width: 100%;
-    }
-
-    #viva-house-info .parameters {
-        width: 100%;
-    }
-
-    #viva-house-info .parameters h3 {
-        font-weight: 500;
-        text-transform: uppercase;
-        font-size: 14px;
-    }
-
-    #viva-house-info .parameters .parameter-title {
-        font-size: 13px;
-    }
-
-    #viva-house-info {
-        max-width: calc(100% - 32px);
-        max-height: calc(100% - 32px);
-    }
-
-    #viva-house-info .content h1 {
-        font-size: 30px;
-        margin: 0 auto;
-    }
-
-    #viva-house-info .content p {
-        font-size: 16px;
-    }
-
-    #viva-house-info .content {
-        padding: 0px 16px 16px;
+        height: 100%;
+        background: transparent;
+        z-index: 2;
         display: flex;
-        flex-direction: column;
-    }
-
-    #viva-house-info .content .row::after {
-        display: none;
-    }
-
-    #viva-house-info .content #yt-video {
-        margin-top: 20px;
-    }
-}
-
-@media (max-width: 500px) {
-    #viva-house-info .content .row {
-        flex-direction: column-reverse;
+        justify-content: center;
         align-items: center;
-        margin-top: 10px;
+        opacity: 0.5;
+        flex-direction: column;
+        z-index: 6;
+
+        p {
+            position: relative;
+            font-family: "Montserrat-Medium";
+            font-size: 11px;
+            color: #fff;
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 6px;
+            padding: 8px;
+            margin: 0;
+            width: auto;
+        }
     }
 
-    #viva-house-info .content p {
-        margin: 10px 0px 0px;
+    #modal {
+        z-index: 5;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        background: white;
+        padding: 30px;
+        height: auto;
+        width: calc(100% - 128px);
+        max-width: 800px;
+        max-height: calc(100% - 128px);
+        overflow: auto;
     }
-}
+
+    #viva-house-info {
+        background-color: white;
+        z-index: 6;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        width: calc(100% - 64px);
+        max-width: 940px;
+        height: calc(100% - 168px);
+        max-height: 680px;
+        overflow: auto;
+        padding: 40px;
+        box-sizing: border-box;
+        transition: all 0.25s ease-in-out;
+        div {
+            &:not(.close) {
+                height: -webkit-max-content;
+                height: -moz-max-content;
+                height: max-content;
+                box-sizing: border-box;
+            }
+        }
+        >div {
+            &:not(.close) {
+                display: flex;
+                width: 100%;
+            }
+        }
+        .content {
+            overflow: auto;
+            box-sizing: border-box;
+            font-size: 15px;
+            color: #333333;
+            line-height: 1.42857143;
+            max-width: 700px;
+            padding: 0 0 58px 0;
+            width: 100%;
+            max-width: -webkit-max-content;
+            max-width: -moz-max-content;
+            max-width: max-content;
+            .row {
+                display: flex;
+                flex-direction: row;
+                align-items: flex-start;
+                #viva-second {
+                    margin: 20px 50px;
+                    .comfort {
+                        font-size: 16px;
+                        font-weight: 500;
+                        text-transform: uppercase;
+                        margin: 0px 0px 10px 0px;
+                    }
+                }
+                #viva-second.hidden {
+                    display: none;
+                }
+                .house-tooltip {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    margin-bottom: 10px;
+                }
+                .house-tooltip-arrow {
+                    bottom: 0;
+                    left: 50%;
+                    margin-left: -5px;
+                    border-width: 5px 5px 0;
+                    border-top-color: #000000;
+                }
+                .house-tooltip-inner {
+                    max-width: 200px;
+                    padding: 3px 8px;
+                    line-height: 1.42857143;
+                    font-size: 11px;
+                    color: #ffffff;
+                    text-align: center;
+                    background-color: #000000;
+                    border-radius: 4px;
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: 100%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 0;
+                        height: 0;
+                        border-top: solid 5px #000;
+                        border-left: solid 5px transparent;
+                        border-right: solid 5px transparent;
+                    }
+                }
+                .ko-progress-circle {
+                    position: relative;
+                    width: 70px;
+                    height: 70px;
+                    max-width: 70px;
+                    max-height: 70px;
+                    margin: 0 auto;
+                    flex: 1;
+                    background-color: #e2e2e2;
+                    border-radius: 50%;
+                    .ko-progress-circle__slice {
+                        width: 70px;
+                        height: 70px;
+                        position: absolute;
+                        -webkit-backface-visibility: hidden;
+                        transition: transform 1s;
+                        border-radius: 50%;
+                        clip: rect(0px, 70px, 70px, 35px);
+                        .ko-progress-circle__fill {
+                            clip: rect(0px, 35px, 70px, 0px);
+                            background-color: #75b727;
+                        }
+                    }
+                    .ko-progress-circle__fill {
+                        width: 70px;
+                        height: 70px;
+                        position: absolute;
+                        -webkit-backface-visibility: hidden;
+                        transition: transform 1s;
+                        border-radius: 50%;
+                    }
+                    .ko-progress-circle__overlay {
+                        width: 35px;
+                        height: 35px;
+                        position: absolute;
+                        top: 50%;
+                        left: 50%;
+                        transform: translate(-50%, -50%);
+                        background-color: #fbfbfb;
+                        border-radius: 50%;
+                    }
+                }
+                .ko-progress-circle.hidden {
+                    display: none;
+                }
+                .ko-progress-circle[data-progress="0"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(0deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(0deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(0deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="1"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(1.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(1.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(3.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="2"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(3.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(3.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(7.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="3"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(5.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(5.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(10.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="4"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(7.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(7.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(14.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="5"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(9deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(9deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(18deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="6"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(10.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(10.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(21.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="7"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(12.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(12.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(25.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="8"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(14.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(14.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(28.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="9"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(16.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(16.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(32.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="10"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(18deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(18deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(36deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="11"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(19.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(19.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(39.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="12"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(21.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(21.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(43.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="13"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(23.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(23.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(46.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="14"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(25.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(25.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(50.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="15"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(27deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(27deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(54deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="16"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(28.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(28.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(57.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="17"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(30.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(30.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(61.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="18"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(32.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(32.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(64.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="19"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(34.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(34.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(68.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="20"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(36deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(36deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(72deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="21"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(37.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(37.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(75.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="22"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(39.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(39.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(79.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="23"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(41.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(41.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(82.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="24"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(43.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(43.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(86.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="25"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(45deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(45deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(90deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="26"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(46.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(46.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(93.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="27"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(48.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(48.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(97.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="28"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(50.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(50.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(100.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="29"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(52.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(52.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(104.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="30"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(54deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(54deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(108deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="31"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(55.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(55.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(111.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="32"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(57.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(57.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(115.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="33"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(59.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(59.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(118.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="34"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(61.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(61.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(122.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="35"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(63deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(63deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(126deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="36"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(64.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(64.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(129.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="37"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(66.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(66.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(133.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="38"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(68.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(68.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(136.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="39"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(70.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(70.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(140.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="40"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(72deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(72deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(144deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="41"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(73.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(73.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(147.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="42"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(75.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(75.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(151.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="43"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(77.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(77.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(154.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="44"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(79.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(79.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(158.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="45"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(81deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(81deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(162deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="46"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(82.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(82.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(165.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="47"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(84.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(84.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(169.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="48"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(86.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(86.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(172.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="49"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(88.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(88.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(176.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="50"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(90deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(90deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(180deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="51"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(91.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(91.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(183.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="52"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(93.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(93.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(187.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="53"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(95.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(95.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(190.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="54"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(97.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(97.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(194.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="55"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(99deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(99deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(198deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="56"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(100.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(100.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(201.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="57"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(102.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(102.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(205.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="58"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(104.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(104.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(208.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="59"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(106.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(106.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(212.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="60"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(108deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(108deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(216deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="61"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(109.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(109.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(219.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="62"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(111.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(111.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(223.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="63"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(113.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(113.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(226.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="64"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(115.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(115.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(230.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="65"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(117deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(117deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(234deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="66"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(118.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(118.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(237.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="67"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(120.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(120.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(241.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="68"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(122.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(122.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(244.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="69"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(124.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(124.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(248.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="70"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(126deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(126deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(252deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="71"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(127.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(127.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(255.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="72"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(129.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(129.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(259.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="73"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(131.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(131.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(262.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="74"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(133.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(133.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(266.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="75"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(135deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(135deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(270deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="76"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(136.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(136.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(273.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="77"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(138.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(138.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(277.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="78"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(140.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(140.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(280.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="79"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(142.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(142.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(284.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="80"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(144deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(144deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(288deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="81"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(145.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(145.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(291.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="82"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(147.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(147.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(295.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="83"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(149.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(149.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(298.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="84"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(151.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(151.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(302.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="85"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(153deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(153deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(306deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="86"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(154.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(154.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(309.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="87"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(156.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(156.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(313.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="88"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(158.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(158.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(316.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="89"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(160.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(160.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(320.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="90"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(162deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(162deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(324deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="91"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(163.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(163.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(327.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="92"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(165.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(165.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(331.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="93"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(167.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(167.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(334.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="94"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(169.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(169.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(338.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="95"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(171deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(171deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(342deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="96"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(172.8deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(172.8deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(345.6deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="97"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(174.6deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(174.6deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(349.2deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="98"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(176.4deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(176.4deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(352.8deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="99"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(178.2deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(178.2deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(356.4deg);
+                    }
+                }
+                .ko-progress-circle[data-progress="100"] {
+                    .ko-progress-circle__slice.full {
+                        transform: rotate(180deg);
+                    }
+                    .ko-progress-circle__fill {
+                        transform: rotate(180deg);
+                    }
+                    .ko-progress-circle__fill.ko-progress-circle__bar {
+                        transform: rotate(360deg);
+                    }
+                }
+            }
+            .row.hidden {
+                display: none;
+            }
+            h1 {
+                font-weight: 500;
+                font-size: 36px;
+                line-height: 1.1;
+                margin: 0;
+            }
+            h1.hidden {
+                display: none;
+            }
+            .headline {
+                font-weight: 400;
+                font-size: 20px;
+                line-height: 1;
+                margin: 10px 0 0 0;
+            }
+            .headline.hidden {
+                display: none;
+            }
+            p {
+                font-family: "Poppins", sans-serif;
+                flex: 1;
+                margin-top: 20px;
+            }
+            #yt-video {
+                width: 100%;
+                aspect-ratio: 16/9;
+            }
+            #yt-video.hidden {
+                display: none;
+            }
+            #house-url {
+                font-size: 12px;
+                font-weight: 600;
+                text-transform: uppercase;
+                text-align: center;
+                min-width: 200px;
+                display: inline-block;
+                padding: 15px 30px;
+                border: 2px solid #000000;
+                margin: 15px 0;
+                text-decoration: none;
+                color: inherit;
+            }
+            #house-url.hidden {
+                display: none;
+            }
+        }
+        .content.full {
+            width: 100%;
+            max-width: -webkit-max-content;
+            max-width: -moz-max-content;
+            max-width: max-content;
+        }
+        .parameters {
+            // width: 40%;
+            padding: 0 20px 20px 20px;
+            overflow: visible;
+            h3 {
+                text-transform: uppercase;
+            }
+            .parameter-bar {
+                width: 100%;
+                height: 7px;
+                background-color: #f5f5f5;
+                position: relative;
+                margin: 5px 0;
+                >div {
+                    width: 0%;
+                    transition: width .8s ease !important;
+                }
+                .p1 {
+                    width: 0%;
+                    width: 33.3333%;
+                    height: 7px;
+                    background-color: #74b743;
+                    position: relative;
+                }
+                .p2 {
+                    width: 66.6666%;
+                    height: 7px;
+                    background-color: #74b743;
+                    position: relative;
+                }
+                .p3 {
+                    width: 100%;
+                    height: 7px;
+                    background-color: #74b743;
+                    position: relative;
+                }
+                div.p1 {
+                    transition: width .8s ease !important;
+                }
+                div.p2 {
+                    transition: width .8s ease !important;
+                }
+                div.p3 {
+                    transition: width .8s ease !important;
+                }
+                &::before {
+                    content: '';
+                    width: 4px;
+                    height: 7px;
+                    left: 33%;
+                    top: 0;
+                    background: #fff;
+                    position: absolute;
+                    z-index: 100;
+                }
+                &::after {
+                    content: '';
+                    width: 4px;
+                    height: 7px;
+                    left: 66%;
+                    top: 0;
+                    background: #fff;
+                    position: absolute;
+                    z-index: 100;
+                }
+            }
+            .parameter-title {
+                position: relative;
+                span {
+                    position: relative;
+                    color: #ffffff;
+                    font-size: 11px;
+                    line-height: 15px;
+                    background: #000000;
+                    border-radius: 50%;
+                    width: 15px;
+                    height: 15px;
+                    display: inline-block;
+                    margin-top: -4px;
+                    text-align: center;
+                    vertical-align: text-top;
+                    cursor: pointer;
+                    margin-left: 3px;
+                }
+                .house-tooltip {
+                    display: none;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    margin-bottom: 10px;
+                    width: -webkit-max-content;
+                    width: -moz-max-content;
+                    width: max-content;
+                    z-index: 99999;
+                    transition: all 0.25s ease-in-out;
+                }
+                .house-tooltip.active {
+                    display: flex;
+                    position: absolute;
+                    bottom: 16px;
+                    left: 50%;
+                    transform: translateX(-50%);
+                }
+                .house-tooltip-arrow {
+                    bottom: 0;
+                    left: 50%;
+                    margin-left: -5px;
+                    border-width: 5px 5px 0;
+                    border-top-color: #000000;
+                }
+                .house-tooltip-inner {
+                    max-width: 200px;
+                    padding: 3px 8px;
+                    line-height: 1.42857143;
+                    font-size: 11px;
+                    color: #ffffff;
+                    text-align: center;
+                    background-color: #000000;
+                    border-radius: 4px;
+                    &::after {
+                        content: "";
+                        position: absolute;
+                        top: 100%;
+                        left: 50%;
+                        transform: translateX(-50%);
+                        width: 0;
+                        height: 0;
+                        border-top: solid 5px #000;
+                        border-left: solid 5px transparent;
+                        border-right: solid 5px transparent;
+                    }
+                }
+            }
+        }
+    }
+    #viva-house-info.yt-only {
+        width: calc(100% - 64px);
+        height: -webkit-max-content;
+        height: -moz-max-content;
+        height: max-content;
+        max-height: 700px;
+        div {
+            &:not(.close) {
+                width: 100%;
+                .content {
+                    max-width: 100%;
+                }
+            }
+        }
+    }
+    #viva-house-info.active {
+        display: flex;
+    }
+    #viva-house-info.anim {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    .viva-tooltip {
+        &:hover {
+            background-color: black;
+            color: white;
+        }
+    }
+
+    @media (max-width: 680px) {
+        #viva-house-info {
+            padding: 52px 16px 0 16px;
+        }
+
+        #viva-house-info .content #house-url {
+            min-width: auto;
+        }
+    }
+
+    @media (max-width: 800px) {
+        .infopanel.baumit .info-v1 .head {
+            flex-direction: column;
+        }
+
+        #viva-house-info>div {
+            flex-direction: column;
+        }
+
+        #viva-house-info .content {
+            width: 100%;
+        }
+
+        #viva-house-info .parameters {
+            width: 100%;
+        }
+
+        #viva-house-info .parameters h3 {
+            font-weight: 500;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        #viva-house-info .parameters .parameter-title {
+            font-size: 13px;
+        }
+
+        #viva-house-info {
+            max-width: calc(100% - 32px);
+            max-height: calc(100% - 32px);
+        }
+
+        #viva-house-info .content h1 {
+            font-size: 30px;
+            margin: 0 auto;
+        }
+
+        #viva-house-info .content p {
+            font-size: 16px;
+        }
+
+        #viva-house-info .content {
+            padding: 0px 16px 16px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        #viva-house-info .content .row::after {
+            display: none;
+        }
+
+        #viva-house-info .content #yt-video {
+            margin-top: 20px;
+        }
+    }
+
+    @media (max-width: 500px) {
+        #viva-house-info .content .row {
+            flex-direction: column-reverse;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        #viva-house-info .content p {
+            margin: 10px 0px 0px;
+        }
+    }
 </style>
