@@ -1,7 +1,7 @@
 // Garden Gnome Software - Skin
 // Pano2VR 6.1.15/18116
 // Filename: baumit-viva-park.ggsk
-// Generated 2023-02-24T09:40:42
+// Generated 2023-02-24T11:22:00
 
 function pano2vrSkin(player,base) {
 	player.addVariable('lang', 0, "");
@@ -84,6 +84,7 @@ function pano2vrSkin(player,base) {
 	player.addVariable('showVivaIntro', 1, 0);
 	player.addVariable('viva_global_info', 2, false);
 	player.addVariable('playPauseMedia', 2, false);
+	player.addVariable('viva_show_product', 2, false);
 	var me=this;
 	var skin=this;
 	var flag=false;
@@ -12929,7 +12930,7 @@ $('.viva-start').remove();
 		me._tooltip5.onclick=function (e) {
 			player.setVariableValue('productName', me.hotspot.title);
 			player.setVariableValue('product_ID', me.hotspot.title);
-			nacitajData(pano.getVariableValue('productName'), $(this).attr('data-product'),  $(this).attr('data-position'), $(this).attr('data-open'));
+			player.setVariableValue('viva_show_product', true);
 			skin.hotspotProxyClick(me.hotspot.id, me.hotspot.url);
 		}
 		me._tooltip5.ondblclick=function (e) {
@@ -12981,7 +12982,7 @@ $('.viva-start').remove();
 		hs+='overflow: hidden;';
 		hs+='overflow-y: auto;';
 		els.setAttribute('style',hs);
-		els.innerHTML="<div class=\"hts-title\">"+me.hotspot.description+"<\/div><span>|"+me.hotspot.title+"<\/span>";
+		els.innerHTML="<div class=\"hts-title pr"+me.hotspot.title+"\">"+me.hotspot.description+"|<span>"+me.hotspot.title+"<\/span><\/div>";
 		el.appendChild(els);
 		me._tooltip_design0.ggIsActive=function() {
 			if ((this.parentNode) && (this.parentNode.ggIsActive)) {
@@ -14638,7 +14639,7 @@ houseInfo(pano.getVariableValue('houseID'));
 		me._tooltip_right.onclick=function (e) {
 			player.setVariableValue('productName', me.hotspot.title);
 			player.setVariableValue('product_ID', me.hotspot.title);
-			nacitajData(pano.getVariableValue('productName'), $(this).attr('data-product'),  $(this).attr('data-position'));
+			player.setVariableValue('viva_show_product', true);
 			skin.hotspotProxyClick(me.hotspot.id, me.hotspot.url);
 		}
 		me._tooltip_right.ondblclick=function (e) {
@@ -14690,7 +14691,7 @@ houseInfo(pano.getVariableValue('houseID'));
 		hs+='overflow: hidden;';
 		hs+='overflow-y: auto;';
 		els.setAttribute('style',hs);
-		els.innerHTML="<div class=\"hts-title\">"+me.hotspot.description+"<\/div><span>|"+me.hotspot.title+"<\/span>";
+		els.innerHTML="<div class=\"hts-title pr"+me.hotspot.title+"\">"+me.hotspot.description+"|<span>"+me.hotspot.title+"<\/span><\/div>";
 		el.appendChild(els);
 		me._tooltip_design.ggIsActive=function() {
 			if ((this.parentNode) && (this.parentNode.ggIsActive)) {

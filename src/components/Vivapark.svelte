@@ -7,7 +7,7 @@ import {
 let active_house = 0;
 let user_lang, productUrl, housesUrl, subtitlesUrl = null;
 let intro, fetching_data, lang_data_loading, welcome = true;
-let about_viva, product_data_loaded, houses_data_loaded, subtitles_data_loaded, house_info = false;
+let about_viva, about_product, product_data_loaded, houses_data_loaded, subtitles_data_loaded, house_info = false;
 let _vivaData = {};
 
 let myTimeout;
@@ -459,6 +459,8 @@ function getSubtitlesLink($lang) {
             document.cookie = "user_lang=" + user_lang;
             //getVivaTranslations(user_lang);
             check_user_lang();
+            // show_layers(false);
+            pano.setVariableValue("playPauseMedia", false);
         });
 
         pano.on("varchanged_floorplan_full", function() {
@@ -491,8 +493,20 @@ function getSubtitlesLink($lang) {
             }
         });
 
-        pano.on("varchanged_playPauseMedia", function() {
+        pano.on("varchanged_viva_show_product", function() {
+            switch (pano.getVariableValue("viva_show_product")) {
+                case true:
+                    about_product = true;
+                    console.log(pano.getVariableValue("product_ID"));
+                    break;
             
+                default:
+                    about_product = false;
+                    break;
+            }
+        });
+
+        pano.on("varchanged_playPauseMedia", function() {
             let patchName = pano.getNodeUserdata(pano.getCurrentNode()).title;
             console.log(patchName);
             if (patchName != null && patchName != undefined) {
@@ -554,6 +568,8 @@ function getSubtitlesLink($lang) {
             
         });
 
+        
+
         pano.on("changenode", function() {
             clearTimeout(myTimeout);
             pano.setVariableValue("playPauseMedia", false);
@@ -602,10 +618,28 @@ function show_layers($value) {
             break;
     
         default:
-
-
-            jq(".viva-tooltip").removeClass("hidden");
-            break;
+            if (_vivaData["products"] != null) {
+                const hotspots = pano.getCurrentPointHotspots(); 
+                hotspots.forEach(hotspot => {
+                    if (hotspot.ggId == "ToolTip" || hotspot.ggId == "ToolTip Right") {
+                        const product_id = hotspot.textContent.replace("<span>", "").replace("</span>", "").split("|").pop() + productSuffix[user_lang];
+                        const product_id_clear = hotspot.textContent.split("|").pop();
+                        
+                        
+                        if (product_id != null && product_id != undefined) {
+                            console.log(product_id);
+                            _vivaData["products"].forEach(product => {
+                                if (product.pro_epim_productnr == product_id) {
+                                    console.log(product.name + "(" + product_id + ")");
+                                    jq(".pr" + product_id_clear).html(product.name + "<span>|" + product_id_clear + "</span>");
+                                    jq(".pr" + product_id_clear).parent().parent().parent().removeClass("hidden");
+                                }
+                            });
+                        }
+                    }
+                });
+            }
+        break;
     }
     jq("")
 }
@@ -1051,6 +1085,11 @@ $: {
 <!-- ak kliknem vo footri na ikonu global info -->
 {#if house_info == true}
 {#if active_house != -1}
+
+<!-- ak kliknem na vrstvu (produkt) na stene/múre -->
+{#if about_product}
+    <p>sdsgd</p> 
+{/if}
 <div id="viva-house-info">
     <div>
         <div class="close" on:click={() => close_house_info()}/>
