@@ -479,16 +479,28 @@ function getSubtitlesLink($lang) {
             let currentNode = pano.getCurrentNode();
             house_info = pano.getVariableValue("houseInfo");
             active_house = parseInt(pano.getNodeUserdata(currentNode).source) - 1;
+
+            switch (house_info) {
+                case "0":
+                    pano.setVariableValue("blurred", false);
+                    break;
+            
+                default:
+                    pano.setVariableValue("blurred", true);
+                    break;
+            }
         });
 
         pano.on("varchanged_viva_global_info", function() {
             switch (pano.getVariableValue("viva_global_info")) {
                 case true:
                     about_viva = true;
+                    pano.setVariableValue("blurred", true);
                     break;
 
                 default:
                     about_viva = false;
+                    pano.setVariableValue("blurred", false);
                     break;
             }
         });
@@ -498,10 +510,12 @@ function getSubtitlesLink($lang) {
             switch (pano.getVariableValue("product_ID")) {
                 case "0":
                     about_product = false;
+                    pano.setVariableValue("blurred", false);
                     break;
             
                 default:
                     about_product = true;
+                    pano.setVariableValue("blurred", true);
                 break;
             }
         });
@@ -511,10 +525,12 @@ function getSubtitlesLink($lang) {
             switch (pano.getVariableValue("tagValue")) {
                 case "0":
                     about_tag = false;
+                    pano.setVariableValue("blurred", false);
                     break;
             
                 default:
                     about_tag = true;
+                    pano.setVariableValue("blurred", true);
                 break;
             }
         });
@@ -647,7 +663,6 @@ function getSubtitlesLink($lang) {
                             }
                         }
                     break;
-            
                 default:
                     
                     if (_vivaData['houses'] != undefined) {
@@ -671,7 +686,6 @@ function getSubtitlesLink($lang) {
             }
         });
 
-        
     });
 
 function show_layers($value) {
@@ -985,11 +999,13 @@ function close_house_info() {
 function close_about_product(){
     pano.setVariableValue("product_ID", "0");
     about_product = false;
+    
 }
 
 function close_about_tag(){
     pano.setVariableValue("tagValue", "0");
     about_tag = false;
+    
 }
 
 add_video_patch();
@@ -999,11 +1015,12 @@ $: {
 
     switch (intro) {
         case true:
-
+            
             break;
 
         default:
             pano.setVariableValue("hotspots", true);
+            
             break;
     }
 }
