@@ -1332,7 +1332,7 @@ $: {
 {/if}
 
 {#if about_tag}
-    <div id="viva-house-info" class="viva-house-info">  
+    <div id="viva-house-info" class="tag">
         <div class="close" on:click={() => close_about_tag()}/>
             <div class="content">
                 {#each _vivaData["houses"]["additional_content"] as item}
@@ -1447,7 +1447,7 @@ $: {
         align-items: center;
         opacity: 0.5;
         flex-direction: column;
-        z-index: 6;
+        z-index: 100;
 
         p {
             position: relative;
@@ -2935,6 +2935,16 @@ $: {
             }
         }
     }
+
+    #viva-house-info.tag {
+        height: auto;
+        z-index: 3;
+        .content {
+            flex-direction: column;
+            padding: 0;
+        }
+    }
+
     #viva-house-info.active {
         display: flex;
     }
