@@ -1293,7 +1293,16 @@ $: {
                                     {/if}
                                 </ul>
 
-                                <a href="{urlPrefix[user_lang]}{product.details_url}" target="_blank">Viac</a>
+                                {#each _vivaData["houses"]["additional_content"] as item}
+                                     {#if item.name == "Navigation: More Info"}
+                                         {#if item.title_t[user_lang] != undefined}
+                                            <a href="{urlPrefix[user_lang]}{product.details_url}" target="_blank">{item.title_t[user_lang]}</a>
+                                        {:else}
+                                            <a href="{urlPrefix[user_lang]}{product.details_url}" target="_blank">{item.title_t["int"]}</a>
+                                         {/if}
+                                     {/if}
+                                {/each}
+                                
                             </div>
                         </section>
                         <section class="body">
