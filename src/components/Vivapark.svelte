@@ -524,6 +524,7 @@ function getSubtitlesLink($lang) {
                             jq(".pulse-layer").css({
                                 "display" : "flex"
                             });
+                            show_layers(true);
                         }, half);
                         break;
 
@@ -532,6 +533,7 @@ function getSubtitlesLink($lang) {
                             jq(".pulse-layer").css({
                                 "display" : "none"
                             });
+                            show_layers(false);
                             pano.playSound(patchName);
                             setTimeout(() => {
                                 pano.stopSound(patchName);
@@ -588,6 +590,20 @@ function getSubtitlesLink($lang) {
 
         });
     });
+
+function show_layers($value) {
+    switch ($value) {
+        case false:
+            jq(".viva-tooltip").addClass("hidden");
+            
+            break;
+    
+        default:
+            jq(".viva-tooltip").removeClass("hidden");
+            break;
+    }
+    jq("")
+}
 
 function change_hotspots_title() {
     jq.each(jq('.hts-np'), function() {
@@ -679,6 +695,7 @@ function change_hotspots_title() {
 
     });
 }
+
 
 // zmena jazyka pre Google mapu
 function change_map_url() {
