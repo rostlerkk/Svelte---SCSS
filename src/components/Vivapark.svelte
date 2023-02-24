@@ -492,11 +492,12 @@ function getSubtitlesLink($lang) {
         });
 
         pano.on("varchanged_playPauseMedia", function() {
-            const patchName = pano.getNodeUserdata(pano.getCurrentNode()).title;
+            let patchName = pano.getNodeUserdata(pano.getCurrentNode()).title;
+            console.log(patchName);
             if (patchName != null && patchName != undefined) {
 
-                const videoDuration = pano.getMediaObject(patchName).duration;
-                const half = (videoDuration / 2) * 1000;
+                const videoDuration = 4.166666;
+                let half = (videoDuration / 2) * 1000;
                 console.log(videoDuration + " / " + half);
 
                 switch (pano.getVariableValue("playPauseMedia")) {
@@ -509,12 +510,15 @@ function getSubtitlesLink($lang) {
                         break;
 
                     default:
+                        if (pano.soundGetTime(patchName) > 0) {
+                            pano.playSound(patchName);
+                            setTimeout(() => {
+                                pano.stopSound(patchName);
+                                pano.soundSetTime(patchName, 0);
+                            }, half);
+                        }
                         //pano.soundSetTime(patchName, half);
-                        pano.playSound(patchName);
-                        setTimeout(() => {
-                            pano.stopSound(patchName);
-                            pano.soundSetTime(patchName, 0);
-                        }, half);
+                        
 
                         break;
                 }
