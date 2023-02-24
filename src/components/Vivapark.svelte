@@ -494,7 +494,6 @@ function getSubtitlesLink($lang) {
         });
 
         pano.on("varchanged_product_ID", function() {
-            console.log("sdfsdg");
             product_id = pano.getVariableValue("product_ID");
             switch (pano.getVariableValue("product_ID")) {
                 case "0":
@@ -624,12 +623,10 @@ function show_layers($value) {
                         const product_id = hotspot.textContent.replace("<span>", "").replace("</span>", "").split("|").pop() + productSuffix[user_lang];
                         const product_id_clear = hotspot.textContent.split("|").pop();
                         
-                        
                         if (product_id != null && product_id != undefined) {
-                            console.log(product_id);
+                            
                             _vivaData["products"].forEach(product => {
                                 if (product.pro_epim_productnr == product_id) {
-                                    console.log(product.name + "(" + product_id + ")");
                                     jq(".pr" + product_id_clear).html(product.name + "<span>|" + product_id_clear + "</span>");
                                     jq(".pr" + product_id_clear).parent().parent().parent().removeClass("hidden");
                                 }
@@ -779,7 +776,7 @@ function change_logo_img() {
     }
 
     jq('.vp-logo').on('click tap', function() {
-        window.location = 'https://tour.baumit.com/';
+        window.open('https://tour.baumit.com/', '_blank');
     });
 }
 
