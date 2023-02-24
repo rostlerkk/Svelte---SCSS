@@ -993,17 +993,19 @@ function close_house_info() {
     about_viva = false;
     pano.setVariableValue("houseInfo", false);
     pano.setVariableValue("viva_global_info", false);
-
+    pano.setVariableValue("blurred", false);
 }
 
 function close_about_product(){
     pano.setVariableValue("product_ID", "0");
     about_product = false;
+    pano.setVariableValue("blurred", false);
     
 }
 
 function close_about_tag(){
     pano.setVariableValue("tagValue", "0");
+    pano.setVariableValue("blurred", false);
     about_tag = false;
     
 }
