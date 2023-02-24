@@ -1337,8 +1337,14 @@ $: {
             <div class="content">
                 {#each _vivaData["houses"]["additional_content"] as item}
                     
-                    {#if tagValue == "Global Temperature Sensor"}
-                        {#if "VIVA: " + tagValue == item.name}
+                    {#if tagValue == "Global Temperature Sensor" ||
+                        tagValue == "Air Supply" ||
+                        tagValue == "Humidifier" ||
+                        tagValue == "Air Exhaust" || 
+                        tagValue == "Built-in sensors" ||
+                        tagValue == "Temperature sensor for the surface temperature" 
+                    }
+                        {#if "viva: " + tagValue.toLowerCase() == item.name.toLowerCase()}
                             {#if item.title_t[user_lang] != undefined && item.title_t[user_lang] != null}
                                 <h1>{item.title_t[user_lang]}</h1>
                             {:else}

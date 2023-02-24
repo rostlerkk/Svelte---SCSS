@@ -800,7 +800,7 @@
           <polygon/>
           <type>point</type>
           <id>tag</id>
-          <title>Temperature sensor</title>
+          <title>Temperature sensor for the surface temperature</title>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
           <skinid>Tag</skinid>
@@ -1682,7 +1682,7 @@
           <polygon/>
           <type>point</type>
           <id>tag</id>
-          <title>Temperature sensor</title>
+          <title>Temperature sensor for the surface temperature</title>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
           <skinid>Tag</skinid>
@@ -2493,7 +2493,7 @@
           <polygon/>
           <type>point</type>
           <id>tag</id>
-          <title>Temperature sensor</title>
+          <title>Temperature sensor for the surface temperature</title>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
           <skinid>Tag</skinid>
@@ -3276,7 +3276,7 @@
           <polygon/>
           <type>point</type>
           <id>tag</id>
-          <title>Temperature sensor</title>
+          <title>Temperature sensor for the surface temperature</title>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
           <skinid>Tag</skinid>
@@ -4140,7 +4140,7 @@
           <polygon/>
           <type>point</type>
           <id>tag</id>
-          <title>Temperature sensor</title>
+          <title>Temperature sensor for the surface temperature</title>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
           <skinid>Tag</skinid>
@@ -4973,7 +4973,7 @@
           <polygon/>
           <type>point</type>
           <id>tag</id>
-          <title>Temperature sensor</title>
+          <title>Temperature sensor for the surface temperature</title>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
           <skinid>Tag</skinid>
@@ -5807,7 +5807,7 @@
           <polygon/>
           <type>point</type>
           <id>tag</id>
-          <title>Temperature sensor</title>
+          <title>Temperature sensor for the surface temperature</title>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
           <skinid>Tag</skinid>
@@ -7545,7 +7545,7 @@
           <polygon/>
           <type>point</type>
           <id>tag</id>
-          <title>Temperature sensor</title>
+          <title>Temperature sensor for the surface temperature</title>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
           <skinid>Tag</skinid>
@@ -8275,7 +8275,7 @@
           <polygon/>
           <type>point</type>
           <id>tag</id>
-          <title>Temperature sensor</title>
+          <title>Temperature sensor for the surface temperature</title>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
           <skinid>Tag</skinid>
@@ -8977,7 +8977,7 @@
           <polygon/>
           <type>point</type>
           <id>tag</id>
-          <title>Temperature sensor</title>
+          <title>Temperature sensor for the surface temperature</title>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
           <skinid>Tag</skinid>
@@ -9781,7 +9781,7 @@
           <polygon/>
           <type>point</type>
           <id>tag</id>
-          <title>Temperature sensor</title>
+          <title>Temperature sensor for the surface temperature</title>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
           <skinid>Tag</skinid>
@@ -10558,7 +10558,7 @@
           <polygon/>
           <type>point</type>
           <id>tag</id>
-          <title>Temperature sensor</title>
+          <title>Temperature sensor for the surface temperature</title>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
           <skinid>Tag</skinid>

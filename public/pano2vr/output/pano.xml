@@ -101,7 +101,7 @@
       <hotspot skinid="Tag" title="Global Temperature Sensor" target="_blank" tilt="-33.98" pan="-91.09" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Humidifier" target="_blank" tilt="-67.61" pan="-152.04" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Built-in sensors" target="_blank" tilt="-7.76" pan="-247.84" description="" url="" id="tag"/>
-      <hotspot skinid="Tag" title="Temperature sensor" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
+      <hotspot skinid="Tag" title="Temperature sensor for the surface temperature" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Air Exhaust" target="_blank" tilt="-31.55" pan="-273.73" description="" url="" id="tag"/>
       <hotspot skinid="Layers-icon" title="" target="_blank" tilt="2.14" pan="-355.26" description="" url="" id="Point05"/>
       <hotspot skinid="Enter " title="Exterier_01" target="" tilt="-17.29" pan="-317.1" description="" url="{node2}" id="Point01"/>
@@ -188,7 +188,7 @@
       <hotspot skinid="Tag" title="Global Temperature Sensor" target="_blank" tilt="-33.98" pan="-91.09" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Humidifier" target="_blank" tilt="-67.61" pan="-152.04" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Built-in sensors" target="_blank" tilt="-7.76" pan="-247.84" description="" url="" id="tag"/>
-      <hotspot skinid="Tag" title="Temperature sensor" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
+      <hotspot skinid="Tag" title="Temperature sensor for the surface temperature" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Air Exhaust" target="_blank" tilt="-31.55" pan="-273.73" description="" url="" id="tag"/>
       <hotspot skinid="Layers-icon" title="" target="_blank" tilt="-0.8" pan="-355.23" description="" url="" id="Point05"/>
       <hotspot skinid="Enter " title="Exterier_02" target="" tilt="-17.29" pan="-317.1" description="" url="{node3}" id="Point01"/>
@@ -275,7 +275,7 @@
       <hotspot skinid="Tag" title="Global Temperature Sensor" target="_blank" tilt="-33.98" pan="-91.09" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Humidifier" target="_blank" tilt="-67.61" pan="-152.04" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Built-in sensors" target="_blank" tilt="-7.76" pan="-247.84" description="" url="" id="tag"/>
-      <hotspot skinid="Tag" title="Temperature sensor" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
+      <hotspot skinid="Tag" title="Temperature sensor for the surface temperature" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Air Exhaust" target="_blank" tilt="-31.55" pan="-273.73" description="" url="" id="tag"/>
       <hotspot skinid="Layers-icon" title="" target="_blank" tilt="-1.61" pan="-355.14" description="" url="" id="Point05"/>
       <hotspot skinid="Enter " title="Exterier_03" target="" tilt="-17.29" pan="-317.1" description="" url="{node4}" id="Point01"/>
@@ -359,7 +359,7 @@
       <hotspot skinid="Tag" title="Global Temperature Sensor" target="_blank" tilt="-33.98" pan="-91.09" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Humidifier" target="_blank" tilt="-67.61" pan="-152.04" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Built-in sensors" target="_blank" tilt="-7.76" pan="-247.84" description="" url="" id="tag"/>
-      <hotspot skinid="Tag" title="Temperature sensor" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
+      <hotspot skinid="Tag" title="Temperature sensor for the surface temperature" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Air Exhaust" target="_blank" tilt="-31.55" pan="-273.73" description="" url="" id="tag"/>
       <hotspot skinid="Layers-icon" title="" target="_blank" tilt="-0.05" pan="-355.18" description="" url="" id="Point05"/>
       <hotspot skinid="Enter " title="Exterier_04" target="" tilt="-17.36" pan="-317.1" description="" url="{node5}" id="Point01"/>
@@ -448,7 +448,7 @@
       <hotspot skinid="Tag" title="Global Temperature Sensor" target="_blank" tilt="-33.98" pan="-91.09" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Humidifier" target="_blank" tilt="-67.61" pan="-152.04" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Built-in sensors" target="_blank" tilt="-7.76" pan="-247.84" description="" url="" id="tag"/>
-      <hotspot skinid="Tag" title="Temperature sensor" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
+      <hotspot skinid="Tag" title="Temperature sensor for the surface temperature" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Air Exhaust" target="_blank" tilt="-31.55" pan="-273.73" description="" url="" id="tag"/>
       <hotspot skinid="Layers-icon" title="" target="_blank" tilt="-0.95" pan="-355.17" description="" url="" id="Point05"/>
       <hotspot skinid="Enter " title="Exterier_05" target="" tilt="-17.29" pan="-317.1" description="" url="{node11}" id="Point01"/>
@@ -534,7 +534,7 @@
       <hotspot skinid="Tag" title="Global Temperature Sensor" target="_blank" tilt="-33.98" pan="-91.09" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Humidifier" target="_blank" tilt="-67.61" pan="-152.04" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Built-in sensors" target="_blank" tilt="-7.76" pan="-247.84" description="" url="" id="tag"/>
-      <hotspot skinid="Tag" title="Temperature sensor" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
+      <hotspot skinid="Tag" title="Temperature sensor for the surface temperature" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Air Exhaust" target="_blank" tilt="-31.55" pan="-273.73" description="" url="" id="tag"/>
       <hotspot skinid="Layers-icon" title="" target="_blank" tilt="-0.95" pan="-355.17" description="" url="" id="Point05"/>
       <hotspot skinid="Enter " title="Exterier_06" target="" tilt="-17.29" pan="-317.1" description="" url="{node6}" id="Point01"/>
@@ -620,7 +620,7 @@
       <hotspot skinid="Tag" title="Global Temperature Sensor" target="_blank" tilt="-33.98" pan="-91.09" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Humidifier" target="_blank" tilt="-67.61" pan="-152.04" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Built-in sensors" target="_blank" tilt="-7.76" pan="-247.84" description="" url="" id="tag"/>
-      <hotspot skinid="Tag" title="Temperature sensor" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
+      <hotspot skinid="Tag" title="Temperature sensor for the surface temperature" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Air Exhaust" target="_blank" tilt="-31.55" pan="-273.73" description="" url="" id="tag"/>
       <hotspot skinid="Layers-icon" title="" target="_blank" tilt="-0.95" pan="-355.17" description="" url="" id="Point05"/>
       <hotspot skinid="Enter " title="Exterier_07" target="" tilt="-17.29" pan="-317.1" description="" url="{node7}" id="Point01"/>
@@ -798,7 +798,7 @@
       <hotspot skinid="Tag" title="Global Temperature Sensor" target="_blank" tilt="-33.98" pan="-91.09" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Humidifier" target="_blank" tilt="-67.61" pan="-152.04" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Built-in sensors" target="_blank" tilt="-7.76" pan="-247.84" description="" url="" id="tag"/>
-      <hotspot skinid="Tag" title="Temperature sensor" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
+      <hotspot skinid="Tag" title="Temperature sensor for the surface temperature" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Air Exhaust" target="_blank" tilt="-31.55" pan="-273.73" description="" url="" id="tag"/>
       <hotspot skinid="Layers-icon" title="" target="_blank" tilt="-0.95" pan="-355.17" description="" url="" id="Point05"/>
       <hotspot skinid="Enter " title="Exterier_09" target="" tilt="-17.29" pan="-317.1" description="" url="{node8}" id="Point01"/>
@@ -880,7 +880,7 @@
       <hotspot skinid="Tag" title="Global Temperature Sensor" target="_blank" tilt="-33.98" pan="-91.09" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Humidifier" target="_blank" tilt="-67.61" pan="-152.04" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Built-in sensors" target="_blank" tilt="-7.76" pan="-247.84" description="" url="" id="tag"/>
-      <hotspot skinid="Tag" title="Temperature sensor" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
+      <hotspot skinid="Tag" title="Temperature sensor for the surface temperature" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Air Exhaust" target="_blank" tilt="-31.55" pan="-273.73" description="" url="" id="tag"/>
       <hotspot skinid="Enter " title="Exterier_10" target="" tilt="-17.29" pan="-317.1" description="" url="{node12}" id="Point01"/>
       <hotspot skinid="Interier info" title="" target="_blank" tilt="-1.21" pan="-335.21" description="" url="" id="House info"/>
@@ -959,7 +959,7 @@
       <hotspot skinid="Tag" title="Global Temperature Sensor" target="_blank" tilt="-33.98" pan="-91.09" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Humidifier" target="_blank" tilt="-67.61" pan="-152.04" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Built-in sensors" target="_blank" tilt="-7.76" pan="-247.84" description="" url="" id="tag"/>
-      <hotspot skinid="Tag" title="Temperature sensor" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
+      <hotspot skinid="Tag" title="Temperature sensor for the surface temperature" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Air Exhaust" target="_blank" tilt="-31.55" pan="-273.73" description="" url="" id="tag"/>
       <hotspot skinid="Layers-icon" title="" target="_blank" tilt="-0.95" pan="-355.17" description="" url="" id="Point05"/>
       <hotspot skinid="Enter " title="Exterier_11" target="" tilt="-17.29" pan="-317.1" description="" url="{node13}" id="Point01"/>
@@ -1042,7 +1042,7 @@
       <hotspot skinid="Tag" title="Global Temperature Sensor" target="_blank" tilt="-33.98" pan="-91.09" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Humidifier" target="_blank" tilt="-67.61" pan="-152.04" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Built-in sensors" target="_blank" tilt="-7.76" pan="-247.84" description="" url="" id="tag"/>
-      <hotspot skinid="Tag" title="Temperature sensor" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
+      <hotspot skinid="Tag" title="Temperature sensor for the surface temperature" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Air Exhaust" target="_blank" tilt="-31.55" pan="-273.73" description="" url="" id="tag"/>
       <hotspot skinid="Layers-icon" title="" target="_blank" tilt="-0.95" pan="-355.17" description="" url="" id="Point05"/>
       <hotspot skinid="Enter " title="Exterier_12" target="" tilt="-17.29" pan="-317.1" description="" url="{node14}" id="Point01"/>
@@ -1124,7 +1124,7 @@
       <hotspot skinid="Tag" title="Global Temperature Sensor" target="_blank" tilt="-33.98" pan="-91.09" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Humidifier" target="_blank" tilt="-67.61" pan="-152.04" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Built-in sensors" target="_blank" tilt="-7.76" pan="-247.84" description="" url="" id="tag"/>
-      <hotspot skinid="Tag" title="Temperature sensor" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
+      <hotspot skinid="Tag" title="Temperature sensor for the surface temperature" target="_blank" tilt="-11.5" pan="-267.26" description="" url="" id="tag"/>
       <hotspot skinid="Tag" title="Air Exhaust" target="_blank" tilt="-31.55" pan="-273.73" description="" url="" id="tag"/>
       <hotspot skinid="Layers-icon" title="" target="_blank" tilt="-0.95" pan="-355.17" description="" url="" id="Point05"/>
       <hotspot skinid="Enter " title="Exterier_13" target="" tilt="-17.29" pan="-317.1" description="" url="{node15}" id="Point01"/>
