@@ -10,6 +10,8 @@ let intro, fetching_data, lang_data_loading, welcome = true;
 let about_viva, product_data_loaded, houses_data_loaded, subtitles_data_loaded, house_info = false;
 let _vivaData = {};
 
+let myTimeout;
+
 // aktivácia jQuery
 const jq = window.$;
 
@@ -519,7 +521,7 @@ function getSubtitlesLink($lang) {
                         });
                         pano.playSound(patchName);
 
-                        setTimeout(() => {
+                        myTimeout = setTimeout(() => {
                             pano.pauseSound(patchName);
                             jq(".pulse-layer").css({
                                 "display" : "flex"
@@ -535,7 +537,7 @@ function getSubtitlesLink($lang) {
                             });
                             show_layers(false);
                             pano.playSound(patchName);
-                            setTimeout(() => {
+                            myTimeout = setTimeout(() => {
                                 pano.stopSound(patchName);
                                 pano.soundSetTime(patchName, 0);
                                 jq(".pulse-layer").css({
@@ -553,6 +555,7 @@ function getSubtitlesLink($lang) {
         });
 
         pano.on("changenode", function() {
+            clearTimeout(myTimeout);
             pano.setVariableValue("playPauseMedia", false);
             // vypnutie video patchov
             for (let index = 0; index < 3; index++) {
@@ -599,6 +602,8 @@ function show_layers($value) {
             break;
     
         default:
+
+
             jq(".viva-tooltip").removeClass("hidden");
             break;
     }
