@@ -447,88 +447,119 @@ function getSubtitlesLink($lang) {
     }
 }
 
-pano.on("configloaded", function() {
-    let showVivaIntro = null;
-    pano.setVariableValue('blurred', false);
-    //pano.setVariableValue('intro', false);
+    pano.on("configloaded", function() {
+        let showVivaIntro = null;
+        pano.setVariableValue('blurred', false);
+        //pano.setVariableValue('intro', false);
 
-    pano.on("varchanged_lang", function() {
-        user_lang = pano.getVariableValue("lang");
-        document.cookie = "user_lang=" + user_lang;
-        //getVivaTranslations(user_lang);
-        check_user_lang();
+        pano.on("varchanged_lang", function() {
+            user_lang = pano.getVariableValue("lang");
+            document.cookie = "user_lang=" + user_lang;
+            //getVivaTranslations(user_lang);
+            check_user_lang();
+        });
+
+        pano.on("varchanged_floorplan_full", function() {
+            switch (pano.getVariableValue("floorplan_full")) {
+                case true:
+                    change_floorplan_title();
+                    change_comfort_level_floorplan();
+                    break;
+
+                default:
+                    break;
+            }
+        });
+
+        pano.on("varchanged_houseInfo", function() {
+            let currentNode = pano.getCurrentNode();
+            house_info = pano.getVariableValue("houseInfo");
+            active_house = parseInt(pano.getNodeUserdata(currentNode).source) - 1;
+            console.log(house_info);
+            console.log(active_house);
+        });
+
+        pano.on("varchanged_viva_global_info", function() {
+            switch (pano.getVariableValue("viva_global_info")) {
+                case true:
+                    about_viva = true;
+                    break;
+
+                default:
+                    about_viva = false;
+                    break;
+            }
+        });
+
+        pano.on("varchanged_playPauseMedia", function() {
+            const patchName = pano.getNodeUserdata(pano.getCurrentNode()).title;
+            if (patchName != null && patchName != undefined) {
+
+                const videoDuration = pano.getMediaObject(patchName).duration;
+                const half = (videoDuration / 2) * 1000;
+                console.log(videoDuration + " / " + half);
+
+                switch (pano.getVariableValue("playPauseMedia")) {
+                    case true:
+                        pano.playSound(patchName);
+
+                        setTimeout(() => {
+                            pano.pauseSound(patchName);
+                        }, half);
+                        break;
+
+                    default:
+                        //pano.soundSetTime(patchName, half);
+                        pano.playSound(patchName);
+                        setTimeout(() => {
+                            pano.stopSound(patchName);
+                            pano.soundSetTime(patchName, 0);
+                        }, half);
+
+                        break;
+                }
+            }
+            
+        });
+
+        pano.on("changenode", function() {
+            pano.setVariableValue("playPauseMedia", false);
+            // vypnutie video patchov
+            for (let index = 0; index < 3; index++) {
+                pano.setMediaVisibility('video_' + index, false);
+            }
+
+            // označenie názvu scény
+            let node_id = pano.getNodeUserdata(pano.getCurrentNode()).source;
+            let title = jq('.header > .title > div');
+
+            switch (node_id) {
+                case '1':
+                case '2':
+                case '3':
+                case '4':
+                case '5':
+                case '6':
+                case '7':
+                case '8':
+                case '9':
+                case '10':
+                case '11':
+                case '12':
+                case '13':
+                    let house_title = null;
+                    title.text(_vivaData['houses']['buildings'][parseInt(node_id) - 1].house_nr);
+                    break;
+
+                default:
+                    title.text('Viva park');
+                    break;
+            }
+
+            change_hotspots_title();
+
+        });
     });
-
-    pano.on("varchanged_floorplan_full", function() {
-        switch (pano.getVariableValue("floorplan_full")) {
-            case true:
-                change_floorplan_title();
-                change_comfort_level_floorplan();
-                break;
-
-            default:
-                break;
-        }
-    });
-
-    pano.on("varchanged_houseInfo", function() {
-        let currentNode = pano.getCurrentNode();
-        house_info = pano.getVariableValue("houseInfo");
-        active_house = parseInt(pano.getNodeUserdata(currentNode).source) - 1;
-        console.log(house_info);
-        console.log(active_house);
-    });
-
-    pano.on("varchanged_viva_global_info", function() {
-        switch (pano.getVariableValue("viva_global_info")) {
-            case true:
-                about_viva = true;
-                break;
-
-            default:
-                about_viva = false;
-                break;
-        }
-    });
-
-    pano.on("changenode", function() {
-
-        // vypnutie video patchov
-        for (let index = 0; index < 3; index++) {
-            pano.setMediaVisibility('video_' + index, false);
-        }
-
-        // označenie názvu scény
-        let node_id = pano.getNodeUserdata(pano.getCurrentNode()).source;
-        let title = jq('.header > .title > div');
-
-        switch (node_id) {
-            case '1':
-            case '2':
-            case '3':
-            case '4':
-            case '5':
-            case '6':
-            case '7':
-            case '8':
-            case '9':
-            case '10':
-            case '11':
-            case '12':
-            case '13':
-                let house_title = null;
-                title.text(_vivaData['houses']['buildings'][parseInt(node_id) - 1].house_nr);
-                break;
-
-            default:
-                title.text('Viva park');
-                break;
-        }
-
-        change_hotspots_title();
-
-    });
-});
 
 function change_hotspots_title() {
     jq.each(jq('.hts-np'), function() {
