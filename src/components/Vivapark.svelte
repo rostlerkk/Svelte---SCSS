@@ -473,11 +473,22 @@ pano.on("configloaded", function() {
 
     pano.on("varchanged_houseInfo", function() {
         let currentNode = pano.getCurrentNode();
-        console.log("sfasff");
         house_info = pano.getVariableValue("houseInfo");
         active_house = parseInt(pano.getNodeUserdata(currentNode).source) - 1;
         console.log(house_info);
         console.log(active_house);
+    });
+
+    pano.on("varchanged_viva_global_info", function() {
+        switch (pano.getVariableValue("viva_global_info")) {
+            case true:
+                about_viva = true;
+                break;
+
+            default:
+                about_viva = false;
+                break;
+        }
     });
 
     pano.on("changenode", function() {
@@ -788,7 +799,9 @@ function add_video_patch() {
 
 function close_house_info() {
     house_info = false;
+    about_viva = false;
     pano.setVariableValue("houseInfo", false);
+    pano.setVariableValue("viva_global_info", false);
 
 }
 
@@ -818,141 +831,140 @@ $: {
 
 <!-- ak je povolené intro -->
 {#if intro}
-{#if _vivaData != null}
-{#if _vivaData["houses"] != undefined}
-<div id="welcome">
-    <div id="wrapper">
-        <div id="header">
-            {#each _vivaData["houses"]["additional_content"] as item}
-            {#if item.name == "VIVA: Intro: Title"}
-            {#if item.title_t[user_lang] != null}
-            <h1>{item.title_t[user_lang]}</h1>
-            {:else}
-            <h1>{item.title_t["int"]}</h1>
-            {/if}
+    {#if _vivaData != null}
+        {#if _vivaData["houses"] != undefined}
+            <div id="welcome">
+                <div id="wrapper">
+                    <div id="header">
+                        {#each _vivaData["houses"]["additional_content"] as item}
+                        {#if item.name == "VIVA: Intro: Title"}
+                        {#if item.title_t[user_lang] != null}
+                        <h1>{item.title_t[user_lang]}</h1>
+                        {:else}
+                        <h1>{item.title_t["int"]}</h1>
+                        {/if}
 
-            {#if item.content_t[user_lang] != null}
-            <h2>{item.content_t[user_lang]}</h2>
-            {:else}
-            <h2>{item.content_t["int"]}</h2>
-            {/if}
-            {/if}
+                        {#if item.content_t[user_lang] != null}
+                        <h2>{item.content_t[user_lang]}</h2>
+                        {:else}
+                        <h2>{item.content_t["int"]}</h2>
+                        {/if}
+                        {/if}
 
-            {#if item.name == "Navigation: Company Info"}
-            {#if item.content_t[user_lang] != null}
-            <p>{item.content_t[user_lang]}</p>
-            {:else}
-            <p>{item.content_t["int"]}</p>
-            {/if}
-            {/if}
-            {/each}
+                        {#if item.name == "Navigation: Company Info"}
+                        {#if item.content_t[user_lang] != null}
+                        <p>{item.content_t[user_lang]}</p>
+                        {:else}
+                        <p>{item.content_t["int"]}</p>
+                        {/if}
+                        {/if}
+                        {/each}
 
-            <div class="buttons">
-                {#each _vivaData["houses"]["additional_content"] as item}
-                {#if item.name == "VIVA: Startscreen: Play"}
-                {#if item.title_t[user_lang] != null}
-                <button id="play_tour">{item.title_t[user_lang]}</button>
-                {:else}
-                <button id="play_tour">{item.title_t["int"]}</button>
-                {/if}
-                <!-- <button id="play_tour">{item.title}</button> -->
-                {/if}
+                        <div class="buttons">
+                            {#each _vivaData["houses"]["additional_content"] as item}
+                            {#if item.name == "VIVA: Startscreen: Play"}
+                            {#if item.title_t[user_lang] != null}
+                            <button id="play_tour">{item.title_t[user_lang]}</button>
+                            {:else}
+                            <button id="play_tour">{item.title_t["int"]}</button>
+                            {/if}
+                            <!-- <button id="play_tour">{item.title}</button> -->
+                            {/if}
 
-                {#if item.name == "VIVA: Startscreen: More info"}
-                <button id="more_info" on:click={() => about_viva_park()}>
-                    {#if item.title_t[user_lang] != null}
-                    {item.title_t[user_lang]}
-                    {:else}
-                    {item.title_t["int"]}
-                    {/if}
-                </button>
-                <!-- <button id="more_info">{item.title}</button> -->
-                {/if}
-                {/each}
+                            {#if item.name == "VIVA: Startscreen: More info"}
+                            <button id="more_info" on:click={() => about_viva_park()}>
+                                {#if item.title_t[user_lang] != null}
+                                {item.title_t[user_lang]}
+                                {:else}
+                                {item.title_t["int"]}
+                                {/if}
+                            </button>
+                            <!-- <button id="more_info">{item.title}</button> -->
+                            {/if}
+                            {/each}
+                        </div>
+                    </div>
+                    <div id="footer">
+                        <div id="research" class="item" on:click={() => quick_tour()}>
+                            <div class="thumbnail">
+                                <img src="images/btn-1.jpg">
+                            </div>
+                            <div class="text">
+                                {#each _vivaData["houses"]["additional_content"] as item}
+                                {#if item.name == "VIVA: Startscreen: Button 1"}
+                                {#if item.title_t[user_lang] != null}
+                                <h4>{item.title_t[user_lang]}</h4>
+                                {:else}
+                                <h4>{item.title_t["int"]}</h4>
+                                {/if}
+                                {/if}
+                                {/each}
+                            </div>
+                        </div>
+                        <div id="rules" class="item" on:click={() => go_to_house_8()}>
+                            <div class="thumbnail">
+                                <img src="images/btn-2.jpg">
+                            </div>
+                            <div class="text">
+                                {#each _vivaData["houses"]["additional_content"] as item}
+                                {#if item.name == "VIVA: Startscreen: 3 rules of healthy living"}
+                                {#if item.title_t[user_lang] != null}
+                                <h4>{item.title_t[user_lang]}</h4>
+                                {:else}
+                                <h4>{item.title_t["int"]}</h4>
+                                {/if}
+                                {/if}
+                                {/each}
+                            </div>
+                        </div>
+                        <div id="visit-tour" class="item" on:click={() => intro = false}>
+                            <div class="thumbnail">
+                                <img src="images/00_Free_tour_icon_f.jpg">
+                            </div><div class="text">
+                                {#each _vivaData["houses"]["additional_content"] as item}
+                                {#if item.name == "VIVA: Startscreen: visit and enjoy tour"}
+                                {#if item.title_t[user_lang] != null}
+                                <h4>{item.title_t[user_lang]}</h4>
+                                {:else}
+                                <h4>{item.title_t["int"]}</h4>
+                                {/if}
+                                {/if}
+                                {/each}
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
             </div>
-        </div>
-        <div id="footer">
-            <div id="research" class="item" on:click={() => quick_tour()}>
-                <div class="thumbnail">
-                    <img src="images/btn-1.jpg">
-                </div>
-                <div class="text">
-                    {#each _vivaData["houses"]["additional_content"] as item}
-                    {#if item.name == "VIVA: Startscreen: Button 1"}
-                    {#if item.title_t[user_lang] != null}
-                    <h4>{item.title_t[user_lang]}</h4>
-                    {:else}
-                    <h4>{item.title_t["int"]}</h4>
-                    {/if}
-                    {/if}
-                    {/each}
-                </div>
-            </div>
-            <div id="rules" class="item" on:click={() => go_to_house_8()}>
-                <div class="thumbnail">
-                    <img src="images/btn-2.jpg">
-                </div>
-                <div class="text">
-                    {#each _vivaData["houses"]["additional_content"] as item}
-                    {#if item.name == "VIVA: Startscreen: 3 rules of healthy living"}
-                    {#if item.title_t[user_lang] != null}
-                    <h4>{item.title_t[user_lang]}</h4>
-                    {:else}
-                    <h4>{item.title_t["int"]}</h4>
-                    {/if}
-                    {/if}
-                    {/each}
-                </div>
-            </div>
-            <div id="visit-tour" class="item" on:click={() => intro = false}>
-                <div class="thumbnail">
-                    <img src="images/00_Free_tour_icon_f.jpg">
-                </div><div class="text">
-                    {#each _vivaData["houses"]["additional_content"] as item}
-                    {#if item.name == "VIVA: Startscreen: visit and enjoy tour"}
-                    {#if item.title_t[user_lang] != null}
-                    <h4>{item.title_t[user_lang]}</h4>
-                    {:else}
-                    <h4>{item.title_t["int"]}</h4>
-                    {/if}
-                    {/if}
-                    {/each}
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-{/if}
-
-{/if}
+        {/if}
+    {/if}
 {/if}
 
 <!-- v intre ak kliknem na "more info" -->
 {#if (about_viva && _vivaData != null)}
-<div id="modal" >
-    <div class="close" on:click={() => about_viva = false} />
-    <div class="content">
-        {#each _vivaData["houses"]["additional_content"] as item}
-        {#if item.name == "Navigation: Company Info"}
-        <h1>
-            {#if item.title_t[user_lang] != null}
-            {item.title_t[user_lang]}
-            {:else}
-            {item.title_t["int"]}
+    <div id="modal" >
+        <div class="close" on:click={() => close_house_info()} />
+        <div class="content">
+            {#each _vivaData["houses"]["additional_content"] as item}
+            {#if item.name == "Navigation: Company Info"}
+            <h1>
+                {#if item.title_t[user_lang] != null}
+                {item.title_t[user_lang]}
+                {:else}
+                {item.title_t["int"]}
+                {/if}
+            </h1>
+            <p>
+                {#if item.content_t[user_lang] != null}
+                {item.content_t[user_lang]}
+                {:else}
+                {item.content_t["int"]}
+                {/if}
+            </p>
             {/if}
-        </h1>
-        <p>
-            {#if item.content_t[user_lang] != null}
-            {item.content_t[user_lang]}
-            {:else}
-            {item.content_t["int"]}
-            {/if}
-        </p>
-        {/if}
-        {/each}
+            {/each}
+        </div>
     </div>
-</div>
 {/if}
 
 <!-- ak kliknem vo footri na ikonu global info -->
