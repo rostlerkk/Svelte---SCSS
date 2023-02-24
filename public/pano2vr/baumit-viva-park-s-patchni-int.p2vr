@@ -6451,7 +6451,7 @@
           <polygon/>
           <type>point</type>
           <id>Point01</id>
-          <title>Monitor</title>
+          <title>computer screen</title>
           <description>Monitor</description>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
@@ -6477,7 +6477,7 @@
           <polygon/>
           <type>point</type>
           <id>Point02</id>
-          <title>34</title>
+          <title>VIVA: House 8, book</title>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
           <skinid>Download</skinid>
@@ -6502,7 +6502,7 @@
           <polygon/>
           <type>point</type>
           <id>Point04</id>
-          <title>Insulation</title>
+          <title>Insulation first</title>
           <description>Insulation</description>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
@@ -6528,7 +6528,7 @@
           <polygon/>
           <type>point</type>
           <id>Point05</id>
-          <title>Solidity</title>
+          <title>Solidity counts</title>
           <description>Solidity</description>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
@@ -6554,7 +6554,7 @@
           <polygon/>
           <type>point</type>
           <id>Point06</id>
-          <title>InteriorValues</title>
+          <title>Interior values</title>
           <description>InteriorValues</description>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
@@ -6580,7 +6580,7 @@
           <polygon/>
           <type>point</type>
           <id>Point10</id>
-          <title>4</title>
+          <title>VIVA: House 8, result: Insulation first</title>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
           <skinid>Download</skinid>
@@ -6605,7 +6605,7 @@
           <polygon/>
           <type>point</type>
           <id>Point11</id>
-          <title>5</title>
+          <title>VIVA: House 8, result: Solidity counts</title>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
           <skinid>Download</skinid>

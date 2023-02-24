@@ -521,7 +521,7 @@ function getSubtitlesLink($lang) {
 
         pano.on("varchanged_playPauseMedia", function() {
             let patchName = pano.getNodeUserdata(pano.getCurrentNode()).title;
-            console.log(patchName);
+            //console.log(patchName);
             if (patchName != null && patchName != undefined) {
 
                 let videoDuration;
@@ -539,7 +539,7 @@ function getSubtitlesLink($lang) {
                 }
 
                 let half = (videoDuration / 2) * 1000;
-                console.log(videoDuration + " / " + half);
+                //console.log(videoDuration + " / " + half);
 
                 switch (pano.getVariableValue("playPauseMedia")) {
                     case true:
@@ -619,6 +619,39 @@ function getSubtitlesLink($lang) {
             change_hotspots_title();
 
         });
+
+        pano.on("varchanged_download_data", function() {
+            let donwloadValue = pano.getVariableValue("download_data");
+            switch (pano.getVariableValue("download_data")) {
+                case "0":
+                    
+                    break;
+            
+                default:
+                    let link;
+                    if (_vivaData['houses'] != undefined) {
+                        if (_vivaData['houses']['additional_content'] != undefined) {
+                            _vivaData['houses']['additional_content'].forEach(element => {
+                                if (element.name == donwloadValue) {
+
+                                    if (element.link_url_t[user_lang] !== undefined && element.link_url_t[user_lang] !== null) {
+                                        link = element.link_url_t[user_lang];
+                                    } else {
+                                        if (element.link_url_t["int"] !== undefined) {
+                                            link = element.link_url_t["int"];
+                                        }
+                                    }
+                                    window.open(link, '_blank');
+                                }
+                            });
+                        }
+                    }
+                    
+                break;
+            }
+        });
+
+        
     });
 
 function show_layers($value) {
@@ -1332,7 +1365,7 @@ $: {
 {/if}
 
 {#if about_tag}
-    <div id="viva-house-info" class="tag">
+    <div id="viva-house-info" class="{tagValue === 'computer screen' ? 'tag yt-only' : 'tag'}">
         <div class="close" on:click={() => close_about_tag()}/>
             <div class="content">
                 {#each _vivaData["houses"]["additional_content"] as item}
@@ -1342,8 +1375,7 @@ $: {
                         tagValue == "Humidifier" ||
                         tagValue == "Air Exhaust" || 
                         tagValue == "Built-in sensors" ||
-                        tagValue == "Temperature sensor for the surface temperature" 
-                    }
+                        tagValue == "Temperature sensor for the surface temperature" }
                         {#if "viva: " + tagValue.toLowerCase() == item.name.toLowerCase()}
                             {#if item.title_t[user_lang] != undefined && item.title_t[user_lang] != null}
                                 <h1>{item.title_t[user_lang]}</h1>
@@ -1361,6 +1393,78 @@ $: {
                             
                         {/if}
 
+                    {/if}
+
+                    {#if tagValue == "Solidity counts" ||
+                         tagValue == "Insulation first" ||
+                         tagValue == "Interior values"}   
+                    
+                        {#if "VIVA: House 8, result: " + tagValue == item.name}
+                            {#if item.title_t[user_lang] != undefined && item.title_t[user_lang] != null}
+                                <h1>{item.title_t[user_lang]}</h1>
+                            {:else}
+                                <h1>{item.title_t["int"]}</h1>
+                            {/if}
+
+                            <div class="row">
+                                {#if item.content_t[user_lang] != undefined && item.content_t[user_lang] != null}
+                                    <p class="text">{item.content_t[user_lang]}</p>
+                                {:else}
+                                    <p class="text">{item.content_t["int"]}</p>
+                                {/if}
+                            </div>
+
+                            <!-- Youtube video -->
+                            {#if item["media_t"] != undefined}
+                            {#if item["media_t"][user_lang] != undefined}
+                                <div id="yt-video">
+                                    <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"][user_lang].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
+                                </div>
+                            {:else}
+                                {#if item["media_t"]["int"] != undefined}
+                                    <div id="yt-video">
+                                        <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"]["int"].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
+                                    </div>
+                                {/if}
+                            {/if}
+                        {/if}
+                            
+                        {/if}
+                    {/if}
+
+                    {#if tagValue == "computer screen"}   
+                    
+                        {#if "VIVA: House 8, " + tagValue == item.name}
+                            <!-- {#if item.title_t[user_lang] != undefined && item.title_t[user_lang] != null}
+                                <h1>{item.title_t[user_lang]}</h1>
+                            {:else}
+                                <h1>{item.title_t["int"]}</h1>
+                            {/if}
+
+                            <div class="row">
+                                {#if item.content_t[user_lang] != undefined && item.content_t[user_lang] != null}
+                                    <p class="text">{item.content_t[user_lang]}</p>
+                                {:else}
+                                    <p class="text">{item.content_t["int"]}</p>
+                                {/if}
+                            </div> -->
+
+                            <!-- Youtube video -->
+                            {#if item["media_t"] != undefined}
+                            {#if item["media_t"][user_lang] != undefined}
+                                <div id="yt-video">
+                                    <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"][user_lang].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
+                                </div>
+                            {:else}
+                                {#if item["media_t"]["int"] != undefined}
+                                    <div id="yt-video">
+                                        <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"]["int"].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
+                                    </div>
+                                {/if}
+                            {/if}
+                        {/if}
+                            
+                        {/if}
                     {/if}
                      
                 {/each}
@@ -1418,7 +1522,6 @@ $: {
         </div> -->
     </div> 
 {/if}
-
 
 <style lang="scss">
     #infopanel, #viva-house-info {

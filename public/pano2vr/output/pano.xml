@@ -693,14 +693,14 @@
       <polystyle backgroundalpha="0.25098" mode="2" backgroundcolor="0xffffff" bordercolor="0x5956e9" borderalpha="1" handcursor="1"/>
       <hotspot skinid="ToolTip Right" title="4169" target="_blank" tilt="15.26" pan="-11.67" description="KlimaWhite" url="" id="KlimaWhite"/>
       <hotspot skinid="ToolTip Right" title="7281" target="_blank" tilt="7.52" pan="-15.24" description="KlimaColor" url="" id="KlimaColor"/>
-      <hotspot skinid="Monitor" title="Monitor" target="_blank" tilt="-12.72" pan="-137.54" description="Monitor" url="" id="Point01"/>
-      <hotspot skinid="Download" title="34" target="_blank" tilt="-18.18" pan="-107.97" description="" url="" id="Point02"/>
-      <hotspot skinid="Monitor" title="Insulation" target="_blank" tilt="-30.62" pan="-182.84" description="Insulation" url="" id="Point04"/>
-      <hotspot skinid="Monitor" title="Solidity" target="_blank" tilt="-36.62" pan="-221" description="Solidity" url="" id="Point05"/>
-      <hotspot skinid="Monitor" title="InteriorValues" target="_blank" tilt="-30.13" pan="-262.06" description="InteriorValues" url="" id="Point06"/>
-      <hotspot skinid="Download" title="4" target="_blank" tilt="-28.26" pan="-177.6" description="" url="" id="Point10"/>
-      <hotspot skinid="Download" title="5" target="_blank" tilt="-36.44" pan="-214.54" description="" url="" id="Point11"/>
-      <hotspot skinid="Download" title="6" target="_blank" tilt="-32.04" pan="-256.21" description="" url="" id="Point12"/>
+      <hotspot skinid="Monitor" title="computer screen" target="_blank" tilt="-12.72" pan="-137.54" description="Monitor" url="" id="Point01"/>
+      <hotspot skinid="Download" title="VIVA: House 8, book" target="_blank" tilt="-18.18" pan="-107.97" description="" url="" id="Point02"/>
+      <hotspot skinid="Monitor" title="Insulation first" target="_blank" tilt="-30.62" pan="-182.84" description="Insulation" url="" id="Point04"/>
+      <hotspot skinid="Monitor" title="Solidity counts" target="_blank" tilt="-36.62" pan="-221" description="Solidity" url="" id="Point05"/>
+      <hotspot skinid="Monitor" title="Interior values" target="_blank" tilt="-30.13" pan="-262.06" description="InteriorValues" url="" id="Point06"/>
+      <hotspot skinid="Download" title="VIVA: House 8, result: Insulation first" target="_blank" tilt="-28.26" pan="-177.6" description="" url="" id="Point10"/>
+      <hotspot skinid="Download" title="VIVA: House 8, result: Solidity counts" target="_blank" tilt="-36.44" pan="-214.54" description="" url="" id="Point11"/>
+      <hotspot skinid="Download" title="VIVA: House 8, result: Interior values" target="_blank" tilt="-32.04" pan="-256.21" description="" url="" id="Point12"/>
       <hotspot skinid="Enter " title="Exterier_08" target="" tilt="-17.29" pan="-317.1" description="" url="{node16}" id="Point01"/>
       <hotspot skinid="Interier info" title="" target="_blank" tilt="-1.21" pan="-335.21" description="" url="" id="House info"/>
     </hotspots>
