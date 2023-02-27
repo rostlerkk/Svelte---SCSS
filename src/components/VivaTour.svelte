@@ -1,5 +1,8 @@
 <script>
     import { userLang } from '../store.js';
+    import { aboutViva } from '../store.js';
+
+
     export let vivaData, user_lang = null;
 
     userLang.subscribe(value => {
@@ -9,7 +12,7 @@
     let current_house = "start";
 
     
-    let vivaTour, autoplay = false;
+    let vivaTour, autoplay, blurred = false;
 
     // aktivácia jQuery
     const jq = window.$;
@@ -17,6 +20,10 @@
     pano.on("changenode", function () {
         select_active_house();
     });
+
+        pano.on("varchanged_blurred", function() {
+            blurred = pano.getVariableValue("blurred");
+        });
     
         pano.on("varchanged_vivaTour", function() {
             console.log(pano.getVariableValue("vivaTour"));
@@ -84,7 +91,7 @@
 
 </script>
 
-{#if vivaTour == true}
+{#if vivaTour == true && blurred != true}
     <div class="pizda">{vivaData["houses"]}</div>
     {#if vivaData["houses"] != undefined}
             <div id="houses-info-container">
@@ -104,7 +111,7 @@
                             {/if}
                         {/each}
                         
-                        <button id="learn-more" class="learn-more">Learn more&nbsp;<span>Viva park</span></button>
+                        <button id="learn-more" class="learn-more" on:click={() => aboutViva.update(n => true)}>Learn more&nbsp;<span>Viva park</span></button>
                     </div>
                     <div class="subtitles hidden">
                         <p>Welcome to the VIVA research park. Europe’s largest comparative research project for building materials.</p>

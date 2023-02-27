@@ -1,6 +1,10 @@
 <script>
 import { vivaData } from '../store.js';
 import { userLang } from '../store.js';
+
+import { aboutViva } from '../store.js';
+
+
 import VivaTour from './VivaTour.svelte';
 
 // VARIABLES
@@ -133,6 +137,19 @@ const urlPrefix = {
 
 vivaData.subscribe(value => {
     _vivaData = value;
+});
+
+aboutViva.subscribe(value => {
+    switch (value) {
+        case true:
+            pano.setVariableValue('blurred', true);
+            break;
+    
+        default:
+            pano.setVariableValue('blurred', false);
+            break;
+    }
+    about_viva = value;
 });
 
 // získanie dát z API - golbálna funkcia
@@ -500,12 +517,14 @@ function getSubtitlesLink($lang) {
         pano.on("varchanged_viva_global_info", function() {
             switch (pano.getVariableValue("viva_global_info")) {
                 case true:
-                    about_viva = true;
+                    
+                    aboutViva.update(n => true);
                     pano.setVariableValue("blurred", true);
                     break;
 
                 default:
-                    about_viva = false;
+                    aboutViva.update(n => false);
+                    
                     pano.setVariableValue("blurred", false);
                     break;
             }
@@ -984,7 +1003,7 @@ function quick_tour() {
 
 function about_viva_park() {
     intro = false;
-    about_viva = true;
+    aboutViva.update(n => true);
 }
 
 function add_video_patch() {
@@ -996,7 +1015,7 @@ function add_video_patch() {
 
 function close_house_info() {
     house_info = false;
-    about_viva = false;
+    aboutViva.update(n => false);
     pano.setVariableValue("houseInfo", false);
     pano.setVariableValue("viva_global_info", false);
     pano.setVariableValue("blurred", false);
@@ -1050,7 +1069,7 @@ $: {
 
 <!-- ak je povolené intro -->
 {#if intro}
-    {#if _vivaData != null}
+    {#if _vivaData != null && _vivaData != undefined}
         {#if _vivaData["houses"] != undefined}
             <div id="welcome">
                 <div id="wrapper">
@@ -1160,27 +1179,27 @@ $: {
 {/if}
 
 <!-- v intre ak kliknem na "more info" -->
-{#if (about_viva && _vivaData != null)}
+{#if (about_viva && _vivaData != null && _vivaData["houses"] != undefined)}
     <div id="modal" >
         <div class="close" on:click={() => close_house_info()} />
         <div class="content">
             {#each _vivaData["houses"]["additional_content"] as item}
-            {#if item.name == "Navigation: Company Info"}
-            <h1>
-                {#if item.title_t[user_lang] != null}
-                {item.title_t[user_lang]}
-                {:else}
-                {item.title_t["int"]}
+                {#if item.name == "Navigation: Company Info"}
+                <h1>
+                    {#if item.title_t[user_lang] != null}
+                    {item.title_t[user_lang]}
+                    {:else}
+                    {item.title_t["int"]}
+                    {/if}
+                </h1>
+                <p>
+                    {#if item.content_t[user_lang] != null}
+                        {item.content_t[user_lang]}
+                    {:else}
+                        {item.content_t["int"]}
+                    {/if}
+                </p>
                 {/if}
-            </h1>
-            <p>
-                {#if item.content_t[user_lang] != null}
-                {item.content_t[user_lang]}
-                {:else}
-                {item.content_t["int"]}
-                {/if}
-            </p>
-            {/if}
             {/each}
         </div>
     </div>
@@ -1338,26 +1357,26 @@ $: {
         </div>
     {:else}
         <div id="modal" >
-            <div class="close"  on:click={() => about_viva = false}
+            <div class="close"  on:click={() => aboutViva.update(n => false)}
                 on:click={() => close_house_info()} />
             <div class="content">
                 {#each _vivaData["houses"]["additional_content"] as item}
-                {#if item.name == "Navigation: Company Info"}
-                <h1>
-                    {#if item.title_t[user_lang] != null}
-                    {item.title_t[user_lang]}
-                    {:else}
-                    {item.title_t["int"]}
+                    {#if item.name == "VIVA: Startscreen: About"}
+                        <h1>
+                            {#if item.title_t[user_lang] != null}
+                                {item.title_t[user_lang]}
+                            {:else}
+                                {item.title_t["int"]}
+                            {/if}
+                        </h1>
+                        <p>
+                            {#if item.content_t[user_lang] != null}
+                                {item.content_t[user_lang]}
+                            {:else}
+                                {item.content_t["int"]}
+                            {/if}
+                        </p>
                     {/if}
-                </h1>
-                <p>
-                    {#if item.content_t[user_lang] != null}
-                    {item.content_t[user_lang]}
-                    {:else}
-                    {item.content_t["int"]}
-                    {/if}
-                </p>
-                {/if}
                 {/each}
             </div>
         </div>
