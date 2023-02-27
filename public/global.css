@@ -75,3 +75,20 @@ button:focus {
 #container > div > div {
 	z-index: unset !important;
 }
+
+#viva-house-info.yt-only.tag .content{
+	height: auto !important;
+	margin: auto;
+	max-width: unset !important;
+}
+
+#viva-house-info.yt-only.tag .content #yt-video{
+	height: auto !important;
+	margin: auto;
+}
+
+@media (max-width: 680px) {
+    .viva-house-info {
+        padding: 52px 16px 16px 16px !important;
+    }
+}

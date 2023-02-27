@@ -702,7 +702,7 @@
   right: 0;
   width: calc(100% - 64px);
   max-width: 940px;
-  height: max-content;
+  height: calc(100% - 64px);
   max-height: 700px;
   margin: auto;
   transform: scale(0.8);
@@ -713,14 +713,14 @@
   display: none;
   font-family: "Poppins", sans-serif !important;
   overflow: auto;
-  /* width: -webkit-max-content; */
-  /* width: -moz-max-content; */
-  /* width: max-content; */
-  /* height: -webkit-max-content;
-  height: -moz-max-content; */
-  /* height: max-content; */
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  height: -webkit-max-content;
+  height: -moz-max-content;
+  height: max-content;
   max-height: 700px;
-  padding: 52px 48px 0 48px;
+  padding: 52px 48px 16px 48px;
 }
 .viva-house-info.yt-only {
   width: calc(100% - 64px);
@@ -748,183 +748,16 @@
   height: max-content;
   box-sizing: border-box;
 }
-
-.viva-house-info > div:not(.close) {
-  display: flex;
-  width: 100%;
-}
-
 .viva-house-info .content {
   overflow: auto;
   box-sizing: border-box;
   font-size: 15px;
   color: #333333;
   line-height: 1.42857143;
-  /* width: 60%; */
+  width: 100%;
   max-width: 700px;
   padding: 0 0 58px 0;
-  width: 100%;
-  max-width: -webkit-max-content;
-  max-width: -moz-max-content;
-  max-width: max-content;
 }
-
-.viva-house-info .content.full {
-  width: 100%;
-  max-width: -webkit-max-content;
-  max-width: -moz-max-content;
-  max-width: max-content;
-}
-
-.viva-house-info .parameters {
-  width: 40%;
-  padding: 0 20px 20px 20px;
-  overflow: visible;
-
-} 
-
-.viva-house-info .parameters h3 {
-  text-transform: uppercase;
-}
-
-.viva-house-info .parameters .parameter-bar {
-  width: 100%;
-  height: 7px;
-  background-color: #f5f5f5;
-  position: relative;
-  margin: 5px 0;
-  
-}
-
-.viva-house-info .parameters .parameter-bar > div {
-  width: 0%;
-  transition: width .8s ease !important;
-}
-
-.viva-house-info .parameters .parameter-bar .p1 {
-  width: 0%;
-}
-
-
-.viva-house-info .parameters .parameter-bar .p1 {
-  width: 33.3333%;
-  height: 7px;
-  background-color: #74b743;
-  position: relative;
-}
-
-.viva-house-info .parameters .parameter-bar .p2 {
-  width: 66.6666%;
-  height: 7px;
-  background-color: #74b743;
-  position: relative;
-}
-
-.viva-house-info .parameters .parameter-bar .p3 {
-  width: 100%;
-  height: 7px;
-  background-color: #74b743;
-  position: relative;
-}
-
-.viva-house-info .parameters .parameter-bar div.p1, .viva-house-info .parameters .parameter-bar div.p2, .viva-house-info .parameters .parameter-bar div.p3 {
-  transition: width .8s ease !important;
-}
-
-.viva-house-info .parameters .parameter-title {
-  position: relative;
-}
-
-.viva-house-info .parameters .parameter-title span {
-  position: relative;
-  color: #ffffff;
-  font-size: 11px;
-  line-height: 15px;
-  background: #000000;
-  border-radius: 50%;
-  width: 15px;
-  height: 15px;
-  display: inline-block;
-  margin-top: -4px;
-  text-align: center;
-  vertical-align: text-top;
-  cursor: pointer;
-  margin-left: 3px;
-}
-
-.viva-house-info .parameters .parameter-title .house-tooltip {
-  display: none;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-  margin-bottom: 10px;
-  width: -webkit-max-content;
-  width: -moz-max-content;
-  width: max-content;
-  z-index: 99999;
-  transition: all 0.25s ease-in-out;
-}
-
-.viva-house-info .parameters .parameter-title .house-tooltip.active {
-  display: flex;
-  position: absolute;
-  bottom: 16px;
-  left: 50%;
-  transform: translateX(-50%);
-}
-.viva-house-info .parameters .parameter-title .house-tooltip-arrow {
-  bottom: 0;
-  left: 50%;
-  margin-left: -5px;
-  border-width: 5px 5px 0;
-  border-top-color: #000000;
-}
-.viva-house-info .parameters .parameter-title .house-tooltip-inner {
-  max-width: 200px;
-  padding: 3px 8px;
-  line-height: 1.42857143;
-  font-size: 11px;
-  color: #ffffff;
-  text-align: center;
-  background-color: #000000;
-  border-radius: 4px;
-}
-.viva-house-info .parameters .parameter-title .house-tooltip-inner::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 0;
-  height: 0;
-  border-top: solid 5px #000;
-  border-left: solid 5px transparent;
-  border-right: solid 5px transparent;
-}
-
-.viva-house-info .parameters .parameter-bar::before {
-  content: '';
-  width: 4px;
-  height: 7px;
-  left: 33%;
-  top: 0;
-  background: #fff;
-  position: absolute;
-  z-index: 100;
-}
-
-.viva-house-info .parameters .parameter-bar::after {
-content: '';
-width: 4px;
-height: 7px;
-left: 66%;
-top: 0;
-background: #fff;
-position: absolute;
-z-index: 100;
-}
-
 .viva-house-info .content .row {
   display: flex;
   flex-direction: row;
@@ -2070,7 +1903,7 @@ z-index: 100;
 }
 @media (max-width: 680px) {
   .viva-house-info {
-    padding: 52px 16px 0 16px;
+    padding: 52px 16px 16px 16px !important;
   }
   .viva-house-info .content #house-url {
     min-width: auto;
@@ -2127,28 +1960,6 @@ z-index: 100;
 @media (max-width: 800px) {
   .infopanel.baumit .info-v1 .head {
     flex-direction: column;
-  }
-
-  .viva-house-info > div {
-    flex-direction: column;
-  }
-
-  .viva-house-info .content {
-    width: 100%;
-  }
-
-  .viva-house-info .parameters {
-    width: 100%;
-  }
-
-  .viva-house-info .parameters h3 {
-    font-weight: 500;
-    text-transform: uppercase;
-    font-size: 14px;
-  }
-
-  .viva-house-info .parameters .parameter-title {
-    font-size: 13px;
   }
 
   .infopanel.baumit .info-v1 .body {
