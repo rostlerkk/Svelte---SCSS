@@ -2,6 +2,7 @@
     import { userLang } from '../store.js';
     import { aboutViva } from '../store.js';
 
+    let is_tour_nodes = ['node1', 'node24','node12', 'node26','node6', 'node22', 'node3', 'node18', 'node5', 'node20'];
 
     export let vivaData, user_lang = null;
 
@@ -13,6 +14,7 @@
 
     
     let vivaTour, autoplay, blurred = false;
+    let subtitles = true;
 
     // aktivácia jQuery
     const jq = window.$;
@@ -61,8 +63,8 @@
                 current_house = 'start';
             break;
 
-            // case 'node16' :
-            case 'node16' : 
+            case 'node16' :
+            case 'node24' : 
                 jq('#house_2').addClass('active');
                 current_house = 'house_8';
             break;
@@ -97,6 +99,29 @@
         pano.openNext('{' + $parameter + '}');
     }
 
+    function nextHouse() {
+        for (let index = 0; index < is_tour_nodes.length; index++) {
+            let node = pano.getCurrentNode();
+            
+            if (
+                node == is_tour_nodes[index]
+            ) {
+                if (
+                    node == is_tour_nodes[is_tour_nodes.length - 1]
+                ) {
+                    pano.openNext('{' + is_tour_nodes[0] + '}');
+                    return;
+                }
+
+                else {
+                    pano.openNext('{' + is_tour_nodes[index + 1] + '}');
+                    return;
+                }
+            }
+        }
+    }
+
+
 </script>
 
 {#if vivaTour == true && blurred != true}
@@ -105,23 +130,21 @@
             <div id="houses-info-container">
                 <div class="houses-header">
                     <div class="buttons">
-                        <img class="play" src="assets/icons/play-houses.svg" alt="play">
-                        <img class="pause hidden" src="assets/icons/pause-houses.svg" alt="pause">
-                        <img class="toggle" src="assets/icons/toggle-houses.svg" alt="toggle">
-                        {#each vivaData["houses"]["additional_content"] as item}
-                            {#if item.name == "Video Tour button: Next"}
-                                {#if !autoplay}
-                                    <button id="next-house" on:click={() => toggleAutoplay()}>{item.title.split(' ', 1)[0]} house</button>
-                                {:else}
-                                    <button id="next-house" on:click={() => toggleAutoplay()}>{item.title.split(' ').pop()}</button>
-                                {/if}
-                                
-                            {/if}
-                        {/each}
+                        {#if autoplay}
+                            <img class="play" src="assets/icons/play-houses.svg" alt="play" on:click={() => toggleAutoplay()}>
+                        {:else}
+                            <img class="pause" src="assets/icons/pause-houses.svg" alt="pause" on:click={() => toggleAutoplay()}>
+                        {/if}                        
+                        
+                        <img class="toggle" src="assets/icons/toggle-houses.svg" alt="toggle" on:click={() => subtitles = !subtitles}>
+                        
+                            <button id="next-house" on:click={() => nextHouse()}>Next house</button>
+                            
+                        
                         
                         <button id="learn-more" class="learn-more" on:click={() => aboutViva.update(n => true)}>Learn more&nbsp;<span>Viva park</span></button>
                     </div>
-                    <div class="subtitles hidden">
+                    <div class="{subtitles === true ? 'subtitles' : 'subtitles hidden'}">
                         <p>Welcome to the VIVA research park. Europe’s largest comparative research project for building materials.</p>
                     </div>
                 </div>
@@ -139,9 +162,9 @@
 
                         {#if item.name.toLowerCase() == "tour section 2"}
                             {#if item.content_t[user_lang] != undefined}
-                                <div id="house_2" class="{current_house === 'house_8' ? 'item active' : 'item'}" on:click={() => selectNode("node16")}><img class="icon" src="images/house-default.png" alt="house_2"><p>{item.content_t[user_lang]}</p></div>
+                                <div id="house_2" class="{current_house === 'house_8' ? 'item active' : 'item'}" on:click={() => selectNode("node24")}><img class="icon" src="images/house-default.png" alt="house_2"><p>{item.content_t[user_lang]}</p></div>
                             {:else}
-                                <div id="house_2" class="{current_house === 'house_8' ? 'item active' : 'item'}" on:click={() => selectNode("node16")}><img class="icon" src="images/house-default.png" alt="house_2"><p>{item.content_t["int"]}</p></div>
+                                <div id="house_2" class="{current_house === 'house_8' ? 'item active' : 'item'}" on:click={() => selectNode("node24")}><img class="icon" src="images/house-default.png" alt="house_2"><p>{item.content_t["int"]}</p></div>
                             {/if}
                         {/if}
 
