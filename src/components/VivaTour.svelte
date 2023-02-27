@@ -19,6 +19,14 @@
 
     pano.on("changenode", function () {
         select_active_house();
+
+        if (pano.getNodeUserdata(pano.getCurrentNode()).copyright == "tour") {
+            jq('.take-tour-button').removeClass('hidden');
+        } else {
+            jq('.take-tour-button').addClass('hidden');
+        }
+
+        
     });
 
         pano.on("varchanged_blurred", function() {

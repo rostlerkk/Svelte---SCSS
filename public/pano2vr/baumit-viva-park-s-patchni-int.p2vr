@@ -56,6 +56,7 @@
           <y>681</y>
         </floorplancoordinates>
         <source>0</source>
+        <copyright>tour</copyright>
       </userdata>
       <floorplans/>
       <hotspots>
@@ -1035,6 +1036,8 @@
         </floorplancoordinates>
         <source>2</source>
         <customnodeid>house2</customnodeid>
+        <author>tour</author>
+        <copyright>tour</copyright>
       </userdata>
       <floorplans/>
       <hotspots>
@@ -4375,6 +4378,7 @@
         </floorplancoordinates>
         <source>6</source>
         <customnodeid>house6</customnodeid>
+        <copyright>tour</copyright>
       </userdata>
       <floorplans/>
       <hotspots>
@@ -6016,6 +6020,7 @@
         <information>08</information>
         <source>8</source>
         <customnodeid>house8</customnodeid>
+        <copyright>tour</copyright>
       </userdata>
       <floorplans/>
       <hotspots>
@@ -7754,6 +7759,7 @@
         </floorplancoordinates>
         <source>10</source>
         <customnodeid>house10</customnodeid>
+        <copyright>tour</copyright>
       </userdata>
       <floorplans/>
       <hotspots>
@@ -13301,7 +13307,7 @@
         <html>
           <enabled>1</enabled>
           <filename>output/index.html</filename>
-          <template></template>
+          <template/>
           <values/>
         </html>
         <facequality/>

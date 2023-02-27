@@ -13,7 +13,7 @@
       <min tilt="-90" pan="0" fovpixel="2"/>
       <max tilt="90" fov="120" scaletofit="1" pan="360" fovstereographic="270" fovfisheye="360"/>
     </view>
-    <userdata author="" longitude="" nodeid="node1" latitude="" title="Exterier_00" heading="45" copyright="" tags="equirects|ext|house|is_tour|no-house|slider" comment="" datetime="9. 7. 2021 11:47" source="0" info="00" customnodeid="" description="Entrance">
+    <userdata author="" longitude="" nodeid="node1" latitude="" title="Exterier_00" heading="45" copyright="tour" tags="equirects|ext|house|is_tour|no-house|slider" comment="" datetime="9. 7. 2021 11:47" source="0" info="00" customnodeid="" description="Entrance">
       <mapcoords mapid="Vivapark" x="0.186768" y="-1.87042" x_floorplan_percent="6.8" y_floorplan_percent="68.1"/>
     </userdata>
     <hotspots wordwrap="1" width="180" height="20">
@@ -132,7 +132,7 @@
       <min tilt="-90" pan="0" fovpixel="2"/>
       <max tilt="90" fov="120" scaletofit="1" pan="360" fovstereographic="270" fovfisheye="360"/>
     </view>
-    <userdata author="" longitude="" nodeid="node3" latitude="" title="Exterier_02" heading="-45" copyright="" tags="equirects|ext|highlight|house|is_tour|slider" comment="House 02 Exterior" datetime="14. 7. 2021 8:08" source="2" info="02" customnodeid="house2" description="House 02">
+    <userdata author="tour" longitude="" nodeid="node3" latitude="" title="Exterier_02" heading="-45" copyright="tour" tags="equirects|ext|highlight|house|is_tour|slider" comment="House 02 Exterior" datetime="14. 7. 2021 8:08" source="2" info="02" customnodeid="house2" description="House 02">
       <mapcoords mapid="Vivapark" x="1.49963" y="-1.49689" x_floorplan_percent="54.6" y_floorplan_percent="54.5"/>
     </userdata>
     <hotspots wordwrap="1" width="180" height="20">
@@ -306,7 +306,7 @@
       <min tilt="-90" pan="0" fovpixel="2"/>
       <max tilt="90" fov="120" scaletofit="1" pan="360" fovstereographic="270" fovfisheye="360"/>
     </view>
-    <userdata author="" longitude="" nodeid="node5" latitude="" title="Exterier_04" heading="-45" copyright="" tags="equirects|ext|highlight|house|slider" comment="House 04 Exterior" datetime="5. 8. 2021 8:32" source="4" info="04" customnodeid="house4" description="House 04">
+    <userdata author="" longitude="" nodeid="node5" latitude="" title="Exterier_04" heading="-45" copyright="tour" tags="equirects|ext|highlight|house|slider" comment="House 04 Exterior" datetime="5. 8. 2021 8:32" source="4" info="04" customnodeid="house4" description="House 04">
       <mapcoords mapid="Vivapark" x="1.82098" y="-1.78528" x_floorplan_percent="66.3" y_floorplan_percent="65"/>
     </userdata>
     <hotspots wordwrap="1" width="180" height="20">
@@ -479,7 +479,7 @@
       <min tilt="-90" pan="0" fovpixel="2"/>
       <max tilt="90" fov="120" scaletofit="1" pan="360" fovstereographic="270" fovfisheye="360"/>
     </view>
-    <userdata author="" longitude="" nodeid="node6" latitude="" title="Exterier_06" heading="-45" copyright="" tags="equirects|ext|highlight|house|slider" comment="House 06 Exterior" datetime="5. 8. 2021 16:41" source="6" info="06" customnodeid="house6" description="House 06">
+    <userdata author="" longitude="" nodeid="node6" latitude="" title="Exterier_06" heading="-45" copyright="tour" tags="equirects|ext|highlight|house|slider" comment="House 06 Exterior" datetime="5. 8. 2021 16:41" source="6" info="06" customnodeid="house6" description="House 06">
       <mapcoords mapid="Vivapark" x="1.83746" y="-1.22498" x_floorplan_percent="66.9" y_floorplan_percent="44.6"/>
     </userdata>
     <hotspots wordwrap="1" width="180" height="20">
@@ -650,7 +650,7 @@
       <min tilt="-90" pan="0" fovpixel="2"/>
       <max tilt="90" fov="120" scaletofit="1" pan="360" fovstereographic="270" fovfisheye="360"/>
     </view>
-    <userdata author="" longitude="" nodeid="node16" latitude="" title="Exterier_08" heading="-45" copyright="" tags="equirects|ext|house|slider" comment="House 08 Exterior" datetime="11. 8. 2021 19:04" source="8" info="08" customnodeid="house8" description="House 08">
+    <userdata author="" longitude="" nodeid="node16" latitude="" title="Exterier_08" heading="-45" copyright="tour" tags="equirects|ext|house|slider" comment="House 08 Exterior" datetime="11. 8. 2021 19:04" source="8" info="08" customnodeid="house8" description="House 08">
       <mapcoords mapid="Vivapark" x="0.519104" y="-1.78253" x_floorplan_percent="18.9" y_floorplan_percent="64.9"/>
     </userdata>
     <hotspots wordwrap="1" width="180" height="20">
@@ -828,7 +828,7 @@
       <min tilt="-90" pan="0" fovpixel="2"/>
       <max tilt="90" fov="120" scaletofit="1" pan="360" fovstereographic="270" fovfisheye="360"/>
     </view>
-    <userdata author="" longitude="" nodeid="node12" latitude="" title="Exterier_10" heading="-45" copyright="" tags="equirects|ext|highlight|house|slider" comment="House 10 Exterior" datetime="10. 8. 2021 11:43" source="10" info="10" customnodeid="house10" description="House 10">
+    <userdata author="" longitude="" nodeid="node12" latitude="" title="Exterier_10" heading="-45" copyright="tour" tags="equirects|ext|highlight|house|slider" comment="House 10 Exterior" datetime="10. 8. 2021 11:43" source="10" info="10" customnodeid="house10" description="House 10">
       <mapcoords mapid="Vivapark" x="1.51611" y="-0.939331" x_floorplan_percent="55.2" y_floorplan_percent="34.2"/>
     </userdata>
     <hotspots wordwrap="1" width="180" height="20">
