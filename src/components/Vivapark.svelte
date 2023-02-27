@@ -1,13 +1,13 @@
 <script>
-import {
-    vivaData
-} from '../store.js';
+import { vivaData } from '../store.js';
+import { userLang } from '../store.js';
+import VivaTour from './VivaTour.svelte';
 
 // VARIABLES
 let active_house = 0;
 let user_lang, productUrl, housesUrl, subtitlesUrl, product_id, tagValue = null;
 let intro, fetching_data, lang_data_loading, welcome = true;
-let about_viva, about_tag, about_product, product_data_loaded, houses_data_loaded, subtitles_data_loaded, house_info = false;
+let about_viva, about_tag, about_product, product_data_loaded, houses_data_loaded, subtitles_data_loaded, house_info, viva_auto_tour = false;
 let _vivaData = {};
 
 let myTimeout;
@@ -153,7 +153,7 @@ async function fetchData($url, $lang, $type, $variable) {
                 };
             }
             _vivaData[$lang][$type] = json;
-            vivaData.update(n => _vivaData);
+            vivaData.update(n => json);
 
             if ($type == "houses") {
                 console.log(_vivaData);
@@ -198,6 +198,7 @@ function check_user_lang() {
         console.log(window.navigator.userLanguage);
         document.cookie = "user_lang=" + user_lang;
         console.log(user_lang);
+        userLang.update(n => user_lang);
         switch (user_lang) {
             case 'cz':
             case 'cs':
@@ -454,6 +455,11 @@ function getSubtitlesLink($lang) {
         pano.setVariableValue('blurred', false);
         //pano.setVariableValue('intro', false);
 
+        jq('.take-tour-button').on('click tap', function () {
+            pano.setVariableValue("vivaTour", !pano.getVariableValue("vivaTour"));
+            intro = false;
+        });
+
         pano.on("varchanged_lang", function() {
             user_lang = pano.getVariableValue("lang");
             document.cookie = "user_lang=" + user_lang;
@@ -688,7 +694,8 @@ function getSubtitlesLink($lang) {
 
     });
 
-function show_layers($value) {
+
+    function show_layers($value) {
     switch ($value) {
         case false:
             jq(".viva-tooltip").addClass("hidden");
@@ -810,7 +817,6 @@ function change_hotspots_title() {
 
     });
 }
-
 
 // zmena jazyka pre Google mapu
 function change_map_url() {
@@ -1010,6 +1016,13 @@ function close_about_tag(){
     
 }
 
+function toogleVivaTour() {
+    console.log(pano.getVariableValue("vivaTour"));
+    pano.setVariableValue("vivaTour", !pano.getVariableValue("vivaTour"));  
+    console.log(pano.getVariableValue("vivaTour"));
+    intro = false;
+}
+
 add_video_patch();
 
 $: {
@@ -1070,9 +1083,9 @@ $: {
                             {#each _vivaData["houses"]["additional_content"] as item}
                             {#if item.name == "VIVA: Startscreen: Play"}
                             {#if item.title_t[user_lang] != null}
-                            <button id="play_tour">{item.title_t[user_lang]}</button>
+                            <button id="play_tour" on:click={() => toogleVivaTour()}>{item.title_t[user_lang]}</button>
                             {:else}
-                            <button id="play_tour">{item.title_t["int"]}</button>
+                            <button id="play_tour" on:click={() => toogleVivaTour()}>{item.title_t["int"]}</button>
                             {/if}
                             <!-- <button id="play_tour">{item.title}</button> -->
                             {/if}
@@ -1561,6 +1574,11 @@ $: {
         </div> -->
     </div> 
 {/if}
+
+{#if _vivaData.houses != null}
+    <VivaTour vivaData={_vivaData}/>
+{/if}
+
 
 <style lang="scss">
     #infopanel, #viva-house-info {
