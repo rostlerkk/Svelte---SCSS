@@ -1375,7 +1375,7 @@ $blue: rgba(89, 86, 233, 1);
 
 @media (max-width: 680px) {
     .viva-house-info {
-        padding: 52px 16px 0 16px;
+        padding: 52px 16px 16px 16px !important;
         .content {   
             #house-url {
                 min-width: auto;

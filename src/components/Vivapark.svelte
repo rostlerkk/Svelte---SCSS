@@ -3102,6 +3102,7 @@ $: {
         .content {
             flex-direction: column;
             padding: 0;
+            overflow: hidden;
         }
     }
 
@@ -3122,7 +3123,7 @@ $: {
 
     @media (max-width: 680px) {
         #viva-house-info {
-            padding: 52px 16px 0 16px;
+            padding: 52px 16px 16px 16px;
         }
 
         #viva-house-info .content #house-url {
