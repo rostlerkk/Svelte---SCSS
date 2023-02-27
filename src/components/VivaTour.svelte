@@ -148,7 +148,7 @@
                         <p>Welcome to the VIVA research park. Europe’s largest comparative research project for building materials.</p>
                     </div>
                 </div>
-                <div class="houses-footer">
+                <div class="{subtitles === true ? 'houses-footer' : 'houses-footer hidden'}">
                     
                     {#each vivaData["houses"]["additional_content"] as item}
 
