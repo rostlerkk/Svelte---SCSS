@@ -123,55 +123,55 @@
 
                         {#if item.name.toLowerCase() == "tour section 1"}
                             {#if item.content_t[user_lang] != undefined}
-                                <div id="house_1" class="{current_house === 'start' ? 'item active' : 'active'}" on:click={() => selectNode("node1")}><img class="icon" src="images/house-default.png" alt="house_1"><p>{item.title_t[user_lang]}</p></div>
+                                <div id="house_1" class="{current_house === 'start' ? 'item active' : 'item'}" on:click={() => selectNode("node1")}><img class="icon" src="images/house-default.png" alt="house_1"><p>{item.title_t[user_lang]}</p></div>
                             {:else}
-                                <div id="house_1" class="{current_house === 'start' ? 'item active' : 'active'}" on:click={() => selectNode("node1")}><img class="icon" src="images/house-default.png" alt="house_1"><p>{item.title_t["int"]}</p></div>
+                                <div id="house_1" class="{current_house === 'start' ? 'item active' : 'item'}" on:click={() => selectNode("node1")}><img class="icon" src="images/house-default.png" alt="house_1"><p>{item.title_t["int"]}</p></div>
                             {/if}
                         {/if}
 
                         {#if item.name.toLowerCase() == "tour section 2"}
                             {#if item.content_t[user_lang] != undefined}
-                                <div id="house_2" class="{current_house === 'house_8' ? 'item active' : 'active'}" on:click={() => selectNode("node16")}><img class="icon" src="images/house-default.png" alt="house_2"><p>{item.content_t[user_lang]}</p></div>
+                                <div id="house_2" class="{current_house === 'house_8' ? 'item active' : 'item'}" on:click={() => selectNode("node16")}><img class="icon" src="images/house-default.png" alt="house_2"><p>{item.content_t[user_lang]}</p></div>
                             {:else}
-                                <div id="house_2" class="{current_house === 'house_8' ? 'item active' : 'active'}" on:click={() => selectNode("node16")}><img class="icon" src="images/house-default.png" alt="house_2"><p>{item.content_t["int"]}</p></div>
+                                <div id="house_2" class="{current_house === 'house_8' ? 'item active' : 'item'}" on:click={() => selectNode("node16")}><img class="icon" src="images/house-default.png" alt="house_2"><p>{item.content_t["int"]}</p></div>
                             {/if}
                         {/if}
 
                         {#if item.name.toLowerCase() == "tour section 3"}
                             {#if item.content_t[user_lang] != undefined}
-                                <div id="house_3" class="{current_house === 'house_10' ? 'item active' : 'active'}" on:click={() => selectNode("node12")}><img class="icon" src="images/house-massive.png" alt="house_3"><p>{item.content_t[user_lang]}</p></div>
+                                <div id="house_3" class="{current_house === 'house_10' ? 'item active' : 'item'}" on:click={() => selectNode("node12")}><img class="icon" src="images/house-massive.png" alt="house_3"><p>{item.content_t[user_lang]}</p></div>
                                 
                             {:else}
-                                <div id="house_3" class="{current_house === 'house_10' ? 'item active' : 'active'}" on:click={() => selectNode("node12")}><img class="icon" src="images/house-massive.png" alt="house_3"><p>{item.content_t["int"]}</p></div>
+                                <div id="house_3" class="{current_house === 'house_10' ? 'item active' : 'item'}" on:click={() => selectNode("node12")}><img class="icon" src="images/house-massive.png" alt="house_3"><p>{item.content_t["int"]}</p></div>
                             {/if}
                         {/if}
 
                         {#if item.name.toLowerCase() == "tour section 4"}
                             {#if item.content_t[user_lang] != undefined}
-                                <div id="house_4" class="{current_house === 'house_6' ? 'item active' : 'active'}" on:click={() => selectNode("node6")}><img class="icon" src="images/house-wooden.png" alt="house_4"><p>{item.content_t[user_lang]}</p></div>
+                                <div id="house_4" class="{current_house === 'house_6' ? 'item active' : 'item'}" on:click={() => selectNode("node6")}><img class="icon" src="images/house-wooden.png" alt="house_4"><p>{item.content_t[user_lang]}</p></div>
                                 
                             {:else}
-                                <div id="house_4" class="{current_house === 'house_6' ? 'item active' : 'active'}" on:click={() => selectNode("node6")}><img class="icon" src="images/house-wooden.png" alt="house_4"><p>{item.content_t["int"]}</p></div>
+                                <div id="house_4" class="{current_house === 'house_6' ? 'item active' : 'item'}" on:click={() => selectNode("node6")}><img class="icon" src="images/house-wooden.png" alt="house_4"><p>{item.content_t["int"]}</p></div>
                                 
                             {/if}
                         {/if}
 
                         {#if item.name.toLowerCase() == "tour section 5"}
                             {#if item.content_t[user_lang] != undefined}
-                                <div id="house_5" class="{current_house === 'house_2' ? 'item active' : 'active'}" on:click={() => selectNode("node3")}><img class="icon" src="images/house-aerated.png" alt="house_5"><p>{item.content_t[user_lang]}</p></div>
+                                <div id="house_5" class="{current_house === 'house_2' ? 'item active' : 'item'}" on:click={() => selectNode("node3")}><img class="icon" src="images/house-aerated.png" alt="house_5"><p>{item.content_t[user_lang]}</p></div>
                                 
                             {:else}
-                                <div id="house_5" class="{current_house === 'house_2' ? 'item active' : 'active'}" on:click={() => selectNode("node3")}><img class="icon" src="images/house-aerated.png" alt="house_5"><p>{item.content_t["int"]}</p></div>
+                                <div id="house_5" class="{current_house === 'house_2' ? 'item active' : 'item'}" on:click={() => selectNode("node3")}><img class="icon" src="images/house-aerated.png" alt="house_5"><p>{item.content_t["int"]}</p></div>
                                 
                             {/if}
                         {/if}
 
                         {#if item.name.toLowerCase() == "tour section 6"}
                             {#if item.content_t[user_lang] != undefined}
-                                <div id="house_6" class="{current_house === 'house_4' ? 'item active' : 'active'}" on:click={() => selectNode("node5")}><img class="icon" src="images/house-brick.png" alt="house_6"><p>{item.content_t[user_lang]}</p></div>
+                                <div id="house_6" class="{current_house === 'house_4' ? 'item active' : 'item'}" on:click={() => selectNode("node5")}><img class="icon" src="images/house-brick.png" alt="house_6"><p>{item.content_t[user_lang]}</p></div>
                                 
                             {:else}
-                                <div id="house_6" class="{current_house === 'house_4' ? 'item active' : 'active'}" on:click={() => selectNode("node5")}><img class="icon" src="images/house-brick.png" alt="house_6"><p>{item.content_t["int"]}</p></div>
+                                <div id="house_6" class="{current_house === 'house_4' ? 'item active' : 'item'}" on:click={() => selectNode("node5")}><img class="icon" src="images/house-brick.png" alt="house_6"><p>{item.content_t["int"]}</p></div>
                                 
                             {/if}
                         {/if}
