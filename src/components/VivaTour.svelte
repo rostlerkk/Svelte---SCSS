@@ -382,14 +382,10 @@
                         subitlesString += vivaData["subtitles"]["house_6_desc_1_t"][lang] + "<br/>"            
                         subitlesString += vivaData["subtitles"]["house_6_method_1_t"][lang] + "<br/>"                     
                         subitlesString += vivaData["subtitles"]["house_6_method_2_t"][lang]
-                        
-                        alert(subitlesString);
                     } else {
                         subitlesString += vivaData["subtitles"]["house_6_desc_1_t"]["int"] + "<br/>"            
                         subitlesString += vivaData["subtitles"]["house_6_method_1_t"]["int"] + "<br/>"                     
                         subitlesString += vivaData["subtitles"]["house_6_method_2_t"]["int"]       
-                        
-                        alert(subitlesString);
                     }
                     break;
                 // Dom 2 - exteriér
