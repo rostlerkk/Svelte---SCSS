@@ -625,13 +625,17 @@ function getSubtitlesLink($lang) {
                                 jq(".pulse-layer").css({
                                     "display" : "none"
                                 });
+
+                                jq(".pulse-layer").css({
+                                    "display" : "flex"
+                                });
                             }
                             
                         } else {
                             
                             pano.stopSound(patchName);
                             jq(".pulse-layer").css({
-                                "display" : "none"
+                                "display" : "flex"
                             });
                             clearTimeout(myTimeout);
                         }
