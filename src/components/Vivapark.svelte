@@ -206,7 +206,7 @@ function check_user_lang() {
         user_lang = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
         //console.log(window.navigator.userLanguage);
         document.cookie = "user_lang=" + user_lang;
-        console.log(user_lang);
+        //console.log(user_lang);
         userLang.update(n => user_lang);
         switch (user_lang) {
             case 'cz':
@@ -393,7 +393,7 @@ function getVivaTranslations($user_lang) {
 // ziskanie URL adries
 function getProductLink($lang) {
     productUrl = urlPrefix[$lang] + '/api/products/products?api_token=' + apiToken[$lang];
-    console.log("Products URL : " + productUrl);
+    //console.log("Products URL : " + productUrl);
     switch ($lang) {
         case "int":
             if (_vivaData.int == null) {
@@ -415,7 +415,7 @@ function getProductLink($lang) {
 
 function getHousesLink($lang) {
     housesUrl = urlPrefix[$lang] + '/api/buildings?api_token=' + apiToken[$lang];
-    console.log("Houses URL : " + housesUrl);
+    //console.log("Houses URL : " + housesUrl);
 
     switch ($lang) {
         case "int":
@@ -438,7 +438,7 @@ function getHousesLink($lang) {
 
 function getSubtitlesLink($lang) {
     subtitlesUrl = urlPrefix[$lang] + '/api/building-tour-translations?api_token=' + apiToken[$lang];
-    console.log("Subtitles URL : " + subtitlesUrl);
+    //console.log("Subtitles URL : " + subtitlesUrl);
 
     switch ($lang) {
         case "int":
@@ -1007,7 +1007,7 @@ async function fetchPhpData($lang) {
         "products": urlPrefix[$lang] + '/api/products/products?api_token=' + apiToken[$lang]
     }
 
-    console.log(api_data);
+    //console.log(api_data);
 
     const res = await fetch("https://goacaffe.sk/molly/assets/krpano/getValues.php", {
         method: 'POST',
@@ -1016,7 +1016,7 @@ async function fetchPhpData($lang) {
     const json = await res.json();
 
     if (res.ok) {
-        console.log(json);
+        //console.log(json);
         _vivaData = json;
         fetching_data = false;
         intro = true;

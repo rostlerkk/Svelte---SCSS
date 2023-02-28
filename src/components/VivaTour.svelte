@@ -215,6 +215,9 @@
                 vivaTour = false;
                 jq('.take-tour-button').removeClass('playing');
                 stop_video();
+                clearTimeout(subtitleTimeOut_2);
+                clearTimeout(subtitleTimeOut_3);
+                clearTimeout(subtitleTimeOut_4);
                 break;
         }
     }) ;       
@@ -317,6 +320,11 @@
     }
 
     function nextHouse($pan, $tilt, $fov) {
+        clearInterval(timeOut);
+        clearInterval(layersTimeOut);
+        clearInterval(subtitleTimeOut_2);
+        clearInterval(subtitleTimeOut_3);
+        clearInterval(subtitleTimeOut_4);
         
         for (let index = 0; index < is_tour_nodes.length; index++) {
             let node = pano.getCurrentNode();
@@ -415,7 +423,7 @@
         
             default:
                 pano.getMediaObject("video_1").addEventListener('ended', function() {
-                    console.log("skončilo sa video");
+                   // console.log("skončilo sa video");
                     nextHouse();
                 });
                 break;
@@ -457,7 +465,7 @@
 
     function loadSubtitles() {
         
-        console.log("načítavam titulky");
+       // console.log("načítavam titulky");
         subitlesString = "";
         if (vivaData["subtitles"] != null) {
         
@@ -597,10 +605,10 @@
                         let first_time = parseFloat(vivaData["subtitles"].house_8_data_method_1_time.replace(':', '.'))*100 * 1000;
                         let second_time = parseFloat(vivaData["subtitles"].house_8_data_method_2_time.replace(':', '.'))*100 * 1000;
                         let third_time = parseFloat(vivaData["subtitles"].house_8_data_method_3_time.replace(':', '.'))*100 * 1000;
-                        console.log(first_time + " | " + second_time + " | " + third_time);
+                        //console.log(first_time + " | " + second_time + " | " + third_time);
                         
                         if (currentTime < first_time) {
-                            console.log(currentTime);
+                            //console.log(currentTime);
                             subitlesString = subtitles_1;
 
 
