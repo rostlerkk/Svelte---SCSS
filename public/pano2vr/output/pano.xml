@@ -193,8 +193,8 @@
       <hotspot tilt="-0.8" title="" url="" id="Point05" skinid="Layers-icon" pan="-355.23" description="" target="_blank"/>
       <hotspot tilt="-17.29" title="Exterier_02" url="{node3}" id="Point01" skinid="Enter " pan="-317.1" description="" target=""/>
       <hotspot tilt="-1.21" title="" url="" id="House info" skinid="Interier info" pan="-335.21" description="" target="_blank"/>
-      <hotspot tilt="-11.86" title="34" url="" id="Point04" skinid="Download" pan="-123.52" description="" target="_blank"/>
-      <hotspot tilt="-11.88" title="Monitor2" url="" id="Point06" skinid="Monitor" pan="-134.14" description="Monitor2" target="_blank"/>
+      <hotspot tilt="-11.86" title="VIVA: House 8, book" url="" id="Point04" skinid="Download" pan="-123.52" description="" target="_blank"/>
+      <hotspot tilt="-11.88" title="computer screen" url="" id="Point06" skinid="Monitor" pan="-134.14" description="Monitor2" target="_blank"/>
     </hotspots>
     <media>
       <video nodechangekeep="0" pan="-5.000" field="90.000" rotz="0.000" mode="3" width="1056" startmutedmobile="0" tilt="-5.000" rotx="0.000" ambientlevel="0.000" stretch="1.000" height="1520" loop="-1" id="Interier_02" fov="45.000" pansize="10.000" clickmode="0" handcursor="0" level="1.000" tiltsize="10.000" roty="0.000">
@@ -363,8 +363,8 @@
       <hotspot tilt="-31.55" title="Air Exhaust" url="" id="tag" skinid="Tag" pan="-273.73" description="" target="_blank"/>
       <hotspot tilt="-0.05" title="" url="" id="Point05" skinid="Layers-icon" pan="-355.18" description="" target="_blank"/>
       <hotspot tilt="-17.36" title="Exterier_04" url="{node5}" id="Point01" skinid="Enter " pan="-317.1" description="" target=""/>
-      <hotspot tilt="-12.89" title="34" url="" id="Point04" skinid="Download" pan="-122.77" description="" target="_blank"/>
-      <hotspot tilt="-12.91" title="Monitor4" url="" id="Point06" skinid="Monitor" pan="-134.41" description="Monitor4" target="_blank"/>
+      <hotspot tilt="-12.89" title="VIVA: House 8, book" url="" id="Point04" skinid="Download" pan="-122.77" description="" target="_blank"/>
+      <hotspot tilt="-12.91" title="computer screen" url="" id="Point06" skinid="Monitor" pan="-134.41" description="Monitor4" target="_blank"/>
       <hotspot tilt="-1.21" title="" url="" id="House info" skinid="Interier info" pan="-335.21" description="" target="_blank"/>
     </hotspots>
     <media>

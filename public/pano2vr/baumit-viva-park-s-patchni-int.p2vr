@@ -1810,7 +1810,7 @@
           <polygon/>
           <type>point</type>
           <id>Point04</id>
-          <title>34</title>
+          <title>VIVA: House 8, book</title>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
           <skinid>Download</skinid>
@@ -1835,7 +1835,7 @@
           <polygon/>
           <type>point</type>
           <id>Point06</id>
-          <title>Monitor2</title>
+          <title>computer screen</title>
           <description>Monitor2</description>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
@@ -3407,7 +3407,7 @@
           <polygon/>
           <type>point</type>
           <id>Point06</id>
-          <title>Monitor4</title>
+          <title>computer screen</title>
           <description>Monitor4</description>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>

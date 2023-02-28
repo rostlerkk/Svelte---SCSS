@@ -9,7 +9,7 @@ import VivaTour from './VivaTour.svelte';
 
 // VARIABLES
 let active_house = 0;
-let user_lang, productUrl, housesUrl, subtitlesUrl, product_id, tagValue = null;
+let user_lang, productUrl, housesUrl, subtitlesUrl, product_id, tagValue, currentNode = null;
 let intro, fetching_data, lang_data_loading, welcome, isTourNode = true;
 let about_viva, about_tag, about_product, product_data_loaded, houses_data_loaded, subtitles_data_loaded, house_info, viva_auto_tour = false;
 let _vivaData = {};
@@ -655,6 +655,8 @@ function getSubtitlesLink($lang) {
         });
 
         pano.on("changenode", function() {
+            pano.setVariableValue("download_data", "0");
+            currentNode = pano.getCurrentNode();
             clearTimeout(myTimeout);
             pano.setVariableValue("playPauseMedia", false);
             // vypnutie video patchov
@@ -1543,113 +1545,136 @@ $: {
 {#if about_tag}
     <div id="viva-house-info" class="{tagValue === 'computer screen' ? 'tag yt-only' : 'tag'}">
         <div class="close" on:click={() => close_about_tag()}/>
-            <div class="content">
-                {#each _vivaData["houses"]["additional_content"] as item}
-                    
-                    {#if tagValue == "Global Temperature Sensor" ||
-                        tagValue == "Air Supply" ||
-                        tagValue == "Humidifier" ||
-                        tagValue == "Air Exhaust" || 
-                        tagValue == "Built-in sensors" ||
-                        tagValue == "Temperature sensor for the surface temperature" }
-                        {#if "viva: " + tagValue.toLowerCase() == item.name.toLowerCase()}
-                            {#if item.title_t[user_lang] != undefined && item.title_t[user_lang] != null}
-                                <h1>{item.title_t[user_lang]}</h1>
-                            {:else}
-                                <h1>{item.title_t["int"]}</h1>
-                            {/if}
 
-                            <div class="row">
-                                {#if item.content_t[user_lang] != undefined && item.content_t[user_lang] != null}
-                                    <p class="text">{item.content_t[user_lang]}</p>
-                                {:else}
-                                    <p class="text">{item.content_t["int"]}</p>
-                                {/if}
-                            </div>
-                            
-                        {/if}
-
-                    {/if}
-
-                    {#if tagValue == "Solidity counts" ||
-                         tagValue == "Insulation first" ||
-                         tagValue == "Interior values"}   
-                    
-                        {#if "VIVA: House 8, result: " + tagValue == item.name}
-                            {#if item.title_t[user_lang] != undefined && item.title_t[user_lang] != null}
-                                <h1>{item.title_t[user_lang]}</h1>
-                            {:else}
-                                <h1>{item.title_t["int"]}</h1>
-                            {/if}
-
-                            <div class="row">
-                                {#if item.content_t[user_lang] != undefined && item.content_t[user_lang] != null}
-                                    <p class="text">{item.content_t[user_lang]}</p>
-                                {:else}
-                                    <p class="text">{item.content_t["int"]}</p>
-                                {/if}
-                            </div>
-
-                            <!-- Youtube video -->
+            {#if currentNode == "node18" || currentNode == "node20"}
+                <div class="content">
+                    {#each _vivaData["houses"]["buildings"] as item}
+                        {#if item.house_nr == "House No. 2"}
                             {#if item["media_t"] != undefined}
-                            {#if item["media_t"][user_lang] != undefined}
-                                <div id="yt-video">
-                                    <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"][user_lang].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
-                                </div>
-                            {:else}
-                                {#if item["media_t"]["int"] != undefined}
+                                {#if item["media_t"][user_lang] != undefined}
                                     <div id="yt-video">
-                                        <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"]["int"].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
+                                        <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"][user_lang].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
                                     </div>
-                                {/if}
-                            {/if}
-                        {/if}
-                            
-                        {/if}
-                    {/if}
-
-                    {#if tagValue == "computer screen"}   
-                    
-                        {#if "VIVA: House 8, " + tagValue == item.name}
-                            <!-- {#if item.title_t[user_lang] != undefined && item.title_t[user_lang] != null}
-                                <h1>{item.title_t[user_lang]}</h1>
-                            {:else}
-                                <h1>{item.title_t["int"]}</h1>
-                            {/if}
-
-                            <div class="row">
-                                {#if item.content_t[user_lang] != undefined && item.content_t[user_lang] != null}
-                                    <p class="text">{item.content_t[user_lang]}</p>
                                 {:else}
-                                    <p class="text">{item.content_t["int"]}</p>
+                                    {#if item["media_t"]["int"] != undefined}
+                                        <div id="yt-video">
+                                            <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"]["int"].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
+                                        </div>
+                                    {/if}
                                 {/if}
-                            </div> -->
-
-                            <!-- Youtube video -->
-                            {#if item["media_t"] != undefined}
-                            {#if item["media_t"][user_lang] != undefined}
-                                <div id="yt-video">
-                                    <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"][user_lang].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
+                            {/if}
+                        {/if}                   
+                    {/each}
+                    
+                </div>
+            {:else}
+                <div class="content">
+                    {#each _vivaData["houses"]["additional_content"] as item}
+                        
+                        {#if tagValue == "Global Temperature Sensor" ||
+                            tagValue == "Air Supply" ||
+                            tagValue == "Humidifier" ||
+                            tagValue == "Air Exhaust" || 
+                            tagValue == "Built-in sensors" ||
+                            tagValue == "Temperature sensor for the surface temperature" }
+                            {#if "viva: " + tagValue.toLowerCase() == item.name.toLowerCase()}
+                                {#if item.title_t[user_lang] != undefined && item.title_t[user_lang] != null}
+                                    <h1>{item.title_t[user_lang]}</h1>
+                                {:else}
+                                    <h1>{item.title_t["int"]}</h1>
+                                {/if}
+        
+                                <div class="row">
+                                    {#if item.content_t[user_lang] != undefined && item.content_t[user_lang] != null}
+                                        <p class="text">{item.content_t[user_lang]}</p>
+                                    {:else}
+                                        <p class="text">{item.content_t["int"]}</p>
+                                    {/if}
                                 </div>
-                            {:else}
-                                {#if item["media_t"]["int"] != undefined}
-                                    <div id="yt-video">
-                                        <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"]["int"].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
-                                    </div>
+                                
+                            {/if}
+        
+                        {/if}
+        
+                        {#if tagValue == "Solidity counts" ||
+                                tagValue == "Insulation first" ||
+                                tagValue == "Interior values"}   
+                        
+                            {#if "VIVA: House 8, result: " + tagValue == item.name}
+                                {#if item.title_t[user_lang] != undefined && item.title_t[user_lang] != null}
+                                    <h1>{item.title_t[user_lang]}</h1>
+                                {:else}
+                                    <h1>{item.title_t["int"]}</h1>
                                 {/if}
+        
+                                <div class="row">
+                                    {#if item.content_t[user_lang] != undefined && item.content_t[user_lang] != null}
+                                        <p class="text">{item.content_t[user_lang]}</p>
+                                    {:else}
+                                        <p class="text">{item.content_t["int"]}</p>
+                                    {/if}
+                                </div>
+        
+                                <!-- Youtube video -->
+                                {#if item["media_t"] != undefined}
+                                {#if item["media_t"][user_lang] != undefined}
+                                    <div id="yt-video">
+                                        <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"][user_lang].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
+                                    </div>
+                                {:else}
+                                    {#if item["media_t"]["int"] != undefined}
+                                        <div id="yt-video">
+                                            <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"]["int"].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
+                                        </div>
+                                    {/if}
+                                {/if}
+                            {/if}
+                                
+                            {/if}
+                        {/if}
+        
+                        {#if tagValue == "computer screen"}   
+                        
+                            {#if "VIVA: House 8, " + tagValue == item.name}
+                                <!-- {#if item.title_t[user_lang] != undefined && item.title_t[user_lang] != null}
+                                    <h1>{item.title_t[user_lang]}</h1>
+                                {:else}
+                                    <h1>{item.title_t["int"]}</h1>
+                                {/if}
+        
+                                <div class="row">
+                                    {#if item.content_t[user_lang] != undefined && item.content_t[user_lang] != null}
+                                        <p class="text">{item.content_t[user_lang]}</p>
+                                    {:else}
+                                        <p class="text">{item.content_t["int"]}</p>
+                                    {/if}
+                                </div> -->
+        
+                                <!-- Youtube video -->
+                                {#if item["media_t"] != undefined}
+                                {#if item["media_t"][user_lang] != undefined}
+                                    <div id="yt-video">
+                                        <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"][user_lang].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
+                                    </div>
+                                {:else}
+                                    {#if item["media_t"]["int"] != undefined}
+                                        <div id="yt-video">
+                                            <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"]["int"].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
+                                        </div>
+                                    {/if}
+                                {/if}
+                            {/if}
+                                
                             {/if}
                         {/if}
                             
-                        {/if}
-                    {/if}
-                     
-                {/each}
-                
-            </div>
-            
+                    {/each}
+                    
+                </div>
+            {/if}
 
+           
             
-
             
         <!-- <div class="content">
             <div class="info-v1">
