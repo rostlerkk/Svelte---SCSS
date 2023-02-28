@@ -341,9 +341,13 @@
                 // exteriér
                 case "node1":
                     if (vivaData["subtitles"].start_welcome_t[lang] != null) {
-                        subitlesString += vivaData.subtitles.start_welcome_t[lang]            
+                        subitlesString += vivaData.subtitles.start_welcome_t[lang] + "<br/>"            
+                        subitlesString += vivaData.subtitles.start_quote_t[lang] + "<br/>"               
+                        subitlesString += vivaData.subtitles.start_quote_source_t[lang]
                     } else {
-                        subitlesString += vivaData.subtitles.start_welcome_t["int"]            
+                        subitlesString += vivaData.subtitles.start_welcome_t["int"]    
+                        subitlesString += vivaData.subtitles.start_quote_t["int"] + "<br/>"               
+                        subitlesString += vivaData.subtitles.start_quote_source_t["int"]        
                     }
                     
                     break;
