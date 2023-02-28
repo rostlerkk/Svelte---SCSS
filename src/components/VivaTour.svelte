@@ -341,9 +341,9 @@
                 // exteriér
                 case "node1":
                     if (vivaData["subtitles"].start_welcome_t[lang] != null) {
-                        subitlesString = vivaData.subtitles.start_welcome_t[lang]            
+                        subitlesString += vivaData.subtitles.start_welcome_t[lang]            
                     } else {
-                        subitlesString = vivaData.subtitles.start_welcome_t["int"]            
+                        subitlesString += vivaData.subtitles.start_welcome_t["int"]            
                     }
                     
                     break;
@@ -381,12 +381,17 @@
                     if (vivaData["subtitles"]["house_6_desc_1_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_6_desc_1_t"][lang] + "<br/>"            
                         subitlesString += vivaData["subtitles"]["house_6_method_1_t"][lang] + "<br/>"                     
-                        subitlesString += vivaData["subtitles"]["house_6_method_2_t"][lang]                                     
+                        subitlesString += vivaData["subtitles"]["house_6_method_2_t"][lang]
+                        
+                        alert(subitlesString);
                     } else {
                         subitlesString += vivaData["subtitles"]["house_6_desc_1_t"]["int"] + "<br/>"            
                         subitlesString += vivaData["subtitles"]["house_6_method_1_t"]["int"] + "<br/>"                     
-                        subitlesString += vivaData["subtitles"]["house_6_method_2_t"]["int"]                     
+                        subitlesString += vivaData["subtitles"]["house_6_method_2_t"]["int"]       
+                        
+                        alert(subitlesString);
                     }
+                    break;
                 // Dom 2 - exteriér
                 case "node3":
                     if (vivaData["subtitles"]["house_2_construction_t"][lang] != null) {
@@ -447,7 +452,7 @@
                     }                    
                     break;                      
                 default:
-                    subitlesString = "wff";
+                    subitlesString = "";
                     break;
             }
             

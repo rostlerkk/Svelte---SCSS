@@ -551,6 +551,14 @@ function getSubtitlesLink($lang) {
                 break;
             }
         });
+        pano.on("varchanged_vivaTour", function() {
+            if (pano.getVariableValue("vivaTour") == false) {
+                console.log("gasgasgag");
+                pano.setVariableValue("playPauseMedia", false);
+            clearTimeout(myTimeout);
+            }
+            
+        });
 
         pano.on("varchanged_playPauseMedia", function() {
             let patchName = pano.getNodeUserdata(pano.getCurrentNode()).title;
@@ -582,6 +590,7 @@ function getSubtitlesLink($lang) {
                         pano.playSound(patchName);
 
                         myTimeout = setTimeout(() => {
+                            console.log("gdfshdh");
                             pano.pauseSound(patchName);
                             jq(".pulse-layer").css({
                                 "display" : "flex"
