@@ -691,8 +691,6 @@
     <hotspots wordwrap="1" width="180" height="20">
       <label enabled="0" wordwrap="1" width="180" backgroundalpha="1" borderalpha="1" background="1" border="1" textcolor="0x000000" bordercolor="0x000000" textalpha="1" height="20" backgroundcolor="0xffffff" borderradius="1"/>
       <polystyle handcursor="1" mode="2" backgroundalpha="0.25098" borderalpha="1" bordercolor="0x5956e9" backgroundcolor="0xffffff"/>
-      <hotspot tilt="15.26" title="4169" url="" id="KlimaWhite" skinid="ToolTip Right" pan="-11.67" description="KlimaWhite" target="_blank"/>
-      <hotspot tilt="7.52" title="7281" url="" id="KlimaColor" skinid="ToolTip Right" pan="-15.24" description="KlimaColor" target="_blank"/>
       <hotspot tilt="-12.72" title="computer screen" url="" id="Point01" skinid="Monitor" pan="-137.54" description="Monitor" target="_blank"/>
       <hotspot tilt="-18.18" title="VIVA: House 8, book" url="" id="Point02" skinid="Download" pan="-107.97" description="" target="_blank"/>
       <hotspot tilt="-30.62" title="Insulation first" url="" id="Point04" skinid="Monitor" pan="-182.84" description="Insulation" target="_blank"/>

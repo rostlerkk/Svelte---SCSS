@@ -2731,6 +2731,7 @@
         </floorplancoordinates>
         <source>4</source>
         <customnodeid>house4</customnodeid>
+        <copyright>tour</copyright>
       </userdata>
       <floorplans/>
       <hotspots>
@@ -6390,58 +6391,6 @@
       </userdata>
       <floorplans/>
       <hotspots>
-        <hotspot>
-          <position>
-            <pan>-11.67</pan>
-            <tilt>15.26</tilt>
-            <fov>10</fov>
-          </position>
-          <next>
-            <pan>0</pan>
-            <tilt>0</tilt>
-            <fov>0</fov>
-          </next>
-          <polygon/>
-          <type>point</type>
-          <id>KlimaWhite</id>
-          <title>4169</title>
-          <description>KlimaWhite</description>
-          <linktype>url</linktype>
-          <linksubtype>unknown</linksubtype>
-          <skinid>ToolTip Right</skinid>
-          <distance>0</distance>
-          <distanceauto>1</distanceauto>
-          <autoplace>0</autoplace>
-          <use3d>0</use3d>
-          <width>0</width>
-          <height>0</height>
-        </hotspot>
-        <hotspot>
-          <position>
-            <pan>-15.24</pan>
-            <tilt>7.52</tilt>
-            <fov>10</fov>
-          </position>
-          <next>
-            <pan>0</pan>
-            <tilt>0</tilt>
-            <fov>0</fov>
-          </next>
-          <polygon/>
-          <type>point</type>
-          <id>KlimaColor</id>
-          <title>7281</title>
-          <description>KlimaColor</description>
-          <linktype>url</linktype>
-          <linksubtype>unknown</linksubtype>
-          <skinid>ToolTip Right</skinid>
-          <distance>0</distance>
-          <distanceauto>1</distanceauto>
-          <autoplace>0</autoplace>
-          <use3d>0</use3d>
-          <width>0</width>
-          <height>0</height>
-        </hotspot>
         <hotspot>
           <position>
             <pan>-137.54</pan>

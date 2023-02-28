@@ -153,7 +153,7 @@
         }
     };
 
-    let timeOut = null;
+    let timeOut, layersTimeOut = null;
 
     export let vivaData, user_lang = null;
 
@@ -182,31 +182,31 @@
         }
 
         if (autoplay) {
-            play_patch_video();
+           play_patch_video();
         }
     });
 
-        pano.on("varchanged_blurred", function() {
-            blurred = pano.getVariableValue("blurred");
-        });
-    
-        pano.on("varchanged_vivaTour", function() {
-            console.log(pano.getVariableValue("vivaTour"));
-            switch (pano.getVariableValue("vivaTour")) {
-                
-                case true:
-                    vivaTour = true;
-                    jq('.take-tour-button').addClass('playing');
-                    play_patch_video();
-                    break;
+    pano.on("varchanged_blurred", function() {
+        blurred = pano.getVariableValue("blurred");
+    });
+
+    pano.on("varchanged_vivaTour", function() {
+        console.log(pano.getVariableValue("vivaTour"));
+        switch (pano.getVariableValue("vivaTour")) {
             
-                default:
-                    vivaTour = false;
-                    jq('.take-tour-button').removeClass('playing');
-                    stop_video();
-                    break;
-            }
-        }) ;       
+            case true:
+                vivaTour = true;
+                jq('.take-tour-button').addClass('playing');
+                play_patch_video();
+                break;
+        
+            default:
+                vivaTour = false;
+                jq('.take-tour-button').removeClass('playing');
+                stop_video();
+                break;
+        }
+    }) ;       
     
 
     function toggleAutoplay() {
@@ -283,7 +283,7 @@
                 ) {
                     pano.openNext('{' + is_tour_nodes[0] + '}');
                     if (autoplay) {
-                        play_patch_video();
+                        //play_patch_video();
                     }
                     return;
                 }
@@ -291,7 +291,7 @@
                 else {
                     pano.openNext('{' + is_tour_nodes[index + 1] + '}');
                     if (autoplay) {
-                        play_patch_video();
+                        //play_patch_video();
                     }
                     return;
                 }
@@ -311,6 +311,7 @@
     function play_patch_video() {
         console.log("spúšťam video");
         let currentNode = pano.getCurrentNode();
+        console.log(currentNode);
         let patchName = take_tour_data[currentNode].videos[0].id;
         
         //let video_patch_time = pano.getMediaObject(patchName).duration;
@@ -327,7 +328,30 @@
             nextHouse();
         });
 
-        timeOut = setTimeout(pano.setVariableValue("playPauseMedia", true), 2000);
+        
+        function openLayers() {
+            pano.setVariableValue("playPauseMedia", true);
+        }
+
+        function checkEndVideo() {
+            if (pano.getMediaObject(patchName).currentTime  + 3 >  pano.getMediaObject(patchName).duration) {
+                pano.setVariableValue("playPauseMedia", false);
+                clearInterval(layersTimeOut);
+            }
+        }
+
+        switch (currentNode) {
+            case "node1":
+            case "node24":
+                
+                break;
+        
+            default:
+                timeOut = setTimeout(openLayers, 2000);
+                layersTimeOut = setInterval(checkEndVideo, 1000);
+                break;
+        }
+
     }
 
 </script>

@@ -736,7 +736,7 @@ function getSubtitlesLink($lang) {
             }
         break;
     }
-    jq("")
+    
 }
 
 function change_hotspots_title() {
