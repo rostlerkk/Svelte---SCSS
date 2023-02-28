@@ -610,10 +610,13 @@ function getSubtitlesLink($lang) {
                             show_layers(false);
                             if (pano.getVariableValue("vivaTour")) {
                                 pano.playSound(patchName);
+
+                                
                                 myTimeout = setTimeout(stopWallAnimation, half);
 
                                 function stopWallAnimation() {
                                     pano.stopSound(patchName);
+                                    pano.stopSound("video_2");
                                     pano.soundSetTime(patchName, 0);
                                     jq(".pulse-layer").css({
                                         "display" : "flex"
@@ -621,7 +624,8 @@ function getSubtitlesLink($lang) {
                                 }
                             } else {
                                 clearTimeout(myTimeout);
-                                pano.stopSound(patchName);    
+                                pano.stopSound(patchName);
+                                pano.stopSound("video_2");    
                                 jq(".pulse-layer").css({
                                     "display" : "none"
                                 });
@@ -634,6 +638,7 @@ function getSubtitlesLink($lang) {
                         } else {
                             
                             pano.stopSound(patchName);
+                            pano.stopSound("video_2");    
                             jq(".pulse-layer").css({
                                 "display" : "flex"
                             });

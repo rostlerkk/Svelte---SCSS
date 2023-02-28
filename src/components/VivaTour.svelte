@@ -317,6 +317,8 @@
         let patchName = take_tour_data[currentNode].videos[0].id;
         pano.setMediaVisibility( patchName, false);  
         pano.stopSound(patchName);
+        pano.stopSound("video_2");
+        pano.setMediaVisibility( "video_2", false);  
         pano.setVariableValue("playPauseMedia", false);
         clearInterval(timeOut);
     }
@@ -436,7 +438,9 @@
                 // Dom 8 - interiér
                 case "node24":
                     if (vivaData["subtitles"]["house_8_healthy_living_t"][lang] != null) {
-                        subitlesString += vivaData["subtitles"]["house_8_healthy_living_t"][lang] + "<br/>"       
+                        subitlesString += vivaData["subtitles"]["house_8_healthy_living_t"][lang]
+                        let subtitleTimeOut = null;
+
                         subitlesString += vivaData["subtitles"]["house_8_data_method_1_t"][lang] + "<br/>"
                         subitlesString += vivaData["subtitles"]["house_8_data_method_2_t"][lang] + "<br/>" 
                         subitlesString += vivaData["subtitles"]["house_8_data_method_3_t"][lang]           
