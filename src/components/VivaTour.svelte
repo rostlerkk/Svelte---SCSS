@@ -3,6 +3,157 @@
     import { aboutViva } from '../store.js';
 
     let is_tour_nodes = ['node1', 'node24','node12', 'node26','node6', 'node22', 'node3', 'node18', 'node5', 'node20'];
+    let take_tour_data = {
+        node1 : {
+            id : 'node1', // Exterior_00
+            videos : {
+                0 : {
+                    id : 'video_1',
+                    visited : 0,
+                    pan : -3,
+                    tilt : -2.6,
+                    fov: 60
+                },
+                1 : {
+                    id : 'video_2',
+                    visited : 0,
+                    pan : -3,
+                    tilt : -6,
+                    fov: 60
+                }
+            }
+        },
+        node3 : {
+            id : 'node3', // Exterior 02
+            videos : {
+                0 : {
+                    id : 'video_1',
+                    visited : 0,
+                    pan : -20,
+                    tilt : -10,
+                    fov: 84
+                }
+            }
+        },
+        node18 : {
+            id : 'node18', // Interior 02
+            videos : {
+                0 : {
+                    id : 'video_1',
+                    visited : 0,
+                    // pan : -60,
+                    // tilt: -22
+                    pan : -25.01,
+                    tilt: -10,
+                    fov: 84
+                }
+            }
+        },
+        node5 : {
+            id : 'node5', // Exterior 04
+            videos : {
+                0 : {
+                    id : 'video_1',
+                    visited : 0,
+                    pan : -20.67,
+                    tilt : -10,
+                    fov: 84
+                },
+            }
+        },
+        node20 : {
+            id : 'node20', // Interior 04
+            videos : {
+                0 : {
+                    id : 'video_1',
+                    visited : 0,
+                    // pan : -60,
+                    // tilt : -22, 
+                    pan : -25.01,
+                    tilt: -10,
+                    fov: 84
+                }
+            }
+        },
+        node6 : {
+            id : 'node6', // Exterior 06
+            videos : {
+                "active_video" : "video_1",
+                0 : {
+                    id : 'video_1',
+                    visited : 0,
+                    pan : -20.67,
+                    tilt : -10,
+                    fov: 84
+                }
+            }
+        },
+        node22 : {
+            id : 'node22', // Interior 06
+            videos : {
+                0 : {
+                    id : 'video_1',
+                    visited : 0,
+                    // pan : -60,
+                    // tilt : -22
+                    pan : -25.01,
+                    tilt: -10,
+                    fov: 84
+                }
+            }
+        },
+        // node16 : {
+        //     id : 'node16', // Exterior 08
+        //     videos : {
+        //         0 : {
+        //             id : 'video_1',
+        //             visited : 0,
+        //             pan : -20.67,
+        //             tilt : 0.94
+        //         }
+        //     }
+        // },
+        node24 : {
+            id : 'node24', // Interior 08
+            videos : {
+                0 : {
+                    id : 'video_1',
+                    visited : 0,
+                    pan : -60,
+                    tilt : -22,
+                    fov: 84
+                    
+                }
+            }
+        },
+        node12 : {
+            id : 'node12', // Exterior 10
+            videos : {
+                0 : {
+                    id : 'video_1',
+                    visited : 0,
+                    pan : -20.67,
+                    tilt : -10,
+                    fov: 84
+                }
+            }
+        },
+        node26 : {
+            id : 'node26', // Interior 10
+            videos : {
+                0 : {
+                    id : 'video_1',
+                    visited : 0,
+                    pan : -55,
+                    tilt : -22,
+                    fov: 84
+                    
+                },
+            }
+        }
+    };
+
+    let timeOut = null;
 
     export let vivaData, user_lang = null;
 
@@ -13,13 +164,15 @@
     let current_house = "start";
 
     
-    let vivaTour, autoplay, blurred = false;
+    let vivaTour, blurred = false;
+    let  autoplay = true;
     let subtitles = true;
 
     // aktivácia jQuery
     const jq = window.$;
 
     pano.on("changenode", function () {
+        clearInterval(timeOut);
         select_active_house();
 
         if (pano.getNodeUserdata(pano.getCurrentNode()).copyright == "tour") {
@@ -28,7 +181,9 @@
             jq('.take-tour-button').addClass('hidden');
         }
 
-        
+        if (autoplay) {
+            play_patch_video();
+        }
     });
 
         pano.on("varchanged_blurred", function() {
@@ -42,11 +197,13 @@
                 case true:
                     vivaTour = true;
                     jq('.take-tour-button').addClass('playing');
+                    play_patch_video();
                     break;
             
                 default:
                     vivaTour = false;
                     jq('.take-tour-button').removeClass('playing');
+                    stop_video();
                     break;
             }
         }) ;       
@@ -54,6 +211,21 @@
 
     function toggleAutoplay() {
         autoplay = !autoplay;
+        console.log(autoplay);
+
+        let currentNode = pano.getCurrentNode();
+        let patchName = take_tour_data[currentNode].videos[0].id;
+
+        if (autoplay == true) {
+            let currentNode = pano.getCurrentNode();
+            let patchName = take_tour_data[currentNode].videos[0].id;
+            pano.setMediaVisibility( patchName, true);  
+            pano.playSound(patchName);
+            
+        } else {
+            pano.pauseSound(patchName);
+            
+        }
     }
 
     function select_active_house() {
@@ -99,7 +271,7 @@
         pano.openNext('{' + $parameter + '}');
     }
 
-    function nextHouse() {
+    function nextHouse($pan, $tilt, $fov) {
         for (let index = 0; index < is_tour_nodes.length; index++) {
             let node = pano.getCurrentNode();
             
@@ -110,17 +282,53 @@
                     node == is_tour_nodes[is_tour_nodes.length - 1]
                 ) {
                     pano.openNext('{' + is_tour_nodes[0] + '}');
+                    if (autoplay) {
+                        play_patch_video();
+                    }
                     return;
                 }
 
                 else {
                     pano.openNext('{' + is_tour_nodes[index + 1] + '}');
+                    if (autoplay) {
+                        play_patch_video();
+                    }
                     return;
                 }
             }
         }
     }
 
+    function stop_video() {
+        let currentNode = pano.getCurrentNode();
+        let patchName = take_tour_data[currentNode].videos[0].id;
+        pano.setMediaVisibility( patchName, false);  
+        pano.stopSound(patchName);
+        pano.setVariableValue("playPauseMedia", false);
+        clearInterval(timeOut);
+    }
+
+    function play_patch_video() {
+        console.log("spúšťam video");
+        let currentNode = pano.getCurrentNode();
+        let patchName = take_tour_data[currentNode].videos[0].id;
+        
+        //let video_patch_time = pano.getMediaObject(patchName).duration;
+        let pan = take_tour_data[currentNode].videos[0].pan;
+        let tilt = take_tour_data[currentNode].videos[0].tilt;
+        let fov = take_tour_data[currentNode].videos[0].fov;
+        
+        pano.setMediaVisibility( patchName, true);    
+        pano.moveTo(pan, tilt, fov, 5);
+        console.log(patchName);
+
+        pano.playSound(patchName);
+        pano.getMediaObject(patchName).addEventListener('ended', function() {
+            nextHouse();
+        });
+
+        timeOut = setTimeout(pano.setVariableValue("playPauseMedia", true), 2000);
+    }
 
 </script>
 
@@ -130,7 +338,7 @@
             <div id="houses-info-container">
                 <div class="houses-header">
                     <div class="buttons">
-                        {#if autoplay}
+                        {#if !autoplay}
                             <img class="play" src="assets/icons/play-houses.svg" alt="play" on:click={() => toggleAutoplay()}>
                         {:else}
                             <img class="pause" src="assets/icons/pause-houses.svg" alt="pause" on:click={() => toggleAutoplay()}>

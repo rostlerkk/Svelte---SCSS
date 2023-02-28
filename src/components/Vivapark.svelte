@@ -140,15 +140,7 @@ vivaData.subscribe(value => {
 });
 
 aboutViva.subscribe(value => {
-    switch (value) {
-        case true:
-            pano.setVariableValue('blurred', true);
-            break;
-    
-        default:
-            pano.setVariableValue('blurred', false);
-            break;
-    }
+    pano.setVariableValue('blurred', value);
     about_viva = value;
 });
 
@@ -658,6 +650,7 @@ function getSubtitlesLink($lang) {
             }
 
             change_hotspots_title();
+            change_patches();
 
         });
 
@@ -1041,6 +1034,69 @@ function toogleVivaTour() {
     console.log(pano.getVariableValue("vivaTour"));
     intro = false;
 }
+
+
+function change_patches() {
+        jq.each(jq('img.ggmedia'), function (index, value) {
+            let lang = pano.getVariableValue('lang');
+            ////////console.log('mením patch');
+            let src = jq(this).attr('src');
+
+            if (
+                src.includes('vr_int_08_patch0') 
+            ) {
+                jq(this).attr('src', 'media/vr_int_08_patch0_'+lang+'.png');
+            }
+
+            if (
+                src.includes('vr_int_08_patch1') 
+            ) {
+                jq(this).attr('src', 'media/vr_int_08_patch1_'+lang+'.png');
+            }
+
+            if (
+                src.includes('vr_int_08_patch2') 
+            ) {
+                jq(this).attr('src', 'media/vr_int_08_patch2_'+lang+'.png');
+            }
+
+            if (
+                src.includes('vr_int_08_patch3') 
+            ) {
+                jq(this).attr('src', 'media/vr_int_08_patch3_'+lang+'.png');
+            }
+
+            if (
+                src.includes('vr_int_08_patch4') 
+            ) {
+                jq(this).attr('src', 'media/vr_int_08_patch4_'+lang+'.png');
+            }
+
+            if (
+                src.includes('vr_int_08_patch5') 
+            ) {
+                jq(this).attr('src', 'media/vr_int_08_patch5_'+lang+'.png');
+            }
+
+            if (
+                src.includes('vr_int_08_patch6') 
+            ) {
+                jq(this).attr('src', 'media/vr_int_08_patch6_'+lang+'.png');
+            }
+
+            if (
+                src.includes('vr_int_02_patch1') 
+            ) {
+                jq(this).attr('src', 'media/vr_int_02_patch1_'+lang+'.png');
+            }
+
+            if (
+                src.includes('vr_int_04_patch1') 
+            ) {
+                jq(this).attr('src', 'media/vr_int_04_patch1_'+lang+'.png');
+            }
+        });
+    }
 
 add_video_patch();
 
