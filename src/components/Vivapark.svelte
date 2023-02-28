@@ -165,7 +165,6 @@ aboutViva.subscribe(value => {
 
 // získanie dát z API - golbálna funkcia
 async function fetchData($url, $lang, $type, $variable) {
-
     $variable = false;
     if (_vivaData[$lang] == undefined) {
         const res = await fetch($url);
@@ -193,11 +192,8 @@ async function fetchData($url, $lang, $type, $variable) {
     }
 }
 
-// Zistenie jazyka užívateľa
-function check_user_lang() {
-
-    // zistenie honoty z cookies
-    function getCookie(cname) {
+ // zistenie honoty z cookies
+ function getCookie(cname) {
         let name = cname + "=";
         let decodedCookie = decodeURIComponent(document.cookie);
         let ca = decodedCookie.split(';');
@@ -213,6 +209,11 @@ function check_user_lang() {
         }
         return "";
     }
+
+// Zistenie jazyka užívateľa
+function check_user_lang() {
+
+   
     let cookie_lang = getCookie("user_lang");
 
     if (cookie_lang != "") {
@@ -479,6 +480,23 @@ function getSubtitlesLink($lang) {
 }
 
     pano.on("configloaded", function() {
+        let cookie_sound = getCookie("sound");
+        if (cookie_sound == "false") {
+            pano.setVariableValue('sound', false);
+        }
+
+        pano.addListener('varchanged_sound', function() {
+            switch (pano.getVariableValue('sound')) {
+                case true: 
+                    
+                    document.cookie = "sound=true";
+                break;
+                case false : 
+                    document.cookie = "sound=false";
+                break;
+            }
+        });
+
         let showVivaIntro = null;
         pano.setVariableValue('blurred', false);
         //pano.setVariableValue('intro', false);

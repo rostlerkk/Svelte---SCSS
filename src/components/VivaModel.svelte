@@ -50,14 +50,15 @@
     pano.on("varchanged_vivaModel", function() {
         switch (pano.getVariableValue("vivaModel")) {
             case true:
-                pano.setVariableValue("blurred", true);
-                
+                //pano.setVariableValue("blurred", true);
+                jq(".no-more").remove();
 
                 if (show_model_helper) {
                     jq(".intro-help").removeClass("hidden");
 
                     jq("#3d-confirm").on("click", function() {
                         jq(".intro-help").addClass("hidden");
+                        jq(".intro-help").remove();
                     });
                     jq(".no-more").on("change", function() {
                         if(this.checked) {
@@ -92,11 +93,10 @@
             case true:
                 
                 jq(".orientation-button.model-off > div").html(interactive_model);
-                pano.openNext('{' + lastVisitedModel + '}');                
+                    pano.openNext('{' + lastVisitedModel + '}');                
                 break;
         
             default:
-                console.log(lastVisitedNode);
 
                 jq(".orientation-button.model-on > div").html(select_houses);
                 pano.openNext('{' + lastVisitedNode + '}');
@@ -145,48 +145,61 @@
 </script>
 
 {#if show_model}
-    <div id="mySpriteSpin"></div>
+    <div class="model">
+        <div id="mySpriteSpin"></div>
 
-    <script type='text/javascript'>
-        $("#mySpriteSpin").spritespin({
-          // path to the source images.
-            source: SpriteSpin.sourceArray('../assets/3d/{frame}.jpg', {
-                frame: [1,201],
-            
-            }),
-            width: 420,
-            height: 327,
-            sense: -1,
-            responsive: true,
-            animate: false,
-            plugins: [
-            'progress',
-            '360',
-            'drag'
-            ]
-        });
+        <script type='text/javascript'>
+            $("#mySpriteSpin").spritespin({
+              // path to the source images.
+                source: SpriteSpin.sourceArray('../assets/3d/{frame}.jpg', {
+                    frame: [1,201],
+                
+                }),
+                width: 1920,
+                height: 1080,
+                sense: -1,
+                responsive: true,
+                animate: false,
+                plugins: [
+                'progress',
+                '360',
+                'drag'
+                ]
+            });
         </script>
+    </div>
+
 {/if}
 
 <style lang="scss">
     /* your styles go here */
-    #mySpriteSpin {
-        position: absolute;
-        top: 0px !important;
-        left: 0px !important;
-        z-index: 9 !important;
-        padding: Opx !important;
-        margin: 0px !important; 
-        width: 100% !important;
 
+    .model {
+        position: absolute;
+        top: 40px;
+        left: 0px;
+        z-index: 9;
+        padding: 0px;
+        margin: 0px; 
+        width: 100%;
+        height: calc(100% - 40px);
         background: rgba(255, 254, 254, 0.5) 0% 0% no-repeat padding-box;
         backdrop-filter: blur(40px) !important;
         -webkit-backdrop-filter: blur(40px) !important;
         -moz-filter: blur(40px);
-    }
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow: hidden;
 
-
-    .spritespin {
-    width: 100%;
+        #mySpriteSpin {
+            position: absolute;
+            top: 0px !important;
+            left: 0px !important;
+            z-index: 9 !important;
+            padding: Opx !important;
+            margin: 0px !important; 
+            width: 100% !important;
+        }
     }
 </style>
