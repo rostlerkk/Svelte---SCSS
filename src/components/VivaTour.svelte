@@ -461,9 +461,27 @@
         
 
         pano.playSound(patchName);
-        pano.getMediaObject(patchName).addEventListener('ended', function() {
-            nextHouse();
-        });
+
+        switch (currentNode) {
+            case "node1":
+                pano.getMediaObject(patchName).addEventListener('ended', function() {
+                    pano.setMediaVisibility("video_2", true); 
+                    pano.playSound("video_2");   
+
+                    pano.getMediaObject("video_2").addEventListener('ended', function() {
+                        nextHouse();
+                    });
+                    
+                });
+                break;
+        
+            default:
+                pano.getMediaObject(patchName).addEventListener('ended', function() {
+                    nextHouse();
+                });
+                break;
+        }
+        
 
         
         function openLayers() {
