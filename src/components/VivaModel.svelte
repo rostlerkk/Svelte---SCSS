@@ -33,12 +33,13 @@
     // aktivácia jQuery
     const jq = window.$;
 
-    pano.on("changednode", function() {
+    pano.on("changenode", function() {
         let currentNode = pano.getCurrentNode();
         if (pano.getNodeUserdata(currentNode).copyright == "vyberovnik") {
             lastVisitedModel = currentNode;
         } else {
             lastVisitedNode = currentNode;
+            pano.setVariableValue("footer_apartments", false);
         }
     });
 
@@ -95,6 +96,8 @@
                 break;
         
             default:
+                console.log(lastVisitedNode);
+
                 jq(".orientation-button.model-on > div").html(select_houses);
                 pano.openNext('{' + lastVisitedNode + '}');
                 break;
