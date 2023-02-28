@@ -1490,6 +1490,7 @@
         <description>House 02</description>
         <comment>House 02 Interior</comment>
         <source>2</source>
+        <copyright>tour</copyright>
       </userdata>
       <floorplans/>
       <hotspots>
@@ -3111,6 +3112,7 @@
         <description>House 04</description>
         <comment>House 04 Interior</comment>
         <source>4</source>
+        <copyright>tour</copyright>
       </userdata>
       <floorplans/>
       <hotspots>
@@ -4835,6 +4837,7 @@
         <description>House 06</description>
         <comment>House 06 Interior</comment>
         <source>6</source>
+        <copyright>tour</copyright>
       </userdata>
       <floorplans/>
       <hotspots>
@@ -8088,6 +8091,7 @@
         <description>House 10</description>
         <comment>House 10 Interior</comment>
         <source>10</source>
+        <copyright>tour</copyright>
       </userdata>
       <floorplans/>
       <hotspots>

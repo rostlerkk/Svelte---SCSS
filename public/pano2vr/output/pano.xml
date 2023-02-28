@@ -177,7 +177,7 @@
       <min tilt="-90" pan="0" fovpixel="2"/>
       <max tilt="90" fov="120" scaletofit="1" pan="360" fovstereographic="270" fovfisheye="360"/>
     </view>
-    <userdata author="" longitude="" nodeid="node18" latitude="" title="Interier_02" heading="0" copyright="" tags="int|slider" comment="House 02 Interior" datetime="30. 8. 2021 13:40" source="2" info="" customnodeid="" description="House 02"/>
+    <userdata author="" longitude="" nodeid="node18" latitude="" title="Interier_02" heading="0" copyright="tour" tags="int|slider" comment="House 02 Interior" datetime="30. 8. 2021 13:40" source="2" info="" customnodeid="" description="House 02"/>
     <hotspots wordwrap="1" width="180" height="20">
       <label enabled="0" wordwrap="1" width="180" backgroundalpha="1" borderalpha="1" background="1" border="1" textcolor="0x000000" bordercolor="0x000000" textalpha="1" height="20" backgroundcolor="0xffffff" borderradius="1"/>
       <polystyle handcursor="1" mode="2" backgroundalpha="0.25098" borderalpha="1" bordercolor="0x5956e9" backgroundcolor="0xffffff"/>
@@ -349,7 +349,7 @@
       <min tilt="-90" pan="0" fovpixel="2"/>
       <max tilt="90" fov="120" scaletofit="1" pan="360" fovstereographic="270" fovfisheye="360"/>
     </view>
-    <userdata author="" longitude="" nodeid="node20" latitude="" title="Interier_04" heading="0" copyright="" tags="int|slider" comment="House 04 Interior" datetime="30. 8. 2021 13:40" source="4" info="" customnodeid="" description="House 04"/>
+    <userdata author="" longitude="" nodeid="node20" latitude="" title="Interier_04" heading="0" copyright="tour" tags="int|slider" comment="House 04 Interior" datetime="30. 8. 2021 13:40" source="4" info="" customnodeid="" description="House 04"/>
     <hotspots wordwrap="1" width="180" height="20">
       <label enabled="0" wordwrap="1" width="180" backgroundalpha="1" borderalpha="1" background="1" border="1" textcolor="0x000000" bordercolor="0x000000" textalpha="1" height="20" backgroundcolor="0xffffff" borderradius="1"/>
       <polystyle handcursor="1" mode="2" backgroundalpha="0.25098" borderalpha="1" bordercolor="0x5956e9" backgroundcolor="0xffffff"/>
@@ -525,7 +525,7 @@
       <min tilt="-90" pan="0" fovpixel="2"/>
       <max tilt="90" fov="120" scaletofit="1" pan="360" fovstereographic="270" fovfisheye="360"/>
     </view>
-    <userdata author="" longitude="" nodeid="node22" latitude="" title="Interier_06" heading="0" copyright="" tags="int|slider" comment="House 06 Interior" datetime="30. 8. 2021 13:40" source="6" info="" customnodeid="" description="House 06"/>
+    <userdata author="" longitude="" nodeid="node22" latitude="" title="Interier_06" heading="0" copyright="tour" tags="int|slider" comment="House 06 Interior" datetime="30. 8. 2021 13:40" source="6" info="" customnodeid="" description="House 06"/>
     <hotspots wordwrap="1" width="180" height="20">
       <label enabled="0" wordwrap="1" width="180" backgroundalpha="1" borderalpha="1" background="1" border="1" textcolor="0x000000" bordercolor="0x000000" textalpha="1" height="20" backgroundcolor="0xffffff" borderradius="1"/>
       <polystyle handcursor="1" mode="2" backgroundalpha="0.25098" borderalpha="1" bordercolor="0x5956e9" backgroundcolor="0xffffff"/>
@@ -869,7 +869,7 @@
       <min tilt="-90" pan="0" fovpixel="2"/>
       <max tilt="90" fov="120" scaletofit="1" pan="360" fovstereographic="270" fovfisheye="360"/>
     </view>
-    <userdata author="" longitude="" nodeid="node26" latitude="" title="Interier_10" heading="0" copyright="" tags="int|slider" comment="House 10 Interior" datetime="30. 8. 2021 13:58" source="10" info="" customnodeid="" description="House 10"/>
+    <userdata author="" longitude="" nodeid="node26" latitude="" title="Interier_10" heading="0" copyright="tour" tags="int|slider" comment="House 10 Interior" datetime="30. 8. 2021 13:58" source="10" info="" customnodeid="" description="House 10"/>
     <hotspots wordwrap="1" width="180" height="20">
       <label enabled="0" wordwrap="1" width="180" backgroundalpha="1" borderalpha="1" background="1" border="1" textcolor="0x000000" bordercolor="0x000000" textalpha="1" height="20" backgroundcolor="0xffffff" borderradius="1"/>
       <polystyle handcursor="1" mode="2" backgroundalpha="0.25098" borderalpha="1" bordercolor="0x5956e9" backgroundcolor="0xffffff"/>

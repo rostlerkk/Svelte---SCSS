@@ -592,7 +592,7 @@ function getSubtitlesLink($lang) {
                         myTimeout = setTimeout(playWallAnimation, half);
 
                         function playWallAnimation() {
-                            console.log("gdfshdh");
+                            
                             pano.pauseSound(patchName);
                             jq(".pulse-layer").css({
                                 "display" : "flex"
@@ -628,7 +628,7 @@ function getSubtitlesLink($lang) {
                             }
                             
                         } else {
-                            console.log("gasgasgag");
+                            
                             pano.stopSound(patchName);
                             jq(".pulse-layer").css({
                                 "display" : "none"

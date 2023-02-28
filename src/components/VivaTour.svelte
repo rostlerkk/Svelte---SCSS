@@ -324,7 +324,7 @@
     function play_patch_video() {
         subitlesString = "";
         let currentNode = pano.getCurrentNode();
-        console.log(currentNode);
+        
         let patchName = take_tour_data[currentNode].videos[0].id;
         
         //let video_patch_time = pano.getMediaObject(patchName).duration;
@@ -336,7 +336,7 @@
         if (vivaData["subtitles"] != null) {
             
             let lang = pano.getVariableValue("lang");
-            console.log(lang);
+            
             switch (currentNode) {
                 // exteriér
                 case "node1":
