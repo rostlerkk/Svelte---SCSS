@@ -13,7 +13,7 @@
       <min tilt="-90" pan="0" fovpixel="2"/>
       <max tilt="90" fov="120" scaletofit="1" pan="360" fovstereographic="270" fovfisheye="360"/>
     </view>
-    <userdata author="" longitude="" nodeid="node1" latitude="" title="Exterier_00" heading="45" copyright="tour" tags="equirects|ext|house|is_tour|no-house|slider" comment="" datetime="9. 7. 2021 11:47" source="0" info="00" customnodeid="" description="Entrance">
+    <userdata author="" longitude="" nodeid="node1" latitude="" title="Exterier_00" heading="45" copyright="tour" tags="equirects|ext|house|is_tour|no-house|slider" comment="Viva Park" datetime="9. 7. 2021 11:47" source="0" info="00" customnodeid="" description="Entrance">
       <mapcoords mapid="Vivapark" x="0.186768" y="-1.87042" x_floorplan_percent="6.8" y_floorplan_percent="68.1"/>
     </userdata>
     <hotspots wordwrap="1" width="180" height="20">

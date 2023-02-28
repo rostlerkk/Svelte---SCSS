@@ -497,6 +497,18 @@ function getSubtitlesLink($lang) {
             }
         });
 
+        pano.addListener('varchanged_floorplan_full', function() {
+            switch (pano.getVariableValue('floorplan_full')) {
+                case true: 
+                    
+                   pano.setVariableValue("blurred", true);
+                break;
+                case false : 
+                    pano.setVariableValue("blurred", false);
+                break;
+            }
+        });
+
         let showVivaIntro = null;
         pano.setVariableValue('blurred', false);
         //pano.setVariableValue('intro', false);
@@ -823,8 +835,7 @@ function getSubtitlesLink($lang) {
 
     });
 
-
-    function show_layers($value) {
+function show_layers($value) {
     switch ($value) {
         case false:
             jq(".viva-tooltip").addClass("hidden");
@@ -1093,12 +1104,43 @@ async function fetchPhpData($lang) {
         intro = true;
         change_hotspots_title();
         change_logo_img();
+        changeShortCutsNames();
 
     } else {
         throw new Error(json);
         fetching_data = false;
     }
 
+}
+
+function changeShortCutsNames() {
+    jq.each (jq('.swiper-slide'), function (index, data) {
+            //////////console.log(housesData[pano.getVariableValue('lang')]);
+            switch (jq('.swiper-slide').eq(index).attr('data-url')) {
+                case 'node1' : 
+                jq('.swiper-slide').eq(index).find('.node-title').html('Viva Park');
+                jq('.check-layer > div > p#house_0').html("Viva Park");
+                break;
+                default : 
+                
+                if (
+                    _vivaData["houses"]['buildings'][index-1] != undefined
+                ) {
+                    if (
+                        _vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang] != undefined
+                    ) {
+                        jq('.swiper-slide').eq(index).find('.node-title').html(_vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang]);
+                        jq('.check-layer > div > p#house_' + index).html(_vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang]);
+                    } else {
+                        jq('.swiper-slide').eq(index).find('.node-title').html(_vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang]);
+                        jq('.check-layer > div > p#house_' + index).html(_vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang]);
+                    }
+                    
+                }
+                    
+                break;
+            }
+        });
 }
 
 function go_to_house_8() {

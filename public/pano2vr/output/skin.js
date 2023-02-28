@@ -1,7 +1,7 @@
 // Garden Gnome Software - Skin
 // Pano2VR 6.1.15/18116
 // Filename: baumit-viva-park.ggsk
-// Generated 2023-02-28T21:49:27
+// Generated 2023-02-28T22:24:24
 
 function pano2vrSkin(player,base) {
 	player.addVariable('lang', 0, "");
@@ -6260,7 +6260,6 @@ function pano2vrSkin(player,base) {
 		me._apartments0.onclick=function (e) {
 			player.setVariableValue('new_blur', false);
 			player.setVariableValue('footer_apartments', false);
-			useLastVisited();
 		}
 		me._apartments0.ggUpdatePosition=function (useTransition) {
 			if (useTransition==='undefined') {
@@ -35964,7 +35963,7 @@ tagInfo(pano.getVariableValue('tagValue'));
 		hs+="position: relative; text-align: unset; display: flex !important; flex-direction: row !important; justify-content: flex-start !important; align-items: center !important;";
 		els.setAttribute('style',hs);
 		me._layer_id.ggUpdateText=function() {
-			var hs="<span id=\""+me.ggUserdata.source+"\">"+me.ggUserdata.information+"<\/span><p>"+me.ggUserdata.description+"<\/p>"+player.getVariableValue('houseComfort');
+			var hs="<span id=\""+me.ggUserdata.source+"\">"+me.ggUserdata.information+"<\/span><p id=\"house_"+me.ggUserdata.source+"\">"+me.ggUserdata.description+"<\/p>"+player.getVariableValue('houseComfort');
 			if (hs!=this.ggText) {
 				this.ggText=hs;
 				this.ggTextDiv.innerHTML=hs;
@@ -36030,11 +36029,11 @@ tagInfo(pano.getVariableValue('tagValue'));
 				me._layer_id.ggCurrentLogicStateText = newLogicStateText;
 				me._layer_id.style[domTransition]='';
 				if (me._layer_id.ggCurrentLogicStateText == 0) {
-					me._layer_id.ggText="<span id=\""+me.ggUserdata.source+"\" class=\"active\">"+me.ggUserdata.information+"<\/span><p>"+me.ggUserdata.description+"<\/p>";
+					me._layer_id.ggText="<span id=\""+me.ggUserdata.source+"\" class=\"active\">"+me.ggUserdata.information+"<\/span><p id=\"house_"+me.ggUserdata.source+"\">"+me.ggUserdata.description+"<\/p>";
 					me._layer_id__text.innerHTML=me._layer_id.ggText;
 					if (me._layer_id.ggUpdateText) {
 					me._layer_id.ggUpdateText=function() {
-						var hs="<span id=\""+me.ggUserdata.source+"\" class=\"active\">"+me.ggUserdata.information+"<\/span><p>"+me.ggUserdata.description+"<\/p>";
+						var hs="<span id=\""+me.ggUserdata.source+"\" class=\"active\">"+me.ggUserdata.information+"<\/span><p id=\"house_"+me.ggUserdata.source+"\">"+me.ggUserdata.description+"<\/p>";
 						if (hs!=this.ggText) {
 							this.ggText=hs;
 							this.ggTextDiv.innerHTML=hs;
@@ -36046,11 +36045,11 @@ tagInfo(pano.getVariableValue('tagValue'));
 					}
 				}
 				else if (me._layer_id.ggCurrentLogicStateText == 1) {
-					me._layer_id.ggText="<span class=\"start-marker\" id=\""+me.ggUserdata.source+"\">"+me.ggUserdata.information+"<\/span><p>"+me.ggUserdata.description+"<\/p>";
+					me._layer_id.ggText="<span class=\"start-marker\" id=\""+me.ggUserdata.source+"\">"+me.ggUserdata.information+"<\/span><p id=\"house_"+me.ggUserdata.source+"\">"+me.ggUserdata.description+"<\/p>";
 					me._layer_id__text.innerHTML=me._layer_id.ggText;
 					if (me._layer_id.ggUpdateText) {
 					me._layer_id.ggUpdateText=function() {
-						var hs="<span class=\"start-marker\" id=\""+me.ggUserdata.source+"\">"+me.ggUserdata.information+"<\/span><p>"+me.ggUserdata.description+"<\/p>";
+						var hs="<span class=\"start-marker\" id=\""+me.ggUserdata.source+"\">"+me.ggUserdata.information+"<\/span><p id=\"house_"+me.ggUserdata.source+"\">"+me.ggUserdata.description+"<\/p>";
 						if (hs!=this.ggText) {
 							this.ggText=hs;
 							this.ggTextDiv.innerHTML=hs;
@@ -36062,11 +36061,11 @@ tagInfo(pano.getVariableValue('tagValue'));
 					}
 				}
 				else if (me._layer_id.ggCurrentLogicStateText == 2) {
-					me._layer_id.ggText="<span id=\""+me.ggUserdata.source+"\" class=\"active\">"+me.ggUserdata.information+"<\/span><p>"+me.ggUserdata.description+"<\/p>"+player.getVariableValue('houseComfort');
+					me._layer_id.ggText="<span id=\""+me.ggUserdata.source+"\" class=\"active\">"+me.ggUserdata.information+"<\/span><p id=\"house_"+me.ggUserdata.description+"\">"+me.ggUserdata.source+"<\/p>"+player.getVariableValue('houseComfort');
 					me._layer_id__text.innerHTML=me._layer_id.ggText;
 					if (me._layer_id.ggUpdateText) {
 					me._layer_id.ggUpdateText=function() {
-						var hs="<span id=\""+me.ggUserdata.source+"\" class=\"active\">"+me.ggUserdata.information+"<\/span><p>"+me.ggUserdata.description+"<\/p>"+player.getVariableValue('houseComfort');
+						var hs="<span id=\""+me.ggUserdata.source+"\" class=\"active\">"+me.ggUserdata.information+"<\/span><p id=\"house_"+me.ggUserdata.description+"\">"+me.ggUserdata.source+"<\/p>"+player.getVariableValue('houseComfort');
 						if (hs!=this.ggText) {
 							this.ggText=hs;
 							this.ggTextDiv.innerHTML=hs;
@@ -36078,11 +36077,11 @@ tagInfo(pano.getVariableValue('tagValue'));
 					}
 				}
 				else if (me._layer_id.ggCurrentLogicStateText == 3) {
-					me._layer_id.ggText="<span id=\""+me.ggUserdata.source+"\" class=\"active highlight\">"+me.ggUserdata.information+"<\/span><p>"+me.ggUserdata.description+"<\/p>"+player.getVariableValue('houseComfort');
+					me._layer_id.ggText="<span id=\""+me.ggUserdata.source+"\" class=\"active highlight\">"+me.ggUserdata.information+"<\/span><p id=\"house_"+me.ggUserdata.description+"\">"+me.ggUserdata.source+"<\/p>"+player.getVariableValue('houseComfort');
 					me._layer_id__text.innerHTML=me._layer_id.ggText;
 					if (me._layer_id.ggUpdateText) {
 					me._layer_id.ggUpdateText=function() {
-						var hs="<span id=\""+me.ggUserdata.source+"\" class=\"active highlight\">"+me.ggUserdata.information+"<\/span><p>"+me.ggUserdata.description+"<\/p>"+player.getVariableValue('houseComfort');
+						var hs="<span id=\""+me.ggUserdata.source+"\" class=\"active highlight\">"+me.ggUserdata.information+"<\/span><p id=\"house_"+me.ggUserdata.description+"\">"+me.ggUserdata.source+"<\/p>"+player.getVariableValue('houseComfort');
 						if (hs!=this.ggText) {
 							this.ggText=hs;
 							this.ggTextDiv.innerHTML=hs;
@@ -36094,11 +36093,11 @@ tagInfo(pano.getVariableValue('tagValue'));
 					}
 				}
 				else if (me._layer_id.ggCurrentLogicStateText == 4) {
-					me._layer_id.ggText="<span id=\""+me.ggUserdata.source+"\" class=\"highlight\">"+me.ggUserdata.information+"<\/span><p>"+me.ggUserdata.description+"<\/p>"+player.getVariableValue('houseComfort');
+					me._layer_id.ggText="<span id=\""+me.ggUserdata.source+"\" class=\"highlight\">"+me.ggUserdata.information+"<\/span><p id=\"house_"+me.ggUserdata.source+"\">"+me.ggUserdata.description+"<\/p>"+player.getVariableValue('houseComfort');
 					me._layer_id__text.innerHTML=me._layer_id.ggText;
 					if (me._layer_id.ggUpdateText) {
 					me._layer_id.ggUpdateText=function() {
-						var hs="<span id=\""+me.ggUserdata.source+"\" class=\"highlight\">"+me.ggUserdata.information+"<\/span><p>"+me.ggUserdata.description+"<\/p>"+player.getVariableValue('houseComfort');
+						var hs="<span id=\""+me.ggUserdata.source+"\" class=\"highlight\">"+me.ggUserdata.information+"<\/span><p id=\"house_"+me.ggUserdata.source+"\">"+me.ggUserdata.description+"<\/p>"+player.getVariableValue('houseComfort');
 						if (hs!=this.ggText) {
 							this.ggText=hs;
 							this.ggTextDiv.innerHTML=hs;
@@ -36110,11 +36109,11 @@ tagInfo(pano.getVariableValue('tagValue'));
 					}
 				}
 				else {
-					me._layer_id.ggText="<span id=\""+me.ggUserdata.source+"\">"+me.ggUserdata.information+"<\/span><p>"+me.ggUserdata.description+"<\/p>"+player.getVariableValue('houseComfort');
+					me._layer_id.ggText="<span id=\""+me.ggUserdata.source+"\">"+me.ggUserdata.information+"<\/span><p id=\"house_"+me.ggUserdata.source+"\">"+me.ggUserdata.description+"<\/p>"+player.getVariableValue('houseComfort');
 					me._layer_id__text.innerHTML=me._layer_id.ggText;
 					if (me._layer_id.ggUpdateText) {
 					me._layer_id.ggUpdateText=function() {
-						var hs="<span id=\""+me.ggUserdata.source+"\">"+me.ggUserdata.information+"<\/span><p>"+me.ggUserdata.description+"<\/p>"+player.getVariableValue('houseComfort');
+						var hs="<span id=\""+me.ggUserdata.source+"\">"+me.ggUserdata.information+"<\/span><p id=\"house_"+me.ggUserdata.source+"\">"+me.ggUserdata.description+"<\/p>"+player.getVariableValue('houseComfort');
 						if (hs!=this.ggText) {
 							this.ggText=hs;
 							this.ggTextDiv.innerHTML=hs;
