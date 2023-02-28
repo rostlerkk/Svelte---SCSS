@@ -154,6 +154,7 @@
     };
 
     let timeOut, layersTimeOut = null;
+    let subtitleTimeOut_2, subtitleTimeOut_3, subtitleTimeOut_4 = null;
 
     export let vivaData, user_lang = null;
 
@@ -228,10 +229,7 @@
                 pano.setMediaVisibility( patchName, true);  
                 pano.playSound(patchName);
             }
-            
-            
-            
-            
+
         } else {
 
             if (pano.getMediaObject("video_1").currentTime == pano.getMediaObject("video_1").duration) {
@@ -452,21 +450,66 @@
                     
                 // Dom 8 - interiér
                 case "node24":
-                    let subtitles_1, subtitles_2, subtitles_3;
+                    let subtitles_1, subtitles_2, subtitles_3, subtitles_4;
                     if (vivaData["subtitles"]["house_8_healthy_living_t"][lang] != null) {
-                        subitlesString += vivaData["subtitles"]["house_8_healthy_living_t"][lang]
-                        let subtitleTimeOut = null;
-
-                        subitlesString += vivaData["subtitles"]["house_8_data_method_1_t"][lang] + "<br/>"
-                        subitlesString += vivaData["subtitles"]["house_8_data_method_2_t"][lang] + "<br/>" 
-                        subitlesString += vivaData["subtitles"]["house_8_data_method_3_t"][lang]           
+                        subtitles_1 = vivaData["subtitles"]["house_8_healthy_living_t"][lang];
+                        subtitles_2 = vivaData["subtitles"]["house_8_data_method_1_t"][lang];
+                        subtitles_3 = vivaData["subtitles"]["house_8_data_method_2_t"][lang];
+                        subtitles_4 = vivaData["subtitles"]["house_8_data_method_3_t"][lang];          
                                           
                     } else {
-                        subitlesString += vivaData["subtitles"]["house_8_healthy_living_t"]["int"] + "<br/>"           
-                        subitlesString += vivaData["subtitles"]["house_8_data_method_1_t"]["int"] + "<br/>"
-                        subitlesString += vivaData["subtitles"]["house_8_data_method_2_t"]["int"] + "<br/>" 
-                        subitlesString += vivaData["subtitles"]["house_8_data_method_3_t"]["int"]             
-                    }                    
+                        subtitles_1 = vivaData["subtitles"]["house_8_healthy_living_t"]["int"];
+                        subtitles_2 = vivaData["subtitles"]["house_8_data_method_1_t"]["int"];
+                        subtitles_3 = vivaData["subtitles"]["house_8_data_method_2_t"]["int"];
+                        subtitles_4 = vivaData["subtitles"]["house_8_data_method_3_t"]["int"];            
+                    }   
+
+                    let currentTime = pano.getMediaObject("video_1").currentTime;
+                                        
+                    function changeSub2() {
+                        subitlesString = subtitles_2;
+                    }
+
+                    function changeSub3() {
+                        subitlesString = subtitles_3;
+                    }
+
+                    function changeSub4() {
+                        subitlesString = subtitles_4;
+                    }
+                        
+                    if (vivaData["subtitles"]["house_8_healthy_living_time"] != null) {
+                        let first_time = parseFloat(vivaData["subtitles"].house_8_data_method_1_time.replace(':', '.'))*100 * 1000;
+                        let second_time = parseFloat(vivaData["subtitles"].house_8_data_method_2_time.replace(':', '.'))*100 * 1000;
+                        let third_time = parseFloat(vivaData["subtitles"].house_8_data_method_3_time.replace(':', '.'))*100 * 1000;
+                        console.log(first_time + " | " + second_time + " | " + third_time);
+                        
+                        if (currentTime < first_time) {
+                            subitlesString = subtitles_1;
+
+                            subtitleTimeOut_2 = setTimeout(changeSub2, first_time - currentTime);
+                            subtitleTimeOut_3 = setTimeout(changeSub3, second_time - currentTime);
+                            subtitleTimeOut_4 = setTimeout(changeSub4, third_time - currentTime);
+                        }
+
+                        if (currentTime >= parseFloat(vivaData["subtitles"].house_8_data_method_1_time.replace(':', '.'))*100) {
+                            subitlesString = subtitles_2;
+                        }
+
+                        if (currentTime >= parseFloat(vivaData["subtitles"].house_8_data_method_2_time.replace(':', '.'))*100) {
+                            subitlesString = subtitles_3;
+                        }
+
+                        if (currentTime >= parseFloat(vivaData["subtitles"].house_8_data_method_3_time.replace(':', '.'))*100) {
+                            subitlesString = subtitles_4;
+                        }
+
+                        // setTimeout(() => {
+                            
+                        // }, timeout);
+
+                    }
+                    
                     break;                      
                 default:
                     subitlesString = "";
