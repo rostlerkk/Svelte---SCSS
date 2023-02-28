@@ -3,7 +3,7 @@ import { vivaData } from '../store.js';
 import { userLang } from '../store.js';
 
 import { aboutViva } from '../store.js';
-
+import { vivaAutoPlay } from '../store.js';
 
 import VivaTour from './VivaTour.svelte';
 import VivaModel from './VivaModel.svelte';
@@ -12,7 +12,7 @@ import VivaModel from './VivaModel.svelte';
 let active_house = 0;
 let user_lang, productUrl, housesUrl, subtitlesUrl, product_id, tagValue, currentNode = null;
 let intro, fetching_data, lang_data_loading, welcome, isTourNode = true;
-let about_viva, about_tag, about_product, product_data_loaded, houses_data_loaded, subtitles_data_loaded, house_info, viva_auto_tour = false;
+let about_viva, about_tag, about_product, product_data_loaded, houses_data_loaded, subtitles_data_loaded, house_info, viva_auto_tour, autotour = false;
 let _vivaData = {};
 
 let myTimeout;
@@ -138,6 +138,24 @@ const urlPrefix = {
 
 vivaData.subscribe(value => {
     _vivaData = value;
+});
+
+vivaAutoPlay.subscribe(value => {
+    autotour = value;
+    //console.log(value);
+    if (value) {
+        jq(".pulse-layer").css({
+            "display" : "none"
+        });
+    } else {
+        if (pano.getMediaObject("video_1") != null &&
+            pano.getMediaObject("video_1").currentTime == 0) {
+            jq(".pulse-layer").css({
+                "display" : "flex"
+            });
+        }
+        
+    }
 });
 
 aboutViva.subscribe(value => {
@@ -589,6 +607,7 @@ function getSubtitlesLink($lang) {
                         jq(".pulse-layer").css({
                             "display" : "none"
                         });
+                        pano.setVolume(patchName, 0.0);
                         pano.playSound(patchName);
 
                         myTimeout = setTimeout(playWallAnimation, half);
@@ -596,9 +615,13 @@ function getSubtitlesLink($lang) {
                         function playWallAnimation() {
                             
                             pano.pauseSound(patchName);
-                            jq(".pulse-layer").css({
-                                "display" : "flex"
-                            });
+
+                            if (!autotour) {
+                                jq(".pulse-layer").css({
+                                    "display" : "flex"
+                                });
+                            }
+                            
                             show_layers(true);
                         }
                         break;
@@ -611,7 +634,18 @@ function getSubtitlesLink($lang) {
                                 "display" : "none"
                             });
                             show_layers(false);
+                            pano.setVolume(patchName, 0.0);
                             pano.playSound(patchName);
+
+                            pano.getMediaObject(patchName).addEventListener('ended', function() {
+                                if (!autotour) {
+                                    jq(".pulse-layer").css({
+                                        "display" : "flex"
+                                    });
+                                }
+                            });
+
+                            
                             // if (pano.getVariableValue("vivaTour")) {
                             //     pano.playSound(patchName);
                             //     console.log("ja");
@@ -643,10 +677,13 @@ function getSubtitlesLink($lang) {
                         } else {
                             
                             pano.stopSound(patchName);
-                            pano.stopSound("video_2");    
-                            jq(".pulse-layer").css({
-                                "display" : "flex"
-                            });
+                            pano.stopSound("video_2");  
+                            
+                            if (!autotour) {
+                                jq(".pulse-layer").css({
+                                    "display" : "flex"
+                                });
+                            }
                             clearTimeout(myTimeout);
                         }
                         //pano.soundSetTime(patchName, half);
@@ -702,6 +739,16 @@ function getSubtitlesLink($lang) {
                 isTourNode = true;
             } else {
                 isTourNode = false;
+            }
+
+            if (!autotour) {
+                jq(".pulse-layer").css({
+                    "display" : "flex"
+                });
+            } else {
+                jq(".pulse-layer").css({
+                    "display" : "none"
+                });
             }
 
         });

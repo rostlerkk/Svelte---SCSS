@@ -4,4 +4,5 @@ export const vivaData = writable({});
 
 export const userLang = writable();
 export const aboutViva = writable(false);
+export const vivaAutoPlay = writable(false);
 

@@ -1,6 +1,8 @@
 <script>
     import { userLang } from '../store.js';
     import { aboutViva } from '../store.js';
+    import { vivaAutoPlay } from '../store.js';
+
 
     let is_tour_nodes = ['node1', 'node24','node12', 'node26','node6', 'node22', 'node3', 'node18', 'node5', 'node20'];
     let take_tour_data = {
@@ -210,6 +212,7 @@
                 vivaTour = true;
                 jq('.take-tour-button').addClass('playing');
                 play_patch_video();
+                vivaAutoPlay.update(n => true);
                 break;
         
             default:
@@ -219,6 +222,7 @@
                 clearTimeout(subtitleTimeOut_2);
                 clearTimeout(subtitleTimeOut_3);
                 clearTimeout(subtitleTimeOut_4);
+                vivaAutoPlay.update(n => false);
                 break;
         }
     }) ;       
@@ -226,7 +230,7 @@
 
     function toggleAutoplay() {
         autoplay = !autoplay;
-        
+        vivaAutoPlay.update(n => autoplay);
 
         let currentNode = pano.getCurrentNode();
         let patchName = take_tour_data[currentNode].videos[0].id;
@@ -475,7 +479,7 @@
             switch (currentNode) {
                 // exteriér
                 case "node1":
-                    console.log(pano.getMediaObject("video_1").currentTime + " : " + pano.getMediaObject("video_1").duration);
+                   // console.log(pano.getMediaObject("video_1").currentTime + " : " + pano.getMediaObject("video_1").duration);
                     if (pano.getMediaObject("video_1").currentTime != pano.getMediaObject("video_1").duration ) {
                         if (vivaData["subtitles"].start_welcome_t[lang] != null) {
                             subitlesString += vivaData.subtitles.start_welcome_t[lang]
