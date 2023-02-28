@@ -181,7 +181,7 @@
             jq('.take-tour-button').addClass('hidden');
         }
 
-        if (autoplay) {
+        if (autoplay && pano.getVariableValue("vivaTour") == true) {
            play_patch_video();
         }
     });
@@ -334,7 +334,7 @@
         }
 
         function checkEndVideo() {
-            if (pano.getMediaObject(patchName).currentTime  + 3 >  pano.getMediaObject(patchName).duration) {
+            if (pano.getMediaObject(patchName).currentTime  + 4 >  pano.getMediaObject(patchName).duration) {
                 pano.setVariableValue("playPauseMedia", false);
                 clearInterval(layersTimeOut);
             }

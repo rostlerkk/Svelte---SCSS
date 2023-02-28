@@ -650,7 +650,7 @@
       <min tilt="-90" pan="0" fovpixel="2"/>
       <max tilt="90" fov="120" scaletofit="1" pan="360" fovstereographic="270" fovfisheye="360"/>
     </view>
-    <userdata author="" longitude="" nodeid="node16" latitude="" title="Exterier_08" heading="-45" copyright="tour" tags="equirects|ext|house|slider" comment="House 08 Exterior" datetime="11. 8. 2021 19:04" source="8" info="08" customnodeid="house8" description="House 08">
+    <userdata author="" longitude="" nodeid="node16" latitude="" title="Exterier_08" heading="-45" copyright="" tags="equirects|ext|house|slider" comment="House 08 Exterior" datetime="11. 8. 2021 19:04" source="8" info="08" customnodeid="house8" description="House 08">
       <mapcoords mapid="Vivapark" x="0.519104" y="-1.78253" x_floorplan_percent="18.9" y_floorplan_percent="64.9"/>
     </userdata>
     <hotspots wordwrap="1" width="180" height="20">
@@ -687,7 +687,7 @@
       <min tilt="-90" pan="0" fovpixel="2"/>
       <max tilt="90" fov="120" scaletofit="1" pan="360" fovstereographic="270" fovfisheye="360"/>
     </view>
-    <userdata author="" longitude="" nodeid="node24" latitude="" title="Interier_08" heading="0" copyright="" tags="int|slider" comment="House 08 Interior" datetime="30. 8. 2021 13:40" source="8" info="" customnodeid="" description="House 08"/>
+    <userdata author="" longitude="" nodeid="node24" latitude="" title="Interier_08" heading="0" copyright="tour" tags="int|slider" comment="House 08 Interior" datetime="30. 8. 2021 13:40" source="8" info="" customnodeid="" description="House 08"/>
     <hotspots wordwrap="1" width="180" height="20">
       <label enabled="0" wordwrap="1" width="180" backgroundalpha="1" borderalpha="1" background="1" border="1" textcolor="0x000000" bordercolor="0x000000" textalpha="1" height="20" backgroundcolor="0xffffff" borderradius="1"/>
       <polystyle handcursor="1" mode="2" backgroundalpha="0.25098" borderalpha="1" bordercolor="0x5956e9" backgroundcolor="0xffffff"/>
