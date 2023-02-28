@@ -1,7 +1,7 @@
 // Garden Gnome Software - Skin
 // Pano2VR 6.1.15/18116
 // Filename: baumit-viva-park.ggsk
-// Generated 2023-02-28T17:07:38
+// Generated 2023-02-28T20:01:44
 
 function pano2vrSkin(player,base) {
 	player.addVariable('lang', 0, "");
@@ -86,6 +86,7 @@ function pano2vrSkin(player,base) {
 	player.addVariable('playPauseMedia', 2, false);
 	player.addVariable('viva_show_product', 2, false);
 	player.addVariable('vivaTour', 2, false);
+	player.addVariable('vivaModel', 2, false);
 	var me=this;
 	var skin=this;
 	var flag=false;
@@ -6967,13 +6968,6 @@ function pano2vrSkin(player,base) {
 		}
 		me._apartments.onclick=function (e) {
 			player.setVariableValue('footer_apartments', !player.getVariableValue('footer_apartments'));
-			if (
-				(
-					((player.getVariableValue('footer_apartments') == false))
-				)
-			) {
-				useLastVisited();
-			}
 		}
 		me._apartments.ggUpdatePosition=function (useTransition) {
 		}
@@ -8088,7 +8082,7 @@ function pano2vrSkin(player,base) {
 			}
 			else if (
 				((me.ggUserdata.tags.indexOf("vyber") != -1)) && 
-				((player.getVariableValue('3D_model') == false))
+				((player.getVariableValue('vivaModel') == false))
 			)
 			{
 				newLogicStateVisible = 1;
@@ -8176,8 +8170,7 @@ function pano2vrSkin(player,base) {
 			return player.getCurrentNode();
 		}
 		me._button0.onclick=function (e) {
-			player.setVariableValue('footer_apartments', false);
-			player.setVariableValue('3D_model', true);
+			player.setVariableValue('vivaModel', true);
 		}
 		me._button0.ggUpdatePosition=function (useTransition) {
 			if (useTransition==='undefined') {
@@ -8396,7 +8389,7 @@ function pano2vrSkin(player,base) {
 		me._footer_3d_model.logicBlock_visible = function() {
 			var newLogicStateVisible;
 			if (
-				((player.getVariableValue('3D_model') == true))
+				((player.getVariableValue('vivaModel') == true))
 			)
 			{
 				newLogicStateVisible = 0;
@@ -8480,8 +8473,7 @@ function pano2vrSkin(player,base) {
 			return player.getCurrentNode();
 		}
 		me._button.onclick=function (e) {
-			player.setVariableValue('footer_apartments', true);
-			player.setVariableValue('3D_model', false);
+			player.setVariableValue('vivaModel', false);
 		}
 		me._button.ggUpdatePosition=function (useTransition) {
 			if (useTransition==='undefined') {
@@ -9336,9 +9328,6 @@ $('.viva-start').remove();
 		}
 		el.ggElementNodeId=function() {
 			return player.getCurrentNode();
-		}
-		me._poly_map.onclick=function (e) {
-			player.setVariableValue('footer_apartments', false);
 		}
 		me._poly_map.ggUpdatePosition=function (useTransition) {
 		}
@@ -10255,9 +10244,6 @@ $('.viva-start').remove();
 		}
 		if (id=='b-307') {
 			me.__0307.onclick();
-		}
-		if (id=='poly-map') {
-			me._poly_map.onclick();
 		}
 	}
 	this.hotspotProxyDoubleClick=function(id, url) {
@@ -36192,7 +36178,8 @@ tagInfo(pano.getVariableValue('tagValue'));
 	player.addListener('varchanged_blurred', function(args) { me._mobile_footer.logicBlock_visible();me._footer_apartments.logicBlock_visible(); });
 	player.addListener('varchanged_intro', function(args) { me._mobile_footer.logicBlock_visible(); });
 	player.addListener('varchanged_hotspots', function(args) { me._onoff_title0.logicBlock_text(); });
-	player.addListener('varchanged_3D_model', function(args) { me.__3d_model.logicBlock_scaling();me.__3d_model.logicBlock_alpha();me.__3d_model.logicBlock_text();me._footer_apartments.logicBlock_visible();me._footer_3d_model.logicBlock_visible(); });
+	player.addListener('varchanged_3D_model', function(args) { me.__3d_model.logicBlock_scaling();me.__3d_model.logicBlock_alpha();me.__3d_model.logicBlock_text(); });
+	player.addListener('varchanged_vivaModel', function(args) { me._footer_apartments.logicBlock_visible();me._footer_3d_model.logicBlock_visible(); });
 	player.addListener('varchanged_footer_apartments', function(args) { me._apartments1.logicBlock_visible();me._apartments0.logicBlock_visible();me._pano_prev.logicBlock_visible();me._pano_next.logicBlock_visible(); });
 	player.addListener('varchanged_footer_floorplan', function(args) { me._floorplan_active.logicBlock_visible(); });
 	player.addListener('varchanged_footer_map', function(args) { me._map_active.logicBlock_visible(); });

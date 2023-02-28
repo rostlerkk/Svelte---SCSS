@@ -6,6 +6,7 @@ import { aboutViva } from '../store.js';
 
 
 import VivaTour from './VivaTour.svelte';
+import VivaModel from './VivaModel.svelte';
 
 // VARIABLES
 let active_house = 0;
@@ -655,9 +656,9 @@ function getSubtitlesLink($lang) {
         });
 
         pano.on("changenode", function() {
+            clearTimeout(myTimeout);
             pano.setVariableValue("download_data", "0");
             currentNode = pano.getCurrentNode();
-            clearTimeout(myTimeout);
             pano.setVariableValue("playPauseMedia", false);
             // vypnutie video patchov
             for (let index = 0; index < 3; index++) {
@@ -1726,6 +1727,7 @@ $: {
 
 {#if _vivaData.houses != null}
     <VivaTour vivaData={_vivaData}/>
+    <VivaModel vivaData={_vivaData}/>
 {/if}
 
 

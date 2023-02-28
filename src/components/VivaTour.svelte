@@ -173,11 +173,12 @@
     const jq = window.$;
 
     pano.on("changenode", function () {
-        clearInterval(timeOut);
+        clearTimeout(timeOut);
+        clearInterval(layersTimeOut);
         select_active_house();
-        clearInterval(subtitleTimeOut_2);
-        clearInterval(subtitleTimeOut_3);
-        clearInterval(subtitleTimeOut_4);
+        clearTimeout(subtitleTimeOut_2);
+        clearTimeout(subtitleTimeOut_3);
+        clearTimeout(subtitleTimeOut_4);
         
 
         if (pano.getNodeUserdata(pano.getCurrentNode()).copyright == "tour") {
@@ -320,11 +321,11 @@
     }
 
     function nextHouse($pan, $tilt, $fov) {
-        clearInterval(timeOut);
-        clearInterval(layersTimeOut);
-        clearInterval(subtitleTimeOut_2);
-        clearInterval(subtitleTimeOut_3);
-        clearInterval(subtitleTimeOut_4);
+        // clearTimeout(timeOut);
+        // clearTimeout(layersTimeOut);
+        // clearTimeout(subtitleTimeOut_2);
+        // clearTimeout(subtitleTimeOut_3);
+        // clearTimeout(subtitleTimeOut_4);
         
         for (let index = 0; index < is_tour_nodes.length; index++) {
             let node = pano.getCurrentNode();

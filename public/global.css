@@ -9,7 +9,7 @@ html, body {
 body {
 	color: #333;
 	margin: 0;
-	padding: 8px;
+	padding: 0px;
 	box-sizing: border-box;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
@@ -97,3 +97,17 @@ button:focus {
         padding: 52px 16px 16px 16px !important;
     }
 }
+
+.spritespin-progress {
+	position: absolute;
+	width: 80%;
+	left: 10%;
+	top: 45%;
+  }
+  .spritespin-progress-label {
+	color: grey;
+  }
+  .spritespin-progress-bar {
+	background-color: grey;
+	height: 1px;
+  }
