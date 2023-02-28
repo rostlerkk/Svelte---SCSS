@@ -553,9 +553,9 @@ function getSubtitlesLink($lang) {
         });
         pano.on("varchanged_vivaTour", function() {
             if (pano.getVariableValue("vivaTour") == false) {
-                console.log("gasgasgag");
+                
                 pano.setVariableValue("playPauseMedia", false);
-            clearTimeout(myTimeout);
+            
             }
             
         });
@@ -589,30 +589,51 @@ function getSubtitlesLink($lang) {
                         });
                         pano.playSound(patchName);
 
-                        myTimeout = setTimeout(() => {
+                        myTimeout = setTimeout(playWallAnimation, half);
+
+                        function playWallAnimation() {
                             console.log("gdfshdh");
                             pano.pauseSound(patchName);
                             jq(".pulse-layer").css({
                                 "display" : "flex"
                             });
                             show_layers(true);
-                        }, half);
+                        }
                         break;
 
                     default:
                         if (pano.soundGetTime(patchName) > 0) {
+                            clearTimeout(myTimeout);
                             jq(".pulse-layer").css({
                                 "display" : "none"
                             });
                             show_layers(false);
-                            pano.playSound(patchName);
-                            myTimeout = setTimeout(() => {
-                                pano.stopSound(patchName);
-                                pano.soundSetTime(patchName, 0);
+                            if (pano.getVariableValue("vivaTour")) {
+                                pano.playSound(patchName);
+                                myTimeout = setTimeout(stopWallAnimation, half);
+
+                                function stopWallAnimation() {
+                                    pano.stopSound(patchName);
+                                    pano.soundSetTime(patchName, 0);
+                                    jq(".pulse-layer").css({
+                                        "display" : "flex"
+                                    });
+                                }
+                            } else {
+                                clearTimeout(myTimeout);
+                                pano.stopSound(patchName);    
                                 jq(".pulse-layer").css({
-                                    "display" : "flex"
+                                    "display" : "none"
                                 });
-                            }, half);
+                            }
+                            
+                        } else {
+                            console.log("gasgasgag");
+                            pano.stopSound(patchName);
+                            jq(".pulse-layer").css({
+                                "display" : "none"
+                            });
+                            clearTimeout(myTimeout);
                         }
                         //pano.soundSetTime(patchName, half);
                         
