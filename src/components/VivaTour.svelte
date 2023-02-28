@@ -182,6 +182,7 @@
         }
 
         if (autoplay && pano.getVariableValue("vivaTour") == true) {
+            
            play_patch_video();
         }
     });
@@ -272,6 +273,7 @@
     }
 
     function nextHouse($pan, $tilt, $fov) {
+        console.log($pan + ", " + $tilt + ", " + $fov);
         for (let index = 0; index < is_tour_nodes.length; index++) {
             let node = pano.getCurrentNode();
             
@@ -281,18 +283,29 @@
                 if (
                     node == is_tour_nodes[is_tour_nodes.length - 1]
                 ) {
-                    pano.openNext('{' + is_tour_nodes[0] + '}');
-                    if (autoplay) {
-                        //play_patch_video();
+                    if ($pan != null) {
+                        //pano.openNext('{' + is_tour_nodes[0] + '}', "'" + $pan + "\/" + $tilt + "\/" + $fov + "'");
+                        pano.openNext('{' + is_tour_nodes[0] + '}');
+                        //pano.setPanTiltFov($pan,$tilt,$fov);
                     }
+
+                    else {
+                        pano.openNext('{' + is_tour_nodes[0] + '}');
+                    }
+                    
                     return;
                 }
 
                 else {
-                    pano.openNext('{' + is_tour_nodes[index + 1] + '}');
-                    if (autoplay) {
-                        //play_patch_video();
+                    if ($pan != null) {
+                        pano.openNext('{' + is_tour_nodes[index + 1] + '}');
+                        //pano.setPanTiltFov($pan,$tilt,$fov);
+                        //pano.openNext('{' + is_tour_nodes[index + 1] + '}', "'" + $pan + "\/" + $tilt + "\/" + $fov + "'");
                     }
+                    else {
+                        pano.openNext('{' + is_tour_nodes[index + 1] + '}');
+                    }
+                    
                     return;
                 }
             }
@@ -320,12 +333,13 @@
         let fov = take_tour_data[currentNode].videos[0].fov;
         
         pano.setMediaVisibility( patchName, true);    
-        pano.moveTo(pan, tilt, fov, 5);
+        //pano.moveTo(pan, tilt, fov, 5);
+        pano.setPanTiltFov(pan,tilt,fov);
         console.log(patchName);
 
         pano.playSound(patchName);
         pano.getMediaObject(patchName).addEventListener('ended', function() {
-            nextHouse();
+            nextHouse(pan, tilt, fov);
         });
 
         

@@ -1,7 +1,7 @@
 // Garden Gnome Software - Skin
 // Pano2VR 6.1.15/18116
 // Filename: baumit-viva-park.ggsk
-// Generated 2023-02-28T09:00:34
+// Generated 2023-02-28T09:08:25
 
 function pano2vrSkin(player,base) {
 	player.addVariable('lang', 0, "");
@@ -9521,6 +9521,37 @@ $('.viva-start').remove();
 			}
 		}
 		me.divSkin.appendChild(me._pano_next);
+		el=me._rectangle_1=document.createElement('div');
+		el.ggId="Rectangle 1";
+		el.ggParameter={ rx:0,ry:0,a:0,sx:1,sy:1 };
+		el.ggVisible=true;
+		el.className="ggskin ggskin_rectangle ";
+		el.ggType='rectangle';
+		hs ='';
+		hs+='background : #ffffff;';
+		hs+='border : 1px solid #000000;';
+		hs+='cursor : default;';
+		hs+='height : 20px;';
+		hs+='left : 395px;';
+		hs+='position : absolute;';
+		hs+='top : 352px;';
+		hs+='visibility : inherit;';
+		hs+='width : 100px;';
+		hs+='pointer-events:auto;';
+		el.setAttribute('style',hs);
+		el.style[domTransform + 'Origin']='50% 50%';
+		me._rectangle_1.ggIsActive=function() {
+			return false;
+		}
+		el.ggElementNodeId=function() {
+			return player.getCurrentNode();
+		}
+		me._rectangle_1.onclick=function (e) {
+			player.openNext("{"+player.getNextNode()+"}","10\/20\/5");
+		}
+		me._rectangle_1.ggUpdatePosition=function (useTransition) {
+		}
+		me.divSkin.appendChild(me._rectangle_1);
 		me._floorplan_plywood.ggMarkerInstances=[];
 		me._floorplan_plywood.ggMapId = 'Vivapark';
 		me._floorplan_plywood.ggLastNodeId=null;
