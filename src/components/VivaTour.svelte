@@ -321,11 +321,11 @@
     }
 
     function nextHouse($pan, $tilt, $fov) {
-        // clearTimeout(timeOut);
-        // clearTimeout(layersTimeOut);
-        // clearTimeout(subtitleTimeOut_2);
-        // clearTimeout(subtitleTimeOut_3);
-        // clearTimeout(subtitleTimeOut_4);
+        clearTimeout(timeOut);
+        clearTimeout(layersTimeOut);
+        clearTimeout(subtitleTimeOut_2);
+        clearTimeout(subtitleTimeOut_3);
+        clearTimeout(subtitleTimeOut_4);
         
         for (let index = 0; index < is_tour_nodes.length; index++) {
             let node = pano.getCurrentNode();
@@ -475,12 +475,24 @@
             switch (currentNode) {
                 // exteriér
                 case "node1":
-                    if (vivaData["subtitles"].start_welcome_t[lang] != null) {
-                        subitlesString += vivaData.subtitles.start_welcome_t[lang]
-                        
+                    console.log(pano.getMediaObject("video_1").currentTime + " : " + pano.getMediaObject("video_1").duration);
+                    if (pano.getMediaObject("video_1").currentTime != pano.getMediaObject("video_1").duration ) {
+                        if (vivaData["subtitles"].start_welcome_t[lang] != null) {
+                            subitlesString += vivaData.subtitles.start_welcome_t[lang]
+                            
+                        } else {
+                            subitlesString += vivaData.subtitles.start_welcome_t["int"]           
+                        } 
                     } else {
-                        subitlesString += vivaData.subtitles.start_welcome_t["int"]           
+                        if (vivaData["subtitles"].start_welcome_t[lang] != null) {
+                            subitlesString += vivaData.subtitles.start_quote_t[lang] + "<br/>"               
+                            subitlesString += vivaData.subtitles.start_quote_source_t[lang]
+                        } else {
+                            subitlesString += vivaData.subtitles.start_quote_t["int"] + "<br/>"               
+                            subitlesString += vivaData.subtitles.start_quote_source_t["int"]
+                        }
                     }
+                    
                     
                     break;
                 // Dom 10 - exteriér

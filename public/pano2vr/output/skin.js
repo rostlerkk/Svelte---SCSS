@@ -1,7 +1,7 @@
 // Garden Gnome Software - Skin
 // Pano2VR 6.1.15/18116
 // Filename: baumit-viva-park.ggsk
-// Generated 2023-02-28T20:01:44
+// Generated 2023-02-28T20:46:03
 
 function pano2vrSkin(player,base) {
 	player.addVariable('lang', 0, "");
@@ -14756,7 +14756,6 @@ houseInfo(pano.getVariableValue('houseID'));
 		}
 		me._house_id.onclick=function (e) {
 			player.openNext(me.hotspot.url,"");
-			player.setVariableValue('footer_apartments', false);
 			skin.hotspotProxyClick(me.hotspot.id, me.hotspot.url);
 		}
 		me._house_id.ondblclick=function (e) {

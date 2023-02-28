@@ -605,37 +605,40 @@ function getSubtitlesLink($lang) {
 
                     default:
                         if (pano.soundGetTime(patchName) > 0) {
-                            clearTimeout(myTimeout);
+                            
+                            //clearTimeout(myTimeout);
                             jq(".pulse-layer").css({
                                 "display" : "none"
                             });
                             show_layers(false);
-                            if (pano.getVariableValue("vivaTour")) {
-                                pano.playSound(patchName);
+                            pano.playSound(patchName);
+                            // if (pano.getVariableValue("vivaTour")) {
+                            //     pano.playSound(patchName);
+                            //     console.log("ja");
+                            //     myTimeout = setTimeout(stopWallAnimation, half);
 
+                            //     function stopWallAnimation() {
+                            //         pano.pauseSound(patchName);
+                            //         pano.stopSound("video_2");
+                            //         pano.soundSetTime(patchName, 0);
+                            //         jq(".pulse-layer").css({
+                            //             "display" : "flex"
+                            //         });
+                            //     }
+                            // } else {
+                            //     console.log("jaa");
                                 
-                                myTimeout = setTimeout(stopWallAnimation, half);
+                            //     //clearTimeout(myTimeout);
+                            //     pano.playSound(patchName);
+                            //     pano.stopSound("video_2");    
+                            //     jq(".pulse-layer").css({
+                            //         "display" : "none"
+                            //     });
 
-                                function stopWallAnimation() {
-                                    pano.stopSound(patchName);
-                                    pano.stopSound("video_2");
-                                    pano.soundSetTime(patchName, 0);
-                                    jq(".pulse-layer").css({
-                                        "display" : "flex"
-                                    });
-                                }
-                            } else {
-                                clearTimeout(myTimeout);
-                                pano.stopSound(patchName);
-                                pano.stopSound("video_2");    
-                                jq(".pulse-layer").css({
-                                    "display" : "none"
-                                });
-
-                                jq(".pulse-layer").css({
-                                    "display" : "flex"
-                                });
-                            }
+                            //     jq(".pulse-layer").css({
+                            //         "display" : "flex"
+                            //     });
+                            // }
                             
                         } else {
                             
