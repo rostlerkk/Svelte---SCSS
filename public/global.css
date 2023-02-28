@@ -87,6 +87,11 @@ button:focus {
 	margin: auto;
 }
 
+#houses-info-container .houses-header .buttons button {
+	font-size: 12px;
+	padding: 5px 10px;
+}
+
 @media (max-width: 680px) {
     .viva-house-info {
         padding: 52px 16px 16px 16px !important;
