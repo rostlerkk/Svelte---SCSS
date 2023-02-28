@@ -220,11 +220,26 @@
         if (autoplay == true) {
             let currentNode = pano.getCurrentNode();
             let patchName = take_tour_data[currentNode].videos[0].id;
-            pano.setMediaVisibility( patchName, true);  
-            pano.playSound(patchName);
+
+            if (pano.getMediaObject("video_1").currentTime == pano.getMediaObject("video_1").duration) {
+                pano.setMediaVisibility( "video_2", true);  
+                pano.playSound("video_2");
+            } else {
+                pano.setMediaVisibility( patchName, true);  
+                pano.playSound(patchName);
+            }
+            
+            
+            
             
         } else {
-            pano.pauseSound(patchName);
+
+            if (pano.getMediaObject("video_1").currentTime == pano.getMediaObject("video_1").duration) {
+                pano.pauseSound("video_2");
+            } else {
+                pano.pauseSound(patchName);
+            }
+            
             
         }
     }
@@ -437,6 +452,7 @@
                     
                 // Dom 8 - interiér
                 case "node24":
+                    let subtitles_1, subtitles_2, subtitles_3;
                     if (vivaData["subtitles"]["house_8_healthy_living_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_8_healthy_living_t"][lang]
                         let subtitleTimeOut = null;
