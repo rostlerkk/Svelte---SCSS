@@ -10,7 +10,7 @@ import VivaTour from './VivaTour.svelte';
 // VARIABLES
 let active_house = 0;
 let user_lang, productUrl, housesUrl, subtitlesUrl, product_id, tagValue = null;
-let intro, fetching_data, lang_data_loading, welcome = true;
+let intro, fetching_data, lang_data_loading, welcome, isTourNode = true;
 let about_viva, about_tag, about_product, product_data_loaded, houses_data_loaded, subtitles_data_loaded, house_info, viva_auto_tour = false;
 let _vivaData = {};
 
@@ -476,6 +476,7 @@ function getSubtitlesLink($lang) {
             check_user_lang();
             // show_layers(false);
             pano.setVariableValue("playPauseMedia", false);
+            pano.setVariableValue("vivaTour", false);
         });
 
         pano.on("varchanged_floorplan_full", function() {
@@ -690,6 +691,12 @@ function getSubtitlesLink($lang) {
 
             change_hotspots_title();
             change_patches();
+
+            if (pano.getNodeUserdata(pano.getCurrentNode()).copyright == "tour") {
+                isTourNode = true;
+            } else {
+                isTourNode = false;
+            }
 
         });
 
@@ -1196,11 +1203,14 @@ $: {
                         <div class="buttons">
                             {#each _vivaData["houses"]["additional_content"] as item}
                             {#if item.name == "VIVA: Startscreen: Play"}
-                            {#if item.title_t[user_lang] != null}
-                            <button id="play_tour" on:click={() => toogleVivaTour()}>{item.title_t[user_lang]}</button>
-                            {:else}
-                            <button id="play_tour" on:click={() => toogleVivaTour()}>{item.title_t["int"]}</button>
+                            {#if isTourNode}
+                                {#if item.title_t[user_lang] != null}
+                                <button id="play_tour" on:click={() => toogleVivaTour()}>{item.title_t[user_lang]}</button>
+                                {:else}
+                                <button id="play_tour" on:click={() => toogleVivaTour()}>{item.title_t["int"]}</button>
+                                {/if}
                             {/if}
+                            
                             <!-- <button id="play_tour">{item.title}</button> -->
                             {/if}
 

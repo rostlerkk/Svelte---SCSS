@@ -178,8 +178,12 @@
 
         if (pano.getNodeUserdata(pano.getCurrentNode()).copyright == "tour") {
             jq('.take-tour-button').removeClass('hidden');
+            isTourNode = true;
+            jq('#play_tour').removeClass('hidden');
         } else {
+            isTourNode = false;
             jq('.take-tour-button').addClass('hidden');
+            jq('#play_tour').addClass('hidden');
         }
 
         if (autoplay && pano.getVariableValue("vivaTour") == true) {
@@ -563,10 +567,13 @@
         }
 
         function checkEndVideo() {
-            if (pano.getMediaObject(patchName).currentTime  + 4 >  pano.getMediaObject(patchName).duration) {
-                pano.setVariableValue("playPauseMedia", false);
-                clearInterval(layersTimeOut);
+            if (pano.getMediaObject(patchName) != null) {
+                if (pano.getMediaObject(patchName).currentTime  + 4 >  pano.getMediaObject(patchName).duration) {
+                    pano.setVariableValue("playPauseMedia", false);
+                    clearInterval(layersTimeOut);
+                }
             }
+            
         }
 
         switch (currentNode) {
@@ -591,6 +598,7 @@
     {#if vivaData["houses"] != undefined}
             <div id="houses-info-container">
                 <div class="houses-header">
+                    
                     <div class="buttons">
                         {#if !autoplay}
                             <img class="play" src="assets/icons/play-houses.svg" alt="play" on:click={() => toggleAutoplay()}>
