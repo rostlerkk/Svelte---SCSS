@@ -322,15 +322,137 @@
     }
 
     function play_patch_video() {
-        
+        subitlesString = "";
         let currentNode = pano.getCurrentNode();
-        
+        console.log(currentNode);
         let patchName = take_tour_data[currentNode].videos[0].id;
         
         //let video_patch_time = pano.getMediaObject(patchName).duration;
         let pan = take_tour_data[currentNode].videos[0].pan;
         let tilt = take_tour_data[currentNode].videos[0].tilt;
         let fov = take_tour_data[currentNode].videos[0].fov;
+
+        
+        if (vivaData["subtitles"] != null) {
+            
+            let lang = pano.getVariableValue("lang");
+            console.log(lang);
+            switch (currentNode) {
+                // exteriér
+                case "node1":
+                    if (vivaData["subtitles"].start_welcome_t[lang] != null) {
+                        subitlesString = vivaData.subtitles.start_welcome_t[lang]            
+                    } else {
+                        subitlesString = vivaData.subtitles.start_welcome_t["int"]            
+                    }
+                    
+                    break;
+                // Dom 10 - exteriér
+                case "node12":
+                    if (vivaData["subtitles"]["house_10_construction_t"][lang] != null) {
+                        subitlesString += vivaData["subtitles"]["house_10_welcome_t"][lang] + "<br/>"            
+                        subitlesString += vivaData["subtitles"]["house_10_construction_t"][lang]            
+                    } else {
+                        subitlesString += vivaData["subtitles"]["house_10_welcome_t"]["int"] + "<br/>"            
+                        subitlesString += vivaData["subtitles"]["house_10_construction_t"]["int"]            
+                    }
+                    break;
+
+                // Dom 10 - interiér
+                case "node26":
+                    if (vivaData["subtitles"]["house_10_results_t"][lang] != null) {
+                        subitlesString += vivaData["subtitles"]["house_10_results_t"][lang]            
+                    } else {
+                        subitlesString += vivaData["subtitles"]["house_10_results_t"]["int"]            
+                    }
+                    break;                    
+            
+                // Dom 6 - exteriér
+                case "node6":
+                    if (vivaData["subtitles"]["house_6_construction_t"][lang] != null) {
+                        subitlesString += vivaData["subtitles"]["house_6_construction_t"][lang]            
+                    } else {
+                        subitlesString += vivaData["subtitles"]["house_6_construction_t"]["int"]            
+                    }
+                    break;                     
+
+                // Dom 6 - interiér
+                case "node22":
+                    if (vivaData["subtitles"]["house_6_desc_1_t"][lang] != null) {
+                        subitlesString += vivaData["subtitles"]["house_6_desc_1_t"][lang] + "<br/>"            
+                        subitlesString += vivaData["subtitles"]["house_6_method_1_t"][lang] + "<br/>"                     
+                        subitlesString += vivaData["subtitles"]["house_6_method_2_t"][lang]                                     
+                    } else {
+                        subitlesString += vivaData["subtitles"]["house_6_desc_1_t"]["int"] + "<br/>"            
+                        subitlesString += vivaData["subtitles"]["house_6_method_1_t"]["int"] + "<br/>"                     
+                        subitlesString += vivaData["subtitles"]["house_6_method_2_t"]["int"]                     
+                    }
+                // Dom 2 - exteriér
+                case "node3":
+                    if (vivaData["subtitles"]["house_2_construction_t"][lang] != null) {
+                        subitlesString += vivaData["subtitles"]["house_2_construction_t"][lang]           
+                                          
+                    } else {
+                        subitlesString += vivaData["subtitles"]["house_2_construction_t"]["int"]           
+                    }                    
+                    break;                                         
+
+                // Dom 2 - interiér
+                case "node18":
+                    if (vivaData["subtitles"]["house_2_research_1_t"][lang] != null) {
+                        subitlesString += vivaData["subtitles"]["house_2_research_1_t"][lang] + "<br/>"   
+                        subitlesString += vivaData["subtitles"]["house_2_research_2_t"][lang]
+                                          
+                    } else {
+                        subitlesString += vivaData["subtitles"]["house_2_research_1_t"]["int"] + "<br/>"            
+                        subitlesString += vivaData["subtitles"]["house_2_research_2_t"]["int"]
+                    }                    
+                    break;   
+
+                // Dom 4 - exteriér
+                case "node5":
+                    if (vivaData["subtitles"]["house_4_construction_t"][lang] != null) {
+                        subitlesString += vivaData["subtitles"]["house_4_construction_t"][lang]           
+                                          
+                    } else {
+                        subitlesString += vivaData["subtitles"]["house_4_construction_t"]["int"]           
+                    }                    
+                    break;  
+                    
+                // Dom 4 - interiér
+                case "node20":
+                    if (vivaData["subtitles"]["house_4_method_1_t"][lang] != null) {
+                        subitlesString += vivaData["subtitles"]["house_4_method_1_t"][lang] + "<br/>"       
+                        subitlesString += vivaData["subtitles"]["house_4_method_2_t"][lang]           
+                                          
+                    } else {
+                        subitlesString += vivaData["subtitles"]["house_4_method_1_t"]["int"] + "<br/>"           
+                        subitlesString += vivaData["subtitles"]["house_4_method_2_t"]["int"]           
+                    }                    
+                    break;  
+                    
+                // Dom 8 - interiér
+                case "node24":
+                    if (vivaData["subtitles"]["house_8_healthy_living_t"][lang] != null) {
+                        subitlesString += vivaData["subtitles"]["house_8_healthy_living_t"][lang] + "<br/>"       
+                        subitlesString += vivaData["subtitles"]["house_8_data_method_1_t"][lang] + "<br/>"
+                        subitlesString += vivaData["subtitles"]["house_8_data_method_2_t"][lang] + "<br/>" 
+                        subitlesString += vivaData["subtitles"]["house_8_data_method_3_t"][lang]           
+                                          
+                    } else {
+                        subitlesString += vivaData["subtitles"]["house_8_healthy_living_t"]["int"] + "<br/>"           
+                        subitlesString += vivaData["subtitles"]["house_8_data_method_1_t"]["int"] + "<br/>"
+                        subitlesString += vivaData["subtitles"]["house_8_data_method_2_t"]["int"] + "<br/>" 
+                        subitlesString += vivaData["subtitles"]["house_8_data_method_3_t"]["int"]             
+                    }                    
+                    break;                      
+                default:
+                    subitlesString = "wff";
+                    break;
+            }
+            
+        }
+        
         
         pano.setMediaVisibility( patchName, true);    
         //pano.moveTo(pan, tilt, fov, 5);
@@ -368,6 +490,8 @@
 
     }
 
+    let subitlesString= "";
+
 </script>
 
 {#if vivaTour == true && blurred != true}
@@ -390,7 +514,7 @@
                         <button id="learn-more" class="learn-more" on:click={() => aboutViva.update(n => true)}>Learn more&nbsp;<span>Viva park</span></button>
                     </div>
                     <div class="{subtitles === true ? 'subtitles' : 'subtitles hidden'}">
-                        <p>Welcome to the VIVA research park. Europe’s largest comparative research project for building materials.</p>
+                        <p>{@html subitlesString}</p>
                     </div>
                 </div>
                 <div class="{subtitles === true ? 'houses-footer' : 'houses-footer hidden'}">
