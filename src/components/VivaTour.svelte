@@ -175,20 +175,25 @@
     pano.on("changenode", function () {
         clearInterval(timeOut);
         select_active_house();
+        clearInterval(subtitleTimeOut_2);
+        clearInterval(subtitleTimeOut_3);
+        clearInterval(subtitleTimeOut_4);
+        
 
         if (pano.getNodeUserdata(pano.getCurrentNode()).copyright == "tour") {
             jq('.take-tour-button').removeClass('hidden');
-            isTourNode = true;
-            jq('#play_tour').removeClass('hidden');
-        } else {
-            isTourNode = false;
+
+        } else {            
             jq('.take-tour-button').addClass('hidden');
-            jq('#play_tour').addClass('hidden');
         }
 
         if (autoplay && pano.getVariableValue("vivaTour") == true) {
             
            play_patch_video();
+        }
+
+        if (pano.getVariableValue("vivaTour")) {
+            loadSubtitles();
         }
     });
 
@@ -223,23 +228,45 @@
         let patchName = take_tour_data[currentNode].videos[0].id;
 
         if (autoplay == true) {
+            loadSubtitles();
             let currentNode = pano.getCurrentNode();
             let patchName = take_tour_data[currentNode].videos[0].id;
 
-            if (pano.getMediaObject("video_1").currentTime == pano.getMediaObject("video_1").duration) {
-                pano.setMediaVisibility( "video_2", true);  
-                pano.playSound("video_2");
+            if (currentNode == "node1") {
+                if (pano.getMediaObject("video_1").currentTime == pano.getMediaObject("video_1").duration) {
+                    pano.setMediaVisibility( "video_2", true);  
+                    pano.playSound("video_2");
+                } else {
+                    pano.setMediaVisibility(patchName, true);  
+                    pano.playSound(patchName);
+
+                    pano.getMediaObject(patchName).addEventListener('ended', function() {
+                        pano.setMediaVisibility( "video_2", true);  
+                        pano.playSound("video_2");
+                    //console.log("skončilo sa video");
+                    //nextHouse();
+                    });
+                }
             } else {
-                pano.setMediaVisibility( patchName, true);  
+                pano.setMediaVisibility(patchName, true);  
                 pano.playSound(patchName);
+
+                pano.getMediaObject(patchName).addEventListener('ended', function() {
+                    nextHouse();
+                });
             }
+            
 
         } else {
+            clearTimeout(subtitleTimeOut_2);
+            clearTimeout(subtitleTimeOut_3);
+            clearTimeout(subtitleTimeOut_4);
 
             if (pano.getMediaObject("video_1").currentTime == pano.getMediaObject("video_1").duration) {
                 pano.pauseSound("video_2");
             } else {
                 pano.pauseSound(patchName);
+                
             }
             
             
@@ -298,7 +325,7 @@
                 node == is_tour_nodes[index]
             ) {
                 if (
-                    node == is_tour_nodes[is_tour_nodes.length - 1]
+                    node == "node20"
                 ) {
                     if ($pan != null) {
                         //pano.openNext('{' + is_tour_nodes[0] + '}', "'" + $pan + "\/" + $tilt + "\/" + $fov + "'");
@@ -352,8 +379,88 @@
         let fov = take_tour_data[currentNode].videos[0].fov;
 
         
-        if (vivaData["subtitles"] != null) {
+
+        
+        
+        pano.setMediaVisibility( patchName, true);    
+        //pano.moveTo(pan, tilt, fov, 5);
+        pano.setPanTiltFov(pan,tilt,fov);
+        
+
+        pano.playSound(patchName);
+        loadSubtitles();
+
+        switch (currentNode) {
+            case "node1":
+                pano.getMediaObject(patchName).addEventListener('ended', function() {
+                    let lang = pano.getVariableValue("lang");
+
+                    subitlesString = "";
+                    if (vivaData["subtitles"].start_welcome_t[lang] != null) {
+                        subitlesString += vivaData.subtitles.start_quote_t[lang] + "<br/>"               
+                        subitlesString += vivaData.subtitles.start_quote_source_t[lang]
+                    } else {
+                        subitlesString += vivaData.subtitles.start_quote_t["int"] + "<br/>"               
+                        subitlesString += vivaData.subtitles.start_quote_source_t["int"]
+                    }
+                    pano.setMediaVisibility("video_2", true); 
+                    pano.playSound("video_2");   
+
+                    pano.getMediaObject("video_2").addEventListener('ended', function() {
+                        nextHouse();
+                    });
+                    
+                });
+                break;
+        
+            default:
+                pano.getMediaObject("video_1").addEventListener('ended', function() {
+                    console.log("skončilo sa video");
+                    nextHouse();
+                });
+                break;
+        }
+
+
+        
+
+        
+        function openLayers() {
+            pano.setVariableValue("playPauseMedia", true);
+        }
+
+        function checkEndVideo() {
+            if (pano.getMediaObject(patchName) != null) {
+                if (pano.getMediaObject(patchName).currentTime  + 4 >  pano.getMediaObject(patchName).duration) {
+                    pano.setVariableValue("playPauseMedia", false);
+                    clearInterval(layersTimeOut);
+                }
+            }
             
+        }
+
+        switch (currentNode) {
+            case "node1":
+            case "node24":
+                
+                break;
+        
+            default:
+                timeOut = setTimeout(openLayers, 2000);
+                layersTimeOut = setInterval(checkEndVideo, 1000);
+                break;
+        }
+
+    }
+
+    let subitlesString= "";
+
+    function loadSubtitles() {
+        
+        console.log("načítavam titulky");
+        subitlesString = "";
+        if (vivaData["subtitles"] != null) {
+        
             let lang = pano.getVariableValue("lang");
             
             switch (currentNode) {
@@ -361,7 +468,7 @@
                 case "node1":
                     if (vivaData["subtitles"].start_welcome_t[lang] != null) {
                         subitlesString += vivaData.subtitles.start_welcome_t[lang]
-                       
+                        
                     } else {
                         subitlesString += vivaData.subtitles.start_welcome_t["int"]           
                     }
@@ -412,7 +519,7 @@
                 case "node3":
                     if (vivaData["subtitles"]["house_2_construction_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_2_construction_t"][lang]           
-                                          
+                                            
                     } else {
                         subitlesString += vivaData["subtitles"]["house_2_construction_t"]["int"]           
                     }                    
@@ -423,7 +530,7 @@
                     if (vivaData["subtitles"]["house_2_research_1_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_2_research_1_t"][lang] + "<br/>"   
                         subitlesString += vivaData["subtitles"]["house_2_research_2_t"][lang]
-                                          
+                                            
                     } else {
                         subitlesString += vivaData["subtitles"]["house_2_research_1_t"]["int"] + "<br/>"            
                         subitlesString += vivaData["subtitles"]["house_2_research_2_t"]["int"]
@@ -434,7 +541,7 @@
                 case "node5":
                     if (vivaData["subtitles"]["house_4_construction_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_4_construction_t"][lang]           
-                                          
+                                            
                     } else {
                         subitlesString += vivaData["subtitles"]["house_4_construction_t"]["int"]           
                     }                    
@@ -445,7 +552,7 @@
                     if (vivaData["subtitles"]["house_4_method_1_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_4_method_1_t"][lang] + "<br/>"       
                         subitlesString += vivaData["subtitles"]["house_4_method_2_t"][lang]           
-                                          
+                                            
                     } else {
                         subitlesString += vivaData["subtitles"]["house_4_method_1_t"]["int"] + "<br/>"           
                         subitlesString += vivaData["subtitles"]["house_4_method_2_t"]["int"]           
@@ -459,8 +566,7 @@
                         subtitles_1 = vivaData["subtitles"]["house_8_healthy_living_t"][lang];
                         subtitles_2 = vivaData["subtitles"]["house_8_data_method_1_t"][lang];
                         subtitles_3 = vivaData["subtitles"]["house_8_data_method_2_t"][lang];
-                        subtitles_4 = vivaData["subtitles"]["house_8_data_method_3_t"][lang];          
-                                          
+                        subtitles_4 = vivaData["subtitles"]["house_8_data_method_3_t"][lang];                                 
                     } else {
                         subtitles_1 = vivaData["subtitles"]["house_8_healthy_living_t"]["int"];
                         subtitles_2 = vivaData["subtitles"]["house_8_data_method_1_t"]["int"];
@@ -468,7 +574,8 @@
                         subtitles_4 = vivaData["subtitles"]["house_8_data_method_3_t"]["int"];            
                     }   
 
-                    let currentTime = pano.getMediaObject("video_1").currentTime;
+                    let currentTime = pano.getMediaObject("video_1").currentTime * 1000;
+                    
                                         
                     function changeSub2() {
                         subitlesString = subtitles_2;
@@ -482,30 +589,44 @@
                         subitlesString = subtitles_4;
                     }
                         
-                    if (vivaData["subtitles"]["house_8_healthy_living_time"] != null) {
+                    if (vivaData["subtitles"]["house_8_healthy_living_time"] != null && autoplay) {
+                        clearTimeout(subtitleTimeOut_2);
+                        clearTimeout(subtitleTimeOut_3);
+                        clearTimeout(subtitleTimeOut_4);
+
                         let first_time = parseFloat(vivaData["subtitles"].house_8_data_method_1_time.replace(':', '.'))*100 * 1000;
                         let second_time = parseFloat(vivaData["subtitles"].house_8_data_method_2_time.replace(':', '.'))*100 * 1000;
                         let third_time = parseFloat(vivaData["subtitles"].house_8_data_method_3_time.replace(':', '.'))*100 * 1000;
                         console.log(first_time + " | " + second_time + " | " + third_time);
                         
                         if (currentTime < first_time) {
+                            console.log(currentTime);
                             subitlesString = subtitles_1;
 
-                            subtitleTimeOut_2 = setTimeout(changeSub2, first_time - currentTime);
-                            subtitleTimeOut_3 = setTimeout(changeSub3, second_time - currentTime);
-                            subtitleTimeOut_4 = setTimeout(changeSub4, third_time - currentTime);
+
+                            subtitleTimeOut_2 = setTimeout(changeSub2, (first_time - currentTime));
+                            subtitleTimeOut_3 = setTimeout(changeSub3, (second_time - currentTime));
+                            subtitleTimeOut_4 = setTimeout(changeSub4, (third_time - currentTime));
                         }
 
-                        if (currentTime >= parseFloat(vivaData["subtitles"].house_8_data_method_1_time.replace(':', '.'))*100) {
+                        if (currentTime >= first_time && currentTime < second_time) {
                             subitlesString = subtitles_2;
+                            subtitleTimeOut_2 = setTimeout(changeSub2, (first_time - currentTime));
+                            subtitleTimeOut_3 = setTimeout(changeSub3, (second_time - currentTime));
+                            subtitleTimeOut_4 = setTimeout(changeSub4, (third_time - currentTime));
+
                         }
 
-                        if (currentTime >= parseFloat(vivaData["subtitles"].house_8_data_method_2_time.replace(':', '.'))*100) {
+                        if (currentTime >= second_time && currentTime < third_time) {
                             subitlesString = subtitles_3;
+                            
+                            subtitleTimeOut_3 = setTimeout(changeSub3, (second_time - currentTime));
+                            subtitleTimeOut_4 = setTimeout(changeSub4, (third_time - currentTime));
                         }
 
-                        if (currentTime >= parseFloat(vivaData["subtitles"].house_8_data_method_3_time.replace(':', '.'))*100) {
+                        if (currentTime >= third_time) {
                             subitlesString = subtitles_4;
+                            subtitleTimeOut_4 = setTimeout(changeSub4, (third_time - currentTime));
                         }
 
                         // setTimeout(() => {
@@ -521,76 +642,7 @@
             }
             
         }
-        
-        
-        pano.setMediaVisibility( patchName, true);    
-        //pano.moveTo(pan, tilt, fov, 5);
-        pano.setPanTiltFov(pan,tilt,fov);
-        
-
-        pano.playSound(patchName);
-
-        switch (currentNode) {
-            case "node1":
-                pano.getMediaObject(patchName).addEventListener('ended', function() {
-                    let lang = pano.getVariableValue("lang");
-
-                    subitlesString = "";
-                    if (vivaData["subtitles"].start_welcome_t[lang] != null) {
-                        subitlesString += vivaData.subtitles.start_quote_t[lang] + "<br/>"               
-                        subitlesString += vivaData.subtitles.start_quote_source_t[lang]
-                    } else {
-                        subitlesString += vivaData.subtitles.start_quote_t["int"] + "<br/>"               
-                        subitlesString += vivaData.subtitles.start_quote_source_t["int"]
-                    }
-                    pano.setMediaVisibility("video_2", true); 
-                    pano.playSound("video_2");   
-
-                    pano.getMediaObject("video_2").addEventListener('ended', function() {
-                        nextHouse();
-                    });
-                    
-                });
-                break;
-        
-            default:
-                pano.getMediaObject(patchName).addEventListener('ended', function() {
-                    nextHouse();
-                });
-                break;
-        }
-        
-
-        
-        function openLayers() {
-            pano.setVariableValue("playPauseMedia", true);
-        }
-
-        function checkEndVideo() {
-            if (pano.getMediaObject(patchName) != null) {
-                if (pano.getMediaObject(patchName).currentTime  + 4 >  pano.getMediaObject(patchName).duration) {
-                    pano.setVariableValue("playPauseMedia", false);
-                    clearInterval(layersTimeOut);
-                }
-            }
-            
-        }
-
-        switch (currentNode) {
-            case "node1":
-            case "node24":
-                
-                break;
-        
-            default:
-                timeOut = setTimeout(openLayers, 2000);
-                layersTimeOut = setInterval(checkEndVideo, 1000);
-                break;
-        }
-
     }
-
-    let subitlesString= "";
 
 </script>
 
