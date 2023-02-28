@@ -165,7 +165,7 @@ async function fetchData($url, $lang, $type, $variable) {
             vivaData.update(n => json);
 
             if ($type == "houses") {
-                console.log(_vivaData);
+                //console.log(_vivaData);
             }
 
         } else {
@@ -204,7 +204,7 @@ function check_user_lang() {
     } else {
         // Jazyk nie je definovaný v Cookies
         user_lang = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
-        console.log(window.navigator.userLanguage);
+        //console.log(window.navigator.userLanguage);
         document.cookie = "user_lang=" + user_lang;
         console.log(user_lang);
         userLang.update(n => user_lang);
@@ -1029,9 +1029,9 @@ function close_about_tag(){
 }
 
 function toogleVivaTour() {
-    console.log(pano.getVariableValue("vivaTour"));
+    //console.log(pano.getVariableValue("vivaTour"));
     pano.setVariableValue("vivaTour", !pano.getVariableValue("vivaTour"));  
-    console.log(pano.getVariableValue("vivaTour"));
+    //console.log(pano.getVariableValue("vivaTour"));
     intro = false;
 }
 

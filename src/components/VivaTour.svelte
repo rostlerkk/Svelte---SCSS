@@ -192,7 +192,7 @@
     });
 
     pano.on("varchanged_vivaTour", function() {
-        console.log(pano.getVariableValue("vivaTour"));
+        
         switch (pano.getVariableValue("vivaTour")) {
             
             case true:
@@ -212,7 +212,7 @@
 
     function toggleAutoplay() {
         autoplay = !autoplay;
-        console.log(autoplay);
+        
 
         let currentNode = pano.getCurrentNode();
         let patchName = take_tour_data[currentNode].videos[0].id;
@@ -273,7 +273,7 @@
     }
 
     function nextHouse($pan, $tilt, $fov) {
-        console.log($pan + ", " + $tilt + ", " + $fov);
+        
         for (let index = 0; index < is_tour_nodes.length; index++) {
             let node = pano.getCurrentNode();
             
@@ -322,9 +322,9 @@
     }
 
     function play_patch_video() {
-        console.log("spúšťam video");
+        
         let currentNode = pano.getCurrentNode();
-        console.log(currentNode);
+        
         let patchName = take_tour_data[currentNode].videos[0].id;
         
         //let video_patch_time = pano.getMediaObject(patchName).duration;
@@ -335,11 +335,11 @@
         pano.setMediaVisibility( patchName, true);    
         //pano.moveTo(pan, tilt, fov, 5);
         pano.setPanTiltFov(pan,tilt,fov);
-        console.log(patchName);
+        
 
         pano.playSound(patchName);
         pano.getMediaObject(patchName).addEventListener('ended', function() {
-            nextHouse(pan, tilt, fov);
+            nextHouse();
         });
 
         
@@ -371,7 +371,6 @@
 </script>
 
 {#if vivaTour == true && blurred != true}
-    <div class="pizda">{vivaData["houses"]}</div>
     {#if vivaData["houses"] != undefined}
             <div id="houses-info-container">
                 <div class="houses-header">
