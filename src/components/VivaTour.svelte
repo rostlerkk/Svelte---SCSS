@@ -3,6 +3,23 @@
     import { aboutViva } from '../store.js';
     import { vivaAutoPlay } from '../store.js';
 
+    let isMobile = false;
+    function checkDevice() {
+        if (navigator.userAgent.match(/Android/i)
+            || navigator.userAgent.match(/webOS/i)
+            || navigator.userAgent.match(/iPhone/i)
+            || navigator.userAgent.match(/iPad/i)
+            || navigator.userAgent.match(/iPod/i)
+            || navigator.userAgent.match(/BlackBerry/i)
+            || navigator.userAgent.match(/Windows Phone/i)) {
+                isMobile = true ;
+            } else {
+                isMobile = false ;
+            }
+    }
+
+    checkDevice();
+
 
     let is_tour_nodes = ['node1', 'node24','node12', 'node26','node6', 'node22', 'node3', 'node18', 'node5', 'node20'];
     let take_tour_data = {
@@ -191,7 +208,6 @@
         }
 
         if (autoplay && pano.getVariableValue("vivaTour") == true) {
-            
            play_patch_video();
         }
 
@@ -258,7 +274,7 @@
             } else {
                 pano.setMediaVisibility(patchName, true);  
                 pano.playSound(patchName);
-
+                openLayersVideo();
                 pano.getMediaObject(patchName).addEventListener('ended', function() {
                     nextHouse();
                 });
@@ -391,10 +407,6 @@
         let tilt = take_tour_data[currentNode].videos[0].tilt;
         let fov = take_tour_data[currentNode].videos[0].fov;
 
-        
-
-        
-        
         pano.setMediaVisibility( patchName, true);    
         //pano.moveTo(pan, tilt, fov, 5);
         pano.setPanTiltFov(pan,tilt,fov);
@@ -433,18 +445,27 @@
                 });
                 break;
         }
-
-
+     
         
 
-        
+       
+
+        openLayersVideo();
+
+    }
+
+    function openLayersVideo() {
+
         function openLayers() {
             pano.setVariableValue("playPauseMedia", true);
         }
 
         function checkEndVideo() {
+            let currentNode = pano.getCurrentNode();
+            let patchName = take_tour_data[currentNode].videos[0].id;
             if (pano.getMediaObject(patchName) != null) {
                 if (pano.getMediaObject(patchName).currentTime  + 4 >  pano.getMediaObject(patchName).duration) {
+                    
                     pano.setVariableValue("playPauseMedia", false);
                     clearInterval(layersTimeOut);
                 }
@@ -458,12 +479,16 @@
                 
                 break;
         
-            default:
-                timeOut = setTimeout(openLayers, 2000);
-                layersTimeOut = setInterval(checkEndVideo, 1000);
+            default: 
+                if (!isMobile) {
+                    timeOut = setTimeout(openLayers, 2000);
+                    layersTimeOut = setInterval(checkEndVideo, 1000);        
+                }
+                
                 break;
         }
 
+        
     }
 
     let subitlesString= "";

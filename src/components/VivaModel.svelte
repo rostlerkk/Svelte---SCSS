@@ -151,7 +151,7 @@
         <script type='text/javascript'>
             $("#mySpriteSpin").spritespin({
               // path to the source images.
-                source: SpriteSpin.sourceArray('../assets/3d/{frame}.jpg', {
+                source: SpriteSpin.sourceArray('assets/3d/{frame}.jpg', {
                     frame: [1,201],
                 
                 }),

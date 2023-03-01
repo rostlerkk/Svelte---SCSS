@@ -192,6 +192,7 @@ async function fetchData($url, $lang, $type, $variable) {
     }
 }
 
+
  // zistenie honoty z cookies
  function getCookie(cname) {
         let name = cname + "=";
@@ -1090,8 +1091,10 @@ async function fetchPhpData($lang) {
     }
 
     //console.log(api_data);
+    let phpUrl = "https://goacaffe.sk/molly/assets/krpano/getValues.php"
+    //let phpUrl = "assets/php/getValues.php";
 
-    const res = await fetch("https://goacaffe.sk/molly/assets/krpano/getValues.php", {
+    const res = await fetch(phpUrl, {
         method: 'POST',
         body: JSON.stringify(api_data)
     })
