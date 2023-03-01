@@ -1846,6 +1846,12 @@ $: {
         display: flex;
         opacity: 1;
         transform: scale(1);
+
+        #wrapper {
+            #footer {
+                justify-content: flex-start !important;
+            }
+        }
     }
 
     #welcome {

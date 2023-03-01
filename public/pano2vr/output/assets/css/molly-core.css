@@ -1513,7 +1513,7 @@ display: none;
     justify-content: center;
   }
   #welcome #footer {
-    justify-content: center;
+    justify-content: flex-start;
   }
   #welcome #header {
     justify-content: center;
