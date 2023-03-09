@@ -15,6 +15,8 @@ let intro, fetching_data, lang_data_loading, welcome, isTourNode = true;
 let about_viva, about_tag, about_product, product_data_loaded, houses_data_loaded, subtitles_data_loaded, house_info, viva_auto_tour, autotour = false;
 let _vivaData = {};
 
+let more_info = "moreinfo";
+
 let myTimeout;
 
 // aktivácia jQuery
@@ -163,7 +165,7 @@ aboutViva.subscribe(value => {
     about_viva = value;
 });
 
-// získanie dát z API - golbálna funkcia
+// získanie dát z API - globálna funkcia
 async function fetchData($url, $lang, $type, $variable) {
     $variable = false;
     if (_vivaData[$lang] == undefined) {
@@ -182,9 +184,14 @@ async function fetchData($url, $lang, $type, $variable) {
             _vivaData[$lang][$type] = json;
             vivaData.update(n => json);
 
+            
+
             if ($type == "houses") {
                 //console.log(_vivaData);
+                
             }
+
+            
 
         } else {
             throw new Error(json);
@@ -1109,6 +1116,18 @@ async function fetchPhpData($lang) {
         change_logo_img();
         changeShortCutsNames();
 
+        _vivaData["houses"]["additional_content"].forEach(element => {
+                
+                if (element.name == "Navigation: More Info") {
+                    
+                    if (element.title_t[$lang] == undefined) {
+                        more_info = element.title_t.int;
+                    } else {
+                        more_info = element.title_t[$lang]
+                    }
+                }
+            });
+
     } else {
         throw new Error(json);
         fetching_data = false;
@@ -1332,11 +1351,12 @@ $: {
 
                             {#if item.name == "VIVA: Startscreen: More info"}
                             <button id="more_info" on:click={() => about_viva_park()}>
-                                {#if item.title_t[user_lang] != null}
+                                <!-- {{#if item.title_t[user_lang] != null}
                                 {item.title_t[user_lang]}
                                 {:else}
                                 {item.title_t["int"]}
-                                {/if}
+                                {/if}} -->
+                                {more_info}
                             </button>
                             <!-- <button id="more_info">{item.title}</button> -->
                             {/if}
@@ -1540,10 +1560,12 @@ $: {
                                     {/if}
 
                                     <!-- Button viac info -->
+                                    
+
                                     {#if _vivaData["houses"]["buildings"][active_house]["link_t"][user_lang] != undefined || _vivaData["houses"]["buildings"][active_house]["link_t"][user_lang] != ""}
-                                        <a id="house-url" href="{_vivaData["houses"]["buildings"][active_house]["link_t"][user_lang]}" target="_blank" class="">Viac</a>
+                                        <a id="house-url" href="{_vivaData["houses"]["buildings"][active_house]["link_t"][user_lang]}" target="_blank" class="">{more_info}</a>
                                     {:else}
-                                        <a id="house-url" href="{_vivaData["houses"]["buildings"][active_house]["link_t"]["int"]}" target="_blank" class="">Viac</a>
+                                        <a id="house-url" href="{_vivaData["houses"]["buildings"][active_house]["link_t"]["int"]}" target="_blank" class="">{more_info}</a>
                                     {/if}
 
                                 {/if}

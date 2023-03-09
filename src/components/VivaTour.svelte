@@ -401,63 +401,127 @@
         let currentNode = pano.getCurrentNode();
         
         let patchName = take_tour_data[currentNode].videos[0].id;
-        
-        //let video_patch_time = pano.getMediaObject(patchName).duration;
-        let pan = take_tour_data[currentNode].videos[0].pan;
-        let tilt = take_tour_data[currentNode].videos[0].tilt;
-        let fov = take_tour_data[currentNode].videos[0].fov;
+        console.log(pano.getMediaObject(patchName));
 
-        pano.setMediaVisibility( patchName, true);    
-        //pano.moveTo(pan, tilt, fov, 5);
-        pano.setPanTiltFov(pan,tilt,fov);
-        
-
-        pano.playSound(patchName);
-        loadSubtitles();
-
-        switch (currentNode) {
-            case "node1":
-                pano.getMediaObject(patchName).addEventListener('ended', function() {
-                    let lang = pano.getVariableValue("lang");
-
-                    subitlesString = "";
-                    if (vivaData["subtitles"].start_welcome_t[lang] != null) {
-                        subitlesString += vivaData.subtitles.start_quote_t[lang] + "<br/>"               
-                        subitlesString += vivaData.subtitles.start_quote_source_t[lang]
-                    } else {
-                        subitlesString += vivaData.subtitles.start_quote_t["int"] + "<br/>"               
-                        subitlesString += vivaData.subtitles.start_quote_source_t["int"]
+        jq.html5Loader({
+            filesToLoad:   {
+                "files": [{
+                    "type":"VIDEO",
+                    "sources": {
+                        "mp4":{
+                            "source": pano.getMediaObject(patchName).currentSrc,
+                            "size": pano.getMediaObject(patchName).size
+                        }
                     }
-                    pano.setMediaVisibility("video_2", true); 
-                    pano.playSound("video_2");   
+                }]
+            }, // this could be a JSON or simply a javascript object
+            onBeforeLoad:       function () {
+                console.log("začínam buffer")
+            },
+            onComplete:         function () {
+                console.log("video načítané, spúšťam video");
+                //let video_patch_time = pano.getMediaObject(patchName).duration;
+                let pan = take_tour_data[currentNode].videos[0].pan;
+                let tilt = take_tour_data[currentNode].videos[0].tilt;
+                let fov = take_tour_data[currentNode].videos[0].fov;
 
-                    pano.getMediaObject("video_2").addEventListener('ended', function() {
-                        nextHouse();
-                    });
-                    
-                });
-                break;
+                pano.setMediaVisibility( patchName, true);    
+                //pano.moveTo(pan, tilt, fov, 5);
+                pano.setPanTiltFov(pan,tilt,fov);
+                
+
+                pano.playSound(patchName);
+                loadSubtitles();
+
+                switch (currentNode) {
+                    case "node1":
+                        pano.getMediaObject(patchName).addEventListener('ended', function() {
+                            let lang = pano.getVariableValue("lang");
+
+                            subitlesString = "";
+                            if (vivaData["subtitles"].start_welcome_t[lang] != null) {
+                                subitlesString += vivaData.subtitles.start_quote_t[lang] + "<br/>"               
+                                subitlesString += vivaData.subtitles.start_quote_source_t[lang]
+                            } else {
+                                subitlesString += vivaData.subtitles.start_quote_t["int"] + "<br/>"               
+                                subitlesString += vivaData.subtitles.start_quote_source_t["int"]
+                            }
+                            pano.setMediaVisibility("video_2", true); 
+                            pano.playSound("video_2");   
+
+                            pano.getMediaObject("video_2").addEventListener('ended', function() {
+                                nextHouse();
+                            });
+                            
+                        });
+                        break;
+                
+                    default:
+                        pano.getMediaObject("video_1").addEventListener('ended', function() {
+                        // console.log("skončilo sa video");
+                            nextHouse();
+                        });
+                        break;
+                }
+            
+                
+
+            
+
+                openLayersVideo();
+            },
+            onElementLoaded:    function ( obj, elm) { 
+                
+            },
+            onUpdate:           function ( percentage ) {
+                console.log(parseInt(percentage));
+            }
+        });
         
-            default:
-                pano.getMediaObject("video_1").addEventListener('ended', function() {
-                   // console.log("skončilo sa video");
-                    nextHouse();
-                });
-                break;
-        }
-     
-        
 
-       
-
-        openLayersVideo();
 
     }
 
     function openLayersVideo() {
 
+        let currentNode = pano.getCurrentNode();
+        let patchName = take_tour_data[currentNode].videos[0].id;
+
+        jq.html5Loader({
+            filesToLoad:   {
+                "files": [{
+                    "type":"VIDEO",
+                    "sources": {
+                        "mp4":{
+                            "source": pano.getMediaObject(patchName).currentSrc,
+                            "size": pano.getMediaObject(patchName).size
+                        }
+                    }
+                }]
+            }, // this could be a JSON or simply a javascript object
+            onBeforeLoad:       function () {
+                console.log("začínam buffer domu")
+            },
+            onComplete:         function () {
+                console.log("video domu načítané, spúšťam video");
+ 
+                openLayers();
+            },
+            onElementLoaded:    function ( obj, elm) { 
+                
+            },
+            onUpdate:           function ( percentage ) {
+               
+            }
+        });
+
         function openLayers() {
+
+
+
             pano.setVariableValue("playPauseMedia", true);
+
+
         }
 
         function checkEndVideo() {
