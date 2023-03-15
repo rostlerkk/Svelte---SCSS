@@ -1,6 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import {get, writable} from 'svelte/store';
+    import Daily from './DailyMenu.svelte';
 	import {active_menu_item} from "../store.js";
     
     let _active_menu_item = null;
@@ -10,14 +11,22 @@
         console.log(value);
 	});
 
-    let Header, Footer, Breakfest, Lunch = null;
+    let Header, Footer, Breakfest, Lunch, DailyMonth, DailyMenu, Tickets, Terrace, Gallery, Actions, Flyer, Contact = null;
 
 
     onMount(async () => {
 		Header = (await import('../components/Header.svelte')).default;
         Footer = (await import('../components/Footer.svelte')).default;
         Breakfest = (await import('../components/Breakfest.svelte')).default;
+        DailyMonth = (await import('../components/DailyMonth.svelte')).default;
+        DailyMenu = (await import('../components/DailyMenu.svelte')).default;
         Lunch = (await import('../components/Lunch.svelte')).default;
+        Tickets = (await import('../components/Tickets.svelte')).default;
+        Terrace = (await import('../components/Terrace.svelte')).default;
+        Gallery = (await import('../components/Gallery.svelte')).default;
+        Actions = (await import('../components/Actions.svelte')).default;
+        Flyer = (await import('../components/Flyer.svelte')).default;
+        Contact = (await import('../components/Contact.svelte')).default;
 	});
 
 </script>
@@ -46,13 +55,53 @@
         <svelte:component this={Breakfest} />
     {/if}
 
+    {#if DailyMonth != null}
+    <svelte:component this={DailyMonth} />
+    {/if}
+
+    {#if DailyMenu != null}
+    <svelte:component this={DailyMenu} />
+    {/if}
+
     {#if Lunch != null}
         <svelte:component this={Lunch} />
     {/if}
 
+    {#if Tickets != null}
+        <svelte:component this={Tickets} />
+    {/if}
+
+    {#if Terrace != null}
+        <svelte:component this={Terrace} />
+    {/if}
+
+    {#if Gallery != null}
+        <svelte:component this={Gallery} />
+    {/if}
+
+    {#if Actions != null}
+        <svelte:component this={Actions} />
+    {/if}
+
+    {#if Flyer != null}
+        <svelte:component this={Flyer} />
+    {/if}
+
+    {#if Contact != null}
+        <svelte:component this={Contact} />
+    {/if}
+
     {#if Header != null &&
         Breakfest != null   &&
-        Lunch != null   
+        Lunch != null   &&
+        DailyMonth != null &&
+        DailyMenu != null   &&
+        Tickets != null &&
+        Terrace != null &&
+        Gallery != null &&
+        Actions != null &&
+        Flyer != null &&
+        Contact != null
     }
          <!-- end fix background image -->
         <script type="text/javascript" src="js/jquery.min.js"></script>

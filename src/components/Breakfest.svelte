@@ -10,11 +10,17 @@
                     <div class="slider-text-middle-main">
                         <div class="slider-text-middle">
                             <div class="restaurant-dishes bg-white pull-right position-relative padding-fourteen sm-margin-lr-auto sm-float-none xs-padding-twenty-three">
-                                <div class="margin-seven xs-display-none sm-margin-lr-auto sm-margin-fifteen"><img src="images/icon-breakfast.png" alt=""/></div>
-                                <span class="title-large alt-font text-uppercase letter-spacing-2 brown-text display-block font-weight-600">Breakfast</span>
-                                <span class="text-small letter-spacing-1 text-uppercase">Every Day 08:00 - 10:00</span>
+                                <span class="title-large alt-font text-uppercase letter-spacing-2 brown-text display-block font-weight-600">OBEDOVÉ MENU</span>
+                                <span class="text-small letter-spacing-1 text-uppercase">PON-PIA 11:00 - 14:00</span>
+                                <span class="text-small letter-spacing-1 text-uppercase">alebo do vypredania zásob</span>
                                 <div class="margin-sixteen"><img src="images/separator.png" alt=""/></div>
-                                <p class="text-medium margin-five no-margin-lr">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                                <strong class="text-small letter-spacing-1 text-uppercase">polievka + hlavné jedlo 6,40 €</strong>
+                                <span class="text-small letter-spacing-1 text-uppercase">(+ donáška)</span>
+                                <br>
+                                <br>
+                                <strong class="text-small letter-spacing-1 text-uppercase">+421 907 077 009</strong><br>
+                                <strong class="text-small letter-spacing-1 text-uppercase">+421 904 006 003</strong><br><br>
+                                <span class="text-small letter-spacing-1 text-uppercase">Na obedové menu sa nevzťahuje žiadna z akcií</span>
                                 <div class="margin-seventeen"><a class="section-link" href="#lunch"><img src="images/arrow-down.png" alt=""/></a></div>
                                 <div class="img-border border-deep-yellow z-index-minus2"></div>
                             </div>

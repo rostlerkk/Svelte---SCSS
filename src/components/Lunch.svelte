@@ -8,11 +8,14 @@
                 <div class="slider-text-middle-main">
                     <div class="slider-text-middle">
                         <div class="restaurant-dishes bg-white pull-left position-relative padding-fourteen sm-margin-lr-auto sm-float-none xs-padding-twenty-three">
-                            <div class="margin-seven xs-display-none"><img src="images/icon-lunch.png" alt=""/></div>
-                            <span class="title-large alt-font text-uppercase letter-spacing-2 brown-text display-block font-weight-600">Lunch</span>
-                            <span class="text-small letter-spacing-1 text-uppercase">Every Day 13:00 - 15:00</span>
+                            <span class="title-large alt-font text-uppercase letter-spacing-2 brown-text display-block font-weight-600">DONÁŠKA</span>
                             <div class="margin-sixteen"><img src="images/separator.png" alt=""/></div>
-                            <p class="text-medium margin-five no-margin-lr">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+                            <strong>Poprad, Stráže, Veľká, Sp. Sobota, Kvetnica Lesopark</strong>
+                            <p>0,50 € (min. objednávka jedál 4,50 €)</p>
+                            <strong>Matejovce, Sp. Teplica, Gánovce, Hozelec, Veľký Slavkov, Kvetnica</strong>
+                            <p>2,50 € (min. objednávka jedál 15 €)</p>
+                            <strong>Mlynica, Svit, Švábovce</strong>
+                            <p>3,50 € (min. objednávka jedál 20 €)</p>
                             <div class="margin-seventeen"><a class="section-link" href="#dinner"><img src="images/arrow-down.png" alt=""/></a></div>
                             <div class="img-border border-deep-yellow z-index-minus2"></div>
                         </div>
