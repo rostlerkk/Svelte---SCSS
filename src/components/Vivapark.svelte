@@ -8,6 +8,23 @@ import { vivaAutoPlay } from '../store.js';
 import VivaTour from './VivaTour.svelte';
 import VivaModel from './VivaModel.svelte';
 
+let isMobile = false;
+function checkDevice() {
+    if (navigator.userAgent.match(/Android/i)
+        || navigator.userAgent.match(/webOS/i)
+        || navigator.userAgent.match(/iPhone/i)
+        || navigator.userAgent.match(/iPad/i)
+        || navigator.userAgent.match(/iPod/i)
+        || navigator.userAgent.match(/BlackBerry/i)
+        || navigator.userAgent.match(/Windows Phone/i)) {
+            isMobile = true ;
+        } else {
+            isMobile = false ;
+        }
+}
+
+checkDevice();
+
 // VARIABLES
 let active_house = 0;
 let user_lang, productUrl, housesUrl, subtitlesUrl, product_id, tagValue, currentNode = null;
@@ -17,7 +34,7 @@ let _vivaData = {};
 
 let more_info = "moreinfo";
 
-let myTimeout;
+let myTimeout, myInterval;
 
 // aktivácia jQuery
 const jq = window.$;
@@ -144,7 +161,7 @@ vivaData.subscribe(value => {
 
 vivaAutoPlay.subscribe(value => {
     autotour = value;
-    //console.log(value);
+    ////console.log(value);
     if (value) {
         jq(".pulse-layer").css({
             "display" : "none"
@@ -187,7 +204,7 @@ async function fetchData($url, $lang, $type, $variable) {
             
 
             if ($type == "houses") {
-                //console.log(_vivaData);
+                ////console.log(_vivaData);
                 
             }
 
@@ -222,7 +239,7 @@ async function fetchData($url, $lang, $type, $variable) {
 function check_user_lang() {
 
    
-    let cookie_lang = getCookie("user_lang");
+    let cookie_lang = getCookie("user_lang").toLowerCase();
 
     if (cookie_lang != "") {
         // cookies nie su prázdne 
@@ -233,37 +250,49 @@ function check_user_lang() {
         // Jazyk nie je definovaný v Cookies
         user_lang = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
         //console.log(window.navigator.userLanguage);
-        document.cookie = "user_lang=" + user_lang;
+        
         //console.log(user_lang);
-        userLang.update(n => user_lang);
-        switch (user_lang) {
+        
+        switch (user_lang.toLowerCase()) {
             case 'cz':
             case 'cs':
             case 'cz-cz':
             case 'cz-CZ':
+            case 'CZ-CZ':
                 pano.setVariableValue('lang', 'cz');
+                user_lang = "cz";
                 break;
 
             case 'sk':
             case 'sk-sk':
             case 'sk-SK':
+            case 'SK-SK':
                 pano.setVariableValue('lang', 'sk');
+                user_lang = "sk";
                 break;
 
             case 'at':
             case 'at-at':
+            case 'at-AT':
+            case 'AT-AT':
             case 'de-at':
+            case 'de-AT':
+            case 'DE-AT':
                 pano.setVariableValue('lang', 'at');
+                user_lang = "at";
                 break;
 
             case 'de':
             case 'de-de':
+            case 'de-DE':                
                 pano.setVariableValue('lang', 'de');
+                user_lang = "de";
                 break;
 
             case 'hr':
             case 'hr-hr':
                 pano.setVariableValue('lang', 'hr');
+                user_lang = "hr";
                 break;
 
             case 'rs': // Srbsko
@@ -271,6 +300,7 @@ function check_user_lang() {
             case 'sr':
             case 'sr-sr':
                 pano.setVariableValue('lang', 'rs');
+                user_lang = "rs";
                 break;
 
             case 'si': // Slovinsko
@@ -278,11 +308,13 @@ function check_user_lang() {
             case 'sl':
             case 'sl-sl':
                 pano.setVariableValue('lang', 'si');
+                user_lang = "si";
                 break;
 
             case 'ba': // Bosna a Hercegovina
             case 'ba-ba':
                 pano.setVariableValue('lang', 'ba');
+                user_lang = "ba";
                 break;
 
             case 'ua':
@@ -290,22 +322,26 @@ function check_user_lang() {
             case 'uk':
             case 'uk-uk':
                 pano.setVariableValue('lang', 'ua');
+                user_lang = "ua";
                 break;
 
             case 'fr':
             case 'fr-fr':
                 pano.setVariableValue('lang', 'fr');
+                user_lang = "fr";
                 break;
 
             case 'es':
             case 'es-es':
                 pano.setVariableValue('lang', 'es');
+                user_lang = "es";
                 break;
 
             case 'cn':
             case 'cn-cn':
             case 'zh-cn':
                 pano.setVariableValue('lang', 'cn');
+                user_lang = "cn";
                 break;
 
             case 'gr':
@@ -313,46 +349,55 @@ function check_user_lang() {
             case 'el':
             case 'el-el':
                 pano.setVariableValue('lang', 'gr');
+                user_lang = "gr";
                 break;
 
             case 'hu':
             case 'hu-ht':
                 pano.setVariableValue('lang', 'hu');
+                user_lang = "hu";
                 break;
 
             case 'tr':
             case 'tr-tr':
                 pano.setVariableValue('lang', 'tr');
+                user_lang = "tr";
                 break;
 
             case 'ro':
             case 'ro-ro':
                 pano.setVariableValue('lang', 'ro');
+                user_lang = "ro";
                 break;
 
             case 'en-gb':
             case 'en':
                 pano.setVariableValue('lang', 'uk');
+                user_lang = "uk";
                 break;
 
             case 'it':
             case 'it-it':
                 pano.setVariableValue('lang', 'it');
+                user_lang = "it";
                 break;
 
             case 'pl':
             case 'pl-pl':
                 pano.setVariableValue('lang', 'pl');
+                user_lang = "pl";
                 break;
 
             case 'lv':
             case 'lv-lv':
                 pano.setVariableValue('lang', 'lv');
+                user_lang = "lv";
                 break;
 
             case 'ru':
             case 'ru-ru':
                 pano.setVariableValue('lang', 'ru');
+                user_lang = "ru";
                 break;
 
             case 'by':
@@ -360,16 +405,19 @@ function check_user_lang() {
             case 'be':
             case 'be-be':
                 pano.setVariableValue('lang', 'by');
+                user_lang = "by";
                 break;
 
             case 'bg':
             case 'bg-bg':
                 pano.setVariableValue('lang', 'bg');
+                user_lang = "bg";
                 break;
 
             case 'lt':
             case 'lt-lt':
                 pano.setVariableValue('lang', 'lt');
+                user_lang = "lt";
                 break;
 
             case 'ee':
@@ -377,29 +425,37 @@ function check_user_lang() {
             case 'et':
             case 'et-et':
                 pano.setVariableValue('lang', 'ee');
+                user_lang = "ee";
                 break;
 
             case 'mk':
             case 'mk-mk':
                 pano.setVariableValue('lang', 'mk');
+                user_lang = "mk";
                 break;
 
             case 'nl-be':
                 pano.setVariableValue('lang', 'be');
+                user_lang = "be";
                 break;
 
             case 'de-ch':
                 pano.setVariableValue('lang', 'ch');
+                user_lang = "ch";
                 break;
 
             case 'ro-mo':
                 pano.setVariableValue('lang', 'md');
+                user_lang = "md";
                 break;
 
             default:
                 pano.setVariableValue('lang', 'int');
                 break;
         }
+
+        userLang.update(n => user_lang.toLowerCase());
+        document.cookie = "user_lang=" + user_lang.toLowerCase();
         //update_lang_content();
     }
 
@@ -421,7 +477,7 @@ function getVivaTranslations($user_lang) {
 // ziskanie URL adries
 function getProductLink($lang) {
     productUrl = urlPrefix[$lang] + '/api/products/products?api_token=' + apiToken[$lang];
-    //console.log("Products URL : " + productUrl);
+    ////console.log("Products URL : " + productUrl);
     switch ($lang) {
         case "int":
             if (_vivaData.int == null) {
@@ -443,7 +499,7 @@ function getProductLink($lang) {
 
 function getHousesLink($lang) {
     housesUrl = urlPrefix[$lang] + '/api/buildings?api_token=' + apiToken[$lang];
-    //console.log("Houses URL : " + housesUrl);
+    ////console.log("Houses URL : " + housesUrl);
 
     switch ($lang) {
         case "int":
@@ -466,7 +522,7 @@ function getHousesLink($lang) {
 
 function getSubtitlesLink($lang) {
     subtitlesUrl = urlPrefix[$lang] + '/api/building-tour-translations?api_token=' + apiToken[$lang];
-    //console.log("Subtitles URL : " + subtitlesUrl);
+    ////console.log("Subtitles URL : " + subtitlesUrl);
 
     switch ($lang) {
         case "int":
@@ -638,17 +694,61 @@ function getSubtitlesLink($lang) {
                 }
 
                 let half = (videoDuration / 2) * 1000;
-                //console.log(videoDuration + " / " + half);
+                ////console.log(videoDuration + " / " + half);
 
                 switch (pano.getVariableValue("playPauseMedia")) {
                     case true:
                         jq(".pulse-layer").css({
                             "display" : "none"
                         });
-                        pano.setVolume(patchName, 0.0);
-                        pano.playSound(patchName);
 
-                        myTimeout = setTimeout(playWallAnimation, half);
+                        switch (currentNode) {
+                            case "node1":
+                            case "node24":
+                            case "node26":
+                                break;
+                            default : 
+                            //console.log("mám spustiť stenu");
+                                if ( !autotour) {
+                                    pano.setVolume(patchName, 0.0);
+                                    pano.playSound(patchName);
+                                    //myTimeout = setTimeout(playWallAnimation, half);
+                                    myInterval = setInterval(checkWallHalf, 20);
+                                } else {
+                                    if (!isMobile) {
+                                        pano.setVolume(patchName, 0.0);
+                                        pano.playSound(patchName);
+                                        //myTimeout = setTimeout(playWallAnimation, half);
+                                        myInterval = setInterval(checkWallHalf, 20);
+                                    } else {
+                                        pano.pauseSound("zvlhcovac");
+                                        pano.setMediaVisibility('zvlhcovac', false);
+                                    }
+                                }
+
+                                
+                                
+                            break;
+                        }
+                        
+
+                        function checkWallHalf() {
+                            //console.log("kontrolujem čas : " + pano.soundGetTime(patchName) + "/" + half );
+
+                            if (pano.soundGetTime(patchName) >= (half / 1000)) {
+                                //console.log("čas je ok, vypínam ");
+                                pano.pauseSound(patchName);
+
+                                if (!autotour) {
+                                    jq(".pulse-layer").css({
+                                        "display" : "flex"
+                                    });
+                                }
+                                
+                                show_layers(true);  
+                                clearInterval(myInterval);  
+                            }
+                        }
 
                         function playWallAnimation() {
                             
@@ -686,7 +786,7 @@ function getSubtitlesLink($lang) {
                             
                             // if (pano.getVariableValue("vivaTour")) {
                             //     pano.playSound(patchName);
-                            //     console.log("ja");
+                            //     //console.log("ja");
                             //     myTimeout = setTimeout(stopWallAnimation, half);
 
                             //     function stopWallAnimation() {
@@ -698,7 +798,7 @@ function getSubtitlesLink($lang) {
                             //         });
                             //     }
                             // } else {
-                            //     console.log("jaa");
+                            //     //console.log("jaa");
                                 
                             //     //clearTimeout(myTimeout);
                             //     pano.playSound(patchName);
@@ -726,7 +826,8 @@ function getSubtitlesLink($lang) {
                         }
                         //pano.soundSetTime(patchName, half);
                         
-
+                        pano.playSound("zvlhcovac");
+                        pano.setMediaVisibility('zvlhcovac', true);
                         break;
                 }
             }
@@ -735,6 +836,7 @@ function getSubtitlesLink($lang) {
 
         pano.on("changenode", function() {
             clearTimeout(myTimeout);
+            clearInterval(myInterval);  
             pano.setVariableValue("download_data", "0");
             currentNode = pano.getCurrentNode();
             pano.setVariableValue("playPauseMedia", false);
@@ -1097,9 +1199,9 @@ async function fetchPhpData($lang) {
         "products": urlPrefix[$lang] + '/api/products/products?api_token=' + apiToken[$lang]
     }
 
-    //console.log(api_data);
-    let phpUrl = "https://goacaffe.sk/molly/assets/krpano/getValues.php"
-    //let phpUrl = "assets/php/getValues.php";
+    ////console.log(api_data);
+    //let phpUrl = "https://client.woowstudio.com/baumit/viva/assets/krpano/getValues.php"
+    let phpUrl = "assets/php/getValues.php";
 
     const res = await fetch(phpUrl, {
         method: 'POST',
@@ -1108,7 +1210,7 @@ async function fetchPhpData($lang) {
     const json = await res.json();
 
     if (res.ok) {
-        //console.log(json);
+        ////console.log(json);
         _vivaData = json;
         fetching_data = false;
         intro = true;
@@ -1137,7 +1239,7 @@ async function fetchPhpData($lang) {
 
 function changeShortCutsNames() {
     jq.each (jq('.swiper-slide'), function (index, data) {
-            //////////console.log(housesData[pano.getVariableValue('lang')]);
+            ////////////console.log(housesData[pano.getVariableValue('lang')]);
             switch (jq('.swiper-slide').eq(index).attr('data-url')) {
                 case 'node1' : 
                 jq('.swiper-slide').eq(index).find('.node-title').html('Viva Park');
@@ -1210,9 +1312,9 @@ function close_about_tag(){
 }
 
 function toogleVivaTour() {
-    //console.log(pano.getVariableValue("vivaTour"));
+    ////console.log(pano.getVariableValue("vivaTour"));
     pano.setVariableValue("vivaTour", !pano.getVariableValue("vivaTour"));  
-    //console.log(pano.getVariableValue("vivaTour"));
+    ////console.log(pano.getVariableValue("vivaTour"));
     intro = false;
 }
 
@@ -1220,7 +1322,7 @@ function toogleVivaTour() {
 function change_patches() {
         jq.each(jq('img.ggmedia'), function (index, value) {
             let lang = pano.getVariableValue('lang');
-            ////////console.log('mením patch');
+            //////////console.log('mením patch');
             let src = jq(this).attr('src');
 
             if (
@@ -1684,29 +1786,97 @@ $: {
 
             {#if currentNode == "node18" || currentNode == "node20"}
                 <div class="content">
-                    {#each _vivaData["houses"]["buildings"] as item}
-                        {#if item.house_nr == "House No. 2"}
-                            {#if item["media_t"] != undefined}
-                                {#if item["media_t"][user_lang] != undefined}
-                                    <div id="yt-video">
-                                        <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"][user_lang].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
-                                    </div>
-                                {:else}
-                                    {#if item["media_t"]["int"] != undefined}
+                    {#if tagValue == "computer screen"} 
+                        {#each _vivaData["houses"]["buildings"] as item}
+                            {#if item.house_nr == "House No. 2"}
+                                {#if item["media_t"] != undefined}
+                                    {#if item["media_t"][user_lang] != undefined}
                                         <div id="yt-video">
-                                            <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"]["int"].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
+                                            <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"][user_lang].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
                                         </div>
+                                    {:else}
+                                        {#if item["media_t"]["int"] != undefined}
+                                            <div id="yt-video">
+                                                <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"]["int"].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
+                                            </div>
+                                        {/if}
                                     {/if}
                                 {/if}
+                            {/if}                   
+                        {/each}
+                    {:else}
+
+                        {#each _vivaData["houses"]["additional_content"] as item}
+                            {#if tagValue == "Global Temperature Sensor" ||
+                                tagValue == "Air Supply" ||
+                                tagValue == "Humidifier" ||
+                                tagValue == "Air Exhaust" || 
+                                tagValue == "Built-in sensors" ||
+                                tagValue == "Temperature sensor for the surface temperature" }
+                                {#if "viva: " + tagValue.toLowerCase() == item.name.toLowerCase()}
+                                    {#if item.title_t[user_lang] != undefined && item.title_t[user_lang] != null}
+                                        <h1>{item.title_t[user_lang]}</h1>
+                                    {:else}
+                                        <h1>{item.title_t["int"]}</h1>
+                                    {/if}
+            
+                                    <div class="row">
+                                        {#if item.content_t[user_lang] != undefined && item.content_t[user_lang] != null}
+                                            <p class="text">{item.content_t[user_lang]}</p>
+                                        {:else}
+                                            <p class="text">{item.content_t["int"]}</p>
+                                        {/if}
+                                    </div>
+                                    
+                                {/if}
+            
                             {/if}
-                        {/if}                   
-                    {/each}
-                    
+            
+                            {#if tagValue == "Solidity counts" ||
+                                    tagValue == "Insulation first" ||
+                                    tagValue == "Interior values"}   
+                            
+                                {#if "VIVA: House 8, result: " + tagValue == item.name}
+                                    {#if item.title_t[user_lang] != undefined && item.title_t[user_lang] != null}
+                                        <h1>{item.title_t[user_lang]}</h1>
+                                    {:else}
+                                        <h1>{item.title_t["int"]}</h1>
+                                    {/if}
+            
+                                    <div class="row">
+                                        {#if item.content_t[user_lang] != undefined && item.content_t[user_lang] != null}
+                                            <p class="text">{item.content_t[user_lang]}</p>
+                                        {:else}
+                                            <p class="text">{item.content_t["int"]}</p>
+                                        {/if}
+                                    </div>
+            
+                                    <!-- Youtube video -->
+                                    {#if item["media_t"] != undefined}
+                                        {#if item["media_t"][user_lang] != undefined}
+                                            <div id="yt-video">
+                                                <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"][user_lang].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
+                                            </div>
+                                        {:else}
+                                            {#if item["media_t"]["int"] != undefined}
+                                                <div id="yt-video">
+                                                    <iframe id="yt" src="https://www.youtube.com/embed/{item["media_t"]["int"].split("/").pop()}" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen="" width="100%" height="100%" frameborder="0"></iframe>
+                                                </div>
+                                            {/if}
+                                        {/if}
+                                    {/if}
+                                    
+                                {/if}
+                            {/if}
+
+                        {/each}
+                    {/if}
                 </div>
+                
+                
             {:else}
                 <div class="content">
                     {#each _vivaData["houses"]["additional_content"] as item}
-                        
                         {#if tagValue == "Global Temperature Sensor" ||
                             tagValue == "Air Supply" ||
                             tagValue == "Humidifier" ||
@@ -1770,7 +1940,6 @@ $: {
                         {/if}
         
                         {#if tagValue == "computer screen"}   
-                        
                             {#if "VIVA: House 8, " + tagValue == item.name}
                                 <!-- {#if item.title_t[user_lang] != undefined && item.title_t[user_lang] != null}
                                     <h1>{item.title_t[user_lang]}</h1>

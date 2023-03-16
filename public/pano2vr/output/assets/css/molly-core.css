@@ -178,6 +178,11 @@ html::-webkit-scrollbar-thumb:horizontal, *::-webkit-scrollbar-thumb:horizontal 
 
 .footer .right-side .item.take-tour-button {
   z-index: 6;
+  top: 8px !important;
+}
+
+.ggskin.ggskin_svg.take-tour-button {
+  top: 8px !important;
 }
 
 .text-from-api-solidity.api-text {
@@ -361,6 +366,11 @@ html::-webkit-scrollbar-thumb:horizontal, *::-webkit-scrollbar-thumb:horizontal 
     background: linear-gradient(0deg, rgba(32,31,31,0.9093838218881303) 11%, rgba(32,31,31,0.5144258386948529) 52%, rgba(0,0,0,0) 100%);
     font-family: "Montserrat-Regular";
     z-index: 4;
+    pointer-events: none;
+  }
+
+  #houses-info-container.pointer {
+    pointer-events: all;
   }
 
   #houses-info-container .houses-header {
@@ -379,6 +389,7 @@ html::-webkit-scrollbar-thumb:horizontal, *::-webkit-scrollbar-thumb:horizontal 
     gap: 16px;
     align-self: start;
     order: 2;
+    pointer-events: all;
   }
 
   #houses-info-container .houses-header .buttons img {
@@ -413,6 +424,10 @@ html::-webkit-scrollbar-thumb:horizontal, *::-webkit-scrollbar-thumb:horizontal 
 
   #houses-info-container .houses-header .buttons #next-house.hidden {
     display: none;
+  }
+
+  #houses-info-container .houses-header .buttons #learn-more span {
+    display: contents;
   }
 
   #houses-info-container .houses-header .buttons #learn-more::before, #next-house::before {
@@ -455,15 +470,17 @@ html::-webkit-scrollbar-thumb:horizontal, *::-webkit-scrollbar-thumb:horizontal 
     display: flex;
     justify-content: center;
     gap: 40px;
-    margin-bottom: 50px;
     overflow-x: auto;
     max-height: 200px;
     transition: all .5s ease-in-out !important;
+    pointer-events: all;
+    padding-bottom: 50px;
   }
 
   #houses-info-container .houses-footer.hidden {
     max-height: 0;
     transition: all .5s ease-in-out !important;
+    padding: 0;
   }
 
   #houses-info-container .houses-header .subtitles.hidden {
@@ -1009,7 +1026,7 @@ display: none;
   left: 0px;
   display: block;
   background: transparent linear-gradient(180deg, #29293000 0%, #292930 100%) 0% 0% no-repeat padding-box;
-  z-index: 12;
+  /* z-index: 12; */
 }
 .new-blur.hidden {
   display: none;
@@ -1474,7 +1491,7 @@ display: none;
   #houses-info-container .houses-footer  {
     overflow-x: auto;
     justify-content: unset;
-    padding:0 20px;
+    padding:0 20px 50px 20px;
   }
   #houses-info-container .houses-header  {
     padding:0 20px;

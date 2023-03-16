@@ -4,6 +4,10 @@
     import { vivaAutoPlay } from '../store.js';
 
     let isMobile = false;
+
+    let prepni = false;
+
+
     function checkDevice() {
         if (navigator.userAgent.match(/Android/i)
             || navigator.userAgent.match(/webOS/i)
@@ -198,6 +202,7 @@
         clearTimeout(subtitleTimeOut_2);
         clearTimeout(subtitleTimeOut_3);
         clearTimeout(subtitleTimeOut_4);
+        prepni = false;
         
 
         if (pano.getNodeUserdata(pano.getCurrentNode()).copyright == "tour") {
@@ -243,15 +248,21 @@
         }
     }) ;       
     
+    
 
     function toggleAutoplay() {
+        
         autoplay = !autoplay;
         vivaAutoPlay.update(n => autoplay);
+        
 
         let currentNode = pano.getCurrentNode();
         let patchName = take_tour_data[currentNode].videos[0].id;
 
+
+
         if (autoplay == true) {
+            prepni = true;
             loadSubtitles();
             let currentNode = pano.getCurrentNode();
             let patchName = take_tour_data[currentNode].videos[0].id;
@@ -267,7 +278,7 @@
                     pano.getMediaObject(patchName).addEventListener('ended', function() {
                         pano.setMediaVisibility( "video_2", true);  
                         pano.playSound("video_2");
-                    //console.log("skončilo sa video");
+                        console.log("skončilo sa video");
                     //nextHouse();
                     });
                 }
@@ -275,8 +286,14 @@
                 pano.setMediaVisibility(patchName, true);  
                 pano.playSound(patchName);
                 openLayersVideo();
+                
                 pano.getMediaObject(patchName).addEventListener('ended', function() {
-                    nextHouse();
+                    
+                    //console.log("skončilo sa video 2");
+                    if (prepni) {
+                        nextHouse();
+                    }
+                    
                 });
             }
             
@@ -292,8 +309,6 @@
                 pano.pauseSound(patchName);
                 
             }
-            
-            
         }
     }
 
@@ -341,6 +356,7 @@
     }
 
     function nextHouse($pan, $tilt, $fov) {
+        //console.log("mením dom");
         clearTimeout(timeOut);
         clearTimeout(layersTimeOut);
         clearTimeout(subtitleTimeOut_2);
@@ -401,7 +417,7 @@
         let currentNode = pano.getCurrentNode();
         
         let patchName = take_tour_data[currentNode].videos[0].id;
-        console.log(pano.getMediaObject(patchName));
+        //console.log(pano.getMediaObject(patchName));
 
         jq.html5Loader({
             filesToLoad:   {
@@ -416,10 +432,10 @@
                 }]
             }, // this could be a JSON or simply a javascript object
             onBeforeLoad:       function () {
-                console.log("začínam buffer")
+                ////console.log("začínam buffer")
             },
             onComplete:         function () {
-                console.log("video načítané, spúšťam video");
+                ////console.log("video načítané, spúšťam video");
                 //let video_patch_time = pano.getMediaObject(patchName).duration;
                 let pan = take_tour_data[currentNode].videos[0].pan;
                 let tilt = take_tour_data[currentNode].videos[0].tilt;
@@ -441,10 +457,12 @@
                             subitlesString = "";
                             if (vivaData["subtitles"].start_welcome_t[lang] != null) {
                                 subitlesString += vivaData.subtitles.start_quote_t[lang] + "<br/>"               
-                                subitlesString += vivaData.subtitles.start_quote_source_t[lang]
+                                subitlesString += vivaData.subtitles.start_quote_source_t[lang]+ "<br/>"               
+                                subitlesString += vivaData.subtitles.start_come_along_t[lang]
                             } else {
                                 subitlesString += vivaData.subtitles.start_quote_t["int"] + "<br/>"               
-                                subitlesString += vivaData.subtitles.start_quote_source_t["int"]
+                                subitlesString += vivaData.subtitles.start_quote_source_t["int"]+ "<br/>"               
+                                subitlesString += vivaData.subtitles.start_come_along_t["int"]
                             }
                             pano.setMediaVisibility("video_2", true); 
                             pano.playSound("video_2");   
@@ -457,9 +475,10 @@
                         break;
                 
                     default:
-                        pano.getMediaObject("video_1").addEventListener('ended', function() {
-                        // console.log("skončilo sa video");
-                            nextHouse();
+                        pano.getMediaObject(patchName).addEventListener('ended', function() {
+                        //console.log("skončilo sa video 3");
+                        nextHouse();
+                            
                         });
                         break;
                 }
@@ -474,7 +493,7 @@
                 
             },
             onUpdate:           function ( percentage ) {
-                console.log(parseInt(percentage));
+                ////console.log(parseInt(percentage));
             }
         });
         
@@ -483,8 +502,9 @@
     }
 
     function openLayersVideo() {
-
+        
         let currentNode = pano.getCurrentNode();
+        //console.log("asgag " + currentNode);
         let patchName = take_tour_data[currentNode].videos[0].id;
 
         jq.html5Loader({
@@ -500,10 +520,10 @@
                 }]
             }, // this could be a JSON or simply a javascript object
             onBeforeLoad:       function () {
-                console.log("začínam buffer domu")
+                ////console.log("začínam buffer domu")
             },
             onComplete:         function () {
-                console.log("video domu načítané, spúšťam video");
+                ////console.log("video domu načítané, spúšťam video");
  
                 openLayers();
             },
@@ -516,12 +536,7 @@
         });
 
         function openLayers() {
-
-
-
             pano.setVariableValue("playPauseMedia", true);
-
-
         }
 
         function checkEndVideo() {
@@ -537,9 +552,11 @@
             
         }
 
+        //console.log("is mobile : " + isMobile);
         switch (currentNode) {
             case "node1":
             case "node24":
+            case "node26":
                 
                 break;
         
@@ -559,7 +576,7 @@
 
     function loadSubtitles() {
         
-       // console.log("načítavam titulky");
+       // //console.log("načítavam titulky");
         subitlesString = "";
         if (vivaData["subtitles"] != null) {
         
@@ -568,7 +585,8 @@
             switch (currentNode) {
                 // exteriér
                 case "node1":
-                   // console.log(pano.getMediaObject("video_1").currentTime + " : " + pano.getMediaObject("video_1").duration);
+                    //console.log(vivaData.subtitles.start_come_along_t);
+                   // //console.log(pano.getMediaObject("video_1").currentTime + " : " + pano.getMediaObject("video_1").duration);
                     if (pano.getMediaObject("video_1").currentTime != pano.getMediaObject("video_1").duration ) {
                         if (vivaData["subtitles"].start_welcome_t[lang] != null) {
                             subitlesString += vivaData.subtitles.start_welcome_t[lang]
@@ -579,14 +597,14 @@
                     } else {
                         if (vivaData["subtitles"].start_welcome_t[lang] != null) {
                             subitlesString += vivaData.subtitles.start_quote_t[lang] + "<br/>"               
-                            subitlesString += vivaData.subtitles.start_quote_source_t[lang]
+                            subitlesString += vivaData.subtitles.start_quote_source_t[lang] + "<br/>"               
+                            subitlesString += vivaData.subtitles.start_come_along_t[lang]
                         } else {
                             subitlesString += vivaData.subtitles.start_quote_t["int"] + "<br/>"               
-                            subitlesString += vivaData.subtitles.start_quote_source_t["int"]
+                            subitlesString += vivaData.subtitles.start_quote_source_t["int"] + "<br/>"               
+                            subitlesString += vivaData.subtitles.start_come_along_t["int"]
                         }
                     }
-                    
-                    
                     break;
                 // Dom 10 - exteriér
                 case "node12":
@@ -711,10 +729,10 @@
                         let first_time = parseFloat(vivaData["subtitles"].house_8_data_method_1_time.replace(':', '.'))*100 * 1000;
                         let second_time = parseFloat(vivaData["subtitles"].house_8_data_method_2_time.replace(':', '.'))*100 * 1000;
                         let third_time = parseFloat(vivaData["subtitles"].house_8_data_method_3_time.replace(':', '.'))*100 * 1000;
-                        //console.log(first_time + " | " + second_time + " | " + third_time);
+                        ////console.log(first_time + " | " + second_time + " | " + third_time);
                         
                         if (currentTime < first_time) {
-                            //console.log(currentTime);
+                            ////console.log(currentTime);
                             subitlesString = subtitles_1;
 
 
@@ -762,7 +780,7 @@
 
 {#if vivaTour == true && blurred != true}
     {#if vivaData["houses"] != undefined}
-            <div id="houses-info-container">
+            <div id="houses-info-container" class="{subtitles === false ? 'pointer' : ''}">
                 <div class="houses-header">
                     
                     <div class="buttons">
