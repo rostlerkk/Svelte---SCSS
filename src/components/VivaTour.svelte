@@ -4,6 +4,10 @@
     import { aboutViva } from '../store.js';
     import { vivaAutoPlay, vivaIntroAfterEnd, vivaIntro } from '../store.js';
 
+
+    // aktivácia jQuery
+    const jq = window.$;
+
     let isMobile = false;
 
     let prepni, _vivaIntro = false;
@@ -22,8 +26,9 @@
             || navigator.userAgent.match(/BlackBerry/i)
             || navigator.userAgent.match(/Windows Phone/i)) {
                 isMobile = true ;
+                
             } else {
-                isMobile = false ;
+                isMobile = false;
             }
     }
 
@@ -198,8 +203,6 @@
     let  autoplay = true;
     let subtitles = true;
 
-    // aktivácia jQuery
-    const jq = window.$;
 
     pano.on("changenode", function () {
         clearTimeout(timeOut);
@@ -240,6 +243,8 @@
                 jq('.take-tour-button').addClass('playing');
                 play_patch_video();
                 vivaAutoPlay.update(n => true);
+
+                jq('.take-tour-button').removeClass('hidden-desktop');
                 break;
         
             default:
@@ -250,6 +255,10 @@
                 clearTimeout(subtitleTimeOut_3);
                 clearTimeout(subtitleTimeOut_4);
                 vivaAutoPlay.update(n => false);
+
+                if (!isMobile) {
+                    jq('.take-tour-button').addClass('hidden-desktop');
+                }
                 break;
         }
     }) ;       

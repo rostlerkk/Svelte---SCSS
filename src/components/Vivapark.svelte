@@ -8,6 +8,9 @@ import { vivaAutoPlay, vivaIntroAfterEnd, vivaIntro } from '../store.js';
 import VivaTour from './VivaTour.svelte';
 import VivaModel from './VivaModel.svelte';
 
+// aktivácia jQuery
+const jq = window.$;
+
 let isMobile = false;
 function checkDevice() {
     if (navigator.userAgent.match(/Android/i)
@@ -19,7 +22,8 @@ function checkDevice() {
         || navigator.userAgent.match(/Windows Phone/i)) {
             isMobile = true ;
         } else {
-            isMobile = false ;
+            isMobile = false;
+            jq('.take-tour-button').addClass('hidden-desktop');
         }
 }
 
@@ -36,8 +40,7 @@ let more_info = "moreinfo";
 
 let myTimeout, myInterval;
 
-// aktivácia jQuery
-const jq = window.$;
+
 
 // Linky pre google mapu
 const map_iframe = {
@@ -963,6 +966,8 @@ function getSubtitlesLink($lang) {
 
             pano.setVariableValue("download_data", "");
         });
+
+        checkDevice();
 
     });
 
