@@ -3,7 +3,7 @@
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.vivaIntro = exports.vivaIntroAfterEnd = exports.vivaAutoPlay = exports.aboutViva = exports.userLang = exports.vivaData = void 0;
+exports.model = exports.vivaIntro = exports.vivaIntroAfterEnd = exports.vivaAutoPlay = exports.aboutViva = exports.userLang = exports.vivaData = void 0;
 
 var _store = require("svelte/store");
 
@@ -19,3 +19,5 @@ var vivaIntroAfterEnd = (0, _store.writable)(false);
 exports.vivaIntroAfterEnd = vivaIntroAfterEnd;
 var vivaIntro = (0, _store.writable)(false);
 exports.vivaIntro = vivaIntro;
+var model = (0, _store.writable)(false);
+exports.model = model;

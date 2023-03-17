@@ -2,7 +2,7 @@
   import { current_component } from 'svelte/internal';
     import { userLang } from '../store.js';
     import { aboutViva } from '../store.js';
-    import { vivaAutoPlay, vivaIntroAfterEnd, vivaIntro } from '../store.js';
+    import { vivaAutoPlay, vivaIntroAfterEnd, vivaIntro, model } from '../store.js';
 
 
     // aktivácia jQuery
@@ -10,10 +10,14 @@
 
     let isMobile = false;
 
-    let prepni, _vivaIntro = false;
+    let prepni, _vivaIntro, _model = false;
 
     vivaIntro.subscribe(value => {
         _vivaIntro = value;
+    });
+
+    model.subscribe(value => {
+        _model = value;
     });
 
 
@@ -190,7 +194,7 @@
     let subtitleTimeOut_2, subtitleTimeOut_3, subtitleTimeOut_4 = null;
 
     export let vivaData, user_lang = null;
-    console.log(vivaData);
+    //console.log(vivaData);
 
     userLang.subscribe(value => {
         user_lang = value;
@@ -809,7 +813,9 @@
         pano.setVariableValue("houseInfo", true);
     }
 
+    let count = 0;
     function ifWalls() {
+        count++;
         let goToStart = true;
         let node = pano.getCurrentNode();
 
@@ -857,9 +863,9 @@
                         <button id="next-house" on:click={() => nextHouse()}>Next house</button>
                         
                         {#if current_house != 'start'}
-                            <button id="learn-more" class="learn-more" on:click={() => opnehouseInfo()}>House info</button> 
+                            <button id="learn-more" class="learn-more" on:click={() => opnehouseInfo()}>Info</button> 
                         {:else}
-                            <button id="learn-more" class="learn-more" on:click={() => aboutViva.update(n => true)}>House info</button>    
+                            <button id="learn-more" class="learn-more" on:click={() => aboutViva.update(n => true)}>Info</button>    
                         {/if}
                         
                     </div>
@@ -932,7 +938,7 @@
 
     {/if}
 {:else} 
-    {#if vivaData["houses"] != undefined && _vivaIntro == false && blurred == false}
+    {#if !isMobile && vivaData["houses"] != undefined && _vivaIntro == false && blurred == false && _model == false}
         <div id="if-walls">
             <img src="images/if-walls.jpg" alt="">
             <div>
@@ -981,14 +987,27 @@
             </div>
         </div>
     {/if}
+
+    {#if isMobile && count == 0 && _vivaIntro == false}
+             <div id="tooltip-viva">
+                {#each vivaData["houses"]["additional_content"] as item}
+                    {#if item.name == "VIVA: Video Trigger Text"}
+                        {#if item.title_t != undefined}
+                            {#if item.title_t[user_lang] != undefined}
+                                <h3>{item.title_t[user_lang]}</h3>
+                            {:else}
+                                <h3>{item.title_t["int"]}</h3>
+                            {/if}
+                        {/if}
+                    {/if}
+                {/each}
+
+             </div>
+        {/if}
 {/if}
 
 
 <style lang="scss">
-
-.hidden-desktop {
-    display: none !important;
-}
 
 #if-walls {
     position: absolute;
