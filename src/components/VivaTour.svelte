@@ -181,6 +181,7 @@
     let subtitleTimeOut_2, subtitleTimeOut_3, subtitleTimeOut_4 = null;
 
     export let vivaData, user_lang = null;
+    console.log(vivaData);
 
     userLang.subscribe(value => {
         user_lang = value;
@@ -888,20 +889,19 @@
                 </div>
             </div>
 
-
-            <div id="if-walls">
-                <img src="" alt="">
-                <div>
-                    <h3>If walls could talk</h3>
-                    <h5>discover .. </h5>
-                    <p>sgnas ôgjn afôgna dfôadf ngôkasn sgad§ gmadf§ klgdm sl gang§ kladf fgdl sdfsnddga</p>
-                    <button>Play</button>
-                </div>
-            </div>
-        
-        
     {/if}
-    
+{:else} 
+    {#if vivaData["houses"] != undefined}
+        <div id="if-walls">
+            <img src="" alt="">
+            <div>
+                <h3>If walls could talk</h3>
+                <h5>discover .. </h5>
+                <p>sgnas ôgjn afôgna dfôadf ngôkasn sgad§ gmadf§ klgdm sl gang§ kladf fgdl sdfsnddga</p>
+                <button>Play</button>
+            </div>
+        </div>
+    {/if}
 {/if}
 
 
