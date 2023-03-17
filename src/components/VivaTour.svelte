@@ -796,6 +796,34 @@
         pano.setVariableValue("houseInfo", true);
     }
 
+    function ifWalls() {
+        let goToStart = true;
+        let node = pano.getCurrentNode();
+
+        for (let index = 0; index < is_tour_nodes.length; index++) {
+            
+            
+            if (
+                node == is_tour_nodes[index]
+            ) {
+                goToStart = false;
+            }
+        }
+
+        switch (goToStart) {
+            case true:
+                pano.openNext("{node1}", "");
+                break;
+        
+            default:
+                
+                break;
+        }
+
+        pano.setVariableValue("vivaTour", true);
+        vivaIntroAfterEnd.update(n => false);
+    }
+
 </script>
 
 {#if vivaTour == true && blurred != true}
@@ -898,7 +926,7 @@
                 <h3>If walls could talk</h3>
                 <h5>discover .. </h5>
                 <p>sgnas ôgjn afôgna dfôadf ngôkasn sgad§ gmadf§ klgdm sl gang§ kladf fgdl sdfsnddga</p>
-                <button>Play</button>
+                <button on:click={() => ifWalls()}>Play</button>
             </div>
         </div>
     {/if}

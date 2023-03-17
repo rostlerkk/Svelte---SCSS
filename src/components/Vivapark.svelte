@@ -677,10 +677,11 @@ function getSubtitlesLink($lang) {
             if (pano.getVariableValue("vivaTour") == false) {
                 
                 pano.setVariableValue("playPauseMedia", false);
+                intro = false;
             
             } else {
                 //console.log("mám zapnúť intro screen");
-                intro = true;
+                //intro = true;
             }
             
         });
