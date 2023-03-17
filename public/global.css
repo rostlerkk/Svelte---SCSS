@@ -140,3 +140,7 @@ button:focus {
 	background-color: grey;
 	height: 1px;
   }
+
+  .hidden-desktop {
+	display: none;
+  }

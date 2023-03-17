@@ -3,7 +3,7 @@ import { vivaData } from '../store.js';
 import { userLang } from '../store.js';
 
 import { aboutViva } from '../store.js';
-import { vivaAutoPlay, vivaIntroAfterEnd, vivaIntro } from '../store.js';
+import { vivaAutoPlay, vivaIntroAfterEnd, vivaIntro, model } from '../store.js';
 
 import VivaTour from './VivaTour.svelte';
 import VivaModel from './VivaModel.svelte';
@@ -583,6 +583,43 @@ function getSubtitlesLink($lang) {
                 break;
             }
         });
+
+        pano.addListener('varchanged_footer_apartments', function() {
+            
+            if (pano.getVariableValue('footer_apartments') == true) {
+                model.update(n => true);
+            }
+
+            else {
+                model.update(n => false);
+            }
+        });
+
+        pano.addListener('varchanged_shortcuts', function() {
+            
+            if (pano.getVariableValue('shortcuts') == true) {
+                model.update(n => true);
+            }
+
+            else {
+                model.update(n => false);
+            }
+        });
+
+        pano.addListener('varchanged_footer_social', function() {
+            
+            if (pano.getVariableValue('footer_social') == true) {
+                model.update(n => true);
+            }
+
+            else {
+                model.update(n => false);
+            }
+        });
+
+        
+
+        
 
         let showVivaIntro = null;
         pano.setVariableValue('blurred', false);
@@ -1441,7 +1478,7 @@ add_video_patch();
 
 $: {
     intro;
-    console.log(intro);
+    //console.log(intro);
     vivaIntro.update(n => intro);
     switch (intro) {
         case true:

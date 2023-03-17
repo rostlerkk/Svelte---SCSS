@@ -2,7 +2,7 @@
   import { current_component } from 'svelte/internal';
     import { userLang } from '../store.js';
     import { aboutViva } from '../store.js';
-    import { vivaAutoPlay, vivaIntroAfterEnd, vivaIntro } from '../store.js';
+    import { vivaAutoPlay, vivaIntroAfterEnd, vivaIntro, model } from '../store.js';
 
 
     // aktivácia jQuery
@@ -10,10 +10,14 @@
 
     let isMobile = false;
 
-    let prepni, _vivaIntro = false;
+    let prepni, _vivaIntro, _model = false;
 
     vivaIntro.subscribe(value => {
         _vivaIntro = value;
+    });
+
+    model.subscribe(value => {
+        _model = value;
     });
 
 
@@ -190,7 +194,7 @@
     let subtitleTimeOut_2, subtitleTimeOut_3, subtitleTimeOut_4 = null;
 
     export let vivaData, user_lang = null;
-    console.log(vivaData);
+    //console.log(vivaData);
 
     userLang.subscribe(value => {
         user_lang = value;
@@ -809,7 +813,9 @@
         pano.setVariableValue("houseInfo", true);
     }
 
+    let count = 0;
     function ifWalls() {
+        count++;
         let goToStart = true;
         let node = pano.getCurrentNode();
 
@@ -857,9 +863,9 @@
                         <button id="next-house" on:click={() => nextHouse()}>Next house</button>
                         
                         {#if current_house != 'start'}
-                            <button id="learn-more" class="learn-more" on:click={() => opnehouseInfo()}>House info</button> 
+                            <button id="learn-more" class="learn-more" on:click={() => opnehouseInfo()}>Info</button> 
                         {:else}
-                            <button id="learn-more" class="learn-more" on:click={() => aboutViva.update(n => true)}>House info</button>    
+                            <button id="learn-more" class="learn-more" on:click={() => aboutViva.update(n => true)}>Info</button>    
                         {/if}
                         
                     </div>
@@ -932,25 +938,76 @@
 
     {/if}
 {:else} 
-    {#if vivaData["houses"] != undefined && _vivaIntro == false && blurred == false}
+    {#if !isMobile && vivaData["houses"] != undefined && _vivaIntro == false && blurred == false && _model == false}
         <div id="if-walls">
             <img src="images/if-walls.jpg" alt="">
             <div>
-                <h3>If walls could talk</h3>
-                <h5>discover .. </h5>
-                <p>sgnas ôgjn afôgna dfôadf ngôkasn sgad§ gmadf§ klgdm sl gang§ kladf fgdl sdfsnddga</p>
-                <button on:click={() => ifWalls()}>Play</button>
+                {#each vivaData["houses"]["additional_content"] as item}
+                    {#if item.name == "VIVA: Video Trigger Text"}
+                        {#if item.title_t != undefined}
+                            {#if item.title_t[user_lang] != undefined}
+                                <h3>{item.title_t[user_lang]}</h3>
+                            {:else}
+                                <h3>{item.title_t["int"]}</h3>
+                            {/if}
+                        {/if}
+
+                        {#if item.content_t != undefined}
+                            {#if item.content_t[user_lang] != undefined}
+                                <h5>{item.content_t[user_lang]}</h5>
+                            {:else}
+                                <h5>{item.content_t["int"]}</h5>
+                            {/if}
+                        {/if}
+                    {/if}
+
+                    {#if item.name == "VIVA: Intro: copy"}
+                        {#if item.content_t != undefined}
+                            {#if item.content_t[user_lang] != undefined}
+                                <p>{item.content_t[user_lang]}</p>
+                            {:else}
+                                <p>{item.content_t["int"]}</p>
+                            {/if}
+                        {/if}
+                    {/if}
+
+                    {#if item.name == "VIVA: Startscreen: Play"}
+                    {#if item.title_t != undefined}
+                        {#if item.title_t[user_lang] != undefined}
+                            <button on:click={() => ifWalls()}>{item.title_t[user_lang]}</button>
+                        {:else}
+                            <button on:click={() => ifWalls()}>{item.title_t["int"]}</button>
+                        {/if}
+                    {/if}
+                {/if}
+                    
+
+                {/each}
+                
             </div>
         </div>
     {/if}
+
+    {#if isMobile && count == 0 && _vivaIntro == false}
+             <div id="tooltip-viva">
+                {#each vivaData["houses"]["additional_content"] as item}
+                    {#if item.name == "VIVA: Video Trigger Text"}
+                        {#if item.title_t != undefined}
+                            {#if item.title_t[user_lang] != undefined}
+                                <h3>{item.title_t[user_lang]}</h3>
+                            {:else}
+                                <h3>{item.title_t["int"]}</h3>
+                            {/if}
+                        {/if}
+                    {/if}
+                {/each}
+
+             </div>
+        {/if}
 {/if}
 
 
 <style lang="scss">
-
-.hidden-desktop {
-    display: none !important;
-}
 
 #if-walls {
     position: absolute;
@@ -961,6 +1018,7 @@
     right: 50px;
     background-color: white;
     display: flex;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
     img {
         max-width: 180px;
@@ -969,36 +1027,51 @@
 
     div {
         padding: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
 
         h3 {
             color: #7ABB2E;
             font-size: 30px;
             margin: 0;
+            order: 10;
         }
 
         h5 {
             margin: 0;
             color: #565751;
             font-size: 20px;
+            order: 20;
         }
 
         p {
             font-size: 12px;
+            order: 30;
         }
 
         button {
             border-radius: 12px;
-            padding: 3px 5px 5px 30px;
+            padding: 3px 8px 5px 24px;
             font-size: 12px;
             color: #565751;
             position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            order: 40;
 
             &::before {
                 content: '';
                 display: block;
                 position: absolute;
-                left: 16px;
-                background-image: url("assets/icons/play-button.svg")
+                left: 10px;
+                background-image: url("../assets/icons/play-button.svg");
+                width: 8px;
+                height: 12px;
+                background-repeat: no-repeat;
+                background-size: contain;
             }
         }
     }
