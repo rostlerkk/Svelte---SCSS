@@ -939,18 +939,27 @@
 
 <style lang="scss">
 
+.hidden-desktop {
+    display: none !important;
+}
+
 #if-walls {
     position: absolute;
     width: calc(100% - 100px);
-    max-width: 500px;
+    max-width: 530px;
     z-index: 1;
     bottom: 90px;
     right: 50px;
     background-color: white;
     display: flex;
 
+    img {
+        max-width: 180px;
+        object-fit: cover;
+    }
+
     div {
-        padding: 30px;
+        padding: 20px;
 
         h3 {
             color: #7ABB2E;
@@ -961,6 +970,27 @@
         h5 {
             margin: 0;
             color: #565751;
+            font-size: 20px;
+        }
+
+        p {
+            font-size: 12px;
+        }
+
+        button {
+            border-radius: 12px;
+            padding: 3px 5px 5px 30px;
+            font-size: 12px;
+            color: #565751;
+            position: relative;
+
+            &::before {
+                content: '';
+                display: block;
+                position: absolute;
+                left: 16px;
+                background-image: url("assets/icons/play-button.svg")
+            }
         }
     }
 }
