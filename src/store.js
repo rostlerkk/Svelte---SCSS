@@ -9,3 +9,5 @@ export const vivaAutoPlay = writable(false);
 
 export const vivaIntroAfterEnd = writable(false);
 
+export const vivaIntro = writable(false);
+

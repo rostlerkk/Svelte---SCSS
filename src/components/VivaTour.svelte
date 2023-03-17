@@ -2,11 +2,15 @@
   import { current_component } from 'svelte/internal';
     import { userLang } from '../store.js';
     import { aboutViva } from '../store.js';
-    import { vivaAutoPlay, vivaIntroAfterEnd } from '../store.js';
+    import { vivaAutoPlay, vivaIntroAfterEnd, vivaIntro } from '../store.js';
 
     let isMobile = false;
 
-    let prepni = false;
+    let prepni, _vivaIntro = false;
+
+    vivaIntro.subscribe(value => {
+        _vivaIntro = value;
+    });
 
 
     function checkDevice() {
@@ -919,9 +923,9 @@
 
     {/if}
 {:else} 
-    {#if vivaData["houses"] != undefined}
+    {#if vivaData["houses"] != undefined && _vivaIntro == false && blurred == false}
         <div id="if-walls">
-            <img src="images/iff-walls.jpg" alt="">
+            <img src="images/if-walls.jpg" alt="">
             <div>
                 <h3>If walls could talk</h3>
                 <h5>discover .. </h5>

@@ -3,7 +3,7 @@ import { vivaData } from '../store.js';
 import { userLang } from '../store.js';
 
 import { aboutViva } from '../store.js';
-import { vivaAutoPlay, vivaIntroAfterEnd } from '../store.js';
+import { vivaAutoPlay, vivaIntroAfterEnd, vivaIntro } from '../store.js';
 
 import VivaTour from './VivaTour.svelte';
 import VivaModel from './VivaModel.svelte';
@@ -1436,7 +1436,8 @@ add_video_patch();
 
 $: {
     intro;
-
+    console.log(intro);
+    vivaIntro.update(n => intro);
     switch (intro) {
         case true:
             
