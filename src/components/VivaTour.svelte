@@ -921,7 +921,7 @@
 {:else} 
     {#if vivaData["houses"] != undefined}
         <div id="if-walls">
-            <img src="" alt="">
+            <img src="images/iff-walls.jpg" alt="">
             <div>
                 <h3>If walls could talk</h3>
                 <h5>discover .. </h5>
@@ -934,5 +934,31 @@
 
 
 <style lang="scss">
+
+#if-walls {
+    position: absolute;
+    width: calc(100% - 100px);
+    max-width: 500px;
+    z-index: 1;
+    bottom: 90px;
+    right: 50px;
+    background-color: white;
+    display: flex;
+
+    div {
+        padding: 30px;
+
+        h3 {
+            color: #7ABB2E;
+            font-size: 30px;
+            margin: 0;
+        }
+
+        h5 {
+            margin: 0;
+            color: #565751;
+        }
+    }
+}
     
 </style>
