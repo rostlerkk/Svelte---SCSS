@@ -988,7 +988,7 @@
         </div>
     {/if}
 
-    {#if isMobile && count == 0 && _vivaIntro == false}
+    {#if isMobile && count == 0 && _vivaIntro == false && blurred == false && _model == false}
              <div id="tooltip-viva">
                 {#each vivaData["houses"]["additional_content"] as item}
                     {#if item.name == "VIVA: Video Trigger Text"}

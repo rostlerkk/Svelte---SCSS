@@ -617,6 +617,17 @@ function getSubtitlesLink($lang) {
             }
         });
 
+        pano.addListener('varchanged_mobile_menu_right', function() {
+            
+            if (pano.getVariableValue('mobile_menu_right') == true) {
+                model.update(n => true);
+            }
+
+            else {
+                model.update(n => false);
+            }
+        });
+
         
 
         
