@@ -1800,7 +1800,7 @@
         <hotspot>
           <position>
             <pan>-123.52</pan>
-            <tilt>-11.86</tilt>
+            <tilt>-11.96</tilt>
             <fov>10</fov>
           </position>
           <next>
@@ -6025,7 +6025,7 @@
         <information>08</information>
         <source>8</source>
         <customnodeid>house8</customnodeid>
-        <copyright></copyright>
+        <copyright/>
       </userdata>
       <floorplans/>
       <hotspots>

@@ -1,7 +1,8 @@
 <script>
+  import { current_component } from 'svelte/internal';
     import { userLang } from '../store.js';
     import { aboutViva } from '../store.js';
-    import { vivaAutoPlay } from '../store.js';
+    import { vivaAutoPlay, vivaIntroAfterEnd } from '../store.js';
 
     let isMobile = false;
 
@@ -362,6 +363,8 @@
         clearTimeout(subtitleTimeOut_2);
         clearTimeout(subtitleTimeOut_3);
         clearTimeout(subtitleTimeOut_4);
+
+   
         
         for (let index = 0; index < is_tour_nodes.length; index++) {
             let node = pano.getCurrentNode();
@@ -372,14 +375,23 @@
                 if (
                     node == "node20"
                 ) {
+                    
+                    vivaAutoPlay.update(n => false);
+                    autoplay = false;
+                    vivaIntroAfterEnd.update(n => true);
+                        
+                    
                     if ($pan != null) {
                         //pano.openNext('{' + is_tour_nodes[0] + '}', "'" + $pan + "\/" + $tilt + "\/" + $fov + "'");
-                        pano.openNext('{' + is_tour_nodes[0] + '}');
+                        
+                        
+                       // pano.openNext('{' + is_tour_nodes[0] + '}');
                         //pano.setPanTiltFov($pan,$tilt,$fov);
                     }
 
                     else {
                         pano.openNext('{' + is_tour_nodes[0] + '}');
+                        pano.setVariableValue("vivaTour", false);
                     }
                     
                     return;
@@ -776,6 +788,13 @@
         }
     }
 
+    function opnehouseInfo() {
+        console.log(pano.getVariableValue("houseID"));
+        
+        
+        pano.setVariableValue("houseInfo", true);
+    }
+
 </script>
 
 {#if vivaTour == true && blurred != true}
@@ -792,11 +811,15 @@
                         
                         <img class="toggle" src="assets/icons/toggle-houses.svg" alt="toggle" on:click={() => subtitles = !subtitles}>
                         
-                            <button id="next-house" on:click={() => nextHouse()}>Next house</button>
                             
+                        <button id="next-house" on:click={() => nextHouse()}>Next house</button>
                         
+                        {#if current_house != 'start'}
+                            <button id="learn-more" class="learn-more" on:click={() => opnehouseInfo()}>House info</button> 
+                        {:else}
+                            <button id="learn-more" class="learn-more" on:click={() => aboutViva.update(n => true)}>House info</button>    
+                        {/if}
                         
-                        <button id="learn-more" class="learn-more" on:click={() => aboutViva.update(n => true)}>Learn more&nbsp;<span>Viva park</span></button>
                     </div>
                     <div class="{subtitles === true ? 'subtitles' : 'subtitles hidden'}">
                         <p>{@html subitlesString}</p>
@@ -862,6 +885,17 @@
                         {/if}
 
                     {/each}
+                </div>
+            </div>
+
+
+            <div id="if-walls">
+                <img src="" alt="">
+                <div>
+                    <h3>If walls could talk</h3>
+                    <h5>discover .. </h5>
+                    <p>sgnas ôgjn afôgna dfôadf ngôkasn sgad§ gmadf§ klgdm sl gang§ kladf fgdl sdfsnddga</p>
+                    <button>Play</button>
                 </div>
             </div>
         

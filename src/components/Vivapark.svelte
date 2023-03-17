@@ -3,7 +3,7 @@ import { vivaData } from '../store.js';
 import { userLang } from '../store.js';
 
 import { aboutViva } from '../store.js';
-import { vivaAutoPlay } from '../store.js';
+import { vivaAutoPlay, vivaIntroAfterEnd } from '../store.js';
 
 import VivaTour from './VivaTour.svelte';
 import VivaModel from './VivaModel.svelte';
@@ -158,6 +158,14 @@ const urlPrefix = {
 vivaData.subscribe(value => {
     _vivaData = value;
 });
+
+
+let _vivaIntroAfterEnd = null;
+vivaIntroAfterEnd.subscribe(value => {
+    _vivaIntroAfterEnd = value;
+});
+
+
 
 vivaAutoPlay.subscribe(value => {
     autotour = value;
@@ -670,6 +678,9 @@ function getSubtitlesLink($lang) {
                 
                 pano.setVariableValue("playPauseMedia", false);
             
+            } else {
+                //console.log("mám zapnúť intro screen");
+                intro = true;
             }
             
         });
@@ -890,6 +901,13 @@ function getSubtitlesLink($lang) {
                     "display" : "none"
                 });
             }
+            if (_vivaData != undefined) {
+                if (_vivaData.houses != undefined) {
+                    changeShortCutsNames();
+                }
+                
+            }
+            
 
         });
 
@@ -941,6 +959,8 @@ function getSubtitlesLink($lang) {
                     }
                 break;
             }
+
+            pano.setVariableValue("download_data", "");
         });
 
     });
@@ -1238,6 +1258,25 @@ async function fetchPhpData($lang) {
 }
 
 function changeShortCutsNames() {
+    //console.log(_vivaData["houses"]);
+    jq('.check-layer > div > span').removeClass("active");
+    jq('.check-layer').removeClass("active");
+    jq('.check-layer').eq(parseInt(pano.getNodeUserdata(pano.getCurrentNode()).source)).addClass("active");
+    switch (pano.getNodeUserdata(pano.getCurrentNode()).source) {
+        case "2" :
+        case "4" :
+        case "6" :
+        case "10" :
+        jq('.check-layer').eq(parseInt(pano.getNodeUserdata(pano.getCurrentNode()).source)).children('div').children('span').addClass("active highlight");
+        break;    
+
+
+        default : 
+            jq('.check-layer').eq(parseInt(pano.getNodeUserdata(pano.getCurrentNode()).source)).children('div').children('span').addClass("active");
+        break;
+    }
+
+    
     jq.each (jq('.swiper-slide'), function (index, data) {
             ////////////console.log(housesData[pano.getVariableValue('lang')]);
             switch (jq('.swiper-slide').eq(index).attr('data-url')) {
@@ -1253,8 +1292,19 @@ function changeShortCutsNames() {
                     if (
                         _vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang] != undefined
                     ) {
-                        jq('.swiper-slide').eq(index).find('.node-title').html(_vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang]);
-                        jq('.check-layer > div > p#house_' + index).html(_vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang]);
+                        
+                        if (pano.getNodeUserdata(pano.getCurrentNode()).source == _vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang])  {
+                            jq('.swiper-slide').eq(index).find('.node-title').html(_vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang]);
+                            jq('.check-layer > div > p#house_' + index).html(_vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang]);
+                            jq('.check-layer > div > span#' + pano.getNodeUserdata(pano.getCurrentNode()).source).addClass("active");
+                            
+                        }
+                         else {
+                            jq('.swiper-slide').eq(index).find('.node-title').html(_vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang]);
+                            jq('.check-layer > div > p#house_' + index).html(_vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang]);
+
+                        }
+                        
                     } else {
                         jq('.swiper-slide').eq(index).find('.node-title').html(_vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang]);
                         jq('.check-layer > div > p#house_' + index).html(_vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang]);
@@ -1407,7 +1457,7 @@ $: {
 {/if}
 
 <!-- ak je povolené intro -->
-{#if intro}
+{#if intro || _vivaIntroAfterEnd}
     {#if _vivaData != null && _vivaData != undefined}
         {#if _vivaData["houses"] != undefined}
             <div id="welcome">
@@ -1442,9 +1492,13 @@ $: {
                             {#if item.name == "VIVA: Startscreen: Play"}
                             {#if isTourNode}
                                 {#if item.title_t[user_lang] != null}
-                                <button id="play_tour" on:click={() => toogleVivaTour()}>{item.title_t[user_lang]}</button>
+                                <button id="play_tour" 
+                                    on:click={() => toogleVivaTour()}
+                                    on:click={() => vivaIntroAfterEnd.update(n => false)}>{item.title_t[user_lang]}</button>
                                 {:else}
-                                <button id="play_tour" on:click={() => toogleVivaTour()}>{item.title_t["int"]}</button>
+                                <button id="play_tour" 
+                                    on:click={() => toogleVivaTour()}
+                                    on:click={() => vivaIntroAfterEnd.update(n => false)}>{item.title_t["int"]}</button>
                                 {/if}
                             {/if}
                             
@@ -1452,7 +1506,9 @@ $: {
                             {/if}
 
                             {#if item.name == "VIVA: Startscreen: More info"}
-                            <button id="more_info" on:click={() => about_viva_park()}>
+                            <button id="more_info" 
+                                on:click={() => about_viva_park()}
+                                on:click={() => vivaIntroAfterEnd.update(n => false)}>
                                 <!-- {{#if item.title_t[user_lang] != null}
                                 {item.title_t[user_lang]}
                                 {:else}
@@ -1466,7 +1522,9 @@ $: {
                         </div>
                     </div>
                     <div id="footer">
-                        <div id="research" class="item" on:click={() => quick_tour()}>
+                        <div id="research" class="item" 
+                            on:click={() => quick_tour()}
+                            on:click={() => vivaIntroAfterEnd.update(n => false)}>
                             <div class="thumbnail">
                                 <img src="images/btn-1.jpg">
                             </div>
@@ -1482,7 +1540,9 @@ $: {
                                 {/each}
                             </div>
                         </div>
-                        <div id="rules" class="item" on:click={() => go_to_house_8()}>
+                        <div id="rules" class="item" 
+                            on:click={() => go_to_house_8()}
+                            on:click={() => vivaIntroAfterEnd.update(n => false)}>
                             <div class="thumbnail">
                                 <img src="images/btn-2.jpg">
                             </div>
@@ -1498,7 +1558,9 @@ $: {
                                 {/each}
                             </div>
                         </div>
-                        <div id="visit-tour" class="item" on:click={() => intro = false}>
+                        <div id="visit-tour" class="item" 
+                            on:click={() => intro = false}
+                            on:click={() => vivaIntroAfterEnd.update(n => false)}>
                             <div class="thumbnail">
                                 <img src="images/00_Free_tour_icon_f.jpg">
                             </div><div class="text">
@@ -3484,7 +3546,7 @@ $: {
                     width: 15px;
                     height: 15px;
                     display: inline-block;
-                    margin-top: -4px;
+                    //margin-top: -4px;
                     text-align: center;
                     vertical-align: text-top;
                     cursor: pointer;
@@ -3561,6 +3623,8 @@ $: {
     #viva-house-info.tag {
         height: auto;
         z-index: 3;
+        max-height: calc(100% - 64px) !important;
+
         .content {
             flex-direction: column;
             padding: 0;
