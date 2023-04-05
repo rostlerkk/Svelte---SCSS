@@ -15,6 +15,10 @@ var app = new _App["default"]({
   target: document.body,
   props: {
     name: 'world'
+  },
+  headers: {
+    'Access-Control-Allow-Origin': '*' // or, e.g. replacing * by http://localhost:8000
+
   }
 });
 var vivapark = new _Vivapark["default"]({

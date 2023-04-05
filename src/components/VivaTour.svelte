@@ -193,11 +193,17 @@
     let timeOut, layersTimeOut = null;
     let subtitleTimeOut_2, subtitleTimeOut_3, subtitleTimeOut_4 = null;
 
-    export let vivaData, user_lang = null;
+    export let vivaData = null;
     //console.log(vivaData);
+    let user_lang = pano.getVariableValue("lang");
+    console.log(user_lang);
 
     userLang.subscribe(value => {
-        user_lang = value;
+        if (value != undefined && value != "undefined") {
+            user_lang = value;
+        }
+        
+        
     });
 
     let current_house = "start";
@@ -265,7 +271,12 @@
                 }
                 break;
         }
-    }) ;       
+    }) ;  
+    
+    pano.on("varchanged_lang", function() {
+        user_lang = pano.getVariableValue("lang");
+        console.log(user_lang);
+    });
     
     
 
@@ -878,7 +889,7 @@
                     {#each vivaData["houses"]["additional_content"] as item}
 
                         {#if item.name.toLowerCase() == "tour section 1"}
-                            {#if item.content_t[user_lang] != undefined}
+                            {#if item.title_t[user_lang] != undefined}
                                 <div id="house_1" class="{current_house === 'start' ? 'item active' : 'item'}" on:click={() => selectNode("node1")}><img class="icon" src="images/house-default.png" alt="house_1"><p>{item.title_t[user_lang]}</p></div>
                             {:else}
                                 <div id="house_1" class="{current_house === 'start' ? 'item active' : 'item'}" on:click={() => selectNode("node1")}><img class="icon" src="images/house-default.png" alt="house_1"><p>{item.title_t["int"]}</p></div>

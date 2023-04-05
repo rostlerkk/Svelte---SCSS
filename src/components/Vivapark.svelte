@@ -39,6 +39,7 @@ let _vivaData = {};
 let more_info = "moreinfo";
 
 let myTimeout, myInterval;
+let new_product_data = null;
 
 
 
@@ -162,13 +163,10 @@ vivaData.subscribe(value => {
     _vivaData = value;
 });
 
-
 let _vivaIntroAfterEnd = null;
 vivaIntroAfterEnd.subscribe(value => {
     _vivaIntroAfterEnd = value;
 });
-
-
 
 vivaAutoPlay.subscribe(value => {
     autotour = value;
@@ -195,6 +193,7 @@ aboutViva.subscribe(value => {
 
 // získanie dát z API - globálna funkcia
 async function fetchData($url, $lang, $type, $variable) {
+    console.log($type);
     $variable = false;
     if (_vivaData[$lang] == undefined) {
         const res = await fetch($url);
@@ -212,11 +211,14 @@ async function fetchData($url, $lang, $type, $variable) {
             _vivaData[$lang][$type] = json;
             vivaData.update(n => json);
 
-            
+            console.log(json);
 
             if ($type == "houses") {
-                ////console.log(_vivaData);
-                
+                console.log(_vivaData); 
+            }
+
+            if ($type == "products") {
+                console.log(_vivaData.products); 
             }
 
             
@@ -488,7 +490,7 @@ function getVivaTranslations($user_lang) {
 // ziskanie URL adries
 function getProductLink($lang) {
     productUrl = urlPrefix[$lang] + '/api/products/products?api_token=' + apiToken[$lang];
-    ////console.log("Products URL : " + productUrl);
+    console.log("Products URL : " + productUrl);
     switch ($lang) {
         case "int":
             if (_vivaData.int == null) {
@@ -694,6 +696,9 @@ function getSubtitlesLink($lang) {
                     break;
             }
         });
+
+
+        
 
         pano.on("varchanged_product_ID", function() {
             product_id = pano.getVariableValue("product_ID");
@@ -1029,22 +1034,48 @@ function show_layers($value) {
         default:
             if (_vivaData["products"] != null) {
                 const hotspots = pano.getCurrentPointHotspots(); 
-                hotspots.forEach(hotspot => {
-                    if (hotspot.ggId == "ToolTip" || hotspot.ggId == "ToolTip Right") {
-                        const product_id = hotspot.textContent.replace("<span>", "").replace("</span>", "").split("|").pop() + productSuffix[user_lang];
-                        const product_id_clear = hotspot.textContent.split("|").pop();
-                        
-                        if (product_id != null && product_id != undefined) {
-                            
-                            _vivaData["products"].forEach(product => {
-                                if (product.pro_epim_productnr == product_id) {
-                                    jq(".pr" + product_id_clear).html(product.name + "<span>|" + product_id_clear + "</span>");
-                                    jq(".pr" + product_id_clear).parent().parent().parent().removeClass("hidden");
+                
+
+                let poloha, houseFromApi;
+                if (pano.getNodeUserdata(pano.getCurrentNode()).tags.includes("ext")) {
+                    poloha = "E";
+                } else {
+                    poloha = "I";
+                }
+
+                if (_vivaData.houses.buildings[0].layers_t != undefined ) {
+                    houseFromApi = _vivaData.houses.buildings[0].layers_t[user_lang];
+                    
+                    console.log(houseFromApi);
+
+                }
+
+
+                let tmp_index = 0;
+                for (let i = 0; i < hotspots.length; i++) {
+                    if (hotspots[i].ggId.includes("ToolTip")) {
+                        tmp_index++;
+                        //jq(hotspots[i]).removeClass("hidden");
+                        //console.log(hotspots[i]);
+                        for (const [index, [key, value]] of Object.entries(houseFromApi).entries()) {
+                            if (value.name == poloha + tmp_index) {
+                                //console.log(poloha + tmp_index);
+                                const product_name = value.products.name
+                                //console.log(product_name);
+                                
+
+                                jq(hotspots[i]).children().children().html(product_name);
+                                jq(hotspots[i]).removeClass("hidden");
+
+                                hotspots[i].onclick = function() {
+                                    console.log(value.products);
+                                    new_product_data = value.products;
+                                    pano.setVariableValue("product_ID", value.products.name);
                                 }
-                            });
+                            }
                         }
                     }
-                });
+                }
             }
         break;
     }
@@ -1273,18 +1304,20 @@ async function fetchPhpData($lang) {
         "products": urlPrefix[$lang] + '/api/products/products?api_token=' + apiToken[$lang]
     }
 
-    ////console.log(api_data);
-    //let phpUrl = "https://client.woowstudio.com/baumit/viva/assets/krpano/getValues.php"
+    console.log(api_data);
+    //let phpUrl = "https://woowstudio.com/vyvoj/getValues.php"
+    //let phpUrl = "https://tour.baumit.com/assets/krpano/getValues.php"
     let phpUrl = "assets/php/getValues.php";
 
     const res = await fetch(phpUrl, {
         method: 'POST',
+        //mode: 'cors',
         body: JSON.stringify(api_data)
     })
     const json = await res.json();
 
     if (res.ok) {
-        ////console.log(json);
+        console.log(json);
         _vivaData = json;
         fetching_data = false;
         intro = true;
@@ -1851,35 +1884,35 @@ $: {
         <div class="close" on:click={() => close_about_product()}/>
         <div class="content">
             <div class="info-v1">
-                {#each _vivaData["products"] as product}
-                    {#if product.pro_epim_productnr == product_id + productSuffix[user_lang]}
+                <!-- {#each new_product_data as product} -->
+                
                         <section class="head">
                             <div class="baumit-img">
-                                <img class="baumit-img" src="{urlPrefix[user_lang]}{product.image}" />
+                                <img class="baumit-img" src="{urlPrefix[user_lang]}{new_product_data.image}" />
                             </div>
                             <div class="content">
-                                <h2>{product.name}</h2>
+                                <h2>{new_product_data.name}</h2>
 
                                 <ul class="baumit">
-                                    {#if product.product_benefit_1 != undefined}
-                                        <li><span>{product.product_benefit_1}</span></li>
+                                    {#if new_product_data.product_benefit_1 != undefined}
+                                        <li><span>{new_product_data.product_benefit_1}</span></li>
                                     {/if}
 
-                                    {#if product.product_benefit_2 != undefined}
-                                        <li><span>{product.product_benefit_2}</span></li>
+                                    {#if new_product_data.product_benefit_2 != undefined}
+                                        <li><span>{new_product_data.product_benefit_2}</span></li>
                                     {/if}
 
-                                    {#if product.product_benefit_3 != undefined}
-                                        <li><span>{product.product_benefit_3}</span></li>
+                                    {#if new_product_data.product_benefit_3 != undefined}
+                                        <li><span>{new_product_data.product_benefit_3}</span></li>
                                     {/if}
                                 </ul>
 
                                 {#each _vivaData["houses"]["additional_content"] as item}
                                      {#if item.name == "Navigation: More Info"}
                                          {#if item.title_t[user_lang] != undefined}
-                                            <a href="{urlPrefix[user_lang]}{product.details_url}" target="_blank">{item.title_t[user_lang]}</a>
+                                            <a href="{urlPrefix[user_lang]}{new_product_data.details_url_with_domain}" target="_blank">{item.title_t[user_lang]}</a>
                                         {:else}
-                                            <a href="{urlPrefix[user_lang]}{product.details_url}" target="_blank">{item.title_t["int"]}</a>
+                                            <a href="{urlPrefix[user_lang]}{new_product_data.details_url_with_domain}" target="_blank">{item.title_t["int"]}</a>
                                          {/if}
                                      {/if}
                                 {/each}
@@ -1887,11 +1920,9 @@ $: {
                             </div>
                         </section>
                         <section class="body">
-                            <p>{product.description}</p>    
+                            <p>{new_product_data.description}</p>    
                         </section>
-                    {/if}
-
-                {/each}
+                
             </div>
         </div>
     </div> 
