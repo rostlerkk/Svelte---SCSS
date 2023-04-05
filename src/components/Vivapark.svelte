@@ -1036,15 +1036,18 @@ function show_layers($value) {
                 const hotspots = pano.getCurrentPointHotspots(); 
                 
 
-                let poloha, houseFromApi;
+                let poloha, houseFromApi, current_house;
+
+                current_house = parseInt(pano.getNodeUserdata(pano.getCurrentNode()).source) - 1;
+                //console.log(current_house)
                 if (pano.getNodeUserdata(pano.getCurrentNode()).tags.includes("ext")) {
                     poloha = "E";
                 } else {
                     poloha = "I";
                 }
 
-                if (_vivaData.houses.buildings[0].layers_t != undefined ) {
-                    houseFromApi = _vivaData.houses.buildings[0].layers_t[user_lang];
+                if (_vivaData.houses.buildings[current_house].layers_t != undefined ) {
+                    houseFromApi = _vivaData.houses.buildings[current_house].layers_t[user_lang];
                     
                     console.log(houseFromApi);
 
@@ -1454,7 +1457,6 @@ function toogleVivaTour() {
     ////console.log(pano.getVariableValue("vivaTour"));
     intro = false;
 }
-
 
 function change_patches() {
         jq.each(jq('img.ggmedia'), function (index, value) {
