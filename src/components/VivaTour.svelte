@@ -275,7 +275,7 @@
     
     pano.on("varchanged_lang", function() {
         user_lang = pano.getVariableValue("lang");
-        console.log(user_lang);
+        //console.log(user_lang);
     });
     
     

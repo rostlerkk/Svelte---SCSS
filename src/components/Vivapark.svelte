@@ -913,34 +913,10 @@ function getSubtitlesLink($lang) {
                 pano.setMediaVisibility('video_' + index, false);
             }
 
-            // označenie názvu scény
-            let node_id = pano.getNodeUserdata(pano.getCurrentNode()).source;
-            let title = jq('.header > .title > div');
-
-            switch (node_id) {
-                case '1':
-                case '2':
-                case '3':
-                case '4':
-                case '5':
-                case '6':
-                case '7':
-                case '8':
-                case '9':
-                case '10':
-                case '11':
-                case '12':
-                case '13':
-                    let house_title = null;
-                    title.text(_vivaData['houses']['buildings'][parseInt(node_id) - 1].house_nr);
-                    break;
-
-                default:
-                    title.text('Viva park');
-                    break;
-            }
+            
 
             change_hotspots_title();
+            change_scene_title();
             change_patches();
 
             if (pano.getNodeUserdata(pano.getCurrentNode()).copyright == "tour") {
@@ -1101,22 +1077,22 @@ function change_hotspots_title() {
                 switch (foundString) {
                     case '01':
                     case '1':
-                        jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][0].house_nr);
+                        jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][0].house_nr_t[user_lang]);
 
                         break;
                     case '02':
                     case '2':
-                        jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][1].house_nr);
+                        jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][1].house_nr_t[user_lang]);
 
                         break;
                     case '03':
                     case '3':
-                        jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][2].house_nr);
+                        jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][2].house_nr_t[user_lang]);
 
                         break;
                     case '04':
                     case '4':
-                        jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][3].house_nr);
+                        jq(this).children('.np-title').children('div').html(_vivaData['houses']['buildings'][3].house_nr_t[user_lang]);
 
                         break;
                     case '05':
@@ -1174,6 +1150,37 @@ function change_hotspots_title() {
         }
 
     });
+}
+
+function change_scene_title() {
+// označenie názvu scény
+    let node_id = pano.getNodeUserdata(pano.getCurrentNode()).source;
+    let title = jq('.header > .title > div');
+
+    switch (node_id) {
+        case '1':
+        case '2':
+        case '3':
+        case '4':
+        case '5':
+        case '6':
+        case '7':
+        case '8':
+        case '9':
+        case '10':
+        case '11':
+        case '12':
+        case '13':
+            let house_title = null;
+            let lang = pano.getVariableValue("lang");
+            title.text(_vivaData['houses']['buildings'][parseInt(node_id) - 1].house_nr_t[user_lang]);
+            console.log(_vivaData['houses']['buildings'][parseInt(node_id) - 1].house_nr_t);
+            break;
+
+        default:
+            title.text('Viva park');
+            break;
+    }
 }
 
 // zmena jazyka pre Google mapu
@@ -1307,10 +1314,10 @@ async function fetchPhpData($lang) {
         "products": urlPrefix[$lang] + '/api/products/products?api_token=' + apiToken[$lang]
     }
 
-    console.log(api_data);
-    //let phpUrl = "https://woowstudio.com/vyvoj/getValues.php"
-    //let phpUrl = "https://tour.baumit.com/assets/krpano/getValues.php"
-    let phpUrl = "assets/php/getValues.php";
+    //console.log(api_data);
+    let phpUrl = "https://woowstudio.com/vyvoj/getValues.php";
+    //let phpUrl = "https://tour.baumit.com/assets/krpano/getValues.php";
+    //let phpUrl = "assets/php/getValues.php";
 
     const res = await fetch(phpUrl, {
         method: 'POST',
@@ -1325,6 +1332,7 @@ async function fetchPhpData($lang) {
         fetching_data = false;
         intro = true;
         change_hotspots_title();
+        change_scene_title();
         change_logo_img();
         changeShortCutsNames();
 
@@ -1383,7 +1391,7 @@ function changeShortCutsNames() {
                         _vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang] != undefined
                     ) {
                         
-                        if (pano.getNodeUserdata(pano.getCurrentNode()).source == _vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang])  {
+                        if (pano.getNodeUserdata(pano.getCurrentNode()).source == _vivaData["houses"]['buildings'][index-1].international_house_nr_t[user_lang])  {
                             jq('.swiper-slide').eq(index).find('.node-title').html(_vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang]);
                             jq('.check-layer > div > p#house_' + index).html(_vivaData["houses"]['buildings'][index-1].house_nr_t[user_lang]);
                             jq('.check-layer > div > span#' + pano.getNodeUserdata(pano.getCurrentNode()).source).addClass("active");
@@ -1938,7 +1946,7 @@ $: {
                 <div class="content">
                     {#if tagValue == "computer screen"} 
                         {#each _vivaData["houses"]["buildings"] as item}
-                            {#if item.house_nr == "House No. 2"}
+                            {#if item.international_house_nr == "House No. 2"}
                                 {#if item["media_t"] != undefined}
                                     {#if item["media_t"][user_lang] != undefined}
                                         <div id="yt-video">
