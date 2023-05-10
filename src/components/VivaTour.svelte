@@ -194,13 +194,14 @@
     let subtitleTimeOut_2, subtitleTimeOut_3, subtitleTimeOut_4 = null;
 
     export let vivaData = null;
-    //console.log(vivaData);
+    //////console.log(vivaData);
     let user_lang = pano.getVariableValue("lang");
-    console.log(user_lang);
+    //////console.log(user_lang);
 
     userLang.subscribe(value => {
         if (value != undefined && value != "undefined") {
             user_lang = value;
+            jq('audio#pop')[0].pause();
         }
         
         
@@ -215,6 +216,8 @@
 
 
     pano.on("changenode", function () {
+        jq('audio#pop')[0].pause();
+        jq('audio#pop')[0].src = "-1";
         clearTimeout(timeOut);
         clearInterval(layersTimeOut);
         select_active_house();
@@ -275,13 +278,13 @@
     
     pano.on("varchanged_lang", function() {
         user_lang = pano.getVariableValue("lang");
-        //console.log(user_lang);
+        //////console.log(user_lang);
     });
     
     
 
     function toggleAutoplay() {
-        
+        //console.log("toggleAutoplay");
         autoplay = !autoplay;
         vivaAutoPlay.update(n => autoplay);
         
@@ -292,14 +295,19 @@
 
 
         if (autoplay == true) {
+            jq('audio#pop')[0].play();
             prepni = true;
             loadSubtitles();
             let currentNode = pano.getCurrentNode();
             let patchName = take_tour_data[currentNode].videos[0].id;
 
+            
+
             if (currentNode == "node1") {
+                
                 if (pano.getMediaObject("video_1").currentTime == pano.getMediaObject("video_1").duration) {
                     pano.setMediaVisibility( "video_2", true);  
+                    
                     pano.playSound("video_2");
                 } else {
                     pano.setMediaVisibility(patchName, true);  
@@ -308,7 +316,9 @@
                     pano.getMediaObject(patchName).addEventListener('ended', function() {
                         pano.setMediaVisibility( "video_2", true);  
                         pano.playSound("video_2");
-                        console.log("skončilo sa video");
+                        jq('audio#pop')[0].src = "-1";
+                        check_mp3("start_audio2_t", lang);
+                        ////console.log("skončilo sa video");
                     //nextHouse();
                     });
                 }
@@ -319,9 +329,17 @@
                 
                 pano.getMediaObject(patchName).addEventListener('ended', function() {
                     
-                    //console.log("skončilo sa video 2");
+                    //////console.log("skončilo sa video 2");
                     if (prepni) {
-                        nextHouse();
+
+                        if (jq('audio#pop')[0].currentTime == jq('audio#pop')[0].duration) {
+                            nextHouse();
+                        } else {
+                            jq('audio#pop')[0].addEventListener('ended', function() {
+                                nextHouse();
+                            });
+                        }
+                        
                     }
                     
                 });
@@ -329,12 +347,15 @@
             
 
         } else {
+            jq('audio#pop')[0].pause();
             clearTimeout(subtitleTimeOut_2);
             clearTimeout(subtitleTimeOut_3);
             clearTimeout(subtitleTimeOut_4);
 
             if (pano.getMediaObject("video_1").currentTime == pano.getMediaObject("video_1").duration) {
                 pano.pauseSound("video_2");
+
+                
             } else {
                 pano.pauseSound(patchName);
                 
@@ -386,7 +407,7 @@
     }
 
     function nextHouse($pan, $tilt, $fov) {
-        //console.log("mením dom");
+        //////console.log("mením dom");
         clearTimeout(timeOut);
         clearTimeout(layersTimeOut);
         clearTimeout(subtitleTimeOut_2);
@@ -454,11 +475,12 @@
     }
 
     function play_patch_video() {
+        ////console.log("idem spustiť video");
         subitlesString = "";
         let currentNode = pano.getCurrentNode();
         
         let patchName = take_tour_data[currentNode].videos[0].id;
-        //console.log(pano.getMediaObject(patchName));
+        //////console.log(pano.getMediaObject(patchName));
 
         jq.html5Loader({
             filesToLoad:   {
@@ -473,10 +495,10 @@
                 }]
             }, // this could be a JSON or simply a javascript object
             onBeforeLoad:       function () {
-                ////console.log("začínam buffer")
+                ////////console.log("začínam buffer")
             },
             onComplete:         function () {
-                ////console.log("video načítané, spúšťam video");
+                ////////console.log("video načítané, spúšťam video");
                 //let video_patch_time = pano.getMediaObject(patchName).duration;
                 let pan = take_tour_data[currentNode].videos[0].pan;
                 let tilt = take_tour_data[currentNode].videos[0].tilt;
@@ -494,6 +516,8 @@
                     case "node1":
                         pano.getMediaObject(patchName).addEventListener('ended', function() {
                             let lang = pano.getVariableValue("lang");
+                            jq('audio#pop')[0].src = "-1";
+                            check_mp3("start_audio2_t", lang);
 
                             subitlesString = "";
                             if (vivaData["subtitles"].start_welcome_t[lang] != null) {
@@ -509,7 +533,14 @@
                             pano.playSound("video_2");   
 
                             pano.getMediaObject("video_2").addEventListener('ended', function() {
-                                nextHouse();
+                                if (jq('audio#pop')[0].currentTime == jq('audio#pop')[0].duration) {
+                                    nextHouse();
+                                } else {
+                                    jq('audio#pop')[0].addEventListener('ended', function() {
+                                        nextHouse();
+                                    });
+                                }
+                                //nextHouse();
                             });
                             
                         });
@@ -517,7 +548,7 @@
                 
                     default:
                         pano.getMediaObject(patchName).addEventListener('ended', function() {
-                        //console.log("skončilo sa video 3");
+                        //////console.log("skončilo sa video 3");
                         nextHouse();
                             
                         });
@@ -534,7 +565,7 @@
                 
             },
             onUpdate:           function ( percentage ) {
-                ////console.log(parseInt(percentage));
+                ////////console.log(parseInt(percentage));
             }
         });
         
@@ -545,7 +576,7 @@
     function openLayersVideo() {
         
         let currentNode = pano.getCurrentNode();
-        //console.log("asgag " + currentNode);
+        //////console.log("asgag " + currentNode);
         let patchName = take_tour_data[currentNode].videos[0].id;
 
         jq.html5Loader({
@@ -561,10 +592,10 @@
                 }]
             }, // this could be a JSON or simply a javascript object
             onBeforeLoad:       function () {
-                ////console.log("začínam buffer domu")
+                ////////console.log("začínam buffer domu")
             },
             onComplete:         function () {
-                ////console.log("video domu načítané, spúšťam video");
+                ////////console.log("video domu načítané, spúšťam video");
  
                 openLayers();
             },
@@ -593,7 +624,7 @@
             
         }
 
-        //console.log("is mobile : " + isMobile);
+        //////console.log("is mobile : " + isMobile);
         switch (currentNode) {
             case "node1":
             case "node24":
@@ -614,10 +645,42 @@
     }
 
     let subitlesString= "";
+    let current_mp3 = null;
+
+    function check_mp3($parameter, $jazyk) {
+        $jazyk = "" + $jazyk;
+        //console.log(jq('audio#pop')[0].currentTime + " / " + jq('audio#pop')[0].src + " : " + $jazyk);
+        if (jq('audio#pop')[0].currentTime == 0 || jq('audio#pop')[0].src == "-1") {
+            console.log(vivaData.subtitles[$parameter]);
+            if (vivaData.subtitles[$parameter] != null) {
+                if (vivaData.subtitles[$parameter][$jazyk] != null && typeof vivaData.subtitles[$parameter][$jazyk] == "string") {
+                    current_mp3 = vivaData.subtitles[$parameter][$jazyk];
+                } else {
+                    current_mp3 = null;
+                }
+
+            } else {
+                current_mp3 = null;
+            }
+
+            if (current_mp3 == null) {
+                pano.setVolume("_main", 1.0);
+                
+                jq('audio#pop')[0].pause();
+                jq('audio#pop')[0].src = "-1";
+                
+            } else {
+                pano.setVolume("_main", 0.0);
+                //console.log(current_mp3);
+                jq('audio#pop')[0].src = current_mp3;
+                jq('audio#pop')[0].play();
+            }
+        }
+    }
 
     function loadSubtitles() {
         
-       // //console.log("načítavam titulky");
+       //console.log("načítavam titulky");
         subitlesString = "";
         if (vivaData["subtitles"] != null) {
         
@@ -626,49 +689,62 @@
             switch (currentNode) {
                 // exteriér
                 case "node1":
-                    //console.log(vivaData.subtitles.start_come_along_t);
-                   // //console.log(pano.getMediaObject("video_1").currentTime + " : " + pano.getMediaObject("video_1").duration);
+                
+
+
+                    //////console.log(vivaData.subtitles.start_come_along_t);
+                   // //////console.log(pano.getMediaObject("video_1").currentTime + " : " + pano.getMediaObject("video_1").duration);
                     if (pano.getMediaObject("video_1").currentTime != pano.getMediaObject("video_1").duration ) {
+                        check_mp3("start_audio1_t", lang);
                         if (vivaData["subtitles"].start_welcome_t[lang] != null) {
-                            subitlesString += vivaData.subtitles.start_welcome_t[lang]
-                            
+                            subitlesString += vivaData.subtitles.start_welcome_t[lang];
                         } else {
-                            subitlesString += vivaData.subtitles.start_welcome_t["int"]           
+                            subitlesString += vivaData.subtitles.start_welcome_t["int"];
                         } 
                     } else {
+                        check_mp3("start_audio2_t", lang);
+                        
                         if (vivaData["subtitles"].start_welcome_t[lang] != null) {
                             subitlesString += vivaData.subtitles.start_quote_t[lang] + "<br/>"               
                             subitlesString += vivaData.subtitles.start_quote_source_t[lang] + "<br/>"               
-                            subitlesString += vivaData.subtitles.start_come_along_t[lang]
+                            subitlesString += vivaData.subtitles.start_come_along_t[lang];
+                        
                         } else {
                             subitlesString += vivaData.subtitles.start_quote_t["int"] + "<br/>"               
                             subitlesString += vivaData.subtitles.start_quote_source_t["int"] + "<br/>"               
-                            subitlesString += vivaData.subtitles.start_come_along_t["int"]
+                            subitlesString += vivaData.subtitles.start_come_along_t["int"];
+                        
                         }
                     }
                     break;
                 // Dom 10 - exteriér
                 case "node12":
+                    check_mp3("house_10_audio1", lang);
+
                     if (vivaData["subtitles"]["house_10_construction_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_10_welcome_t"][lang] + "<br/>"            
-                        subitlesString += vivaData["subtitles"]["house_10_construction_t"][lang]            
+                        subitlesString += vivaData["subtitles"]["house_10_construction_t"][lang];    
                     } else {
                         subitlesString += vivaData["subtitles"]["house_10_welcome_t"]["int"] + "<br/>"            
-                        subitlesString += vivaData["subtitles"]["house_10_construction_t"]["int"]            
+                        subitlesString += vivaData["subtitles"]["house_10_construction_t"]["int"];          
                     }
                     break;
 
                 // Dom 10 - interiér
                 case "node26":
+                    check_mp3("house_10_audio2", lang);
                     if (vivaData["subtitles"]["house_10_results_t"][lang] != null) {
-                        subitlesString += vivaData["subtitles"]["house_10_results_t"][lang]            
+                        subitlesString += vivaData["subtitles"]["house_10_results_t"][lang];
+                                
                     } else {
-                        subitlesString += vivaData["subtitles"]["house_10_results_t"]["int"]            
+                        subitlesString += vivaData["subtitles"]["house_10_results_t"]["int"];
+                                
                     }
                     break;                    
             
                 // Dom 6 - exteriér
                 case "node6":
+                    check_mp3("house_6_audio1", lang);
                     if (vivaData["subtitles"]["house_6_construction_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_6_construction_t"][lang]            
                     } else {
@@ -678,6 +754,7 @@
 
                 // Dom 6 - interiér
                 case "node22":
+                    check_mp3("house_6_audio2", lang);
                     if (vivaData["subtitles"]["house_6_desc_1_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_6_desc_1_t"][lang] + "<br/>"            
                         subitlesString += vivaData["subtitles"]["house_6_method_1_t"][lang] + "<br/>"                     
@@ -690,6 +767,7 @@
                     break;
                 // Dom 2 - exteriér
                 case "node3":
+                    check_mp3("house_2_audio1", lang);
                     if (vivaData["subtitles"]["house_2_construction_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_2_construction_t"][lang]           
                                             
@@ -700,6 +778,7 @@
 
                 // Dom 2 - interiér
                 case "node18":
+                    check_mp3("house_2_audio2", lang);
                     if (vivaData["subtitles"]["house_2_research_1_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_2_research_1_t"][lang] + "<br/>"   
                         subitlesString += vivaData["subtitles"]["house_2_research_2_t"][lang]
@@ -712,6 +791,7 @@
 
                 // Dom 4 - exteriér
                 case "node5":
+                    check_mp3("house_4_audio1", lang);
                     if (vivaData["subtitles"]["house_4_construction_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_4_construction_t"][lang]           
                                             
@@ -722,6 +802,7 @@
                     
                 // Dom 4 - interiér
                 case "node20":
+                    check_mp3("house_4_audio2", lang);
                     if (vivaData["subtitles"]["house_4_method_1_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_4_method_1_t"][lang] + "<br/>"       
                         subitlesString += vivaData["subtitles"]["house_4_method_2_t"][lang]           
@@ -734,6 +815,7 @@
                     
                 // Dom 8 - interiér
                 case "node24":
+                    check_mp3("house_8_audio_t", lang);
                     let subtitles_1, subtitles_2, subtitles_3, subtitles_4;
                     if (vivaData["subtitles"]["house_8_healthy_living_t"][lang] != null) {
                         subtitles_1 = vivaData["subtitles"]["house_8_healthy_living_t"][lang];
@@ -770,10 +852,10 @@
                         let first_time = parseFloat(vivaData["subtitles"].house_8_data_method_1_time.replace(':', '.'))*100 * 1000;
                         let second_time = parseFloat(vivaData["subtitles"].house_8_data_method_2_time.replace(':', '.'))*100 * 1000;
                         let third_time = parseFloat(vivaData["subtitles"].house_8_data_method_3_time.replace(':', '.'))*100 * 1000;
-                        ////console.log(first_time + " | " + second_time + " | " + third_time);
+                        ////////console.log(first_time + " | " + second_time + " | " + third_time);
                         
                         if (currentTime < first_time) {
-                            ////console.log(currentTime);
+                            ////////console.log(currentTime);
                             subitlesString = subtitles_1;
 
 
@@ -818,7 +900,7 @@
     }
 
     function opnehouseInfo() {
-        console.log(pano.getVariableValue("houseID"));
+        ////console.log(pano.getVariableValue("houseID"));
         
         
         pano.setVariableValue("houseInfo", true);
