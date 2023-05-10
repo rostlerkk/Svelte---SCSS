@@ -870,14 +870,37 @@
                         
                         <img class="toggle" src="assets/icons/toggle-houses.svg" alt="toggle" on:click={() => subtitles = !subtitles}>
                         
-                            
-                        <button id="next-house" on:click={() => nextHouse()}>Next house</button>
+                        {#each vivaData["houses"]["additional_content"] as item}
+                            {#if item.name == "VIVA: Startscreen: Play"}
+                                {#if item.title_t[user_lang] != null}
+                                    <button id="next-house" on:click={() => nextHouse()}>{item.title_t[user_lang]}</button>
+                                {:else}
+                                    <button id="next-house" on:click={() => nextHouse()}>{item.title_t["int"]}</button>
+                                {/if}
+                                
+                            {:else}
+                            {/if}
+                        {/each}
                         
-                        {#if current_house != 'start'}
-                            <button id="learn-more" class="learn-more" on:click={() => opnehouseInfo()}>Info</button> 
-                        {:else}
-                            <button id="learn-more" class="learn-more" on:click={() => aboutViva.update(n => true)}>Info</button>    
-                        {/if}
+                        {#each vivaData["houses"]["additional_content"] as item}
+                            {#if item.name == "Navigation: House info"}
+                                {#if current_house != 'start'}
+                                    {#if item.title_t[user_lang] != null}
+                                        <button id="learn-more" class="learn-more" on:click={() => opnehouseInfo()}>{item.title_t[user_lang]}</button> 
+                                    {:else}
+                                        <button id="learn-more" class="learn-more" on:click={() => opnehouseInfo()}>{item.title_t["int"]}</button> 
+                                    {/if}
+                                {:else}
+                                    {#if item.title_t[user_lang] != null}
+                                        <button id="learn-more" class="learn-more" on:click={() => aboutViva.update(n => true)}>{item.title_t[user_lang]}</button> 
+                                    {:else}
+                                        <button id="learn-more" class="learn-more" on:click={() => aboutViva.update(n => true)}>{item.title_t["int"]}</button> 
+                                    {/if}
+                                {/if}
+                            {:else}
+                                
+                            {/if}
+                        {/each}
                         
                     </div>
                     <div class="{subtitles === true ? 'subtitles' : 'subtitles hidden'}">
@@ -954,7 +977,7 @@
             <img src="images/if-walls.jpg" alt="">
             <div>
                 {#each vivaData["houses"]["additional_content"] as item}
-                    {#if item.name == "VIVA: Video Trigger Text"}
+                    {#if item.name == "VIVA: Intro: Title"}
                         {#if item.title_t != undefined}
                             {#if item.title_t[user_lang] != undefined}
                                 <h3>{item.title_t[user_lang]}</h3>
