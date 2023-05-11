@@ -201,7 +201,10 @@
     userLang.subscribe(value => {
         if (value != undefined && value != "undefined") {
             user_lang = value;
-            jq('audio#pop')[0].pause();
+            if (jq('audio#pop')[0] != "undefined" ) {
+                jq('audio#pop')[0].pause();
+            }
+            
         }
         
         

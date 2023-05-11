@@ -622,14 +622,20 @@ function generatePacht8($link, $suffix, $fontSizeFirst) {
     imagepng($logoimg, "media/vr_int_04_patch1_".$suffix.".png");
 }
 
-for($i = 0;$i < count($allLinks);$i++) {
-    generatePacht0($allLinks[$i], $allSufixes[$i], $fontSizeFirst);
-    generatePacht1($allProductsLinks[$i], $allSufixes[$i], $fontSizeFirst);
-    generatePacht2($allProductsLinks[$i], $allSufixes[$i], $fontSizeSecond);
-    generatePacht3($allProductsLinks[$i], $allSufixes[$i], $fontSizeSecond);
-    generatePacht4($allProductsLinks[$i], $allSufixes[$i], $fontSizeSecond);
-    generatePacht5($allProductsLinks[$i], $allSufixes[$i], $fontSizeSecond);
-    generatePacht6($allProductsLinks[$i], $allSufixes[$i], $fontSizeSecond);
-    generatePacht7($allProductsLinks[$i], $allSufixes[$i], $fontSizeSecond);
-    generatePacht8($allProductsLinks[$i], $allSufixes[$i], $fontSizeSecond);
-}
+    for($i = 0;$i < count($allLinks);$i++) {
+        generatePacht0($allLinks[$i], $allSufixes[$i], $fontSizeFirst);
+        generatePacht1($allProductsLinks[$i], $allSufixes[$i], $fontSizeFirst);
+        generatePacht2($allProductsLinks[$i], $allSufixes[$i], $fontSizeSecond);
+        generatePacht3($allProductsLinks[$i], $allSufixes[$i], $fontSizeSecond);
+        generatePacht4($allProductsLinks[$i], $allSufixes[$i], $fontSizeSecond);
+        generatePacht5($allProductsLinks[$i], $allSufixes[$i], $fontSizeSecond);
+        generatePacht6($allProductsLinks[$i], $allSufixes[$i], $fontSizeSecond);
+        generatePacht7($allProductsLinks[$i], $allSufixes[$i], $fontSizeSecond);
+        generatePacht8($allProductsLinks[$i], $allSufixes[$i], $fontSizeSecond);
+    }
+    
+
+
+
+
+

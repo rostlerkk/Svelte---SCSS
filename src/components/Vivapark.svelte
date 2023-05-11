@@ -152,7 +152,7 @@ const urlPrefix = {
     ee: 'https://baumit.ee',
     mk: 'https://baumit.mk',
     nl: 'https://baumit.nl',
-    ch: 'https://baumit.ch',
+    ch: 'https://ch.baumit.com',
     md: 'https://baumit.md',
     beNl: 'https://baumit.be',
     beFr: 'https://fr.baumit.be',
@@ -476,6 +476,7 @@ function check_user_lang() {
 
     fetchPhpData(user_lang);
     change_map_url();
+    change_patches();
 }
 
 check_user_lang();
@@ -651,6 +652,7 @@ function getSubtitlesLink($lang) {
             // show_layers(false);
             pano.setVariableValue("playPauseMedia", false);
             pano.setVariableValue("vivaTour", false);
+
         });
 
         pano.on("varchanged_floorplan_full", function() {
@@ -1314,7 +1316,7 @@ async function fetchPhpData($lang) {
         "products": urlPrefix[$lang] + '/api/products/products?api_token=' + apiToken[$lang]
     }
 
-    ////console.log(api_data);
+    //console.log(api_data);
     let phpUrl = "https://woowstudio.com/vyvoj/getValues.php";
     //let phpUrl = "https://tour.baumit.com/assets/krpano/getValues.php";
     //let phpUrl = "assets/php/getValues.php";
@@ -1469,61 +1471,61 @@ function toogleVivaTour() {
 function change_patches() {
         jq.each(jq('img.ggmedia'), function (index, value) {
             let lang = pano.getVariableValue('lang');
-            ////////////console.log('mením patch');
+            console.log('mením patch');
             let src = jq(this).attr('src');
 
             if (
                 src.includes('vr_int_08_patch0') 
             ) {
-                jq(this).attr('src', 'media/vr_int_08_patch0_'+lang+'.png');
+                jq(this).attr('src', 'pano2vr/output/media/vr_int_08_patch0_'+lang+'.png');
             }
 
             if (
                 src.includes('vr_int_08_patch1') 
             ) {
-                jq(this).attr('src', 'media/vr_int_08_patch1_'+lang+'.png');
+                jq(this).attr('src', 'pano2vr/output/media/vr_int_08_patch1_'+lang+'.png');
             }
 
             if (
                 src.includes('vr_int_08_patch2') 
             ) {
-                jq(this).attr('src', 'media/vr_int_08_patch2_'+lang+'.png');
+                jq(this).attr('src', 'pano2vr/output/media/vr_int_08_patch2_'+lang+'.png');
             }
 
             if (
                 src.includes('vr_int_08_patch3') 
             ) {
-                jq(this).attr('src', 'media/vr_int_08_patch3_'+lang+'.png');
+                jq(this).attr('src', 'pano2vr/output/media/vr_int_08_patch3_'+lang+'.png');
             }
 
             if (
                 src.includes('vr_int_08_patch4') 
             ) {
-                jq(this).attr('src', 'media/vr_int_08_patch4_'+lang+'.png');
+                jq(this).attr('src', 'pano2vr/output/media/vr_int_08_patch4_'+lang+'.png');
             }
 
             if (
                 src.includes('vr_int_08_patch5') 
             ) {
-                jq(this).attr('src', 'media/vr_int_08_patch5_'+lang+'.png');
+                jq(this).attr('src', 'pano2vr/output/media/vr_int_08_patch5_'+lang+'.png');
             }
 
             if (
                 src.includes('vr_int_08_patch6') 
             ) {
-                jq(this).attr('src', 'media/vr_int_08_patch6_'+lang+'.png');
+                jq(this).attr('src', 'pano2vr/output/media/vr_int_08_patch6_'+lang+'.png');
             }
 
             if (
                 src.includes('vr_int_02_patch1') 
             ) {
-                jq(this).attr('src', 'media/vr_int_02_patch1_'+lang+'.png');
+                jq(this).attr('src', 'pano2vr/output/media/vr_int_02_patch1_'+lang+'.png');
             }
 
             if (
                 src.includes('vr_int_04_patch1') 
             ) {
-                jq(this).attr('src', 'media/vr_int_04_patch1_'+lang+'.png');
+                jq(this).attr('src', 'pano2vr/output/media/vr_int_04_patch1_'+lang+'.png');
             }
         });
     }
