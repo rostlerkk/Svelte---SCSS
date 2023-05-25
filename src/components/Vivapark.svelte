@@ -1318,7 +1318,7 @@ async function fetchPhpData($lang) {
 
     console.log(api_data);
     //let phpUrl = "https://woowstudio.com/vyvoj/getValues.php";
-    let phpUrl = "https://tools.baumit.com/WooW/assets/krpano/getValues.php";
+    let phpUrl = "https://tour.baumit.com/assets/krpano/getValues.php";
     //let phpUrl = "assets/php/getValues.php";
 
     const res = await fetch(phpUrl, {
