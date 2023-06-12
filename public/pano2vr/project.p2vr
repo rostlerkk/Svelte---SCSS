@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!-- Pano2VR project file  -->
-<pano2vrconfig version="6.1.15" rev="18116">
+<pano2vrconfig rev="18116" version="6.1.15">
   <tour>
     <panorama>
       <id>node1</id>
@@ -22,12 +22,38 @@
       <userdata>
         <capturedatetime>2021-10-13T16:28:20</capturedatetime>
         <tags>equirects</tags>
-        <title>Node 1</title>
+        <title>Scene #1</title>
         <altitude>-10000</altitude>
         <usealtitude>0</usealtitude>
       </userdata>
       <floorplans/>
-      <hotspots/>
+      <hotspots>
+        <hotspot>
+          <position>
+            <pan>-122.07</pan>
+            <tilt>-36.42</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point01</id>
+          <title>$(ut)</title>
+          <linktype>node</linktype>
+          <linksubtype>unknown</linksubtype>
+          <url>{node3}</url>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+      </hotspots>
       <output/>
       <streetview/>
       <streetviewproject/>
@@ -55,12 +81,38 @@
       <userdata>
         <capturedatetime>2021-10-13T16:28:08</capturedatetime>
         <tags>equirects</tags>
-        <title>Node 2</title>
+        <title>Scene #2</title>
         <altitude>-10000</altitude>
         <usealtitude>0</usealtitude>
       </userdata>
       <floorplans/>
-      <hotspots/>
+      <hotspots>
+        <hotspot>
+          <position>
+            <pan>-305.94</pan>
+            <tilt>-22.11</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point01</id>
+          <title>$(ut)</title>
+          <linktype>node</linktype>
+          <linksubtype>unknown</linksubtype>
+          <url>{node3}</url>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+      </hotspots>
       <output/>
       <streetview/>
       <streetviewproject/>
@@ -109,12 +161,63 @@
       <userdata>
         <capturedatetime>2021-10-13T16:28:22</capturedatetime>
         <tags>equirects</tags>
-        <title>Node 3</title>
+        <title>Scene #3</title>
         <altitude>-10000</altitude>
         <usealtitude>0</usealtitude>
       </userdata>
       <floorplans/>
-      <hotspots/>
+      <hotspots>
+        <hotspot>
+          <position>
+            <pan>-65.86</pan>
+            <tilt>27.66</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point01</id>
+          <title>$(ut)</title>
+          <linktype>node</linktype>
+          <linksubtype>unknown</linksubtype>
+          <url>{node1}</url>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+        <hotspot>
+          <position>
+            <pan>-141.53</pan>
+            <tilt>-11.18</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point02</id>
+          <title>$(ut)</title>
+          <linktype>node</linktype>
+          <linksubtype>unknown</linksubtype>
+          <url>{node2}</url>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+      </hotspots>
       <output/>
       <streetview/>
       <streetviewproject/>

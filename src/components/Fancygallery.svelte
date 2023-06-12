@@ -2,8 +2,6 @@
     let gallery_iframe, gallery_html, gallery_images, gallery_video = "";
 
      pano.on("configloaded", function() {
-        console.log("config loaded");
-
         //gallery_iframe = pano.getVariableValue("gallery_iframe");
         pano.on("varchanged_gallery_iframe", function() {
             console.log("gallery_iframe");

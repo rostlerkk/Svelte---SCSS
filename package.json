@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@fancyapps/ui": "^4.0.31",
+    "@splidejs/svelte-splide": "^0.2.9",
     "node-sass": "^7.0.1",
     "sirv-cli": "^2.0.0",
     "svelte-preprocess": "^4.10.6"
