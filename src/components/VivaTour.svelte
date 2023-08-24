@@ -272,6 +272,18 @@
                 clearTimeout(subtitleTimeOut_4);
                 vivaAutoPlay.update(n => false);
 
+
+
+                jq('audio#pop')[0].pause();
+                jq('audio#pop')[0].src = "-1";
+                clearTimeout(timeOut);
+                clearInterval(layersTimeOut);
+                select_active_house();
+                clearTimeout(subtitleTimeOut_2);
+                clearTimeout(subtitleTimeOut_3);
+                clearTimeout(subtitleTimeOut_4);
+        prepni = false;
+
                 if (!isMobile) {
                     jq('.take-tour-button').addClass('hidden-desktop');
                 }

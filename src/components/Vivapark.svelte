@@ -193,7 +193,9 @@ aboutViva.subscribe(value => {
 
 // získanie dát z API - globálna funkcia
 async function fetchData($url, $lang, $type, $variable) {
-    //console.log($type);
+    console.log($url);
+    console.log($lang);
+    console.log($type);
     $variable = false;
     if (_vivaData[$lang] == undefined) {
         const res = await fetch($url);
@@ -1316,9 +1318,11 @@ async function fetchPhpData($lang) {
         "products": urlPrefix[$lang] + '/api/products/products?api_token=' + apiToken[$lang]
     }
 
-    console.log(api_data);
+    //console.log(api_data);
     //let phpUrl = "https://woowstudio.com/vyvoj/getValues.php";
-    let phpUrl = "https://tour.baumit.com/assets/krpano/getValues.php";
+    //let phpUrl = "https://tour.baumit.com/assets/krpano/getValues.php";
+    //let phpUrl = "https://baumit.zone360.sk/assets/php/getValues.php";
+    let phpUrl = "https://baumit.zone360.sk/assets/krpano/"+$lang+".json";
     //let phpUrl = "assets/php/getValues.php";
 
     const res = await fetch(phpUrl, {
@@ -1329,7 +1333,7 @@ async function fetchPhpData($lang) {
     const json = await res.json();
 
     if (res.ok) {
-        console.log(json);
+        //console.log(json);
         _vivaData = json;
         fetching_data = false;
         intro = true;
@@ -1561,7 +1565,9 @@ $: {
     {#if _vivaData != null && _vivaData != undefined}
         {#if _vivaData["houses"] != undefined}
             <div id="welcome">
+                
                 <div id="wrapper">
+                    <div class="close" on:click={() => intro = false} on:click={() => vivaIntroAfterEnd.update(n => false)} />
                     <div id="header">
                         {#each _vivaData["houses"]["additional_content"] as item}
                         {#if item.name == "VIVA: Intro: Title"}
