@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tour apprev="18116" appversion="6.1.15" start="node1">
+  <panorama id="node1">
+    <input height="5250" leveltileurl="tiles/node1/cf_%c/l_%l/c_%x/tile_%y.jpg" levelbias="0.400" levelbiashidpi="1.000" overlap="1" width="5250" levelingroll="0" leveltilesize="510" levelingpitch="0">
+      <level height="5250" predecode="0" width="5250" preload="0"/>
+      <level height="2625" predecode="0" width="2625" preload="0"/>
+      <level height="1312" predecode="0" width="1312" preload="0"/>
+      <level height="656" predecode="0" width="656" preload="0"/>
+      <level height="328" predecode="1" width="328" preload="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start tilt="0" fov="70" projection="4" pan="0"/>
+      <flyin tilt="-90" fov="170" projection="9" pan="0"/>
+      <min tilt="-90" fovpixel="2" pan="0"/>
+      <max fovfisheye="360" tilt="90" fovstereographic="270" fov="120" scaletofit="1" pan="360"/>
+    </view>
+    <userdata title="" longitude="12.748796" tags="equirects" heading="0" latitude="47.076434" author="" altitude="2509.28" info="" description="" datetime="13.9.2019 13:37" source="Franz Josef" copyright="" nodeid="node1" customnodeid="" comment=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label textcolor="0x000000" height="20" borderradius="1" enabled="1" background="1" backgroundalpha="1" bordercolor="0x000000" borderalpha="1" border="1" backgroundcolor="0xffffff" wordwrap="1" width="180" textalpha="1"/>
+      <polystyle backgroundalpha="0.25098" bordercolor="0x0000ff" borderalpha="1" handcursor="1" mode="0" backgroundcolor="0x0000ff"/>
+    </hotspots>
+    <media/>
+    <transition zoomafterinfov="90" blendtime="1" enabled="1" zoomin="0" zoomfov="20" zoomafteroutfov="20" zoomoutpause="1" type="crossdissolve" zoomout="0" zoomspeed="2" softedge="0" blendcolor="0x000000"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control dblclickfullscreen="0" invertcontrol="1" simulatemass="1" contextfullscreen="1" lockedmouse="0" sensitivity="8" rubberband="0" contextprojections="0" lockedkeyboard="0" lockedwheel="0" lockedkeyboardzoom="0" invertwheel="0" speedwheel="1" contextvr="1" hideabout="0"/>
+  </panorama>
+  <panorama id="node2">
+    <input height="4500" leveltileurl="tiles/node2/cf_%c/l_%l/c_%x/tile_%y.jpg" levelbias="0.400" levelbiashidpi="1.000" overlap="1" width="4500" levelingroll="0" leveltilesize="510" levelingpitch="0">
+      <level height="4500" predecode="0" width="4500" preload="0"/>
+      <level height="2250" predecode="0" width="2250" preload="0"/>
+      <level height="1125" predecode="0" width="1125" preload="0"/>
+      <level height="562" predecode="0" width="562" preload="0"/>
+      <level height="281" predecode="1" width="281" preload="1"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view fovmode="0" pannorth="0">
+      <start tilt="0" fov="70" projection="4" pan="0"/>
+      <flyin tilt="-90" fov="170" projection="9" pan="0"/>
+      <min tilt="-90" fovpixel="2" pan="0"/>
+      <max fovfisheye="360" tilt="90" fovstereographic="270" fov="120" scaletofit="1" pan="360"/>
+    </view>
+    <userdata title="" longitude="12.843611" tags="equirects" heading="0" latitude="47.038611" author="" altitude="101.78" info="" description="" datetime="8.10.2019 9:49" source="Halbhoch" copyright="" nodeid="node2" customnodeid="" comment=""/>
+    <hotspots height="20" wordwrap="1" width="180">
+      <label textcolor="0x000000" height="20" borderradius="1" enabled="1" background="1" backgroundalpha="1" bordercolor="0x000000" borderalpha="1" border="1" backgroundcolor="0xffffff" wordwrap="1" width="180" textalpha="1"/>
+      <polystyle backgroundalpha="0.25098" bordercolor="0x0000ff" borderalpha="1" handcursor="1" mode="0" backgroundcolor="0x0000ff"/>
+    </hotspots>
+    <media/>
+    <transition zoomafterinfov="90" blendtime="1" enabled="1" zoomin="0" zoomfov="20" zoomafteroutfov="20" zoomoutpause="1" type="crossdissolve" zoomout="0" zoomspeed="2" softedge="0" blendcolor="0x000000"/>
+    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
+    <control dblclickfullscreen="0" invertcontrol="1" simulatemass="1" contextfullscreen="1" lockedmouse="0" sensitivity="8" rubberband="0" contextprojections="0" lockedkeyboard="0" lockedwheel="0" lockedkeyboardzoom="0" invertwheel="0" speedwheel="1" contextvr="1" hideabout="0"/>
+  </panorama>
+  <masternode>
+    <userdata title="" longitude="" tags="" heading="0" latitude="" author="" info="" description="" datetime="" source="" copyright="" nodeid="master" customnodeid="" comment=""/>
+  </masternode>
+</tour>

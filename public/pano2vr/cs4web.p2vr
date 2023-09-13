@@ -1,0 +1,135 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!-- Pano2VR project file  -->
+<pano2vrconfig version="6.1.15" rev="18116">
+  <tour>
+    <panorama>
+      <id>node1</id>
+      <input>
+        <patch/>
+        <type>auto</type>
+        <filename>equirects/Pano Kaiser Franz Josef Hoehe.jpg</filename>
+        <videotype>equi</videotype>
+        <levelpitch>0</levelpitch>
+        <levelroll>0</levelroll>
+      </input>
+      <viewingparameter>
+        <pan/>
+        <tilt/>
+        <fov/>
+        <flyinstart/>
+        <pannorth>0</pannorth>
+      </viewingparameter>
+      <userdata>
+        <capturedatetime>2019-09-13T13:37:48</capturedatetime>
+        <latitude>47.076434</latitude>
+        <longitude>12.748796</longitude>
+        <altitude>2509.28</altitude>
+        <datetime>13.9.2019 13:37</datetime>
+        <tags>equirects</tags>
+        <source>Franz Josef</source>
+        <usealtitude>0</usealtitude>
+      </userdata>
+      <floorplans/>
+      <hotspots/>
+      <output/>
+      <streetview/>
+      <streetviewproject/>
+      <sounds/>
+      <animation/>
+    </panorama>
+    <panorama>
+      <input>
+        <patch/>
+        <type>auto</type>
+        <filename>equirects/Pano HB-halbhoch.jpg</filename>
+        <videotype>equi</videotype>
+        <levelpitch>0</levelpitch>
+        <levelroll>0</levelroll>
+      </input>
+      <viewingparameter>
+        <pan/>
+        <tilt/>
+        <fov/>
+        <flyinstart/>
+        <pannorth>0</pannorth>
+      </viewingparameter>
+      <userdata>
+        <capturedatetime>2019-10-08T09:49:48</capturedatetime>
+        <latitude>47.038611</latitude>
+        <longitude>12.843611</longitude>
+        <altitude>101.78</altitude>
+        <datetime>8.10.2019 9:49</datetime>
+        <tags>equirects</tags>
+        <source>Halbhoch</source>
+        <usealtitude>0</usealtitude>
+      </userdata>
+      <floorplans/>
+      <hotspots/>
+      <output/>
+      <streetview/>
+      <streetviewproject/>
+      <sounds/>
+      <id>node2</id>
+    </panorama>
+  </tour>
+  <panorama>
+    <id>master</id>
+    <input>
+      <patch/>
+    </input>
+    <viewingparameter>
+      <pan/>
+      <tilt/>
+      <fov/>
+      <flyinstart/>
+    </viewingparameter>
+    <userdata/>
+    <floorplans/>
+    <hotspots/>
+    <output>
+      <placeidcache>{"entries":[]}</placeidcache>
+      <htmlcss>
+        <html>
+          <enabled>1</enabled>
+          <filename>output/index.html</filename>
+          <values>
+            <value id="css"></value>
+            <value id="fitcover">false</value>
+            <value id="gginfo">false</value>
+            <value id="htmltitle">$(upt)</value>
+            <value id="jsxml">false</value>
+            <value id="parseanchor">false</value>
+          </values>
+        </html>
+        <facequality/>
+        <transition>
+          <zoomafterinfov>90</zoomafterinfov>
+          <zoomafteroutfov>20</zoomafteroutfov>
+        </transition>
+        <autorotate/>
+        <soundstransition/>
+        <flyintransition/>
+        <hotspottext/>
+        <hotspotstyle/>
+        <webvr/>
+        <tilesize>5250</tilesize>
+        <filename>output/pano.xml</filename>
+        <skinfile>$d/cs4web.ggsk</skinfile>
+        <skinconfiguration>
+          <value id="map_iframe">&lt;iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2740.555856096772!2d13.8427039763457!3d46.61577967111619!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x477081db308a695d%3A0xd50a77356e5507e8!2sCS4Web%20OG!5e0!3m2!1sen!2ssk!4v1694545568025!5m2!1sen!2ssk" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade">&lt;/iframe></value>
+          <value id="our_location">Lederergasse 29, 9500 Villach, Austria</value>
+          <value id="settings_gyroscope">false</value>
+        </skinconfiguration>
+        <skintablesconfiguration/>
+        <skincolorsconfiguration/>
+      </htmlcss>
+    </output>
+    <streetview/>
+    <streetviewproject/>
+    <sounds/>
+    <animation>
+      <title>Animation01</title>
+      <sequence/>
+    </animation>
+  </panorama>
+</pano2vrconfig>
