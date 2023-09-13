@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!-- Pano2VR project file  -->
-<pano2vrconfig version="6.1.15" rev="18116">
+<pano2vrconfig rev="18116" version="6.1.15">
   <tour>
     <panorama>
       <id>node1</id>
       <input>
         <patch/>
         <type>auto</type>
-        <filename>equirects/Pano Kaiser Franz Josef Hoehe.jpg</filename>
+        <filename>/Users/stefankelbel/Downloads/Sigi scenes/Pano Kaiser Franz Josef Hoehe.jpg</filename>
         <videotype>equi</videotype>
         <levelpitch>0</levelpitch>
         <levelroll>0</levelroll>
@@ -35,13 +35,15 @@
       <streetview/>
       <streetviewproject/>
       <sounds/>
-      <animation/>
+      <animation>
+        <sequence/>
+      </animation>
     </panorama>
     <panorama>
       <input>
         <patch/>
         <type>auto</type>
-        <filename>equirects/Pano HB-halbhoch.jpg</filename>
+        <filename>/Users/stefankelbel/Downloads/Sigi scenes/Pano HB-halbhoch.jpg</filename>
         <videotype>equi</videotype>
         <levelpitch>0</levelpitch>
         <levelroll>0</levelroll>
@@ -93,7 +95,7 @@
           <enabled>1</enabled>
           <filename>output/index.html</filename>
           <values>
-            <value id="css"></value>
+            <value id="css"/>
             <value id="fitcover">false</value>
             <value id="gginfo">false</value>
             <value id="htmltitle">$(upt)</value>
@@ -129,7 +131,6 @@
     <sounds/>
     <animation>
       <title>Animation01</title>
-      <sequence/>
     </animation>
   </panorama>
 </pano2vrconfig>
