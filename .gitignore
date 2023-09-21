@@ -2,7 +2,5 @@
 /public/build/
 
 .DS_Store
-public/pano2vr/output/assets/js/viva.dev.js
-public/pano2vr/output/assets/js/viva.dev.js
-src/components/Vivapark.svelte
-src/components/Vivapark.svelte
+public/pano2vr/output/tiles/
+public/pano2vr/equirects/
