@@ -2,12 +2,62 @@
     import { menu } from "../store.js";
     import { fade, fly } from 'svelte/transition';
 
+
+    let gallery_iframe, gallery_html, gallery_images, gallery_video = "";
+  
+
+    // open Gallery Video modul
+    $: {
+        gallery_video;
+
+        if (gallery_video != null && gallery_video != "") {
+            console.log(gallery_video);
+            const fancybox_video = new Fancybox.show([
+                {
+                    src: gallery_video,
+                    type: "video"
+                }
+            ]);
+
+            fancybox_video.on("destroy", (fancybox_video, slide) => {
+                pano.setVariableValue("gallery_video","");
+            });
+        }
+    }
+
+// Image gallery
+    var gallery = [
+        {
+            src: "https://lipsum.app/id/2/800x600",
+            thumb: "https://lipsum.app/id/2/80x80",
+            caption: "First image",
+        },
+        {
+            src: "https://lipsum.app/id/3/800x600",
+            thumb: "https://lipsum.app/id/3/80x80",
+            caption: "Second image",
+        },
+        {
+            src: "https://lipsum.app/id/4/800x600",
+            thumb: "https://lipsum.app/id/4/80x80",
+            caption: "Third image",
+        },
+    ];
+
+    function show_gallery() {
+        Fancybox.show(gallery, {
+        // Your options go here
+        });
+    }
+
     let our_location = pano.getVariableValue("our_location");
     let map_iframe = pano.getVariableValue("map_iframe");
     let settings_hotspots = pano.getVariableValue("settings_hotspots");
     let settings_autorotate = pano.getVariableValue("settings_autorotate");
     let settings_gyroscope = pano.getVariableValue("settings_gyroscope");
     let settings_sounds = pano.getVariableValue("settings_sounds");
+    let all_hotspots = pano.getVariableValue("all_hotspots");
+    let hts_luftansicht = pano.getVariableValue("hts_luftansicht");
     let scenes_count = 0;
     let scenes;
     let scenes_object = [];
@@ -47,7 +97,15 @@
         });
         console.log(scenes);
         console.log(scenes_object);
-    })
+    });
+
+    pano.on("varchanged_all_hotspots", function setHotspots() {
+        all_hotspots = pano.getVariableValue("all_hotspots");
+    });
+
+    pano.on("varchanged_hts_luftansicht", function setHotspots() {
+        hts_luftansicht = pano.getVariableValue("hts_luftansicht");
+    });
 
     pano.on("varchanged_settings_hotspots", function setHotspots() {
         settings_hotspots = pano.getVariableValue("settings_hotspots");
@@ -199,6 +257,20 @@
 
         <div class="side-wrapper">
             <div class="side-title">Hotspots filter</div>
+            <div class="side-menu">
+                <a on:click={() => toggle_pano2vr_variable("all_hotspots")}>
+                    <div class="checkbox-wrapper" >
+                        <input type="checkbox" id="all_hotposts" class="checkbox" bind:checked={all_hotspots}/>
+                        <label for="all_hotposts" class="hts-label" on:click={() => toggle_pano2vr_variable("all_hotspots")}  >All hotspots</label>
+                    </div>
+                </a>
+                <a on:click={() => toggle_pano2vr_variable("hts_luftansicht")}>
+                    <div class="checkbox-wrapper" >
+                        <input type="checkbox" id="hts_luftansicht" class="checkbox" bind:checked={hts_luftansicht}/>
+                        <label for="hts_luftansicht" class="hts-label" on:click={() => toggle_pano2vr_variable("hts_luftansicht")}  >Luftansicht</label>
+                    </div>
+                </a>
+            </div>
           </div>
     
           <div class="side-wrapper">
@@ -208,7 +280,7 @@
           <div class="side-wrapper">
             <div class="side-title">Gallery</div>
             <div class="side-menu">
-                <a href="#" on:click={() => header_menu = "images-gallery"}><i class="fa-solid fa-angle-right"></i>Images gallery</a>
+                <a on:click={()=> show_gallery()}><i class="fa-solid fa-angle-right"></i>Images gallery</a>
                 <a href="#" on:click={() => header_menu = "videos-gallery"}><i class="fa-solid fa-angle-right"></i>Videos gallery</a>
             </div>
           </div>

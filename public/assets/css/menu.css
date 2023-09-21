@@ -399,6 +399,7 @@ body.light-mode .video-bg:before {
   font-size: 14px;
   border-radius: 6px;
   transition: 0.3s;
+  cursor: pointer;
 }
 
 .side-menu a:hover, .side-menu a.active  {
@@ -834,6 +835,7 @@ body.light-mode .video-bg:before {
 .checkbox + label {
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 .checkbox + label:before {
   content: "";
@@ -940,4 +942,13 @@ body.light-mode .video-bg:before {
 ::-webkit-scrollbar-thumb {
   background: var(--scrollbar-bg);
   border-radius: 10px;
+}
+
+.hts-label {
+  color: var(--theme-color);
+  cursor: pointer;
+}
+
+.hts-label:hover {
+  color: var(--theme-color);
 }

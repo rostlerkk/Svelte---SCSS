@@ -6,22 +6,28 @@
 
 	<title>CS4web app</title>
 
-	<link rel='icon' type='image/png' href='/favicon.png'>
-	<link rel='stylesheet' href='/global.css'>
-	<link rel='stylesheet' href='/assets/css/menu.css'>
-	<link rel='stylesheet' href='/build/bundle.css'>
+	<link rel='icon' type='image/png' href='favicon.png'>
+	<link rel='stylesheet' href='global.css'>
+	<link rel='stylesheet' href='assets/css/menu.css'>
+	<link rel='stylesheet' href='build/bundle.css'>
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-	<script defer src='/build/bundle.js'></script>
+	<!-- jquery -->
+    <!-- <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script> -->
+
+    <!-- FancyApps -->
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"/>
+	<script defer src='build/bundle.js'></script>
 </head>
 
 <body>
 		<!-- Pano2VR -->
-		<script type="text/javascript" src="/pano2vr/output/pano2vr_player.js">
+		<script type="text/javascript" src="pano2vr/output/pano2vr_player.js">
 		</script>
-		<script type="text/javascript" src="/pano2vr/output/skin.js">
+		<script type="text/javascript" src="pano2vr/output/skin.js">
 		</script>
-		<script src="/pano2vr/output/webxr/three.min.js"></script>
-		<script src="/pano2vr/output/webxr/webxr-polyfill.min.js"></script>
+		<script src="pano2vr/output/webxr/three.min.js"></script>
+		<script src="pano2vr/output/webxr/webxr-polyfill.min.js"></script>
 		<div id="container" style="width:100%;height:100%;overflow:hidden;">
 		<br>Loading...<br><br>
 		</div>
@@ -34,7 +40,7 @@
 			// load the configuration
 		
 			window.addEventListener("load", function() {
-				pano.readConfigUrlAsync("/pano2vr/output/pano.xml");
+				pano.readConfigUrlAsync("pano2vr/output/pano.xml");
 			});
 			if (window.navigator.userAgent.match(/Safari/i)) {
 				// fix for white borders, rotation on iPhone
