@@ -281,10 +281,24 @@ body.light-mode .video-bg:before {
 .header-profile {
   display: flex;
   align-items: center;
-  padding: 0 16px 0 40px;
+  padding: 0 0px 0 40px;
   margin-left: auto;
   flex-shrink: 0;
 }
+
+.header-profile i {
+  padding: 0px;
+  margin: 0px;
+  color: white;
+  opacity: 0.8;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+
+.header-profile i:hover, .header-profile i.active {
+  opacity: 1;
+}
+
 .header-profile svg {
   width: 22px;
   color: #f9fafb;
@@ -470,7 +484,9 @@ body.light-mode .video-bg:before {
   align-items: center;
   width: 100%;
   justify-content: space-between;
-  background-image: url("https://www.transparenttextures.com/patterns/cubes.png"), linear-gradient(to right top, #cf4af3, #e73bd7, #f631bc, #fd31a2, #ff3a8b, #ff4b78, #ff5e68, #ff705c, #ff8c51, #ffaa49, #ffc848, #ffe652);
+  background-image: url("https://www.santifaller-photography.com/images/5/8/3/5/3/5835328485521abef0fad86f2dae92c167a6f5ae-villnoesser-geisler-dolomiten-suedtirol.jpeg");
+  background-size: cover;
+  background-repeat: no-repeat;
   border-radius: 14px;
   padding: 20px 40px;
 }
@@ -508,6 +524,8 @@ body.light-mode .video-bg:before {
   display: flex;
   align-items: center;
   margin: 0;
+  background: var(--hover-menu-bg);
+  padding: 4px;
 }
 .img-content svg {
   width: 28px;
@@ -525,6 +543,9 @@ body.light-mode .video-bg:before {
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
+  background: var(--scrollbar-bg);
+  padding: 4px;
+  border-radius: 4px;
 }
 
 .content-wrapper-context {

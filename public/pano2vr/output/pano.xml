@@ -1,56 +1,344 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<tour apprev="18116" appversion="6.1.15" start="node1">
+<tour start="node6" appversion="6.1.15" apprev="18116">
   <panorama id="node1">
-    <input height="5250" leveltileurl="tiles/node1/cf_%c/l_%l/c_%x/tile_%y.jpg" levelbias="0.400" levelbiashidpi="1.000" overlap="1" width="5250" levelingroll="0" leveltilesize="510" levelingpitch="0">
-      <level height="5250" predecode="0" width="5250" preload="0"/>
-      <level height="2625" predecode="0" width="2625" preload="0"/>
-      <level height="1312" predecode="0" width="1312" preload="0"/>
-      <level height="656" predecode="0" width="656" preload="0"/>
-      <level height="328" predecode="1" width="328" preload="1"/>
+    <input leveltileurl="tiles/node1/cf_%c/l_%l/c_%x/tile_%y.jpg" width="5250" leveltilesize="510" overlap="1" levelbias="0.400" levelingroll="0" levelbiashidpi="1.000" height="5250" levelingpitch="0">
+      <level width="5250" predecode="0" preload="0" height="5250"/>
+      <level width="2625" predecode="0" preload="0" height="2625"/>
+      <level width="1312" predecode="0" preload="0" height="1312"/>
+      <level width="656" predecode="0" preload="0" height="656"/>
+      <level width="328" predecode="1" preload="1" height="328"/>
       <preview color="0x808080" strip="1"/>
     </input>
-    <view fovmode="0" pannorth="0">
-      <start tilt="0" fov="70" projection="4" pan="0"/>
-      <flyin tilt="-90" fov="170" projection="9" pan="0"/>
-      <min tilt="-90" fovpixel="2" pan="0"/>
-      <max fovfisheye="360" tilt="90" fovstereographic="270" fov="120" scaletofit="1" pan="360"/>
+    <view pannorth="0" fovmode="0">
+      <start tilt="0" fov="70" pan="0" projection="4"/>
+      <flyin tilt="-90" fov="170" pan="0" projection="9"/>
+      <min tilt="-90" pan="0" fovpixel="2"/>
+      <max tilt="90" fov="120" pan="360" fovstereographic="270" fovfisheye="360" scaletofit="1"/>
     </view>
-    <userdata title="" longitude="12.748796" tags="equirects" heading="0" latitude="47.076434" author="" altitude="2509.28" info="" description="" datetime="13.9.2019 13:37" source="Franz Josef" copyright="" nodeid="node1" customnodeid="" comment=""/>
-    <hotspots height="20" wordwrap="1" width="180">
-      <label textcolor="0x000000" height="20" borderradius="1" enabled="1" background="1" backgroundalpha="1" bordercolor="0x000000" borderalpha="1" border="1" backgroundcolor="0xffffff" wordwrap="1" width="180" textalpha="1"/>
-      <polystyle backgroundalpha="0.25098" bordercolor="0x0000ff" borderalpha="1" handcursor="1" mode="0" backgroundcolor="0x0000ff"/>
+    <userdata description="" author="" copyright="" customnodeid="" heading="0" tags="equirects|restaurant" datetime="13.9.2019 13:37" title="Kaiser Franz Josef Hoehe" source="Herbst" longitude="12.748796" altitude="2509.28" nodeid="node1" comment="" info="" latitude="47.076434"/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" border="1" backgroundcolor="0xffffff" enabled="1" background="1" backgroundalpha="1" bordercolor="0x000000" borderradius="1" height="20" wordwrap="1" textcolor="0x000000" textalpha="1" borderalpha="1"/>
+      <polystyle mode="0" backgroundcolor="0x0000ff" handcursor="1" backgroundalpha="0.25098" bordercolor="0x0000ff" borderalpha="1"/>
+      <hotspot description="" tilt="-42.17" url="" title="Freizeit hotspot" target="_blank" pan="-5.83" id="Point02" skinid="Freizeit"/>
+      <hotspot description="" tilt="-35.12" url="" title="Luftansicht" target="_blank" pan="-19.76" id="Point01" skinid="LuftAnsicht"/>
+      <hotspot description="" tilt="-19.92" url="" title="Strandbad" target="_blank" pan="-0.8" id="Point03" skinid="Strandbad"/>
     </hotspots>
     <media/>
-    <transition zoomafterinfov="90" blendtime="1" enabled="1" zoomin="0" zoomfov="20" zoomafteroutfov="20" zoomoutpause="1" type="crossdissolve" zoomout="0" zoomspeed="2" softedge="0" blendcolor="0x000000"/>
-    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
-    <control dblclickfullscreen="0" invertcontrol="1" simulatemass="1" contextfullscreen="1" lockedmouse="0" sensitivity="8" rubberband="0" contextprojections="0" lockedkeyboard="0" lockedwheel="0" lockedkeyboardzoom="0" invertwheel="0" speedwheel="1" contextvr="1" hideabout="0"/>
+    <transition softedge="0" enabled="1" zoomoutpause="1" zoomfov="20" type="crossdissolve" zoomafteroutfov="20" zoomin="0" blendtime="1" zoomout="0" blendcolor="0x000000" zoomspeed="2" zoomafterinfov="90"/>
+    <animation syncanimationwithvideo="0" animsequence="Animation01" useinautorotation="0"/>
+    <control lockedkeyboardzoom="0" lockedwheel="0" hideabout="0" speedwheel="1" contextprojections="0" sensitivity="8" simulatemass="1" invertwheel="0" rubberband="0" contextvr="1" invertcontrol="1" lockedmouse="0" dblclickfullscreen="0" contextfullscreen="1" lockedkeyboard="0"/>
+  </panorama>
+  <panorama id="node3">
+    <input leveltileurl="tiles/node3/cf_%c/l_%l/c_%x/tile_%y.jpg" width="1824" leveltilesize="510" overlap="1" levelbias="0.400" levelingroll="0" levelbiashidpi="1.000" height="1824" levelingpitch="0">
+      <level width="1824" predecode="0" preload="0" height="1824"/>
+      <level width="912" predecode="0" preload="0" height="912"/>
+      <level width="456" predecode="1" preload="1" height="456"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view pannorth="5.99" fovmode="0">
+      <start tilt="0" fov="70" pan="0" projection="4"/>
+      <flyin tilt="-90" fov="170" pan="0" projection="9"/>
+      <min tilt="-90" pan="0" fovpixel="2"/>
+      <max tilt="90" fov="120" pan="360" fovstereographic="270" fovfisheye="360" scaletofit="1"/>
+    </view>
+    <userdata description="" author="" copyright="" customnodeid="" heading="5.99" tags="equirects" datetime="12.3.2020 10:46" title="Schareck" source="Winter" longitude="12.857089" altitude="2630.89" nodeid="node3" comment="" info="" latitude="47.065217"/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" border="1" backgroundcolor="0xffffff" enabled="1" background="1" backgroundalpha="1" bordercolor="0x000000" borderradius="1" height="20" wordwrap="1" textcolor="0x000000" textalpha="1" borderalpha="1"/>
+      <polystyle mode="0" backgroundcolor="0x0000ff" handcursor="1" backgroundalpha="0.25098" bordercolor="0x0000ff" borderalpha="1"/>
+    </hotspots>
+    <media/>
+    <transition softedge="0" enabled="1" zoomoutpause="1" zoomfov="20" type="crossdissolve" zoomafteroutfov="20" zoomin="0" blendtime="1" zoomout="0" blendcolor="0x000000" zoomspeed="2" zoomafterinfov="90"/>
+    <animation syncanimationwithvideo="0" animsequence="Animation01" useinautorotation="0"/>
+    <control lockedkeyboardzoom="0" lockedwheel="0" hideabout="0" speedwheel="1" contextprojections="0" sensitivity="8" simulatemass="1" invertwheel="0" rubberband="0" contextvr="1" invertcontrol="1" lockedmouse="0" dblclickfullscreen="0" contextfullscreen="1" lockedkeyboard="0"/>
+  </panorama>
+  <panorama id="node4">
+    <input leveltileurl="tiles/node4/cf_%c/l_%l/c_%x/tile_%y.jpg" width="5250" leveltilesize="510" overlap="1" levelbias="0.400" levelingroll="0" levelbiashidpi="1.000" height="5250" levelingpitch="0">
+      <level width="5250" predecode="0" preload="0" height="5250"/>
+      <level width="2625" predecode="0" preload="0" height="2625"/>
+      <level width="1312" predecode="0" preload="0" height="1312"/>
+      <level width="656" predecode="0" preload="0" height="656"/>
+      <level width="328" predecode="1" preload="1" height="328"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start tilt="0" fov="70" pan="0" projection="4"/>
+      <flyin tilt="-90" fov="170" pan="0" projection="9"/>
+      <min tilt="-90" pan="0" fovpixel="2"/>
+      <max tilt="90" fov="120" pan="360" fovstereographic="270" fovfisheye="360" scaletofit="1"/>
+    </view>
+    <userdata description="" author="" copyright="" customnodeid="" heading="0" tags="equirects" datetime="12.3.2020 10:30" title="Fallbichl mit Glockner" source="Winter" longitude="12.851138" altitude="2487.27" nodeid="node4" comment="" info="" latitude="47.068011"/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" border="1" backgroundcolor="0xffffff" enabled="1" background="1" backgroundalpha="1" bordercolor="0x000000" borderradius="1" height="20" wordwrap="1" textcolor="0x000000" textalpha="1" borderalpha="1"/>
+      <polystyle mode="0" backgroundcolor="0x0000ff" handcursor="1" backgroundalpha="0.25098" bordercolor="0x0000ff" borderalpha="1"/>
+    </hotspots>
+    <media/>
+    <transition softedge="0" enabled="1" zoomoutpause="1" zoomfov="20" type="crossdissolve" zoomafteroutfov="20" zoomin="0" blendtime="1" zoomout="0" blendcolor="0x000000" zoomspeed="2" zoomafterinfov="90"/>
+    <animation syncanimationwithvideo="0" animsequence="Animation01" useinautorotation="0"/>
+    <control lockedkeyboardzoom="0" lockedwheel="0" hideabout="0" speedwheel="1" contextprojections="0" sensitivity="8" simulatemass="1" invertwheel="0" rubberband="0" contextvr="1" invertcontrol="1" lockedmouse="0" dblclickfullscreen="0" contextfullscreen="1" lockedkeyboard="0"/>
+  </panorama>
+  <panorama id="node5">
+    <input leveltileurl="tiles/node5/cf_%c/l_%l/c_%x/tile_%y.jpg" width="5250" leveltilesize="510" overlap="1" levelbias="0.400" levelingroll="0" levelbiashidpi="1.000" height="5250" levelingpitch="0">
+      <level width="5250" predecode="0" preload="0" height="5250"/>
+      <level width="2625" predecode="0" preload="0" height="2625"/>
+      <level width="1312" predecode="0" preload="0" height="1312"/>
+      <level width="656" predecode="0" preload="0" height="656"/>
+      <level width="328" predecode="1" preload="1" height="328"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start tilt="0" fov="70" pan="0" projection="4"/>
+      <flyin tilt="-90" fov="170" pan="0" projection="9"/>
+      <min tilt="-90" pan="0" fovpixel="2"/>
+      <max tilt="90" fov="120" pan="360" fovstereographic="270" fovfisheye="360" scaletofit="1"/>
+    </view>
+    <userdata description="" author="" copyright="" customnodeid="" heading="0" tags="equirects" datetime="12.3.2020 12:30" title="Fleiss" source="Winter" longitude="12.887547" altitude="2606.15" nodeid="node5" comment="" info="" latitude="47.057856"/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" border="1" backgroundcolor="0xffffff" enabled="1" background="1" backgroundalpha="1" bordercolor="0x000000" borderradius="1" height="20" wordwrap="1" textcolor="0x000000" textalpha="1" borderalpha="1"/>
+      <polystyle mode="0" backgroundcolor="0x0000ff" handcursor="1" backgroundalpha="0.25098" bordercolor="0x0000ff" borderalpha="1"/>
+    </hotspots>
+    <media/>
+    <transition softedge="0" enabled="1" zoomoutpause="1" zoomfov="20" type="crossdissolve" zoomafteroutfov="20" zoomin="0" blendtime="1" zoomout="0" blendcolor="0x000000" zoomspeed="2" zoomafterinfov="90"/>
+    <animation syncanimationwithvideo="0" animsequence="Animation01" useinautorotation="0"/>
+    <control lockedkeyboardzoom="0" lockedwheel="0" hideabout="0" speedwheel="1" contextprojections="0" sensitivity="8" simulatemass="1" invertwheel="0" rubberband="0" contextvr="1" invertcontrol="1" lockedmouse="0" dblclickfullscreen="0" contextfullscreen="1" lockedkeyboard="0"/>
+  </panorama>
+  <panorama id="node10">
+    <input leveltileurl="tiles/node10/cf_%c/l_%l/c_%x/tile_%y.jpg" width="5250" leveltilesize="510" overlap="1" levelbias="0.400" levelingroll="0" levelbiashidpi="1.000" height="5250" levelingpitch="0">
+      <level width="5250" predecode="0" preload="0" height="5250"/>
+      <level width="2625" predecode="0" preload="0" height="2625"/>
+      <level width="1312" predecode="0" preload="0" height="1312"/>
+      <level width="656" predecode="0" preload="0" height="656"/>
+      <level width="328" predecode="1" preload="1" height="328"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start tilt="0" fov="70" pan="0" projection="4"/>
+      <flyin tilt="-90" fov="170" pan="0" projection="9"/>
+      <min tilt="-90" pan="0" fovpixel="2"/>
+      <max tilt="90" fov="120" pan="360" fovstereographic="270" fovfisheye="360" scaletofit="1"/>
+    </view>
+    <userdata description="" author="" copyright="" customnodeid="" heading="0" tags="equirects" datetime="12.3.2020 13:02" title="Schareck Mittelstation" source="Winter" longitude="12.851276" altitude="1763.31" nodeid="node10" comment="" info="" latitude="47.047537"/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" border="1" backgroundcolor="0xffffff" enabled="1" background="1" backgroundalpha="1" bordercolor="0x000000" borderradius="1" height="20" wordwrap="1" textcolor="0x000000" textalpha="1" borderalpha="1"/>
+      <polystyle mode="0" backgroundcolor="0x0000ff" handcursor="1" backgroundalpha="0.25098" bordercolor="0x0000ff" borderalpha="1"/>
+    </hotspots>
+    <media/>
+    <transition softedge="0" enabled="1" zoomoutpause="1" zoomfov="20" type="crossdissolve" zoomafteroutfov="20" zoomin="0" blendtime="1" zoomout="0" blendcolor="0x000000" zoomspeed="2" zoomafterinfov="90"/>
+    <animation syncanimationwithvideo="0" animsequence="Animation01" useinautorotation="0"/>
+    <control lockedkeyboardzoom="0" lockedwheel="0" hideabout="0" speedwheel="1" contextprojections="0" sensitivity="8" simulatemass="1" invertwheel="0" rubberband="0" contextvr="1" invertcontrol="1" lockedmouse="0" dblclickfullscreen="0" contextfullscreen="1" lockedkeyboard="0"/>
+  </panorama>
+  <panorama id="node11">
+    <input leveltileurl="tiles/node11/cf_%c/l_%l/c_%x/tile_%y.jpg" width="5250" leveltilesize="510" overlap="1" levelbias="0.400" levelingroll="0" levelbiashidpi="1.000" height="5250" levelingpitch="0">
+      <level width="5250" predecode="0" preload="0" height="5250"/>
+      <level width="2625" predecode="0" preload="0" height="2625"/>
+      <level width="1312" predecode="0" preload="0" height="1312"/>
+      <level width="656" predecode="0" preload="0" height="656"/>
+      <level width="328" predecode="1" preload="1" height="328"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start tilt="0" fov="70" pan="0" projection="4"/>
+      <flyin tilt="-90" fov="170" pan="0" projection="9"/>
+      <min tilt="-90" pan="0" fovpixel="2"/>
+      <max tilt="90" fov="120" pan="360" fovstereographic="270" fovfisheye="360" scaletofit="1"/>
+    </view>
+    <userdata description="" author="" copyright="" customnodeid="" heading="0" tags="equirects" datetime="12.3.2020 10:57" title="Schareck" source="Winter" longitude="12.856712" altitude="2601.12" nodeid="node11" comment="" info="" latitude="47.061248"/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" border="1" backgroundcolor="0xffffff" enabled="1" background="1" backgroundalpha="1" bordercolor="0x000000" borderradius="1" height="20" wordwrap="1" textcolor="0x000000" textalpha="1" borderalpha="1"/>
+      <polystyle mode="0" backgroundcolor="0x0000ff" handcursor="1" backgroundalpha="0.25098" bordercolor="0x0000ff" borderalpha="1"/>
+    </hotspots>
+    <media/>
+    <transition softedge="0" enabled="1" zoomoutpause="1" zoomfov="20" type="crossdissolve" zoomafteroutfov="20" zoomin="0" blendtime="1" zoomout="0" blendcolor="0x000000" zoomspeed="2" zoomafterinfov="90"/>
+    <animation syncanimationwithvideo="0" animsequence="Animation01" useinautorotation="0"/>
+    <control lockedkeyboardzoom="0" lockedwheel="0" hideabout="0" speedwheel="1" contextprojections="0" sensitivity="8" simulatemass="1" invertwheel="0" rubberband="0" contextvr="1" invertcontrol="1" lockedmouse="0" dblclickfullscreen="0" contextfullscreen="1" lockedkeyboard="0"/>
+  </panorama>
+  <panorama id="node12">
+    <input leveltileurl="tiles/node12/cf_%c/l_%l/c_%x/tile_%y.jpg" width="5250" leveltilesize="510" overlap="1" levelbias="0.400" levelingroll="0" levelbiashidpi="1.000" height="5250" levelingpitch="0">
+      <level width="5250" predecode="0" preload="0" height="5250"/>
+      <level width="2625" predecode="0" preload="0" height="2625"/>
+      <level width="1312" predecode="0" preload="0" height="1312"/>
+      <level width="656" predecode="0" preload="0" height="656"/>
+      <level width="328" predecode="1" preload="1" height="328"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start tilt="0" fov="70" pan="0" projection="4"/>
+      <flyin tilt="-90" fov="170" pan="0" projection="9"/>
+      <min tilt="-90" pan="0" fovpixel="2"/>
+      <max tilt="90" fov="120" pan="360" fovstereographic="270" fovfisheye="360" scaletofit="1"/>
+    </view>
+    <userdata description="" author="" copyright="" customnodeid="" heading="0" tags="equirects" datetime="12.3.2020 9:24" title="Heiligenblut" source="Winter" longitude="12.844306" altitude="1439.04" nodeid="node12" comment="" info="" latitude="47.037360"/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" border="1" backgroundcolor="0xffffff" enabled="1" background="1" backgroundalpha="1" bordercolor="0x000000" borderradius="1" height="20" wordwrap="1" textcolor="0x000000" textalpha="1" borderalpha="1"/>
+      <polystyle mode="0" backgroundcolor="0x0000ff" handcursor="1" backgroundalpha="0.25098" bordercolor="0x0000ff" borderalpha="1"/>
+    </hotspots>
+    <media/>
+    <transition softedge="0" enabled="1" zoomoutpause="1" zoomfov="20" type="crossdissolve" zoomafteroutfov="20" zoomin="0" blendtime="1" zoomout="0" blendcolor="0x000000" zoomspeed="2" zoomafterinfov="90"/>
+    <animation syncanimationwithvideo="0" animsequence="Animation01" useinautorotation="0"/>
+    <control lockedkeyboardzoom="0" lockedwheel="0" hideabout="0" speedwheel="1" contextprojections="0" sensitivity="8" simulatemass="1" invertwheel="0" rubberband="0" contextvr="1" invertcontrol="1" lockedmouse="0" dblclickfullscreen="0" contextfullscreen="1" lockedkeyboard="0"/>
+  </panorama>
+  <panorama id="node13">
+    <input leveltileurl="tiles/node13/cf_%c/l_%l/c_%x/tile_%y.jpg" width="5250" leveltilesize="510" overlap="1" levelbias="0.400" levelingroll="0" levelbiashidpi="1.000" height="5250" levelingpitch="0">
+      <level width="5250" predecode="0" preload="0" height="5250"/>
+      <level width="2625" predecode="0" preload="0" height="2625"/>
+      <level width="1312" predecode="0" preload="0" height="1312"/>
+      <level width="656" predecode="0" preload="0" height="656"/>
+      <level width="328" predecode="1" preload="1" height="328"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start tilt="0" fov="70" pan="0" projection="4"/>
+      <flyin tilt="-90" fov="170" pan="0" projection="9"/>
+      <min tilt="-90" pan="0" fovpixel="2"/>
+      <max tilt="90" fov="120" pan="360" fovstereographic="270" fovfisheye="360" scaletofit="1"/>
+    </view>
+    <userdata description="" author="" copyright="" customnodeid="" heading="0" tags="equirects" datetime="12.3.2020 9:35" title="Winkl" source="Winter" longitude="12.827322" altitude="1500.00" nodeid="node13" comment="" info="" latitude="47.041372"/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" border="1" backgroundcolor="0xffffff" enabled="1" background="1" backgroundalpha="1" bordercolor="0x000000" borderradius="1" height="20" wordwrap="1" textcolor="0x000000" textalpha="1" borderalpha="1"/>
+      <polystyle mode="0" backgroundcolor="0x0000ff" handcursor="1" backgroundalpha="0.25098" bordercolor="0x0000ff" borderalpha="1"/>
+    </hotspots>
+    <media/>
+    <transition softedge="0" enabled="1" zoomoutpause="1" zoomfov="20" type="crossdissolve" zoomafteroutfov="20" zoomin="0" blendtime="1" zoomout="0" blendcolor="0x000000" zoomspeed="2" zoomafterinfov="90"/>
+    <animation syncanimationwithvideo="0" animsequence="Animation01" useinautorotation="0"/>
+    <control lockedkeyboardzoom="0" lockedwheel="0" hideabout="0" speedwheel="1" contextprojections="0" sensitivity="8" simulatemass="1" invertwheel="0" rubberband="0" contextvr="1" invertcontrol="1" lockedmouse="0" dblclickfullscreen="0" contextfullscreen="1" lockedkeyboard="0"/>
   </panorama>
   <panorama id="node2">
-    <input height="4500" leveltileurl="tiles/node2/cf_%c/l_%l/c_%x/tile_%y.jpg" levelbias="0.400" levelbiashidpi="1.000" overlap="1" width="4500" levelingroll="0" leveltilesize="510" levelingpitch="0">
-      <level height="4500" predecode="0" width="4500" preload="0"/>
-      <level height="2250" predecode="0" width="2250" preload="0"/>
-      <level height="1125" predecode="0" width="1125" preload="0"/>
-      <level height="562" predecode="0" width="562" preload="0"/>
-      <level height="281" predecode="1" width="281" preload="1"/>
+    <input leveltileurl="tiles/node2/cf_%c/l_%l/c_%x/tile_%y.jpg" width="4500" leveltilesize="510" overlap="1" levelbias="0.400" levelingroll="0" levelbiashidpi="1.000" height="4500" levelingpitch="0">
+      <level width="4500" predecode="0" preload="0" height="4500"/>
+      <level width="2250" predecode="0" preload="0" height="2250"/>
+      <level width="1125" predecode="0" preload="0" height="1125"/>
+      <level width="562" predecode="0" preload="0" height="562"/>
+      <level width="281" predecode="1" preload="1" height="281"/>
       <preview color="0x808080" strip="1"/>
     </input>
-    <view fovmode="0" pannorth="0">
-      <start tilt="0" fov="70" projection="4" pan="0"/>
-      <flyin tilt="-90" fov="170" projection="9" pan="0"/>
-      <min tilt="-90" fovpixel="2" pan="0"/>
-      <max fovfisheye="360" tilt="90" fovstereographic="270" fov="120" scaletofit="1" pan="360"/>
+    <view pannorth="0" fovmode="0">
+      <start tilt="0" fov="70" pan="0" projection="4"/>
+      <flyin tilt="-90" fov="170" pan="0" projection="9"/>
+      <min tilt="-90" pan="0" fovpixel="2"/>
+      <max tilt="90" fov="120" pan="360" fovstereographic="270" fovfisheye="360" scaletofit="1"/>
     </view>
-    <userdata title="" longitude="12.843611" tags="equirects" heading="0" latitude="47.038611" author="" altitude="101.78" info="" description="" datetime="8.10.2019 9:49" source="Halbhoch" copyright="" nodeid="node2" customnodeid="" comment=""/>
-    <hotspots height="20" wordwrap="1" width="180">
-      <label textcolor="0x000000" height="20" borderradius="1" enabled="1" background="1" backgroundalpha="1" bordercolor="0x000000" borderalpha="1" border="1" backgroundcolor="0xffffff" wordwrap="1" width="180" textalpha="1"/>
-      <polystyle backgroundalpha="0.25098" bordercolor="0x0000ff" borderalpha="1" handcursor="1" mode="0" backgroundcolor="0x0000ff"/>
+    <userdata description="" author="" copyright="" customnodeid="" heading="0" tags="equirects" datetime="8.10.2019 9:49" title="Halbhoch" source="Sommer" longitude="12.843611" altitude="101.78" nodeid="node2" comment="" info="" latitude="47.038611"/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" border="1" backgroundcolor="0xffffff" enabled="1" background="1" backgroundalpha="1" bordercolor="0x000000" borderradius="1" height="20" wordwrap="1" textcolor="0x000000" textalpha="1" borderalpha="1"/>
+      <polystyle mode="0" backgroundcolor="0x0000ff" handcursor="1" backgroundalpha="0.25098" bordercolor="0x0000ff" borderalpha="1"/>
     </hotspots>
     <media/>
-    <transition zoomafterinfov="90" blendtime="1" enabled="1" zoomin="0" zoomfov="20" zoomafteroutfov="20" zoomoutpause="1" type="crossdissolve" zoomout="0" zoomspeed="2" softedge="0" blendcolor="0x000000"/>
-    <animation useinautorotation="0" animsequence="Animation01" syncanimationwithvideo="0"/>
-    <control dblclickfullscreen="0" invertcontrol="1" simulatemass="1" contextfullscreen="1" lockedmouse="0" sensitivity="8" rubberband="0" contextprojections="0" lockedkeyboard="0" lockedwheel="0" lockedkeyboardzoom="0" invertwheel="0" speedwheel="1" contextvr="1" hideabout="0"/>
+    <transition softedge="0" enabled="1" zoomoutpause="1" zoomfov="20" type="crossdissolve" zoomafteroutfov="20" zoomin="0" blendtime="1" zoomout="0" blendcolor="0x000000" zoomspeed="2" zoomafterinfov="90"/>
+    <animation syncanimationwithvideo="0" animsequence="Animation01" useinautorotation="0"/>
+    <control lockedkeyboardzoom="0" lockedwheel="0" hideabout="0" speedwheel="1" contextprojections="0" sensitivity="8" simulatemass="1" invertwheel="0" rubberband="0" contextvr="1" invertcontrol="1" lockedmouse="0" dblclickfullscreen="0" contextfullscreen="1" lockedkeyboard="0"/>
+  </panorama>
+  <panorama id="node6">
+    <input leveltileurl="tiles/node6/cf_%c/l_%l/c_%x/tile_%y.jpg" width="5250" leveltilesize="510" overlap="1" levelbias="0.400" levelingroll="0" levelbiashidpi="1.000" height="5250" levelingpitch="0">
+      <level width="5250" predecode="0" preload="0" height="5250"/>
+      <level width="2625" predecode="0" preload="0" height="2625"/>
+      <level width="1312" predecode="0" preload="0" height="1312"/>
+      <level width="656" predecode="0" preload="0" height="656"/>
+      <level width="328" predecode="1" preload="1" height="328"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start tilt="-1.90397" fov="70" pan="13.1726" projection="4"/>
+      <flyin tilt="-90" fov="170" pan="0" projection="9"/>
+      <min tilt="-90" pan="0" fovpixel="2"/>
+      <max tilt="90" fov="120" pan="360" fovstereographic="270" fovfisheye="360" scaletofit="1"/>
+    </view>
+    <userdata description="" author="" copyright="" customnodeid="" heading="0" tags="equirects" datetime="13.9.2019 15:24" title="Jungfernsprung" source="Sommer" longitude="12.873823" altitude="1332.16" nodeid="node6" comment="" info="" latitude="47.014724"/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" border="1" backgroundcolor="0xffffff" enabled="1" background="1" backgroundalpha="1" bordercolor="0x000000" borderradius="1" height="20" wordwrap="1" textcolor="0x000000" textalpha="1" borderalpha="1"/>
+      <polystyle mode="0" backgroundcolor="0x0000ff" handcursor="1" backgroundalpha="0.25098" bordercolor="0x0000ff" borderalpha="1"/>
+      <hotspot description="" tilt="-16.33" url="" title="Restaurant" target="_blank" pan="-358.09" id="Point01" skinid="Restaurant"/>
+      <hotspot description="" tilt="-29.75" url="" title="Cafe &amp; Bistro" target="_blank" pan="-10.68" id="Point02" skinid="Cafe"/>
+      <hotspot description="" tilt="-37.22" url="" title="Hotel Offenhorn" target="_blank" pan="-90.09" id="Point03" skinid="Hotel"/>
+      <hotspot description="" tilt="11.71" url="" title="Luftansicht" target="_blank" pan="-327.4" id="Point04" skinid="LuftAnsicht"/>
+      <hotspot description="" tilt="-28.85" url="" title="Einkaufen" target="_blank" pan="-274.35" id="Point05" skinid="Einkaufen"/>
+      <hotspot description="" tilt="-38.43" url="" title="Optiker" target="_blank" pan="-226.72" id="Point06" skinid="Optiker"/>
+      <hotspot description="" tilt="-31.33" url="" title="Freizeit" target="_blank" pan="-338.36" id="Point07" skinid="Freizeit"/>
+      <hotspot description="" tilt="-19.17" url="" title="Streetview" target="_blank" pan="-321.65" id="Point08" skinid="StreetView"/>
+      <hotspot description="" tilt="-13.91" url="" title="Mode " target="_blank" pan="-341.1" id="Point09" skinid="Mode"/>
+      <hotspot description="" tilt="-14.13" url="" title="Floristik" target="_blank" pan="-312.81" id="Point10" skinid="Floristik"/>
+      <hotspot description="" tilt="-7.05" url="" title="Businness" target="_blank" pan="-326.29" id="Point11" skinid="Businness"/>
+      <hotspot description="" tilt="-31.2" url="" title="Bar" target="_blank" pan="-299.64" id="Point12" skinid="Bar"/>
+    </hotspots>
+    <media/>
+    <transition softedge="0" enabled="1" zoomoutpause="1" zoomfov="20" type="crossdissolve" zoomafteroutfov="20" zoomin="0" blendtime="1" zoomout="0" blendcolor="0x000000" zoomspeed="2" zoomafterinfov="90"/>
+    <animation syncanimationwithvideo="0" animsequence="Animation01" useinautorotation="0"/>
+    <control lockedkeyboardzoom="0" lockedwheel="0" hideabout="0" speedwheel="1" contextprojections="0" sensitivity="8" simulatemass="1" invertwheel="0" rubberband="0" contextvr="1" invertcontrol="1" lockedmouse="0" dblclickfullscreen="0" contextfullscreen="1" lockedkeyboard="0"/>
+  </panorama>
+  <panorama id="node7">
+    <input leveltileurl="tiles/node7/cf_%c/l_%l/c_%x/tile_%y.jpg" width="5250" leveltilesize="510" overlap="1" levelbias="0.400" levelingroll="0" levelbiashidpi="1.000" height="5250" levelingpitch="0">
+      <level width="5250" predecode="0" preload="0" height="5250"/>
+      <level width="2625" predecode="0" preload="0" height="2625"/>
+      <level width="1312" predecode="0" preload="0" height="1312"/>
+      <level width="656" predecode="0" preload="0" height="656"/>
+      <level width="328" predecode="1" preload="1" height="328"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start tilt="0" fov="70" pan="0" projection="4"/>
+      <flyin tilt="-90" fov="170" pan="0" projection="9"/>
+      <min tilt="-90" pan="0" fovpixel="2"/>
+      <max tilt="90" fov="120" pan="360" fovstereographic="270" fovfisheye="360" scaletofit="1"/>
+    </view>
+    <userdata description="" author="" copyright="" customnodeid="" heading="0" tags="equirects" datetime="13.9.2019 12:39" title="Schareck" source="Sommer" longitude="12.858586" altitude="2520.98" nodeid="node7" comment="" info="" latitude="47.062915"/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" border="1" backgroundcolor="0xffffff" enabled="1" background="1" backgroundalpha="1" bordercolor="0x000000" borderradius="1" height="20" wordwrap="1" textcolor="0x000000" textalpha="1" borderalpha="1"/>
+      <polystyle mode="0" backgroundcolor="0x0000ff" handcursor="1" backgroundalpha="0.25098" bordercolor="0x0000ff" borderalpha="1"/>
+    </hotspots>
+    <media/>
+    <transition softedge="0" enabled="1" zoomoutpause="1" zoomfov="20" type="crossdissolve" zoomafteroutfov="20" zoomin="0" blendtime="1" zoomout="0" blendcolor="0x000000" zoomspeed="2" zoomafterinfov="90"/>
+    <animation syncanimationwithvideo="0" animsequence="Animation01" useinautorotation="0"/>
+    <control lockedkeyboardzoom="0" lockedwheel="0" hideabout="0" speedwheel="1" contextprojections="0" sensitivity="8" simulatemass="1" invertwheel="0" rubberband="0" contextvr="1" invertcontrol="1" lockedmouse="0" dblclickfullscreen="0" contextfullscreen="1" lockedkeyboard="0"/>
+  </panorama>
+  <panorama id="node8">
+    <input leveltileurl="tiles/node8/cf_%c/l_%l/c_%x/tile_%y.jpg" width="5250" leveltilesize="510" overlap="1" levelbias="0.400" levelingroll="0" levelbiashidpi="1.000" height="5250" levelingpitch="0">
+      <level width="5250" predecode="0" preload="0" height="5250"/>
+      <level width="2625" predecode="0" preload="0" height="2625"/>
+      <level width="1312" predecode="0" preload="0" height="1312"/>
+      <level width="656" predecode="0" preload="0" height="656"/>
+      <level width="328" predecode="1" preload="1" height="328"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start tilt="0" fov="70" pan="0" projection="4"/>
+      <flyin tilt="-90" fov="170" pan="0" projection="9"/>
+      <min tilt="-90" pan="0" fovpixel="2"/>
+      <max tilt="90" fov="120" pan="360" fovstereographic="270" fovfisheye="360" scaletofit="1"/>
+    </view>
+    <userdata description="" author="" copyright="" customnodeid="" heading="0" tags="equirects" datetime="13.9.2019 14:30" title="Heiligenblut" source="Sommer" longitude="12.847384" altitude="1667.90" nodeid="node8" comment="" info="" latitude="47.043342"/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" border="1" backgroundcolor="0xffffff" enabled="1" background="1" backgroundalpha="1" bordercolor="0x000000" borderradius="1" height="20" wordwrap="1" textcolor="0x000000" textalpha="1" borderalpha="1"/>
+      <polystyle mode="0" backgroundcolor="0x0000ff" handcursor="1" backgroundalpha="0.25098" bordercolor="0x0000ff" borderalpha="1"/>
+    </hotspots>
+    <media/>
+    <transition softedge="0" enabled="1" zoomoutpause="1" zoomfov="20" type="crossdissolve" zoomafteroutfov="20" zoomin="0" blendtime="1" zoomout="0" blendcolor="0x000000" zoomspeed="2" zoomafterinfov="90"/>
+    <animation syncanimationwithvideo="0" animsequence="Animation01" useinautorotation="0"/>
+    <control lockedkeyboardzoom="0" lockedwheel="0" hideabout="0" speedwheel="1" contextprojections="0" sensitivity="8" simulatemass="1" invertwheel="0" rubberband="0" contextvr="1" invertcontrol="1" lockedmouse="0" dblclickfullscreen="0" contextfullscreen="1" lockedkeyboard="0"/>
+  </panorama>
+  <panorama id="node9">
+    <input leveltileurl="tiles/node9/cf_%c/l_%l/c_%x/tile_%y.jpg" width="5250" leveltilesize="510" overlap="1" levelbias="0.400" levelingroll="0" levelbiashidpi="1.000" height="5250" levelingpitch="0">
+      <level width="5250" predecode="0" preload="0" height="5250"/>
+      <level width="2625" predecode="0" preload="0" height="2625"/>
+      <level width="1312" predecode="0" preload="0" height="1312"/>
+      <level width="656" predecode="0" preload="0" height="656"/>
+      <level width="328" predecode="1" preload="1" height="328"/>
+      <preview color="0x808080" strip="1"/>
+    </input>
+    <view pannorth="0" fovmode="0">
+      <start tilt="0" fov="70" pan="0" projection="4"/>
+      <flyin tilt="-90" fov="170" pan="0" projection="9"/>
+      <min tilt="-90" pan="0" fovpixel="2"/>
+      <max tilt="90" fov="120" pan="360" fovstereographic="270" fovfisheye="360" scaletofit="1"/>
+    </view>
+    <userdata description="" author="" copyright="" customnodeid="" heading="0" tags="equirects" datetime="13.9.2019 14:56" title="Winkl" source="Sommer" longitude="12.816245" altitude="1585.43" nodeid="node9" comment="" info="" latitude="47.047365"/>
+    <hotspots width="180" height="20" wordwrap="1">
+      <label width="180" border="1" backgroundcolor="0xffffff" enabled="1" background="1" backgroundalpha="1" bordercolor="0x000000" borderradius="1" height="20" wordwrap="1" textcolor="0x000000" textalpha="1" borderalpha="1"/>
+      <polystyle mode="0" backgroundcolor="0x0000ff" handcursor="1" backgroundalpha="0.25098" bordercolor="0x0000ff" borderalpha="1"/>
+    </hotspots>
+    <media/>
+    <transition softedge="0" enabled="1" zoomoutpause="1" zoomfov="20" type="crossdissolve" zoomafteroutfov="20" zoomin="0" blendtime="1" zoomout="0" blendcolor="0x000000" zoomspeed="2" zoomafterinfov="90"/>
+    <animation syncanimationwithvideo="0" animsequence="Animation01" useinautorotation="0"/>
+    <control lockedkeyboardzoom="0" lockedwheel="0" hideabout="0" speedwheel="1" contextprojections="0" sensitivity="8" simulatemass="1" invertwheel="0" rubberband="0" contextvr="1" invertcontrol="1" lockedmouse="0" dblclickfullscreen="0" contextfullscreen="1" lockedkeyboard="0"/>
   </panorama>
   <masternode>
-    <userdata title="" longitude="" tags="" heading="0" latitude="" author="" info="" description="" datetime="" source="" copyright="" nodeid="master" customnodeid="" comment=""/>
+    <userdata description="" author="" copyright="" customnodeid="" heading="0" tags="" datetime="" title="" source="" longitude="" nodeid="master" comment="" info="" latitude=""/>
   </masternode>
 </tour>
