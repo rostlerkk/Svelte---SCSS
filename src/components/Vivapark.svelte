@@ -1321,6 +1321,7 @@ async function fetchPhpData($lang) {
     //let phpUrl = "https://tour.baumit.com/assets/krpano/getValues.php";
     //let phpUrl = "https://baumit.zone360.sk/assets/php/getValues.php";
     let phpUrl = "https://baumit.zone360.sk/assets/krpano/"+$lang+".json";
+    //let phpUrl = "https://tour.baumit.com/assets/krpano/"+$lang+".json";
     //let phpUrl = "assets/php/getValues.php";
 
     const res = await fetch(phpUrl, {
