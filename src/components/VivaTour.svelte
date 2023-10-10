@@ -4,7 +4,6 @@
     import { aboutViva } from '../store.js';
     import { vivaAutoPlay, vivaIntroAfterEnd, vivaIntro, model } from '../store.js';
 
-
     // aktivácia jQuery
     const jq = window.$;
 
@@ -19,7 +18,6 @@
     model.subscribe(value => {
         _model = value;
     });
-
 
     function checkDevice() {
         if (navigator.userAgent.match(/Android/i)
@@ -37,7 +35,6 @@
     }
 
     checkDevice();
-
 
     let is_tour_nodes = ['node1', 'node24','node12', 'node26','node6', 'node22', 'node3', 'node18', 'node5', 'node20'];
     let take_tour_data = {
@@ -295,8 +292,6 @@
         user_lang = pano.getVariableValue("lang");
         //////console.log(user_lang);
     });
-    
-    
 
     function toggleAutoplay() {
         //console.log("toggleAutoplay");
