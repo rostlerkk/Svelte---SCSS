@@ -1323,6 +1323,8 @@ async function fetchPhpData($lang) {
     let phpUrl = "https://baumit.zone360.sk/assets/krpano/"+$lang+".json";
     //let phpUrl = "https://tour.baumit.com/assets/krpano/"+$lang+".json";
     //let phpUrl = "assets/php/getValues.php";
+    console.log(phpUrl);
+
 
     const res = await fetch(phpUrl, {
         method: 'POST',
@@ -1332,7 +1334,7 @@ async function fetchPhpData($lang) {
     const json = await res.json();
 
     if (res.ok) {
-        //console.log(json);
+        console.log(json);
         _vivaData = json;
         fetching_data = false;
         intro = true;

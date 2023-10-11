@@ -3,5 +3,6 @@
 /public/pano2vr/output/tiles/
 /public/pano2vr/output/media/
 
+
 *.mp4
 .DS_Store

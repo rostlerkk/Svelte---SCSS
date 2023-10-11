@@ -729,7 +729,7 @@
                     break;
                 // Dom 10 - exteriér
                 case "node12":
-                    check_mp3("house_10_audio1", lang);
+                    check_mp3("house_10_audio1_t", lang);
 
                     if (vivaData["subtitles"]["house_10_construction_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_10_welcome_t"][lang] + "<br/>"            
@@ -742,7 +742,7 @@
 
                 // Dom 10 - interiér
                 case "node26":
-                    check_mp3("house_10_audio2", lang);
+                    check_mp3("house_10_audio2_t", lang);
                     if (vivaData["subtitles"]["house_10_results_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_10_results_t"][lang];
                                 
@@ -754,7 +754,7 @@
             
                 // Dom 6 - exteriér
                 case "node6":
-                    check_mp3("house_6_audio1", lang);
+                    check_mp3("house_6_audio1_t", lang);
                     if (vivaData["subtitles"]["house_6_construction_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_6_construction_t"][lang]            
                     } else {
@@ -764,7 +764,7 @@
 
                 // Dom 6 - interiér
                 case "node22":
-                    check_mp3("house_6_audio2", lang);
+                    check_mp3("house_6_audio2_t", lang);
                     if (vivaData["subtitles"]["house_6_desc_1_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_6_desc_1_t"][lang] + "<br/>"            
                         subitlesString += vivaData["subtitles"]["house_6_method_1_t"][lang] + "<br/>"                     
@@ -777,7 +777,7 @@
                     break;
                 // Dom 2 - exteriér
                 case "node3":
-                    check_mp3("house_2_audio1", lang);
+                    check_mp3("house_2_audio1_t", lang);
                     if (vivaData["subtitles"]["house_2_construction_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_2_construction_t"][lang]           
                                             
@@ -788,7 +788,7 @@
 
                 // Dom 2 - interiér
                 case "node18":
-                    check_mp3("house_2_audio2", lang);
+                    check_mp3("house_2_audio2_t", lang);
                     if (vivaData["subtitles"]["house_2_research_1_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_2_research_1_t"][lang] + "<br/>"   
                         subitlesString += vivaData["subtitles"]["house_2_research_2_t"][lang]
@@ -801,7 +801,7 @@
 
                 // Dom 4 - exteriér
                 case "node5":
-                    check_mp3("house_4_audio1", lang);
+                    check_mp3("house_4_audio1_t", lang);
                     if (vivaData["subtitles"]["house_4_construction_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_4_construction_t"][lang]           
                                             
@@ -812,7 +812,7 @@
                     
                 // Dom 4 - interiér
                 case "node20":
-                    check_mp3("house_4_audio2", lang);
+                    check_mp3("house_4_audio2_t", lang);
                     if (vivaData["subtitles"]["house_4_method_1_t"][lang] != null) {
                         subitlesString += vivaData["subtitles"]["house_4_method_1_t"][lang] + "<br/>"       
                         subitlesString += vivaData["subtitles"]["house_4_method_2_t"][lang]           
