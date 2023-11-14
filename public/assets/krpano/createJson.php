@@ -129,6 +129,7 @@
             $int_subtitles_json = json_decode($int_subtitles_data, true);
 
             $sk_subtitles_link = $urlPrefix->$lang.'/api/building-tour-translations?api_token='.$apiToken->$lang;
+            echo ("<br>".$sk_subtitles_link."<br>");
             $sk_subtitles_data = file_get_contents($sk_subtitles_link);
             $sk_subtitles_json = json_decode($sk_subtitles_data, true);
 

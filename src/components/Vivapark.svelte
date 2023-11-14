@@ -168,7 +168,7 @@ vivaIntroAfterEnd.subscribe(value => {
 
 vivaAutoPlay.subscribe(value => {
     autotour = value;
-    //////console.log(value);
+    ////////////console.log(value);
     if (value) {
         jq(".pulse-layer").css({
             "display" : "none"
@@ -191,9 +191,9 @@ aboutViva.subscribe(value => {
 
 // získanie dát z API - globálna funkcia
 async function fetchData($url, $lang, $type, $variable) {
-    console.log($url);
-    console.log($lang);
-    console.log($type);
+    //////console.log($url);
+    //////console.log($lang);
+    //////console.log($type);
     $variable = false;
     if (_vivaData[$lang] == undefined) {
         const res = await fetch($url);
@@ -211,14 +211,14 @@ async function fetchData($url, $lang, $type, $variable) {
             _vivaData[$lang][$type] = json;
             vivaData.update(n => json);
 
-            console.log(json);
+            //////console.log(json);
 
             if ($type == "houses") {
-                //console.log(_vivaData); 
+                ////////console.log(_vivaData); 
             }
 
             if ($type == "products") {
-                //console.log(_vivaData.products); 
+                ////////console.log(_vivaData.products); 
             }
 
             
@@ -262,9 +262,9 @@ function check_user_lang() {
     } else {
         // Jazyk nie je definovaný v Cookies
         user_lang = (window.navigator.userLanguage || window.navigator.language).toLowerCase();
-        ////console.log(window.navigator.userLanguage);
+        //////////console.log(window.navigator.userLanguage);
         
-        ////console.log(user_lang);
+        //////////console.log(user_lang);
         
         switch (user_lang.toLowerCase()) {
             case 'cz':
@@ -491,7 +491,7 @@ function getVivaTranslations($user_lang) {
 // ziskanie URL adries
 function getProductLink($lang) {
     productUrl = urlPrefix[$lang] + '/api/products/products?api_token=' + apiToken[$lang];
-    //console.log("Products URL : " + productUrl);
+    ////////console.log("Products URL : " + productUrl);
     switch ($lang) {
         case "int":
             if (_vivaData.int == null) {
@@ -513,7 +513,7 @@ function getProductLink($lang) {
 
 function getHousesLink($lang) {
     housesUrl = urlPrefix[$lang] + '/api/buildings?api_token=' + apiToken[$lang];
-    //////console.log("Houses URL : " + housesUrl);
+    ////////////console.log("Houses URL : " + housesUrl);
 
     switch ($lang) {
         case "int":
@@ -536,7 +536,7 @@ function getHousesLink($lang) {
 
 function getSubtitlesLink($lang) {
     subtitlesUrl = urlPrefix[$lang] + '/api/building-tour-translations?api_token=' + apiToken[$lang];
-    //////console.log("Subtitles URL : " + subtitlesUrl);
+    ////////////console.log("Subtitles URL : " + subtitlesUrl);
 
     switch ($lang) {
         case "int":
@@ -738,7 +738,7 @@ function getSubtitlesLink($lang) {
                 intro = false;
             
             } else {
-                ////console.log("mám zapnúť intro screen");
+                //////////console.log("mám zapnúť intro screen");
                 //intro = true;
             }
             
@@ -746,7 +746,7 @@ function getSubtitlesLink($lang) {
 
         pano.on("varchanged_playPauseMedia", function() {
             let patchName = pano.getNodeUserdata(pano.getCurrentNode()).title;
-            ////console.log(patchName);
+            //////////console.log(patchName);
             if (patchName != null && patchName != undefined) {
 
                 let videoDuration;
@@ -764,7 +764,7 @@ function getSubtitlesLink($lang) {
                 }
 
                 let half = (videoDuration / 2) * 1000;
-                //////console.log(videoDuration + " / " + half);
+                ////////////console.log(videoDuration + " / " + half);
 
                 switch (pano.getVariableValue("playPauseMedia")) {
                     case true:
@@ -778,7 +778,7 @@ function getSubtitlesLink($lang) {
                             case "node26":
                                 break;
                             default : 
-                            ////console.log("mám spustiť stenu");
+                            //////////console.log("mám spustiť stenu");
                                 if ( !autotour) {
                                     pano.setVolume(patchName, 0.0);
                                     pano.playSound(patchName);
@@ -803,10 +803,10 @@ function getSubtitlesLink($lang) {
                         
 
                         function checkWallHalf() {
-                            ////console.log("kontrolujem čas : " + pano.soundGetTime(patchName) + "/" + half );
+                            //////////console.log("kontrolujem čas : " + pano.soundGetTime(patchName) + "/" + half );
 
                             if (pano.soundGetTime(patchName) >= (half / 1000)) {
-                                ////console.log("čas je ok, vypínam ");
+                                //////////console.log("čas je ok, vypínam ");
                                 pano.pauseSound(patchName);
 
                                 if (!autotour) {
@@ -856,7 +856,7 @@ function getSubtitlesLink($lang) {
                             
                             // if (pano.getVariableValue("vivaTour")) {
                             //     pano.playSound(patchName);
-                            //     ////console.log("ja");
+                            //     //////////console.log("ja");
                             //     myTimeout = setTimeout(stopWallAnimation, half);
 
                             //     function stopWallAnimation() {
@@ -868,7 +868,7 @@ function getSubtitlesLink($lang) {
                             //         });
                             //     }
                             // } else {
-                            //     ////console.log("jaa");
+                            //     //////////console.log("jaa");
                                 
                             //     //clearTimeout(myTimeout);
                             //     pano.playSound(patchName);
@@ -948,8 +948,13 @@ function getSubtitlesLink($lang) {
 
         pano.on("varchanged_download_data", function() {
             let donwloadValue = pano.getVariableValue("download_data");
+            //console.log("download_data changed : " + pano.getVariableValue("download_data"));
+
+            if (donwloadValue == 6 || donwloadValue == "6") {
+                donwloadValue = "VIVA: House 8, result: Interior values";
+            }
             let link;
-            switch (pano.getVariableValue("download_data")) {
+            switch (donwloadValue) {
                 case "0":
                     
                     break;
@@ -1017,7 +1022,7 @@ function show_layers($value) {
                 let poloha, houseFromApi, current_house;
 
                 current_house = parseInt(pano.getNodeUserdata(pano.getCurrentNode()).source) - 1;
-                ////console.log(current_house)
+                //////////console.log(current_house)
                 if (pano.getNodeUserdata(pano.getCurrentNode()).tags.includes("ext")) {
                     poloha = "E";
                 } else {
@@ -1027,7 +1032,7 @@ function show_layers($value) {
                 if (_vivaData.houses.buildings[current_house].layers_t != undefined ) {
                     houseFromApi = _vivaData.houses.buildings[current_house].layers_t[user_lang];
                     
-                    //console.log(houseFromApi);
+                    ////////console.log(houseFromApi);
 
                 }
 
@@ -1037,19 +1042,19 @@ function show_layers($value) {
                     if (hotspots[i].ggId.includes("ToolTip")) {
                         tmp_index++;
                         //jq(hotspots[i]).removeClass("hidden");
-                        ////console.log(hotspots[i]);
+                        //////////console.log(hotspots[i]);
                         for (const [index, [key, value]] of Object.entries(houseFromApi).entries()) {
                             if (value.name == poloha + tmp_index) {
-                                ////console.log(poloha + tmp_index);
+                                //////////console.log(poloha + tmp_index);
                                 const product_name = value.products.name
-                                ////console.log(product_name);
+                                //////////console.log(product_name);
                                 
 
                                 jq(hotspots[i]).children().children().html(product_name);
                                 jq(hotspots[i]).removeClass("hidden");
 
                                 hotspots[i].onclick = function() {
-                                    //console.log(value.products);
+                                    ////////console.log(value.products);
                                     new_product_data = value.products;
                                     pano.setVariableValue("product_ID", value.products.name);
                                 }
@@ -1176,7 +1181,7 @@ function change_scene_title() {
             let house_title = null;
             let lang = pano.getVariableValue("lang");
             title.text(_vivaData['houses']['buildings'][parseInt(node_id) - 1].house_nr_t[user_lang]);
-            //console.log(_vivaData['houses']['buildings'][parseInt(node_id) - 1].house_nr_t);
+            ////////console.log(_vivaData['houses']['buildings'][parseInt(node_id) - 1].house_nr_t);
             break;
 
         default:
@@ -1316,14 +1321,15 @@ async function fetchPhpData($lang) {
         "products": urlPrefix[$lang] + '/api/products/products?api_token=' + apiToken[$lang]
     }
 
-    //console.log(api_data);
+    ////////console.log(api_data);
     //let phpUrl = "https://woowstudio.com/vyvoj/getValues.php";
     //let phpUrl = "https://tour.baumit.com/assets/krpano/getValues.php";
-    //let phpUrl = "https://baumit.zone360.sk/assets/php/getValues.php";
-    let phpUrl = "https://baumit.zone360.sk/assets/krpano/"+$lang+".json";
     //let phpUrl = "https://tour.baumit.com/assets/krpano/"+$lang+".json";
+    //let phpUrl = "https://baumit.zone360.sk/assets/php/getValues.php";
+    //let phpUrl = "https://baumit.zone360.sk/assets/krpano/"+$lang+".json";
+    let phpUrl = "https://tour.baumit.com/assets/krpano/"+$lang+".json";
     //let phpUrl = "assets/php/getValues.php";
-    console.log(phpUrl);
+    ////////console.log(phpUrl);
 
 
     const res = await fetch(phpUrl, {
@@ -1334,7 +1340,7 @@ async function fetchPhpData($lang) {
     const json = await res.json();
 
     if (res.ok) {
-        console.log(json);
+        //console.log(json);
         _vivaData = json;
         fetching_data = false;
         intro = true;
@@ -1363,7 +1369,7 @@ async function fetchPhpData($lang) {
 }
 
 function changeShortCutsNames() {
-    ////console.log(_vivaData["houses"]);
+    //////////console.log(_vivaData["houses"]);
     jq('.check-layer > div > span').removeClass("active");
     jq('.check-layer').removeClass("active");
     jq('.check-layer').eq(parseInt(pano.getNodeUserdata(pano.getCurrentNode()).source)).addClass("active");
@@ -1383,7 +1389,7 @@ function changeShortCutsNames() {
 
     
     jq.each (jq('.swiper-slide'), function (index, data) {
-            //////////////console.log(housesData[pano.getVariableValue('lang')]);
+            ////////////////////console.log(housesData[pano.getVariableValue('lang')]);
             switch (jq('.swiper-slide').eq(index).attr('data-url')) {
                 case 'node1' : 
                 jq('.swiper-slide').eq(index).find('.node-title').html('Viva Park');
@@ -1467,16 +1473,16 @@ function close_about_tag(){
 }
 
 function toogleVivaTour() {
-    ////console.log(pano.getVariableValue("vivaTour"));
+    //////////console.log(pano.getVariableValue("vivaTour"));
     pano.setVariableValue("vivaTour", !pano.getVariableValue("vivaTour"));  
-    //console.log(pano.getVariableValue("vivaTour"));
+    ////////console.log(pano.getVariableValue("vivaTour"));
     intro = false;
 }
 
 function change_patches() {
         jq.each(jq('img.ggmedia'), function (index, value) {
             let lang = pano.getVariableValue('lang');
-            console.log('mením patch');
+            //////console.log('mením patch');
             let src = jq(this).attr('src');
 
             if (
@@ -1539,7 +1545,7 @@ add_video_patch();
 
 $: {
     intro;
-    ////console.log(intro);
+    //////////console.log(intro);
     vivaIntro.update(n => intro);
     switch (intro) {
         case true:
