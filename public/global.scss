@@ -11,3 +11,43 @@ body {
 	box-sizing: border-box;
 	font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen-Sans, Ubuntu, Cantarell, "Helvetica Neue", sans-serif;
 }
+
+#container {
+	position: absolute;
+}
+
+#splide01 {
+	position: absolute;
+	max-width: 100%;
+	bottom: 10px;
+	left: 50%;
+	transform: translateX(-50%);
+	//background-color: blue;
+	z-index: 10;
+}
+
+.splide__slide {
+	
+}
+
+.splide__slide > div {
+	box-sizing: border-box;
+	border: 2px solid transparent;
+	border-radius: 4px;
+	width: 200px;
+	height: 100px;
+	background-size: contain;
+	background-position: center center;
+	background-repeat: no-repeat;
+	overflow: hidden;
+}
+
+.splide__slide > div > img {
+	width: 200px;
+	height: 100px;
+	background-size: cover;
+}
+.splide__slide > div.active-slide {	
+	border: 2px solid white;
+}
+
