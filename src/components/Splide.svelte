@@ -3,11 +3,13 @@
     import { Splide, SplideSlide } from '@splidejs/svelte-splide';
     import '@splidejs/svelte-splide/css';
     import {active_scene} from '../store';
-    export let scenes;
+    export let scenes_object;
     let slider = null;
     
 
     onMount(() => {
+
+        // nastavenie správneho thumbanilu
         setTimeout(() => {
             changeSlide();    
         }, 200);
@@ -26,17 +28,17 @@
 
     function changeSlide() {
         if (aktivna_scena != null && slider != null) {
-            for (let index = 0; index < scenes.length; index++) {
-                const scena = scenes[index];
-                if (scena == aktivna_scena) {
-                    slider.go( index );
+            for (const [key, value] of Object.entries(scenes_object)) {
+                const scena = scenes_object[key];
+                
+                if (scena.id == aktivna_scena) {
+                    slider.go( parseInt(key) );
                 }
             }
         }
     }
 
     function changeScene(scene) {
-        console.log(scene);
         pano.openNext('{' + scene + '}');
     }
 
@@ -57,10 +59,11 @@
 
 
 <Splide options={ splideOption } aria-label="My Favorite Images" bind:this={slider}>
-    {#each scenes as item}
+    {#each Object.entries(scenes_object) as [index, value]}
         <SplideSlide>
-            <div class:active-slide={ item == aktivna_scena}>
-                <img src="pano2vr/output/images/thumbnail_nodeimage_{item}.jpg" alt="Image 1" on:click={e => { changeScene(item) }}/>
+            <div class:active-slide={ value.id == aktivna_scena}>
+                <img src="pano2vr/output/images/thumbnail_nodeimage_{value.id}.jpg" alt="{value.id}" on:click={e => { changeScene(value.id) }}/>
+                <span>{value.title}</span>    
             </div>
         </SplideSlide>
     {/each}

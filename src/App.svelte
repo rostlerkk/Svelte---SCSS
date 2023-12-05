@@ -17,6 +17,9 @@
     let scenes_object = [];
     let scenes_categories = [];
     let scenes_categories_names = [];
+	let aktivna_scena_all_data;
+
+
 	
 	onMount(() => {
 		pano.on("configloaded", function () {
@@ -25,6 +28,7 @@
 			scenes.forEach(scene => {
 				let source = pano.getNodeUserdata(scene).source;
 				scenes_object = [...scenes_object, {
+					"id": scene,
 					"title": pano.getNodeUserdata(scene).title,
 					"description": pano.getNodeUserdata(scene).description,
 					"author": pano.getNodeUserdata(scene).author,
@@ -57,13 +61,18 @@
 	
 		pano.on("changenode", function () {
 			active_scene.update(n => pano.getCurrentNode());
+			scenes_object.forEach(element => {
+				if (element.id == pano.getCurrentNode()) {
+					aktivna_scena_all_data = element;
+				}
+			});
 		});
 	});
 	
 </script>
 	{#if scenes != null}
-		<Splide {scenes}/>
-		<Menu {scenes}/>
+		<Splide {scenes_object}/>
+		<Menu {scenes_object} {aktivna_scena_all_data}/>
 	{/if}
 
 <style lang="scss">

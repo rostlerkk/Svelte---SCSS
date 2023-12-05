@@ -1,7 +1,9 @@
 <script>
     
     import { fade, fly } from 'svelte/transition';
+    import { all_scenes_object } from '../store';
     let gallery_iframe, gallery_html, gallery_images, gallery_video = "";
+    export let scenes, scenes_object, aktivna_scena_all_data;
 
     // open Gallery Video modul
     $: {
@@ -46,7 +48,6 @@
         // Your options go here
         });
     }
-
     let our_location = pano.getVariableValue("our_location");
     let map_iframe = pano.getVariableValue("map_iframe");
     let settings_hotspots = pano.getVariableValue("settings_hotspots");
@@ -56,54 +57,16 @@
     let all_hotspots = pano.getVariableValue("all_hotspots");
     let hts_luftansicht = pano.getVariableValue("hts_luftansicht");
     let scenes_count = 0;
-    let scenes;
-    let scenes_object = [];
     let scenes_categories = [];
     let scenes_categories_names = [];
     let selected_scenes_category = "all";
 
-    pano.on("configloaded", function () {
-        scenes = pano.getNodeIds();
-        scenes_count = pano.getNodeIds().length;
-
-        scenes.forEach(scene => {
-            let source = pano.getNodeUserdata(scene).source;
-            scenes_object = [...scenes_object, {
-                "title": pano.getNodeUserdata(scene).title,
-                "description": pano.getNodeUserdata(scene).description,
-                "author": pano.getNodeUserdata(scene).author,
-                "copyright": pano.getNodeUserdata(scene).copyright,            
-                "source": source,
-                "information": pano.getNodeUserdata(scene).information,
-                "comment": pano.getNodeUserdata(scene).comment,
-            }]
-
-            if (!scenes_categories_names.includes(source)) {
-                scenes_categories = [...scenes_categories, {
-                    "name" : source,
-                    "count" : 1
-                }];
-                scenes_categories_names = [...scenes_categories_names, source];
-            } else {
-                scenes_categories.forEach(scene_category => {
-                    if (scene_category.name == source) {
-                        scene_category.count ++
-                    }
-                });
-            }
-        });
-        console.log(scenes);
-        console.log(scenes_object);
-    });
-
     pano.on("varchanged_all_hotspots", function setHotspots() {
         all_hotspots = pano.getVariableValue("all_hotspots");
     });
-
     pano.on("varchanged_hts_luftansicht", function setHotspots() {
         hts_luftansicht = pano.getVariableValue("hts_luftansicht");
     });
-
     pano.on("varchanged_settings_hotspots", function setHotspots() {
         settings_hotspots = pano.getVariableValue("settings_hotspots");
     });
@@ -124,7 +87,6 @@
     pano.on("varchanged_settings_gyroscope", function setGyroscope() {
         settings_gyroscope = pano.getVariableValue("settings_gyroscope");
     });
-
     pano.on("varchanged_settings_sounds", function setSounds() {
         settings_sounds = pano.getVariableValue("settings_sounds");
 
@@ -139,10 +101,18 @@
         }
     });
 
-
-
   function toggle_pano2vr_variable(parameter) {
     pano.setVariableValue(parameter, !pano.getVariableValue(parameter));
+  }
+
+  function changeSeason() {
+    for (const [key, value] of Object.entries(scenes_object)) {
+        const element = scenes_object[key];
+        console.log(element);
+        if (element.title == aktivna_scena_all_data.title && element.source != aktivna_scena_all_data.source ) {
+            pano.openNext('{' + element.id + '}');
+        }
+    };
   }
 </script>
 
@@ -152,7 +122,20 @@
   
 
 
-<div id="header" in:fade out:fade></div>
+<div id="header" in:fade out:fade>
+    <div id="title"></div>
+    <div id="title">
+        {aktivna_scena_all_data.title}
+    </div>
+    <div class="weather">
+        {#if aktivna_scena_all_data.source != ""}
+             {#if aktivna_scena_all_data.source != ""}
+                <i class="{aktivna_scena_all_data.source == "Sommer" ? "fa-solid fa-sun w-icon" : "fa-solid fa-snowflake w-icon"}" on:click={() => changeSeason()}></i>
+            {/if}
+            
+        {/if}
+    </div>
+</div>
 <div id="aside" in:fade out:fade></div>
 
 <style lang="scss">
@@ -197,7 +180,11 @@
       left: 10px;
       width: calc(100% - 20px);
       height: 50px;
+      padding: 0px 16px;
+      box-sizing: border-box;
       display: flex;
+      justify-content: space-between;
+      align-items: center;
       border: 0 solid #e5e7eb;
       background-color: $bg-color;
       backdrop-filter: $blur;
@@ -205,6 +192,35 @@
       border-radius: 12px;
       box-shadow: $box-shadow;
       z-index: 10;
+
+      .weather {
+        width: 30px;
+        height: 30px;
+        background: #33475b;
+        cursor: pointer;
+        opacity: 0.7;
+        transition: all 0.2s ease-in-out;
+        border-radius: 50%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .weather:hover {
+            opacity: 1
+        }
+
+      .weather > .w-icon {
+           padding: 10px;
+           border-radius: 50%;
+           color: white;
+           cursor: pointer;
+           
+       }
+
+        
+
+
     }
 
     #aside {
@@ -220,5 +236,6 @@
       border-radius: 12px;
       box-shadow: $box-shadow;
       z-index: 10;
+      box-sizing: border-box;
     }
 </style>
