@@ -3,9 +3,9 @@
     import { Splide, SplideSlide } from '@splidejs/svelte-splide';
     import '@splidejs/svelte-splide/css';
     import {active_scene} from '../store';
-    export let scenes_object;
+    export let scenes_object, aktivna_scena_all_data;
     let slider = null;
-    
+    let sliderActive = false;
 
     onMount(() => {
 
@@ -55,25 +55,152 @@
 
    
 </script>
+<div id="slider-icon" class="bottom-icon" on:click={() => sliderActive = !sliderActive}>
+    <i class="fa-solid fa-panorama"></i>
+</div>
 
+<div id="info-icon" class="small-icon" on:click={() => sliderActive = !sliderActive}>
+    <i class="fa-solid fa-info"></i>
+</div>
 
+<div id="contact-icon" class="small-icon" on:click={() => sliderActive = !sliderActive}>
+    <i class="fa-solid fa-envelope"></i>
+</div>
 
-<Splide options={ splideOption } aria-label="My Favorite Images" bind:this={slider}>
+<div id="slider" class:active={sliderActive}>
+<Splide options={ splideOption } aria-label="Slider" bind:this={slider}>
     {#each Object.entries(scenes_object) as [index, value]}
+    {#if value.source == aktivna_scena_all_data.source}
         <SplideSlide>
-            <div class:active-slide={ value.id == aktivna_scena}>
-                <img src="pano2vr/output/images/thumbnail_nodeimage_{value.id}.jpg" alt="{value.id}" on:click={e => { changeScene(value.id) }}/>
-                <span>{value.title}</span>    
-            </div>
-        </SplideSlide>
+                <div class:active-slide={ value.id == aktivna_scena}>
+                    <img src="pano2vr/output/images/thumbnail_nodeimage_{value.id}.jpg" alt="{value.id}" on:click={e => { changeScene(value.id) }}/>
+                    <span>{value.title}</span>    
+                </div>
+            </SplideSlide>
+    {/if}
+        
     {/each}
-   
-    
-  </Splide>
+</Splide>
+</div>
 
 
-<style>
+<style lang="scss">
 
+    $blur : blur(10px);
+    $bg-color : hsla(0,0%,100%,.55);
+    $box-shadow : rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
+    #slider {
+        position: absolute;
+        bottom: 30px;
+        width: 100%;
+        height: 120px;
+        transition: all 0.2s ease-in-out;
+        opacity: 0;
+        visibility: hidden;
+
+        &.active {
+            bottom: 50px;
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+
+    .bottom-icon {
+        position: absolute;
+        bottom: 6px;
+        width: 48px;
+        height: 48px;
+        left: 50%;
+        transform: translateX(-50%);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background-color: $bg-color;
+        backdrop-filter: $blur;
+        -webkit-backdrop-filter: $blur;
+        color: white;
+        z-index: 12;
+        cursor: pointer;
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);
+        opacity: 0.8;
+        transition: all 0.2s ease-in-out;
+
+        i {
+            box-shadow: 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);
+            background-color: white;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            color: #111111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                width: 36px;
+                height: 36px;
+            }
+        }
+
+        &:hover {
+            opacity: 1;
+        }
+    }
+
+    .small-icon {
+        position: absolute;
+        bottom: 6px;
+        left: 50%;
+        width: 34px;
+        height: 34px;
+        bottom: 15px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 50%;
+        background-color: $bg-color;
+        backdrop-filter: $blur;
+        -webkit-backdrop-filter: $blur;
+        color: white;
+        z-index: 12;
+        cursor: pointer;
+        box-shadow: 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);
+        opacity: 0.8;
+        transition: all 0.2s ease-in-out;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        i {
+            box-shadow: 0 1px 3px 0 rgba(0,0,0,.1),0 1px 2px -1px rgba(0,0,0,.1);
+            background-color: white;
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            color: #111111;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: all 0.2s ease-in-out;
+            font-size: 10px;
+
+            &:hover {
+                width: 26px;
+                height: 26px;
+            }
+        }
+    }
+
+    #info-icon {
+        transform: translateX(-200%);
+    }
+
+    #contact-icon {
+        transform: translateX(100%);
+    }
     img.acitve {
         border: 2px solid white;
     }

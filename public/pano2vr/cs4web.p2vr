@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!-- Pano2VR project file  -->
-<pano2vrconfig version="6.1.15" rev="18116">
+<pano2vrconfig rev="18116" version="6.1.15">
   <tour>
     <panorama>
       <id>node1</id>
@@ -31,83 +31,7 @@
         <title>Kaiser Franz Josef Hoehe</title>
       </userdata>
       <floorplans/>
-      <hotspots>
-        <hotspot>
-          <position>
-            <pan>-5.83</pan>
-            <tilt>-42.17</tilt>
-            <fov>10</fov>
-          </position>
-          <next>
-            <pan>0</pan>
-            <tilt>0</tilt>
-            <fov>0</fov>
-          </next>
-          <polygon/>
-          <type>point</type>
-          <id>Point02</id>
-          <title>Freizeit hotspot</title>
-          <linktype>url</linktype>
-          <linksubtype>unknown</linksubtype>
-          <skinid>Freizeit</skinid>
-          <distance>0</distance>
-          <distanceauto>1</distanceauto>
-          <autoplace>0</autoplace>
-          <use3d>0</use3d>
-          <width>0</width>
-          <height>0</height>
-        </hotspot>
-        <hotspot>
-          <position>
-            <pan>-19.76</pan>
-            <tilt>-35.12</tilt>
-            <fov>10</fov>
-          </position>
-          <next>
-            <pan>0</pan>
-            <tilt>0</tilt>
-            <fov>0</fov>
-          </next>
-          <polygon/>
-          <type>point</type>
-          <id>Point01</id>
-          <title>Luftansicht</title>
-          <linktype>url</linktype>
-          <linksubtype>unknown</linksubtype>
-          <skinid>LuftAnsicht</skinid>
-          <distance>0</distance>
-          <distanceauto>1</distanceauto>
-          <autoplace>0</autoplace>
-          <use3d>0</use3d>
-          <width>0</width>
-          <height>0</height>
-        </hotspot>
-        <hotspot>
-          <position>
-            <pan>-0.8</pan>
-            <tilt>-19.92</tilt>
-            <fov>10</fov>
-          </position>
-          <next>
-            <pan>0</pan>
-            <tilt>0</tilt>
-            <fov>0</fov>
-          </next>
-          <polygon/>
-          <type>point</type>
-          <id>Point03</id>
-          <title>Strandbad</title>
-          <linktype>url</linktype>
-          <linksubtype>unknown</linksubtype>
-          <skinid>Strandbad</skinid>
-          <distance>0</distance>
-          <distanceauto>1</distanceauto>
-          <autoplace>0</autoplace>
-          <use3d>0</use3d>
-          <width>0</width>
-          <height>0</height>
-        </hotspot>
-      </hotspots>
+      <hotspots/>
       <output/>
       <streetview/>
       <streetviewproject/>
@@ -336,11 +260,34 @@
         <levelroll>0</levelroll>
       </input>
       <viewingparameter>
-        <pan/>
-        <tilt/>
-        <fov/>
-        <flyinstart/>
+        <pan>
+          <start>34.5638</start>
+          <min>0</min>
+          <max>360</max>
+        </pan>
+        <tilt>
+          <start>-9.48649</start>
+          <min>-90</min>
+          <max>90</max>
+        </tilt>
+        <fov>
+          <start>70</start>
+          <minunit>pixels</minunit>
+          <minpixels>2</minpixels>
+          <max>120</max>
+          <maxfovstereographic>270</maxfovstereographic>
+          <maxfovfisheye>360</maxfovfisheye>
+        </fov>
+        <flyinstart>
+          <pan>0</pan>
+          <tilt>-90</tilt>
+          <fov>170</fov>
+        </flyinstart>
         <pannorth>0</pannorth>
+        <scaletofit>1</scaletofit>
+        <projection>rectilinear</projection>
+        <flyinprojection>stereo</flyinprojection>
+        <defaultviewtimestamp>2023-12-05T23:47:37</defaultviewtimestamp>
       </viewingparameter>
       <userdata>
         <capturedatetime>2020-03-12T09:35:28</capturedatetime>
@@ -354,7 +301,32 @@
         <source>Winter</source>
       </userdata>
       <floorplans/>
-      <hotspots/>
+      <hotspots>
+        <hotspot>
+          <position>
+            <pan>-316.24</pan>
+            <tilt>-26.95</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point01</id>
+          <linktype>url</linktype>
+          <linksubtype>unknown</linksubtype>
+          <skinid>Einkaufen</skinid>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+      </hotspots>
       <output/>
       <streetview/>
       <streetviewproject/>
@@ -447,308 +419,7 @@
         <title>Jungfernsprung</title>
       </userdata>
       <floorplans/>
-      <hotspots>
-        <hotspot>
-          <position>
-            <pan>-358.09</pan>
-            <tilt>-16.33</tilt>
-            <fov>10</fov>
-          </position>
-          <next>
-            <pan>0</pan>
-            <tilt>0</tilt>
-            <fov>0</fov>
-          </next>
-          <polygon/>
-          <type>point</type>
-          <id>Point01</id>
-          <title>Restaurant</title>
-          <linktype>url</linktype>
-          <linksubtype>unknown</linksubtype>
-          <skinid>Restaurant</skinid>
-          <distance>0</distance>
-          <distanceauto>1</distanceauto>
-          <autoplace>0</autoplace>
-          <use3d>0</use3d>
-          <width>0</width>
-          <height>0</height>
-        </hotspot>
-        <hotspot>
-          <position>
-            <pan>-10.68</pan>
-            <tilt>-29.75</tilt>
-            <fov>10</fov>
-          </position>
-          <next>
-            <pan>0</pan>
-            <tilt>0</tilt>
-            <fov>0</fov>
-          </next>
-          <polygon/>
-          <type>point</type>
-          <id>Point02</id>
-          <title>Cafe &amp; Bistro</title>
-          <linktype>url</linktype>
-          <linksubtype>unknown</linksubtype>
-          <skinid>Cafe</skinid>
-          <distance>0</distance>
-          <distanceauto>1</distanceauto>
-          <autoplace>0</autoplace>
-          <use3d>0</use3d>
-          <width>0</width>
-          <height>0</height>
-        </hotspot>
-        <hotspot>
-          <position>
-            <pan>-90.09</pan>
-            <tilt>-37.22</tilt>
-            <fov>10</fov>
-          </position>
-          <next>
-            <pan>0</pan>
-            <tilt>0</tilt>
-            <fov>0</fov>
-          </next>
-          <polygon/>
-          <type>point</type>
-          <id>Point03</id>
-          <title>Hotel Offenhorn</title>
-          <linktype>url</linktype>
-          <linksubtype>unknown</linksubtype>
-          <skinid>Hotel</skinid>
-          <distance>0</distance>
-          <distanceauto>1</distanceauto>
-          <autoplace>0</autoplace>
-          <use3d>0</use3d>
-          <width>0</width>
-          <height>0</height>
-        </hotspot>
-        <hotspot>
-          <position>
-            <pan>-327.4</pan>
-            <tilt>11.71</tilt>
-            <fov>10</fov>
-          </position>
-          <next>
-            <pan>0</pan>
-            <tilt>0</tilt>
-            <fov>0</fov>
-          </next>
-          <polygon/>
-          <type>point</type>
-          <id>Point04</id>
-          <title>Luftansicht</title>
-          <linktype>url</linktype>
-          <linksubtype>unknown</linksubtype>
-          <skinid>LuftAnsicht</skinid>
-          <distance>0</distance>
-          <distanceauto>1</distanceauto>
-          <autoplace>0</autoplace>
-          <use3d>0</use3d>
-          <width>0</width>
-          <height>0</height>
-        </hotspot>
-        <hotspot>
-          <position>
-            <pan>-274.35</pan>
-            <tilt>-28.85</tilt>
-            <fov>10</fov>
-          </position>
-          <next>
-            <pan>0</pan>
-            <tilt>0</tilt>
-            <fov>0</fov>
-          </next>
-          <polygon/>
-          <type>point</type>
-          <id>Point05</id>
-          <title>Einkaufen</title>
-          <linktype>url</linktype>
-          <linksubtype>unknown</linksubtype>
-          <skinid>Einkaufen</skinid>
-          <distance>0</distance>
-          <distanceauto>1</distanceauto>
-          <autoplace>0</autoplace>
-          <use3d>0</use3d>
-          <width>0</width>
-          <height>0</height>
-        </hotspot>
-        <hotspot>
-          <position>
-            <pan>-226.72</pan>
-            <tilt>-38.43</tilt>
-            <fov>10</fov>
-          </position>
-          <next>
-            <pan>0</pan>
-            <tilt>0</tilt>
-            <fov>0</fov>
-          </next>
-          <polygon/>
-          <type>point</type>
-          <id>Point06</id>
-          <title>Optiker</title>
-          <linktype>url</linktype>
-          <linksubtype>unknown</linksubtype>
-          <skinid>Optiker</skinid>
-          <distance>0</distance>
-          <distanceauto>1</distanceauto>
-          <autoplace>0</autoplace>
-          <use3d>0</use3d>
-          <width>0</width>
-          <height>0</height>
-        </hotspot>
-        <hotspot>
-          <position>
-            <pan>-338.36</pan>
-            <tilt>-31.33</tilt>
-            <fov>10</fov>
-          </position>
-          <next>
-            <pan>0</pan>
-            <tilt>0</tilt>
-            <fov>0</fov>
-          </next>
-          <polygon/>
-          <type>point</type>
-          <id>Point07</id>
-          <title>Freizeit</title>
-          <linktype>url</linktype>
-          <linksubtype>unknown</linksubtype>
-          <skinid>Freizeit</skinid>
-          <distance>0</distance>
-          <distanceauto>1</distanceauto>
-          <autoplace>0</autoplace>
-          <use3d>0</use3d>
-          <width>0</width>
-          <height>0</height>
-        </hotspot>
-        <hotspot>
-          <position>
-            <pan>-321.65</pan>
-            <tilt>-19.17</tilt>
-            <fov>10</fov>
-          </position>
-          <next>
-            <pan>0</pan>
-            <tilt>0</tilt>
-            <fov>0</fov>
-          </next>
-          <polygon/>
-          <type>point</type>
-          <id>Point08</id>
-          <title>Streetview</title>
-          <linktype>url</linktype>
-          <linksubtype>unknown</linksubtype>
-          <skinid>StreetView</skinid>
-          <distance>0</distance>
-          <distanceauto>1</distanceauto>
-          <autoplace>0</autoplace>
-          <use3d>0</use3d>
-          <width>0</width>
-          <height>0</height>
-        </hotspot>
-        <hotspot>
-          <position>
-            <pan>-341.1</pan>
-            <tilt>-13.91</tilt>
-            <fov>10</fov>
-          </position>
-          <next>
-            <pan>0</pan>
-            <tilt>0</tilt>
-            <fov>0</fov>
-          </next>
-          <polygon/>
-          <type>point</type>
-          <id>Point09</id>
-          <title>Mode </title>
-          <linktype>url</linktype>
-          <linksubtype>unknown</linksubtype>
-          <skinid>Mode</skinid>
-          <distance>0</distance>
-          <distanceauto>1</distanceauto>
-          <autoplace>0</autoplace>
-          <use3d>0</use3d>
-          <width>0</width>
-          <height>0</height>
-        </hotspot>
-        <hotspot>
-          <position>
-            <pan>-312.81</pan>
-            <tilt>-14.13</tilt>
-            <fov>10</fov>
-          </position>
-          <next>
-            <pan>0</pan>
-            <tilt>0</tilt>
-            <fov>0</fov>
-          </next>
-          <polygon/>
-          <type>point</type>
-          <id>Point10</id>
-          <title>Floristik</title>
-          <linktype>url</linktype>
-          <linksubtype>unknown</linksubtype>
-          <skinid>Floristik</skinid>
-          <distance>0</distance>
-          <distanceauto>1</distanceauto>
-          <autoplace>0</autoplace>
-          <use3d>0</use3d>
-          <width>0</width>
-          <height>0</height>
-        </hotspot>
-        <hotspot>
-          <position>
-            <pan>-326.29</pan>
-            <tilt>-7.05</tilt>
-            <fov>10</fov>
-          </position>
-          <next>
-            <pan>0</pan>
-            <tilt>0</tilt>
-            <fov>0</fov>
-          </next>
-          <polygon/>
-          <type>point</type>
-          <id>Point11</id>
-          <title>Businness</title>
-          <linktype>url</linktype>
-          <linksubtype>unknown</linksubtype>
-          <skinid>Businness</skinid>
-          <distance>0</distance>
-          <distanceauto>1</distanceauto>
-          <autoplace>0</autoplace>
-          <use3d>0</use3d>
-          <width>0</width>
-          <height>0</height>
-        </hotspot>
-        <hotspot>
-          <position>
-            <pan>-299.64</pan>
-            <tilt>-31.2</tilt>
-            <fov>10</fov>
-          </position>
-          <next>
-            <pan>0</pan>
-            <tilt>0</tilt>
-            <fov>0</fov>
-          </next>
-          <polygon/>
-          <type>point</type>
-          <id>Point12</id>
-          <title>Bar</title>
-          <linktype>url</linktype>
-          <linksubtype>unknown</linksubtype>
-          <skinid>Bar</skinid>
-          <distance>0</distance>
-          <distanceauto>1</distanceauto>
-          <autoplace>0</autoplace>
-          <use3d>0</use3d>
-          <width>0</width>
-          <height>0</height>
-        </hotspot>
-      </hotspots>
+      <hotspots/>
       <output/>
       <streetview/>
       <streetviewproject/>
@@ -860,7 +531,7 @@
       <sounds/>
       <id>node9</id>
     </panorama>
-    <start>node6</start>
+    <start>node13</start>
   </tour>
   <panorama>
     <id>master</id>

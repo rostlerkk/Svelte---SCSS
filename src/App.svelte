@@ -13,7 +13,7 @@
     let all_hotspots = pano.getVariableValue("all_hotspots");
     let hts_luftansicht = pano.getVariableValue("hts_luftansicht");
     let scenes_count = 0;
-    let scenes;
+    let scenes, startScene;
     let scenes_object = [];
     let scenes_categories = [];
     let scenes_categories_names = [];
@@ -23,6 +23,7 @@
 	
 	onMount(() => {
 		pano.on("configloaded", function () {
+			startScene = pano.getCurrentNode();
         	scenes = pano.getNodeIds();
         	scenes_count = pano.getNodeIds().length;
 			scenes.forEach(scene => {
@@ -71,8 +72,8 @@
 	
 </script>
 	{#if scenes != null}
-		<Splide {scenes_object}/>
-		<Menu {scenes_object} {aktivna_scena_all_data}/>
+		<Splide {scenes_object} {aktivna_scena_all_data}/>
+		<Menu {scenes_object} {aktivna_scena_all_data} {startScene}/>
 	{/if}
 
 <style lang="scss">
