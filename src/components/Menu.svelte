@@ -272,8 +272,9 @@
   function changeSeason() {
     for (const [key, value] of Object.entries(scenes_object)) {
         const element = scenes_object[key];
-        console.log(element);
+        
         if (element.title == aktivna_scena_all_data.title && element.source != aktivna_scena_all_data.source ) {
+            console.log(element);
             pano.openNext('{' + element.id + '}');
         }
     };

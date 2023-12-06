@@ -2,44 +2,7 @@
 <!-- Pano2VR project file  -->
 <pano2vrconfig rev="18116" version="6.1.15">
   <tour>
-    <panorama>
-      <id>node1</id>
-      <input>
-        <patch/>
-        <type>auto</type>
-        <filename>/Users/stefankelbel/Downloads/Sigi scenes/Pano Kaiser Franz Josef Hoehe.jpg</filename>
-        <videotype>equi</videotype>
-        <levelpitch>0</levelpitch>
-        <levelroll>0</levelroll>
-      </input>
-      <viewingparameter>
-        <pan/>
-        <tilt/>
-        <fov/>
-        <flyinstart/>
-        <pannorth>0</pannorth>
-      </viewingparameter>
-      <userdata>
-        <capturedatetime>2019-09-13T13:37:48</capturedatetime>
-        <latitude>47.076434</latitude>
-        <longitude>12.748796</longitude>
-        <altitude>2509.28</altitude>
-        <datetime>13.9.2019 13:37</datetime>
-        <tags>equirects|restaurant</tags>
-        <source>Herbst</source>
-        <usealtitude>0</usealtitude>
-        <title>Kaiser Franz Josef Hoehe</title>
-      </userdata>
-      <floorplans/>
-      <hotspots/>
-      <output/>
-      <streetview/>
-      <streetviewproject/>
-      <sounds/>
-      <animation>
-        <sequence/>
-      </animation>
-    </panorama>
+    <start>node5</start>
     <panorama>
       <input>
         <patch/>
@@ -63,9 +26,9 @@
         <altitude>2630.89</altitude>
         <datetime>12.3.2020 10:46</datetime>
         <tags>equirects</tags>
-        <source>Winter</source>
+        <source>winter</source>
+        <title>Boden Schareck</title>
         <usealtitude>0</usealtitude>
-        <title>Schareck</title>
       </userdata>
       <floorplans/>
       <hotspots/>
@@ -73,7 +36,7 @@
       <streetview/>
       <streetviewproject/>
       <sounds/>
-      <id>node3</id>
+      <id>node1</id>
     </panorama>
     <panorama>
       <input>
@@ -98,9 +61,9 @@
         <altitude>2487.27</altitude>
         <datetime>12.3.2020 10:30</datetime>
         <tags>equirects</tags>
-        <title>Fallbichl mit Glockner</title>
+        <source>winter</source>
+        <title>Fallbichl</title>
         <usealtitude>0</usealtitude>
-        <source>Winter</source>
       </userdata>
       <floorplans/>
       <hotspots/>
@@ -108,7 +71,7 @@
       <streetview/>
       <streetviewproject/>
       <sounds/>
-      <id>node4</id>
+      <id>node2</id>
     </panorama>
     <panorama>
       <input>
@@ -133,9 +96,9 @@
         <altitude>2606.15</altitude>
         <datetime>12.3.2020 12:30</datetime>
         <tags>equirects</tags>
+        <source>winter</source>
         <title>Fleiss</title>
         <usealtitude>0</usealtitude>
-        <source>Winter</source>
       </userdata>
       <floorplans/>
       <hotspots/>
@@ -143,7 +106,42 @@
       <streetview/>
       <streetviewproject/>
       <sounds/>
-      <id>node5</id>
+      <id>node3</id>
+    </panorama>
+    <panorama>
+      <input>
+        <patch/>
+        <type>auto</type>
+        <filename>equirects/Heiligenblut-Startbild-Winter21.jpg</filename>
+        <videotype>equi</videotype>
+        <levelpitch>0</levelpitch>
+        <levelroll>0</levelroll>
+      </input>
+      <viewingparameter>
+        <pan/>
+        <tilt/>
+        <fov/>
+        <flyinstart/>
+        <pannorth>0</pannorth>
+      </viewingparameter>
+      <userdata>
+        <capturedatetime>2021-02-03T10:29:24</capturedatetime>
+        <latitude>47.037178</latitude>
+        <longitude>12.844297</longitude>
+        <altitude>1419</altitude>
+        <datetime>3.2.2021 10:29</datetime>
+        <tags>equirects</tags>
+        <source>winter</source>
+        <title>HeiligenBlut</title>
+        <usealtitude>0</usealtitude>
+      </userdata>
+      <floorplans/>
+      <hotspots/>
+      <output/>
+      <streetview/>
+      <streetviewproject/>
+      <sounds/>
+      <id>node4</id>
     </panorama>
     <panorama>
       <input>
@@ -168,44 +166,9 @@
         <altitude>1763.31</altitude>
         <datetime>12.3.2020 13:02</datetime>
         <tags>equirects</tags>
-        <title>Schareck Mittelstation</title>
+        <source>winter</source>
+        <title>Mitelstation</title>
         <usealtitude>0</usealtitude>
-        <source>Winter</source>
-      </userdata>
-      <floorplans/>
-      <hotspots/>
-      <output/>
-      <streetview/>
-      <streetviewproject/>
-      <sounds/>
-      <id>node10</id>
-    </panorama>
-    <panorama>
-      <input>
-        <patch/>
-        <type>auto</type>
-        <filename>equirects/Schareck.jpg</filename>
-        <videotype>equi</videotype>
-        <levelpitch>0</levelpitch>
-        <levelroll>0</levelroll>
-      </input>
-      <viewingparameter>
-        <pan/>
-        <tilt/>
-        <fov/>
-        <flyinstart/>
-        <pannorth>0</pannorth>
-      </viewingparameter>
-      <userdata>
-        <capturedatetime>2020-03-12T10:57:34</capturedatetime>
-        <latitude>47.061248</latitude>
-        <longitude>12.856712</longitude>
-        <altitude>2601.12</altitude>
-        <datetime>12.3.2020 10:57</datetime>
-        <tags>equirects</tags>
-        <title>Schareck</title>
-        <usealtitude>0</usealtitude>
-        <source>Winter</source>
       </userdata>
       <floorplans/>
       <hotspots/>
@@ -219,28 +182,51 @@
       <input>
         <patch/>
         <type>auto</type>
-        <filename>equirects/Startpano-Heiligenblut-Winter.jpg</filename>
+        <filename>equirects/Schareck.jpg</filename>
         <videotype>equi</videotype>
         <levelpitch>0</levelpitch>
         <levelroll>0</levelroll>
       </input>
       <viewingparameter>
-        <pan/>
-        <tilt/>
-        <fov/>
-        <flyinstart/>
+        <pan>
+          <start>82.5653</start>
+          <min>0</min>
+          <max>360</max>
+        </pan>
+        <tilt>
+          <start>-37.4132</start>
+          <min>-90</min>
+          <max>90</max>
+        </tilt>
+        <fov>
+          <start>42.2092</start>
+          <minunit>pixels</minunit>
+          <minpixels>2</minpixels>
+          <max>120</max>
+          <maxfovstereographic>270</maxfovstereographic>
+          <maxfovfisheye>360</maxfovfisheye>
+        </fov>
+        <flyinstart>
+          <pan>0</pan>
+          <tilt>-90</tilt>
+          <fov>170</fov>
+        </flyinstart>
         <pannorth>0</pannorth>
+        <scaletofit>1</scaletofit>
+        <projection>rectilinear</projection>
+        <flyinprojection>stereo</flyinprojection>
+        <defaultviewtimestamp>2023-12-06T13:53:52</defaultviewtimestamp>
       </viewingparameter>
       <userdata>
-        <capturedatetime>2020-03-12T09:24:37</capturedatetime>
-        <latitude>47.037360</latitude>
-        <longitude>12.844306</longitude>
-        <altitude>1439.04</altitude>
-        <datetime>12.3.2020 9:24</datetime>
+        <capturedatetime>2020-03-12T10:57:34</capturedatetime>
+        <latitude>47.061248</latitude>
+        <longitude>12.856712</longitude>
+        <altitude>2601.12</altitude>
+        <datetime>12.3.2020 10:57</datetime>
         <tags>equirects</tags>
-        <title>Heiligenblut</title>
+        <title>Schareck</title>
         <usealtitude>0</usealtitude>
-        <source>Winter</source>
+        <source>winter</source>
       </userdata>
       <floorplans/>
       <hotspots/>
@@ -261,17 +247,17 @@
       </input>
       <viewingparameter>
         <pan>
-          <start>34.5638</start>
+          <start>-121.107</start>
           <min>0</min>
           <max>360</max>
         </pan>
         <tilt>
-          <start>-9.48649</start>
+          <start>-18.5189</start>
           <min>-90</min>
           <max>90</max>
         </tilt>
         <fov>
-          <start>70</start>
+          <start>69.682</start>
           <minunit>pixels</minunit>
           <minpixels>2</minpixels>
           <max>120</max>
@@ -287,7 +273,7 @@
         <scaletofit>1</scaletofit>
         <projection>rectilinear</projection>
         <flyinprojection>stereo</flyinprojection>
-        <defaultviewtimestamp>2023-12-05T23:47:37</defaultviewtimestamp>
+        <defaultviewtimestamp>2023-12-06T13:40:30</defaultviewtimestamp>
       </viewingparameter>
       <userdata>
         <capturedatetime>2020-03-12T09:35:28</capturedatetime>
@@ -298,14 +284,72 @@
         <tags>equirects</tags>
         <title>Winkl</title>
         <usealtitude>0</usealtitude>
-        <source>Winter</source>
+        <source>winter</source>
+      </userdata>
+      <floorplans/>
+      <hotspots/>
+      <output/>
+      <streetview/>
+      <streetviewproject/>
+      <sounds/>
+      <id>node13</id>
+    </panorama>
+    <panorama>
+      <input>
+        <patch/>
+        <type>auto</type>
+        <filename>equirects/Pano HB Startbild.jpg</filename>
+        <videotype>equi</videotype>
+        <levelpitch>0</levelpitch>
+        <levelroll>0</levelroll>
+      </input>
+      <viewingparameter>
+        <pan>
+          <start>-49.3972</start>
+          <min>0</min>
+          <max>360</max>
+        </pan>
+        <tilt>
+          <start>-18.3453</start>
+          <min>-90</min>
+          <max>90</max>
+        </tilt>
+        <fov>
+          <start>42.8698</start>
+          <minunit>pixels</minunit>
+          <minpixels>2</minpixels>
+          <max>120</max>
+          <maxfovstereographic>270</maxfovstereographic>
+          <maxfovfisheye>360</maxfovfisheye>
+        </fov>
+        <flyinstart>
+          <pan>0</pan>
+          <tilt>-90</tilt>
+          <fov>170</fov>
+        </flyinstart>
+        <pannorth>0</pannorth>
+        <scaletofit>1</scaletofit>
+        <projection>rectilinear</projection>
+        <flyinprojection>stereo</flyinprojection>
+        <defaultviewtimestamp>2023-12-06T13:49:24</defaultviewtimestamp>
+      </viewingparameter>
+      <userdata>
+        <capturedatetime>2019-10-08T09:49:48</capturedatetime>
+        <latitude>47.038611</latitude>
+        <longitude>12.843611</longitude>
+        <altitude>101.78</altitude>
+        <datetime>8.10.2019 9:49</datetime>
+        <tags>equirects</tags>
+        <source>sommer</source>
+        <usealtitude>0</usealtitude>
+        <title>HeiligenBlut</title>
       </userdata>
       <floorplans/>
       <hotspots>
         <hotspot>
           <position>
-            <pan>-316.24</pan>
-            <tilt>-26.95</tilt>
+            <pan>-52.51</pan>
+            <tilt>-26.01</tilt>
             <fov>10</fov>
           </position>
           <next>
@@ -326,18 +370,42 @@
           <width>0</width>
           <height>0</height>
         </hotspot>
+        <hotspot>
+          <position>
+            <pan>-61.14</pan>
+            <tilt>-16.91</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point02</id>
+          <linktype>url</linktype>
+          <linksubtype>unknown</linksubtype>
+          <skinid>Hotel</skinid>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
       </hotspots>
       <output/>
       <streetview/>
       <streetviewproject/>
       <sounds/>
-      <id>node13</id>
+      <id>node5</id>
     </panorama>
     <panorama>
       <input>
         <patch/>
         <type>auto</type>
-        <filename>/Users/stefankelbel/Downloads/Sigi scenes/Pano HB-halbhoch.jpg</filename>
+        <filename>equirects/Pano HB-Huegel.jpg</filename>
         <videotype>equi</videotype>
         <levelpitch>0</levelpitch>
         <levelroll>0</levelroll>
@@ -350,15 +418,15 @@
         <pannorth>0</pannorth>
       </viewingparameter>
       <userdata>
-        <capturedatetime>2019-10-08T09:49:48</capturedatetime>
-        <latitude>47.038611</latitude>
-        <longitude>12.843611</longitude>
-        <altitude>101.78</altitude>
-        <datetime>8.10.2019 9:49</datetime>
+        <capturedatetime>2019-10-08T12:30:11</capturedatetime>
+        <latitude>47.036944</latitude>
+        <longitude>12.848889</longitude>
+        <altitude>41.99</altitude>
+        <datetime>8.10.2019 12:30</datetime>
         <tags>equirects</tags>
-        <source>Sommer</source>
+        <source>sommer</source>
         <usealtitude>0</usealtitude>
-        <title>Halbhoch</title>
+        <title>Huegel</title>
       </userdata>
       <floorplans/>
       <hotspots/>
@@ -366,7 +434,7 @@
       <streetview/>
       <streetviewproject/>
       <sounds/>
-      <id>node2</id>
+      <id>node6</id>
     </panorama>
     <panorama>
       <input>
@@ -379,17 +447,17 @@
       </input>
       <viewingparameter>
         <pan>
-          <start>13.1726</start>
+          <start>26.5845</start>
           <min>0</min>
           <max>360</max>
         </pan>
         <tilt>
-          <start>-1.90397</start>
+          <start>-15.6536</start>
           <min>-90</min>
           <max>90</max>
         </tilt>
         <fov>
-          <start>70</start>
+          <start>69.682</start>
           <minunit>pixels</minunit>
           <minpixels>2</minpixels>
           <max>120</max>
@@ -405,7 +473,7 @@
         <scaletofit>1</scaletofit>
         <projection>rectilinear</projection>
         <flyinprojection>stereo</flyinprojection>
-        <defaultviewtimestamp>2023-09-21T09:10:00</defaultviewtimestamp>
+        <defaultviewtimestamp>2023-12-06T13:40:24</defaultviewtimestamp>
       </viewingparameter>
       <userdata>
         <capturedatetime>2019-09-13T15:24:04</capturedatetime>
@@ -414,44 +482,9 @@
         <altitude>1332.16</altitude>
         <datetime>13.9.2019 15:24</datetime>
         <tags>equirects</tags>
-        <source>Sommer</source>
+        <source>sommer</source>
         <usealtitude>0</usealtitude>
         <title>Jungfernsprung</title>
-      </userdata>
-      <floorplans/>
-      <hotspots/>
-      <output/>
-      <streetview/>
-      <streetviewproject/>
-      <sounds/>
-      <id>node6</id>
-    </panorama>
-    <panorama>
-      <input>
-        <patch/>
-        <type>auto</type>
-        <filename>equirects/Pano Schareck.jpg</filename>
-        <videotype>equi</videotype>
-        <levelpitch>0</levelpitch>
-        <levelroll>0</levelroll>
-      </input>
-      <viewingparameter>
-        <pan/>
-        <tilt/>
-        <fov/>
-        <flyinstart/>
-        <pannorth>0</pannorth>
-      </viewingparameter>
-      <userdata>
-        <capturedatetime>2019-09-13T12:39:58</capturedatetime>
-        <latitude>47.062915</latitude>
-        <longitude>12.858586</longitude>
-        <altitude>2520.98</altitude>
-        <datetime>13.9.2019 12:39</datetime>
-        <tags>equirects</tags>
-        <source>Sommer</source>
-        <usealtitude>0</usealtitude>
-        <title>Schareck</title>
       </userdata>
       <floorplans/>
       <hotspots/>
@@ -465,7 +498,7 @@
       <input>
         <patch/>
         <type>auto</type>
-        <filename>equirects/Pano vom Ort Heiligenblut.jpg</filename>
+        <filename>equirects/Pano Kaiser Franz Josef Hoehe.jpg</filename>
         <videotype>equi</videotype>
         <levelpitch>0</levelpitch>
         <levelroll>0</levelroll>
@@ -478,15 +511,15 @@
         <pannorth>0</pannorth>
       </viewingparameter>
       <userdata>
-        <capturedatetime>2019-09-13T14:30:00</capturedatetime>
-        <latitude>47.043342</latitude>
-        <longitude>12.847384</longitude>
-        <altitude>1667.9</altitude>
-        <datetime>13.9.2019 14:30</datetime>
+        <capturedatetime>2019-09-13T13:37:48</capturedatetime>
+        <latitude>47.076434</latitude>
+        <longitude>12.748796</longitude>
+        <altitude>2509.28</altitude>
+        <datetime>13.9.2019 13:37</datetime>
         <tags>equirects</tags>
-        <source>Sommer</source>
+        <source>sommer</source>
         <usealtitude>0</usealtitude>
-        <title>Heiligenblut</title>
+        <title>Kaiser Franz Josef Hohe</title>
       </userdata>
       <floorplans/>
       <hotspots/>
@@ -500,28 +533,51 @@
       <input>
         <patch/>
         <type>auto</type>
-        <filename>equirects/Pano Winkl.jpg</filename>
+        <filename>equirects/Pano Schareck.jpg</filename>
         <videotype>equi</videotype>
         <levelpitch>0</levelpitch>
         <levelroll>0</levelroll>
       </input>
       <viewingparameter>
-        <pan/>
-        <tilt/>
-        <fov/>
-        <flyinstart/>
+        <pan>
+          <start>153.605</start>
+          <min>0</min>
+          <max>360</max>
+        </pan>
+        <tilt>
+          <start>-31.9815</start>
+          <min>-90</min>
+          <max>90</max>
+        </tilt>
+        <fov>
+          <start>42.2092</start>
+          <minunit>pixels</minunit>
+          <minpixels>2</minpixels>
+          <max>120</max>
+          <maxfovstereographic>270</maxfovstereographic>
+          <maxfovfisheye>360</maxfovfisheye>
+        </fov>
+        <flyinstart>
+          <pan>0</pan>
+          <tilt>-90</tilt>
+          <fov>170</fov>
+        </flyinstart>
         <pannorth>0</pannorth>
+        <scaletofit>1</scaletofit>
+        <projection>rectilinear</projection>
+        <flyinprojection>stereo</flyinprojection>
+        <defaultviewtimestamp>2023-12-06T13:53:47</defaultviewtimestamp>
       </viewingparameter>
       <userdata>
-        <capturedatetime>2019-09-13T14:56:56</capturedatetime>
-        <latitude>47.047365</latitude>
-        <longitude>12.816245</longitude>
-        <altitude>1585.43</altitude>
-        <datetime>13.9.2019 14:56</datetime>
+        <capturedatetime>2019-09-13T12:39:58</capturedatetime>
+        <latitude>47.062915</latitude>
+        <longitude>12.858586</longitude>
+        <altitude>2520.98</altitude>
+        <datetime>13.9.2019 12:39</datetime>
         <tags>equirects</tags>
-        <source>Sommer</source>
+        <title>Schareck</title>
         <usealtitude>0</usealtitude>
-        <title>Winkl</title>
+        <source>sommer</source>
       </userdata>
       <floorplans/>
       <hotspots/>
@@ -531,7 +587,64 @@
       <sounds/>
       <id>node9</id>
     </panorama>
-    <start>node13</start>
+    <panorama>
+      <input>
+        <patch/>
+        <type>auto</type>
+        <filename>equirects/Pano Winkl.jpg</filename>
+        <videotype>equi</videotype>
+        <levelpitch>0</levelpitch>
+        <levelroll>0</levelroll>
+      </input>
+      <viewingparameter>
+        <pan>
+          <start>175.803</start>
+          <min>0</min>
+          <max>360</max>
+        </pan>
+        <tilt>
+          <start>-20.2456</start>
+          <min>-90</min>
+          <max>90</max>
+        </tilt>
+        <fov>
+          <start>42.8698</start>
+          <minunit>pixels</minunit>
+          <minpixels>2</minpixels>
+          <max>120</max>
+          <maxfovstereographic>270</maxfovstereographic>
+          <maxfovfisheye>360</maxfovfisheye>
+        </fov>
+        <flyinstart>
+          <pan>0</pan>
+          <tilt>-90</tilt>
+          <fov>170</fov>
+        </flyinstart>
+        <pannorth>0</pannorth>
+        <scaletofit>1</scaletofit>
+        <projection>rectilinear</projection>
+        <flyinprojection>stereo</flyinprojection>
+        <defaultviewtimestamp>2023-12-06T13:53:24</defaultviewtimestamp>
+      </viewingparameter>
+      <userdata>
+        <capturedatetime>2019-09-13T14:56:56</capturedatetime>
+        <latitude>47.047365</latitude>
+        <longitude>12.816245</longitude>
+        <altitude>1585.43</altitude>
+        <datetime>13.9.2019 14:56</datetime>
+        <tags>equirects</tags>
+        <source>sommer</source>
+        <usealtitude>0</usealtitude>
+        <title>Winkl</title>
+      </userdata>
+      <floorplans/>
+      <hotspots/>
+      <output/>
+      <streetview/>
+      <streetviewproject/>
+      <sounds/>
+      <id>node10</id>
+    </panorama>
   </tour>
   <panorama>
     <id>master</id>

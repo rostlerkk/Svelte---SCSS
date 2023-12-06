@@ -70,14 +70,14 @@
 <div id="slider" class:active={sliderActive}>
 <Splide options={ splideOption } aria-label="Slider" bind:this={slider}>
     {#each Object.entries(scenes_object) as [index, value]}
-    {#if value.source == aktivna_scena_all_data.source}
+    
         <SplideSlide>
-                <div class:active-slide={ value.id == aktivna_scena}>
+                <div class='{value.id == aktivna_scena ? "active-slide" :  ""} {value.source != aktivna_scena_all_data.source ? "hidden" :  ""}'>
                     <img src="pano2vr/output/images/thumbnail_nodeimage_{value.id}.jpg" alt="{value.id}" on:click={e => { changeScene(value.id) }}/>
                     <span>{value.title}</span>    
                 </div>
             </SplideSlide>
-    {/if}
+    
         
     {/each}
 </Splide>

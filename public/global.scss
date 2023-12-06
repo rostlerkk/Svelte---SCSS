@@ -51,6 +51,10 @@ body {
 	border: 2px solid white;
 }
 
+.splide__slide > div.hidden {	
+	display: none;
+}
+
 .splide__slide > div > span {
 	position: absolute;
 	bottom: 0px;
