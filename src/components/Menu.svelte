@@ -187,10 +187,41 @@
         },
     ];
 
-    function show_gallery(gallery_sources) {
-        console.log(gallery_sources);
-        Fancybox.show(gallery_sources, {
-        
+    var video = [
+      {
+        src: "https://www.youtube.com/watch?v=z2X2HaTvkl8",
+        thumb: "http://i3.ytimg.com/vi/z2X2HaTvkl8/hqdefault.jpg",
+      },
+      {
+        src: "https://www.youtube.com/watch?v=dZRqB0JLizw",
+        thumb: "http://i3.ytimg.com/vi/dZRqB0JLizw/hqdefault.jpg",
+      },
+      {
+        src: "https://vimeo.com/259411563",
+        thumb: "https://f.vimeocdn.com/images_v6/lohp/video1_thumbnail.png",
+      },
+    ];
+
+    var iframe = [
+      {
+        src: "https://heiligenblut.at/",
+        type: "iframe",
+        preload: false,
+        width: 1000,
+        height: 1000,
+      },
+    ];
+
+    var map = [
+      {
+        src: "https://www.google.com/maps/@51.5039653,-0.1246493,14.12z",
+        width: 800,
+        height: 600,
+      },
+    ];
+
+    function show_gallery(gallery) {
+        Fancybox.show(gallery, {
         });
     }
 
@@ -249,20 +280,70 @@
     });
 
     pano.on("varchanged_gallery", function setSounds() {
-        let gallery_data = JSON.parse(pano.getVariableValue("gallery"));
+      
+      //  let gallery_data = JSON.parse(pano.getVariableValue("gallery"));
+        
 
-        switch (gallery_data) {
+        switch (gallery) {
             case "":
                 
             break;
         
             default:
-                show_gallery(gallery_data);
+                show_gallery(gallery);
             break;
         }
     });
 
-    gallery
+    pano.on("varchanged_video", function setSounds() {
+      
+      //  let gallery_data = JSON.parse(pano.getVariableValue("gallery"));
+        
+
+        switch (video) {
+            case "":
+                
+            break;
+        
+            default:
+                show_gallery(video);
+            break;
+        }
+    });
+
+    pano.on("varchanged_iframe", function setSounds() {
+      
+      //  let gallery_data = JSON.parse(pano.getVariableValue("gallery"));
+        
+
+        switch (iframe) {
+            case "":
+                
+            break;
+        
+            default:
+                show_gallery(iframe);
+            break;
+        }
+    });
+
+    pano.on("varchanged_map", function setSounds() {
+      
+      //  let gallery_data = JSON.parse(pano.getVariableValue("gallery"));
+        
+
+        switch (iframe) {
+            case "":
+                
+            break;
+        
+            default:
+                show_gallery(iframe);
+            break;
+        }
+    });
+
+    
 
   function toggle_pano2vr_variable(parameter) {
     console.log(parameter);

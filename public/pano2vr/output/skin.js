@@ -1,7 +1,7 @@
 // Garden Gnome Software - Skin
 // Pano2VR 6.1.15/18116
 // Filename: cs4web.ggsk
-// Generated 2023-12-06T14:54:35
+// Generated 2023-12-07T08:24:50
 
 function pano2vrSkin(player,base) {
 	player.addVariable('our_location', 0, "");
@@ -28,6 +28,8 @@ function pano2vrSkin(player,base) {
 	player.addVariable('hts_businness', 2, true);
 	player.addVariable('hts_freizeit', 2, true);
 	player.addVariable('gallery', 0, "");
+	player.addVariable('video', 0, "");
+	player.addVariable('iframe', 0, "");
 	var me=this;
 	var skin=this;
 	var flag=false;
@@ -1622,6 +1624,7 @@ function pano2vrSkin(player,base) {
 			}
 		}
 		me._luftansicht.onclick=function (e) {
+			player.openNext(me.hotspot.url,"");
 			skin.hotspotProxyClick(me.hotspot.id, me.hotspot.url);
 		}
 		me._luftansicht.ondblclick=function (e) {
@@ -1777,6 +1780,7 @@ function pano2vrSkin(player,base) {
 			}
 		}
 		me._bar.onclick=function (e) {
+			player.setVariableValue('gallery', "");
 			skin.hotspotProxyClick(me.hotspot.id, me.hotspot.url);
 		}
 		me._bar.ondblclick=function (e) {
@@ -1932,6 +1936,7 @@ function pano2vrSkin(player,base) {
 			}
 		}
 		me._streetview.onclick=function (e) {
+			player.setVariableValue('iframe', "");
 			skin.hotspotProxyClick(me.hotspot.id, me.hotspot.url);
 		}
 		me._streetview.ondblclick=function (e) {
@@ -2087,6 +2092,7 @@ function pano2vrSkin(player,base) {
 			}
 		}
 		me._einkaufen.onclick=function (e) {
+			player.setVariableValue('video', "");
 			skin.hotspotProxyClick(me.hotspot.id, me.hotspot.url);
 		}
 		me._einkaufen.ondblclick=function (e) {
