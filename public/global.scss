@@ -28,45 +28,53 @@ body {
 	padding: 0px 48px;
 }
 
-.splide__slide > div {
-	position: absolute;
-	box-sizing: border-box;
-	border: 2px solid rgb(4, 145, 208);
-	border-radius: 4px;
-	width: 200px;
-	height: 100px;
-	background-size: contain;
-	background-position: center center;
-	background-repeat: no-repeat;
-	overflow: hidden;
-	cursor: pointer;
+.splide__slide  {
+	div {
+		position: absolute;
+		box-sizing: border-box;
+		border: 2px solid rgb(4, 145, 208);
+		border-radius: 4px;
+		width: 200px;
+		height: 100px;
+		background-size: contain;
+		background-position: center center;
+		background-repeat: no-repeat;
+		overflow: hidden;
+		cursor: pointer;
+
+		&:hover, &.active-slide {
+			border: 2px solid white;		
+		}
+
+		&.hidden {
+			display: none;
+		}
+
+		img {
+			width: 200px;
+			height: 100px;
+			background-size: cover;
+		}
+
+		span {
+			position: absolute;
+			bottom: 0px;
+			left: 0px;
+			width: 100%;
+			height: 20px;
+			color: white;
+			font-size: 10px;
+			display: flex;
+			justify-content: center;
+			align-items: center;
+			background: rgb(0,0,0, 0.8);
+		}
+	} 
 }
 
-.splide__slide > div > img {
-	width: 200px;
-	height: 100px;
-	background-size: cover;
-}
-.splide__slide > div.active-slide {	
-	border: 2px solid white;
-}
-
-.splide__slide > div.hidden {	
-	display: none;
-}
-
-.splide__slide > div > span {
-	position: absolute;
-	bottom: 0px;
-	left: 0px;
-	width: 100%;
-	height: 20px;
-	color: white;
-	font-size: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	background: rgb(0,0,0, 0.8);
-
-}
-
+.pin.info {
+    i {
+      color: #0674B9;    
+  }
+    background: #0674B9;
+  }

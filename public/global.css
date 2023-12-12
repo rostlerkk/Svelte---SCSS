@@ -27,7 +27,7 @@ body {
   padding: 0px 48px;
 }
 
-.splide__slide > div {
+.splide__slide div {
   position: absolute;
   box-sizing: border-box;
   border: 2px solid #0491d0;
@@ -40,22 +40,18 @@ body {
   overflow: hidden;
   cursor: pointer;
 }
-
-.splide__slide > div > img {
+.splide__slide div:hover, .splide__slide div.active-slide {
+  border: 2px solid white;
+}
+.splide__slide div.hidden {
+  display: none;
+}
+.splide__slide div img {
   width: 200px;
   height: 100px;
   background-size: cover;
 }
-
-.splide__slide > div.active-slide {
-  border: 2px solid white;
-}
-
-.splide__slide > div.hidden {
-  display: none;
-}
-
-.splide__slide > div > span {
+.splide__slide div span {
   position: absolute;
   bottom: 0px;
   left: 0px;
@@ -67,4 +63,11 @@ body {
   justify-content: center;
   align-items: center;
   background: rgba(0, 0, 0, 0.8);
+}
+
+.pin.info {
+  background: #0674B9;
+}
+.pin.info i {
+  color: #0674B9;
 }

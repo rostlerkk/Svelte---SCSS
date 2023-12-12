@@ -121,6 +121,14 @@
             checked: true,
             pano_var: 'hts_freizeit',
             enabled : false
+        },
+        14: {
+            id : "info",
+            icon : '<i class="fa-solid fa-info"></i>',
+            color: '#0674B9',
+            checked: true,
+            pano_var: 'hts_info',
+            enabled : false
         }
     };
 
@@ -147,84 +155,16 @@
     }
 
     getAllHotspots();
-  
-
-    // open Gallery Video modul
-    $: {
-        gallery_video;
-
-        if (gallery_video != null && gallery_video != "") {
-            console.log(gallery_video);
-            const fancybox_video = new Fancybox.show([
-                {
-                    src: gallery_video,
-                    type: "video"
-                }
-            ]);
-
-            fancybox_video.on("destroy", (fancybox_video, slide) => {
-                pano.setVariableValue("gallery_video","");
-            });
-        }
-    }
-
-// Image gallery
-    var gallery = [
-        {
-            src: "https://lipsum.app/id/2/800x600",
-            thumb: "https://lipsum.app/id/2/80x80",
-            caption: "First image",
-        },
-        {
-            src: "https://lipsum.app/id/3/800x600",
-            thumb: "https://lipsum.app/id/3/80x80",
-            caption: "Second image",
-        },
-        {
-            src: "https://lipsum.app/id/4/800x600",
-            thumb: "https://lipsum.app/id/4/80x80",
-            caption: "Third image",
-        },
-    ];
-
-    var video = [
-      {
-        src: "https://www.youtube.com/watch?v=z2X2HaTvkl8",
-        thumb: "http://i3.ytimg.com/vi/z2X2HaTvkl8/hqdefault.jpg",
-      },
-      {
-        src: "https://www.youtube.com/watch?v=dZRqB0JLizw",
-        thumb: "http://i3.ytimg.com/vi/dZRqB0JLizw/hqdefault.jpg",
-      },
-      {
-        src: "https://vimeo.com/259411563",
-        thumb: "https://f.vimeocdn.com/images_v6/lohp/video1_thumbnail.png",
-      },
-    ];
-
-    var iframe = [
-      {
-        src: "https://heiligenblut.at/",
-        type: "iframe",
-        preload: false,
-        width: 1000,
-        height: 1000,
-      },
-    ];
-
-    var map = [
-      {
-        src: "https://www.google.com/maps/@51.5039653,-0.1246493,14.12z",
-        width: 800,
-        height: 600,
-      },
-    ];
 
     function show_gallery(gallery) {
-        Fancybox.show(gallery, {
-        });
-    }
+      let tmp = Fancybox.show(gallery, {
+      });
 
+      let fancybox = Fancybox.getInstance();
+        fancybox.on("destroy", function ( ) {
+        pano.setVariableValue("gallery", "");
+      });  
+    }
 
     let our_location = pano.getVariableValue("our_location");
     let map_iframe = pano.getVariableValue("map_iframe");
@@ -238,6 +178,10 @@
     let scenes_categories = [];
     let scenes_categories_names = [];
     let selected_scenes_category = "all";
+
+    pano.on("configloaded", function () {
+      console.log("addh");
+    });
 
     pano.on("varchanged_all_hotspots", function setHotspots() {
         all_hotspots = pano.getVariableValue("all_hotspots");
@@ -280,9 +224,10 @@
     });
 
     pano.on("varchanged_gallery", function setSounds() {
-      
-      //  let gallery_data = JSON.parse(pano.getVariableValue("gallery"));
-        
+      console.log(pano.getVariableValue("gallery"));
+
+      if (pano.getVariableValue("gallery") != null && pano.getVariableValue("gallery") != undefined && pano.getVariableValue("gallery") != "") {
+        let gallery = JSON.parse(pano.getVariableValue("gallery"));
 
         switch (gallery) {
             case "":
@@ -293,57 +238,8 @@
                 show_gallery(gallery);
             break;
         }
+      }
     });
-
-    pano.on("varchanged_video", function setSounds() {
-      
-      //  let gallery_data = JSON.parse(pano.getVariableValue("gallery"));
-        
-
-        switch (video) {
-            case "":
-                
-            break;
-        
-            default:
-                show_gallery(video);
-            break;
-        }
-    });
-
-    pano.on("varchanged_iframe", function setSounds() {
-      
-      //  let gallery_data = JSON.parse(pano.getVariableValue("gallery"));
-        
-
-        switch (iframe) {
-            case "":
-                
-            break;
-        
-            default:
-                show_gallery(iframe);
-            break;
-        }
-    });
-
-    pano.on("varchanged_map", function setSounds() {
-      
-      //  let gallery_data = JSON.parse(pano.getVariableValue("gallery"));
-        
-
-        switch (iframe) {
-            case "":
-                
-            break;
-        
-            default:
-                show_gallery(iframe);
-            break;
-        }
-    });
-
-    
 
   function toggle_pano2vr_variable(parameter) {
     console.log(parameter);
@@ -376,6 +272,25 @@
 
   }
 
+  let tmpData;
+  function infopanel(type) {
+    tmpData = pano.getVariableValue(type);
+    Fancybox.show([{ src: "#tmpData", type: "inline" }]);
+  }
+
+  function modal(link) {
+    console.log(link);
+    show_gallery([
+      {
+        "src": link,
+        "type": "iframe",
+        "preload": false,
+        "width": 1000,
+        "height": 1000
+      }
+    ] );
+  }
+
   
 </script>
   
@@ -384,11 +299,11 @@
             <div class="header-icon" on:click={() => showFilter = !showFilter}>
                 <i class="fa-solid fa-filter"></i>
             </div>
-            <div class="header-icon active" on:click={() => changeSeason()}>    
+            <!-- <div class="header-icon active" on:click={() => changeSeason()}>    
                 {#if aktivna_scena_all_data.source != ""}
                     <i class="{aktivna_scena_all_data.source == "Sommer" ? "fa-solid fa-sun w-icon" : "fa-solid fa-snowflake w-icon"}"></i>
                 {/if}
-            </div>
+            </div> -->
         </div>
         <div id="title">
             {aktivna_scena_all_data.title}
@@ -438,14 +353,18 @@
         </div>
     </div>
 
+    <div id="tmpData">
+      {tmpData}
+    </div>
+
     <div id="footer">
         <div class="menu">
             
         </div>
         <div class="menu">
-            <a>Datenschutz</a>
-            <a>Disclaimer</a>
-            <a>Impressum</a>
+            <a on:click={() => modal("https://heiligenblut.at/datenschutz")}>Datenschutz</a>
+            
+            <a on:click={() => modal("https://heiligenblut.at/impressum/")}>Impressum</a>
         </div>
     </div>
 

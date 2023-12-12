@@ -19,8 +19,6 @@
     let scenes_categories_names = [];
 	let aktivna_scena_all_data;
 
-
-	
 	onMount(() => {
 		pano.on("configloaded", function () {
 			startScene = pano.getCurrentNode();

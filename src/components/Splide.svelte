@@ -17,7 +17,9 @@
     });
 
     $: {
-        slider;
+        aktivna_scena_all_data;
+
+        console.log(aktivna_scena_all_data.source);
     }
 
     let aktivna_scena = null;
@@ -53,17 +55,43 @@
         padding: '20%',
     }
 
+    function changeSeason() {
+    for (const [key, value] of Object.entries(scenes_object)) {
+        const element = scenes_object[key];
+        
+        if (element.title == aktivna_scena_all_data.title && element.source != aktivna_scena_all_data.source ) {
+            console.log(element);
+            pano.openNext('{' + element.id + '}');
+        }
+    };
+  }
+
+  function modal(link) {
+    Fancybox.show([
+      {
+        src: link,
+        type: "iframe",
+        preload: false,
+        width: 1000,
+        height: 1000,
+      },
+    ], {
+        });
+  }
+
    
 </script>
 <div id="slider-icon" class="bottom-icon" on:click={() => sliderActive = !sliderActive}>
     <i class="fa-solid fa-panorama"></i>
 </div>
 
-<div id="info-icon" class="small-icon" on:click={() => sliderActive = !sliderActive}>
-    <i class="fa-solid fa-info"></i>
+<div id="info-icon" class="small-icon" on:click={() => changeSeason()}>
+    {#if aktivna_scena_all_data.source != ""}
+        <i class="{aktivna_scena_all_data.source.toLowerCase() == "sommer" ? "fa-solid fa-sun w-icon" : "fa-solid fa-snowflake w-icon"}"></i>
+    {/if}
 </div>
 
-<div id="contact-icon" class="small-icon" on:click={() => sliderActive = !sliderActive}>
+<div id="contact-icon" class="small-icon" on:click={() => modal("https://heiligenblut.at/heiligenblut-team/")}>
     <i class="fa-solid fa-envelope"></i>
 </div>
 

@@ -126,6 +126,12 @@
 .pin.freizeit i {
   color: #d01a00;
 }
+.pin.info {
+  background: #0674B9;
+}
+.pin.info i {
+  color: #0674B9;
+}
 .pin i {
   position: absolute !important;
   top: 50% !important;
