@@ -19,9 +19,37 @@
     let scenes_categories_names = [];
 	let aktivna_scena_all_data;
 
+	var currentDate = new Date();
+
+	var year = currentDate.getFullYear();
+	var month = currentDate.getMonth() + 1; // Mesiacy sú číslované od 0 (január) do 11 (december)
+	var day = currentDate.getDate();
+	console.log("Year : " + year + " / " + " month : " + month + " / " + day);
+	let startNode = "node4"; // Winter
+
+
+
+	switch (month) {
+		case 4:
+			if (day > 16) {
+				startNode = "node5";	
+			}
+			break;
+
+			case 5:
+			case 6:
+			case 7:
+			case 8:
+			case 9:
+			case 10:
+				startNode = "node5";	
+			break;
+	}
+
 	onMount(() => {
 		pano.on("configloaded", function () {
-			startScene = pano.getCurrentNode();
+			//startScene = pano.getCurrentNode();
+			startScene = startNode;
         	scenes = pano.getNodeIds();
         	scenes_count = pano.getNodeIds().length;
 			scenes.forEach(scene => {

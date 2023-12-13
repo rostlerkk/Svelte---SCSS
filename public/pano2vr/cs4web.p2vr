@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
 <!-- Pano2VR project file  -->
-<pano2vrconfig rev="18116" version="6.1.15">
+<pano2vrconfig version="6.1.15" rev="18116">
   <tour>
     <start>node5</start>
     <panorama>
@@ -132,7 +132,7 @@
         <datetime>3.2.2021 10:29</datetime>
         <tags>equirects</tags>
         <source>winter</source>
-        <title>HeiligenBlut</title>
+        <title>Heiligenblut</title>
         <usealtitude>0</usealtitude>
         <copyright>start</copyright>
       </userdata>
@@ -170,6 +170,7 @@
         <source>winter</source>
         <title>Mitelstation</title>
         <usealtitude>0</usealtitude>
+        <information>hide</information>
       </userdata>
       <floorplans/>
       <hotspots/>
@@ -343,7 +344,7 @@
         <tags>equirects</tags>
         <source>sommer</source>
         <usealtitude>0</usealtitude>
-        <title>HeiligenBlut</title>
+        <title>Heiligenblut</title>
         <copyright>start</copyright>
       </userdata>
       <floorplans/>
@@ -415,8 +416,8 @@
         </hotspot>
         <hotspot>
           <position>
-            <pan>-43.41</pan>
-            <tilt>-7.94</tilt>
+            <pan>-348.96</pan>
+            <tilt>-15.53</tilt>
             <fov>10</fov>
           </position>
           <next>
@@ -427,6 +428,7 @@
           <polygon/>
           <type>point</type>
           <id>Point03</id>
+          <title>Immobilien</title>
           <description>[
     {   
         "src": "https://www.youtube.com/watch?v=z2X2HaTvkl8",
@@ -443,7 +445,7 @@
 ] </description>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
-          <skinid>Bar</skinid>
+          <skinid>Immobilien</skinid>
           <distance>0</distance>
           <distanceauto>1</distanceauto>
           <autoplace>0</autoplace>
@@ -511,8 +513,8 @@
         </hotspot>
         <hotspot>
           <position>
-            <pan>-33.09</pan>
-            <tilt>-14.18</tilt>
+            <pan>-353.42</pan>
+            <tilt>-16.15</tilt>
             <fov>10</fov>
           </position>
           <next>
@@ -523,6 +525,7 @@
           <polygon/>
           <type>point</type>
           <id>Point06</id>
+          <title>Optiker</title>
           <description>[
       {
         "src": "https://heiligenblut.at/",
@@ -534,7 +537,7 @@
     ] </description>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
-          <skinid>Immobilien</skinid>
+          <skinid>Optiker</skinid>
           <distance>0</distance>
           <distanceauto>1</distanceauto>
           <autoplace>0</autoplace>
@@ -545,7 +548,7 @@
         <hotspot>
           <position>
             <pan>-13.94</pan>
-            <tilt>-15.73</tilt>
+            <tilt>-15.8</tilt>
             <fov>10</fov>
           </position>
           <next>
@@ -556,9 +559,360 @@
           <polygon/>
           <type>point</type>
           <id>Point07</id>
+          <title>LuftAnsicht</title>
+          <linktype>url</linktype>
+          <linksubtype>unknown</linksubtype>
+          <skinid>LuftAnsicht</skinid>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+        <hotspot>
+          <position>
+            <pan>-358.24</pan>
+            <tilt>-16.26</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point08</id>
+          <title>Einkaufen</title>
+          <linktype>url</linktype>
+          <linksubtype>unknown</linksubtype>
+          <skinid>Einkaufen</skinid>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+        <hotspot>
+          <position>
+            <pan>-8.67</pan>
+            <tilt>-16.19</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point09</id>
+          <title>slovo slovo slovo slovo slovo </title>
+          <linktype>url</linktype>
+          <linksubtype>unknown</linksubtype>
+          <skinid>Bar</skinid>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+        <hotspot>
+          <position>
+            <pan>-3</pan>
+            <tilt>-16.35</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point10</id>
+          <title>StreetView</title>
+          <linktype>url</linktype>
+          <linksubtype>unknown</linksubtype>
+          <skinid>StreetView</skinid>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+        <hotspot>
+          <position>
+            <pan>-344.53</pan>
+            <tilt>-15.27</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point11</id>
+          <title>Strandbad</title>
+          <linktype>url</linktype>
+          <linksubtype>unknown</linksubtype>
+          <skinid>Strandbad</skinid>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+        <hotspot>
+          <position>
+            <pan>-341.1</pan>
+            <tilt>-14.9</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point12</id>
+          <title>Restaurant</title>
+          <linktype>url</linktype>
+          <linksubtype>unknown</linksubtype>
+          <skinid>Restaurant</skinid>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+        <hotspot>
+          <position>
+            <pan>-337.6</pan>
+            <tilt>-14.45</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point13</id>
+          <title>Cafe</title>
+          <linktype>url</linktype>
+          <linksubtype>unknown</linksubtype>
+          <skinid>Cafe</skinid>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+        <hotspot>
+          <position>
+            <pan>-334.01</pan>
+            <tilt>-14.14</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point14</id>
+          <title>Unterkunft</title>
+          <linktype>url</linktype>
+          <linksubtype>unknown</linksubtype>
+          <skinid>Unterkunft</skinid>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+        <hotspot>
+          <position>
+            <pan>-330.35</pan>
+            <tilt>-13.77</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point15</id>
+          <title>Mode</title>
+          <linktype>url</linktype>
+          <linksubtype>unknown</linksubtype>
+          <skinid>Mode</skinid>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+        <hotspot>
+          <position>
+            <pan>-327.7</pan>
+            <tilt>-13.43</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point16</id>
+          <title>Floristik</title>
+          <linktype>url</linktype>
+          <linksubtype>unknown</linksubtype>
+          <skinid>Floristik</skinid>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+        <hotspot>
+          <position>
+            <pan>-324.76</pan>
+            <tilt>-12.99</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point17</id>
+          <title>Floristik</title>
+          <linktype>url</linktype>
+          <linksubtype>unknown</linksubtype>
+          <skinid>Floristik</skinid>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+        <hotspot>
+          <position>
+            <pan>-322.59</pan>
+            <tilt>-12.73</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point18</id>
+          <title>Businness</title>
+          <linktype>url</linktype>
+          <linksubtype>unknown</linksubtype>
+          <skinid>Businness</skinid>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+        <hotspot>
+          <position>
+            <pan>-320.17</pan>
+            <tilt>-12.49</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point19</id>
+          <title>Freizeit</title>
+          <linktype>url</linktype>
+          <linksubtype>unknown</linksubtype>
+          <skinid>Freizeit</skinid>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+        <hotspot>
+          <position>
+            <pan>-318.22</pan>
+            <tilt>-12.05</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point20</id>
+          <title>Info</title>
           <linktype>url</linktype>
           <linksubtype>unknown</linksubtype>
           <skinid>Info</skinid>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+        <hotspot>
+          <position>
+            <pan>-316.57</pan>
+            <tilt>-11.77</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point21</id>
+          <title>Webcam</title>
+          <linktype>url</linktype>
+          <linksubtype>unknown</linksubtype>
+          <skinid>Webcam</skinid>
           <distance>0</distance>
           <distanceauto>1</distanceauto>
           <autoplace>0</autoplace>

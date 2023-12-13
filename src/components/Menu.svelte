@@ -83,7 +83,7 @@
             enabled : false
         },
         9: {
-            id : "hotel",
+            id : "unterkunft",
             icon : '<i class="fa-solid fa-hotel"></i>',
             color: '#aacc64',
             checked: true,
@@ -129,11 +129,19 @@
             checked: true,
             pano_var: 'hts_info',
             enabled : false
+        },
+        15: {
+            id : "webcam",
+            icon : '<i class="fa-solid fa-video"></i>',
+            color: '#0674B9',
+            checked: true,
+            pano_var: 'hts_webcam',
+            enabled : false
         }
     };
 
     function getAllHotspots() {
-      console.log(startScene)
+      //console.log(startScene)
         scenes_object.forEach(element => {
             pano.openNext('{' + element.id + '}');
             let array = pano.getCurrentPointHotspots();
@@ -149,7 +157,7 @@
                 });
             }
         });
-        console.log(allHotspots);
+        //console.log(allHotspots);
 
         pano.openNext('{' + startScene + '}');
     }
@@ -180,7 +188,7 @@
     let selected_scenes_category = "all";
 
     pano.on("configloaded", function () {
-      console.log("addh");
+      //console.log("addh");
     });
 
     pano.on("varchanged_all_hotspots", function setHotspots() {
@@ -224,7 +232,7 @@
     });
 
     pano.on("varchanged_gallery", function setSounds() {
-      console.log(pano.getVariableValue("gallery"));
+      //console.log(pano.getVariableValue("gallery"));
 
       if (pano.getVariableValue("gallery") != null && pano.getVariableValue("gallery") != undefined && pano.getVariableValue("gallery") != "") {
         let gallery = JSON.parse(pano.getVariableValue("gallery"));
@@ -242,7 +250,8 @@
     });
 
   function toggle_pano2vr_variable(parameter) {
-    console.log(parameter);
+    //console.log(parameter);
+
     pano.setVariableValue(parameter, !pano.getVariableValue(parameter));
   }
 
@@ -251,7 +260,7 @@
         const element = scenes_object[key];
         
         if (element.title == aktivna_scena_all_data.title && element.source != aktivna_scena_all_data.source ) {
-            console.log(element);
+            //console.log(element);
             pano.openNext('{' + element.id + '}');
         }
     };
@@ -279,7 +288,7 @@
   }
 
   function modal(link) {
-    console.log(link);
+    //console.log(link);
     show_gallery([
       {
         "src": link,
@@ -362,6 +371,7 @@
             
         </div>
         <div class="menu">
+          <a href="https://www.cs4web.at/" target="_blank" >© CS4Web OG 2023</a>
             <a on:click={() => modal("https://heiligenblut.at/datenschutz")}>Datenschutz</a>
             
             <a on:click={() => modal("https://heiligenblut.at/impressum/")}>Impressum</a>
@@ -397,6 +407,12 @@
         align-content: center;
         gap: 10px;
         height: 100%;
+
+        a {
+          color: white;
+          text-decoration: none;
+          cursor: pointer;
+        }
     }
   }
 

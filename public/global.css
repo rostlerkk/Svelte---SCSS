@@ -65,9 +65,34 @@ body {
   background: rgba(0, 0, 0, 0.8);
 }
 
-.pin.info {
+.pin.info, .pin.video {
   background: #0674B9;
 }
-.pin.info i {
+.pin.info i, .pin.video i {
   color: #0674B9;
+}
+
+.h-title {
+  left: -6px !important;
+  position: absolute;
+  top: 25px !important;
+  background: rgba(0, 0, 0, 0.8);
+  border-radius: 4px;
+  color: white;
+  padding: 2px 4px;
+  width: -webkit-max-content;
+  width: -moz-max-content;
+  width: max-content;
+  transform: translateX(-50%);
+  font-size: 14px;
+  width: max-content !important;
+  height: -webkit-max-content !important;
+  height: -moz-max-content !important;
+  height: max-content !important;
+}
+.h-title div {
+  position: relative !important;
+  top: unset !important;
+  left: unset !important;
+  color: white !important;
 }

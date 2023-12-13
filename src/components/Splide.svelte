@@ -19,7 +19,7 @@
     $: {
         aktivna_scena_all_data;
 
-        console.log(aktivna_scena_all_data.source);
+        //console.log(aktivna_scena_all_data.source);
     }
 
     let aktivna_scena = null;
@@ -58,9 +58,11 @@
     function changeSeason() {
     for (const [key, value] of Object.entries(scenes_object)) {
         const element = scenes_object[key];
+
+        // if (element.title == aktivna_scena_all_data.title && element.source != aktivna_scena_all_data.source ) {
         
-        if (element.title == aktivna_scena_all_data.title && element.source != aktivna_scena_all_data.source ) {
-            console.log(element);
+        if (element.title == "Heiligenblut" && element.source != aktivna_scena_all_data.source ) {
+            //console.log(element);
             pano.openNext('{' + element.id + '}');
         }
     };

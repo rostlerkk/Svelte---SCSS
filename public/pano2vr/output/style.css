@@ -7,23 +7,6 @@
   width: 80px !important;
   height: 80px !important;
 }
-.hts-point > div {
-  width: 80px !important;
-  height: 80px !important;
-}
-
-.hts-title {
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  background: red !important;
-  padding: 2px 6px !important;
-  border-radius: 6px !important;
-  color: white !important;
-  margin-top: -32px !important;
-}
-
 .pin {
   width: 30px;
   height: 30px;
