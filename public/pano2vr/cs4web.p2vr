@@ -346,6 +346,7 @@
         <usealtitude>0</usealtitude>
         <title>Heiligenblut</title>
         <copyright>start</copyright>
+        <information>all</information>
       </userdata>
       <floorplans/>
       <hotspots>
@@ -920,6 +921,57 @@
           <width>0</width>
           <height>0</height>
         </hotspot>
+        <hotspot>
+          <position>
+            <pan>-314.95</pan>
+            <tilt>-11.55</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point22</id>
+          <title>$(ut)</title>
+          <linktype>node</linktype>
+          <linksubtype>unknown</linksubtype>
+          <url>{node11}</url>
+          <skinid>360</skinid>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
+        <hotspot>
+          <position>
+            <pan>-313.56</pan>
+            <tilt>-11.46</tilt>
+            <fov>10</fov>
+          </position>
+          <next>
+            <pan>0</pan>
+            <tilt>0</tilt>
+            <fov>0</fov>
+          </next>
+          <polygon/>
+          <type>point</type>
+          <id>Point23</id>
+          <title>Sehenswertes</title>
+          <linktype>url</linktype>
+          <linksubtype>unknown</linksubtype>
+          <skinid>Sehenswertes</skinid>
+          <distance>0</distance>
+          <distanceauto>1</distanceauto>
+          <autoplace>0</autoplace>
+          <use3d>0</use3d>
+          <width>0</width>
+          <height>0</height>
+        </hotspot>
       </hotspots>
       <output/>
       <streetview/>
@@ -1011,6 +1063,7 @@
         <source>sommer</source>
         <usealtitude>0</usealtitude>
         <title>Jungfernsprung</title>
+        <information>all</information>
       </userdata>
       <floorplans/>
       <hotspots/>

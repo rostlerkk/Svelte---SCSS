@@ -5,8 +5,8 @@
     height: 80px !important;
 
     & > div {
-        // width: 80px !important;
-        // height: 80px !important;
+         width: 80px !important;
+         height: 80px !important;
     }
 }
 
@@ -131,6 +131,20 @@
       color: #0674B9;    
   }
     background: #0674B9;
+  }
+
+  &.pano-360 {
+    i {
+      color: #0674B9;    
+  }
+    background: #0674B9;
+  }
+
+  &.sehenswertes {
+    i {
+      color: rgb(179, 13, 67);    
+  }
+    background: rgb(179, 13, 67);
   }
 
 

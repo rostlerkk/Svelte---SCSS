@@ -137,6 +137,22 @@
             checked: true,
             pano_var: 'hts_webcam',
             enabled : false
+        },
+        16: {
+            id : "360",
+            icon : '<i class="fa-solid fa-panorama"></i>',
+            color: '#ee4300',
+            checked: true,
+            pano_var: 'hts_360',
+            enabled : false
+        },
+        17: {
+            id : "sehenswertes",
+            icon : '<i class="fa-solid fa-binoculars"></i>',
+            color: 'rgb(179, 13, 67)',
+            checked: true,
+            pano_var: 'hts_sehenswertes',
+            enabled : false
         }
     };
 
@@ -366,7 +382,7 @@
       {tmpData}
     </div>
 
-    <div id="footer">
+    <div class="footer">
         <div class="menu">
             
         </div>
@@ -385,7 +401,7 @@
   $bg-color : hsla(0,0%,100%,.55);
   $box-shadow : rgba(50, 50, 93, 0.25) 0px 13px 27px -5px, rgba(0, 0, 0, 0.3) 0px 8px 16px -8px;
 
-  #footer {
+  .footer {
     position: absolute;
     bottom: 0px;
     left: 0px;

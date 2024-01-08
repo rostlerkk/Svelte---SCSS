@@ -61,7 +61,7 @@
 
         // if (element.title == aktivna_scena_all_data.title && element.source != aktivna_scena_all_data.source ) {
         
-        if (element.title == "Heiligenblut" && element.source != aktivna_scena_all_data.source ) {
+        if ((element.title == "Heiligenblut" && element.source != aktivna_scena_all_data.source ))  {
             //console.log(element);
             pano.openNext('{' + element.id + '}');
         }
@@ -89,7 +89,7 @@
 
 <div id="info-icon" class="small-icon" on:click={() => changeSeason()}>
     {#if aktivna_scena_all_data.source != ""}
-        <i class="{aktivna_scena_all_data.source.toLowerCase() == "sommer" ? "fa-solid fa-sun w-icon" : "fa-solid fa-snowflake w-icon"}"></i>
+        <i class="{aktivna_scena_all_data.source.toLowerCase() == "sommer" ? "fa-solid fa-snowflake w-icon" : "fa-solid fa-sun w-icon"}"></i>
     {/if}
 </div>
 
@@ -101,8 +101,8 @@
 <Splide options={ splideOption } aria-label="Slider" bind:this={slider}>
     {#each Object.entries(scenes_object) as [index, value]}
     
-        <SplideSlide>
-                <div class='{value.id == aktivna_scena ? "active-slide" :  ""} {value.source != aktivna_scena_all_data.source ? "hidden" :  ""}'>
+        <SplideSlide class={value.source != aktivna_scena_all_data.source && value.information != "all" ? "hidden" :  "hide"}>
+                <div class='{value.id == aktivna_scena ? "active-slide" :  ""} {value.source != aktivna_scena_all_data.source && value.information != "all" ? "hidden" :  "hide"}'>
                     <img src="pano2vr/output/images/thumbnail_nodeimage_{value.id}.jpg" alt="{value.id}" on:click={e => { changeScene(value.id) }}/>
                     <span>{value.title}</span>    
                 </div>
